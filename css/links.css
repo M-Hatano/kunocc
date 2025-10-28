@@ -1,0 +1,80 @@
+.c-main {
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 0px) and (max-width: 767px) {
+  .title-type-02 {
+    font-size: 5vw;
+  }
+}
+@media screen and (min-width: 768px) {
+  .title-type-02 {
+    font-size: 2.3rem;
+  }
+}
+.title-type-02 {
+  border-bottom: 1px solid #DCDCDC;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .links .link-lists {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+  }
+  .links .link-lists li {
+    -ms-flex-preferred-size: 32%;
+    -webkit-flex-basis: 32%;
+            flex-basis: 32%;
+    margin-bottom: 20px;
+  }
+}
+.link-pdf::after, .link-external::after {
+  padding-left: 0.25em;
+  vertical-align: middle;
+  font-family: "Material Icons";
+}
+
+@media screen and (min-width: 0px) and (max-width: 767px) {
+  .link-pdf::after, .link-external::after {
+    font-size: 4.6875vw;
+  }
+}
+@media screen and (min-width: 768px) {
+  .link-pdf::after, .link-external::after {
+    font-size: 2.1rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .link-pdf a, .link-external a {
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+  .link-pdf a:hover, .link-external a:hover {
+    opacity: 0.7;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+}
+.partnership-golf {
+  margin-top: 80px;
+  margin-bottom: 15px;
+}
+@media screen and (max-width: 767px) {
+  .partnership-golf {
+    margin-top: 40px;
+    margin-bottom: 7px;
+  }
+}
+
+.link-external::after {
+  content: url(../img/links/links.svg);
+}

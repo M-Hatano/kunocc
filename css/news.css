@@ -1,0 +1,239 @@
+.c-head2 {
+  text-align: left;
+  font-weight: 400;
+  font-size: 3.2rem;
+}
+
+@media screen and (max-width: 767px) {
+  .c-head2 {
+    font-size: 2.4rem;
+  }
+}
+
+.news-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-bottom: 160px;
+  flex-wrap: wrap;
+}
+
+.news-box p + p {
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .news-box {
+    margin-top: 10px;
+    margin-bottom: 60px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+.news-box__left {
+  width: calc(100% - 350px);
+}
+
+.news-box__left a{
+  text-decoration: underline;
+  color: #03045E;
+}
+
+.news-box__left p {
+  overflow: hidden;
+  line-height: 1.6;
+}
+
+.news-box__left p img {
+  float: left;
+}
+
+.news-box__left img{
+  margin: 0 20px 5px 0;
+}
+
+.news-box__list {
+  font-size: 16px;
+}
+
+.news-box__list li {
+  border-bottom: 1px solid;
+  line-height: 1.5;
+}
+
+.news-box__list li a {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  padding: 20px 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.news-box__list li a:hover {
+  background-color: #ececec;
+  opacity: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .news-box__list li a {
+    padding: 14px 0;
+    font-size: 14px;
+  }
+
+  .news-box__list li a:hover {
+    background: none;
+  }
+  .news-box__left {
+    width: 100%;
+  }
+  .news-box__left img{
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.news-box__time {
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 2px 10px;
+  background: #0077B6;
+  color: #fff;
+  font-weight: bold;
+  border: 1px solid #0077B6;
+  border-radius: 6px;
+}
+
+@media screen and (max-width: 767px) {
+  .news-box__time {
+    font-size: 12px;
+  }
+}
+
+.news-dt__ttl {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 2.4rem;
+  border-bottom: 1px solid #333;
+  margin-bottom: 50px;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  line-height: 1.4;
+  padding-bottom: 10px;
+}
+
+.news-dt__ttl span {
+  font-size: 1.4rem;
+  background: #03045E;
+  color: #fff;
+  padding: 2px 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+@media screen and (max-width: 767px) {
+  .news-dt__ttl {
+    font-size: 1.8rem;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 25px;
+    line-height: 1.6;
+  }
+
+  .news-dt__ttl span {
+    font-size: 1.2rem;
+  }
+}
+
+.news__all {
+  background-color: #03045E;
+  color: #fff;
+  border-radius: 37px;
+  font-size: 20px;
+  line-height: 50px;
+  display: block;
+  font-weight: bold;
+  width: 250px;
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 80px auto 0;
+}
+
+@media screen and (max-width: 767px) {
+  .news__all {
+    font-size: 1.4rem;
+    margin: 60px auto 0;
+  }
+}
+
+.btn-area {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0;
+}
+
+.btn-area .c-link-pdf {
+  line-height: 1.2;
+  display: inline-block;
+}
+
+.news-box__right{
+  width: 350px;
+  padding-left: 40px;
+}
+
+.news-box__right--box{
+  font-size: 1.4rem;
+  padding: 20px;
+  background: #eef7fe;
+}
+
+.news-box__right--box h3{
+  margin-bottom: 5px;
+}
+
+.news-box__right--box > div + div{
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .btn-area .c-link-pdf {
+    line-height: 1.6;
+  }
+  .news-box__right{
+    width: 100%;
+    padding-left: 0;
+    margin-top: 40px;
+  }
+}

@@ -1,0 +1,113 @@
+@charset "UTF-8";
+.access__map {
+  padding-top: 50%;
+  position: relative;
+}
+
+.access__map iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.c-head3 {
+  margin-bottom: 20px;
+}
+
+dl {
+  margin-top: 40px;
+}
+
+.bus-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.bus-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.access_img {
+  width: 100%;
+  max-width: 700px;
+  /* ← ここで統一する幅を指定 */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+/*地図下部のボタン*/
+.btn-wrapper {
+  display: flex;
+  justify-content: center; /* 中央揃え */
+  gap: 40px; /* ボタン同士の間隔 */
+  flex-wrap: wrap; /* スマホなど狭い画面では折り返す */
+  margin-top: 50px;
+}
+
+.btn-wrapper .c-btn{
+  display: inline-block;
+  margin: 5px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .btn-wrapper{
+    gap: 0;
+  }
+
+.tb-md01 {
+  background: #CAF0F8;
+  color: unset;
+}
+}
+
+.arrow {
+  display: inline-block;
+  width: 55px;
+  height: 40px;
+  background: url(../img/access/arrow-access.png) center / 100% 100% no-repeat;
+}
+
+@media screen and (max-width: 767px) {
+  .arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.link_dl{
+  color: #67A4C2;
+  text-decoration: underline;
+
+}
+
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.table-type-02 {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-type-02 th,
+.table-type-02 td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 先頭列（1列目）と最後列以外を統一幅に */
+.table-type-02 th:nth-child(3),
+.table-type-02 th:nth-child(4),
+.table-type-02 th:nth-child(5),
+.table-type-02 th:nth-child(6) {
+  width: 150px; /* お好みの幅に調整 */
+}
+
