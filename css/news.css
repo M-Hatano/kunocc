@@ -2,9 +2,9 @@
   background: url("../img/common/page-header.png") left / 874px 100% no-repeat, url("../img/news/page-header.jpg") center / 100% 100% no-repeat;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .c-page-header {
-    background: url("../img/news/page-header_sp.jpg") center / 100% 100% no-repeat;
+    background: url("../img/common/page-header_sp.png") left / 60% 100% no-repeat, url("../img/news/page-header_sp.jpg") center / 100% 100% no-repeat;
   }
 }
 
