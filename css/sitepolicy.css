@@ -4,11 +4,11 @@
 }
 
 .c-page-header {
-    background: url("../img/privacypolicy/page-header.jpg") center / cover no-repeat;
+    background: url("../img/sitepolicy/page-header.jpg") center / 100% 100% no-repeat;
 }
 
 @media screen and (max-width: 768px) {
     .c-page-header {
-        background: url("../img/privacypolicy/page-header_sp.jpg") center / cover no-repeat;
+        background: url("../img/sitepolicy/page-header_sp.jpg") center / 100% 100% no-repeat;
     }
 }

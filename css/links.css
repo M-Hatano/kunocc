@@ -4,12 +4,12 @@
 }
 
 .c-page-header {
-  background: url("../img/privacypolicy/page-header.jpg") center / cover no-repeat;
+  background: url("../img/links/page-header.jpg") center / 100% 100% no-repeat;
 }
 
 @media screen and (max-width: 768px) {
   .c-page-header {
-    background: url("../img/privacypolicy/page-header_sp.jpg") center / cover no-repeat;
+    background: url("../img/links/page-header_sp.jpg") center / 100% 100% no-repeat;
   }
 }
 
@@ -25,7 +25,7 @@
 
 @media screen and (min-width: 0px) and (max-width: 767px) {
   .title-type-02 {
-    font-size: 7vw;
+    font-size: 6vw;
     margin-top: 0;
   }
 }
@@ -52,6 +52,12 @@
     -webkit-flex-basis: 32%;
     flex-basis: 32%;
     margin-bottom: 20px;
+  }
+}
+
+@media screen and(max-width:767) {
+  .links .link-lists li {
+    line-height: 30px;
   }
 }
 
