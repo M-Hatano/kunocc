@@ -395,7 +395,7 @@ body * {
 
 a,
 button {
-  color: #000;
+  color: #333;
   text-decoration: none;
   cursor: pointer;
   -webkit-user-select: none;
@@ -1631,6 +1631,16 @@ table {
 }
 
 /* # =================================================================
+#	メイン背景
+# ================================================================= */
+.c-main {
+  background-image: url(../img/common/bg_ashi_03.png);
+  background-repeat: repeat;
+  background-color: #F8F7F2;
+}
+
+
+/* # =================================================================
 #	下層ヘッダー
 # ================================================================= */
 .c-page-header {
@@ -1645,7 +1655,7 @@ table {
 .c-page-header__inner {
   z-index: 1;
   width: 100%;
-  padding: 0 100px;
+  padding: 0 50px;
   position: absolute;
   left: 0;
   right: 0;
@@ -1672,10 +1682,6 @@ table {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1685,11 +1691,18 @@ table {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  color: #243749;
-  text-align: center;
+  color: #fff;
   line-height: 100%;
   font-family: "Quicksand";
-  font-style: Light;
+}
+
+._sub {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  color: #243749;
 }
 
 .c-page-header__title span {
@@ -1726,6 +1739,7 @@ table {
   }
 }
 
+
 /* # =================================================================
 #	下層ページネーション
 # ================================================================= */
@@ -1757,8 +1771,8 @@ table {
   width: 36px;
   height: 36px;
   border-radius: 50px;
-  border: 1px solid #03045E;
-  color: #03045E;
+  border: 1px solid #243749;
+  color: #243749;
   font-weight: bold;
 }
 
@@ -1767,7 +1781,7 @@ table {
 }
 
 .c-pagenation li.is-current a {
-  background: #0077B6;
+  background: #243749;
   color: #fff;
 }
 
@@ -2384,10 +2398,22 @@ table {
 }
 
 .c-head5 {
-  font-size: 2.8rem;
+  font-size: 32px;
+  font-weight: 700;
+  padding: 0 0 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .c-head5 {
+    font-size: 2rem;
+    padding: 0 0 15px;
+  }
+}
+
+.c-head6 {
+  font-size: 4.5rem;
   font-weight: 500;
   line-height: 1;
-  z-index: 1;
   padding: 0 0 30px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -2396,33 +2422,32 @@ table {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
   -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #132133;
 }
 
-.c-head5 span {
-  font-size: 8.4rem;
-  font-family: "Playwrite IN", sans-serif;
-  color: #CAF0F8;
-  font-weight: 200;
-  left: 0;
-  z-index: -1;
-  margin-top: -.4em;
-  letter-spacing: 0;
+.c-head6 span {
+  font-size: 7.5rem;
+  font-family: "Playwrite IN", cursive;
+  color: #324A5B;
+  font-weight: 300;
+  line-height: 100%;
+  margin-top: -80px;
+  opacity: 0.2;
 }
-
 @media screen and (max-width: 767px) {
-  .c-head5 {
-    font-size: 2rem;
+  .c-head6 {
+    font-size: 2.4rem;
     padding: 0 0 15px;
   }
-
-  .c-head5 span {
-    font-size: 5rem;
+  .c-head6 span {
+    font-size: 4rem;
+    margin-top: -45px;
   }
 }
 
@@ -2941,7 +2966,7 @@ table {
 }
 
 @media screen and (max-width: 767px) {
-  .c-box{
+  .c-box {
     padding: 30px 20px 80px;
   }
 }
@@ -2970,4 +2995,3 @@ table {
     width: 180px;
   }
 } */
-

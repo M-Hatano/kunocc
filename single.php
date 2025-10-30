@@ -3,17 +3,11 @@
       <!--  header -->
 
       <main class="c-main">
-        <div class="c-page-header lazyload" data-bg="<?php echo esc_url(get_template_directory_uri()); ?>/img/news/page-header.jpg">
+        <div class="c-page-header lazyload">
             <div class="c-column c-page-header__inner">
-                <?php if ( in_category('member') ): ?>
                 <h1 class="c-page-header__title">News
-                    <span>- 富士平原 かわら版 -</span>
+                <span>- ニュース -</span>
                 </h1>
-                <?php else: ?>
-                <h1 class="c-page-header__title">News
-                    <span>- ニュース -</span>
-                </h1>
-                <?php endif; ?>
             </div>
         </div>
         <div class="c-column">
@@ -133,129 +127,10 @@
                 <?php endif; ?>
             </div>
 
-            <?php
-                // --- アーカイブ出力部分の例 ---
-                // すでに $years と $base を設定済みの前提です
-                // （single テンプレート内の「ニュース一覧へ戻る」の直後あたり）
+            
 
-                if ( in_category('member') ) {
-                    $years = fhg_get_all_years();       // member カテゴリ（かわら版）の年
-                    $cat   = 'member';
-                    $base  = home_url( 'news/kawaraban' );
-                } else {
-                    $years = fhg_get_news_years();      // news カテゴリ（ニュース）の年
-                    $cat   = 'news';
-                    $base  = home_url( 'news' );
-                }
+        </div>
 
-                if ( ! empty( $years ) ) : ?>
-                <div class="news-box__right">
-                    <h3 class="c-head5">Archive</h3>
-                    <div class="news-box__right--box">
-                        <!--  新着記事ウィジェット -->
-                        <div>
-                            <h3 class="widget-title">新着記事</h3>
-                            <ul>
-                                <?php
-                                // かわら版記事なら member、ニュース記事なら news
-                                if ( in_category('member') ) {
-                                $rq = new WP_Query([ 'category_name'=>'member', 'posts_per_page'=>5 ]);
-                                } elseif ( in_category('news') ) {
-                                $rq = new WP_Query([ 'category_name'=>'news',   'posts_per_page'=>5 ]);
-                                }
-                                if ( isset($rq) && $rq->have_posts() ) :
-                                while ( $rq->have_posts() ) : $rq->the_post(); ?>
-                                    <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-                                <?php endwhile;
-                                wp_reset_postdata();
-                                endif;
-                                ?>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <?php
-                            // 例：かわら版記事一覧
-                            if ( is_page_template( 'page-120-news-kawaraban.php' ) ) {
-                            $recent = new WP_Query([
-                                'post_type'      => 'post',
-                                'category_name'  => 'member',
-                                'posts_per_page' => 5,
-                            ]);
-                            if ( $recent->have_posts() ) {
-                                echo '<div class="archive-by-recent"><h3>かわら版記事一覧</h3><ul>';
-                                while ( $recent->have_posts() ) {
-                                $recent->the_post();
-                                printf( '<li><a href="%s">%s</a></li>',
-                                    esc_url( get_permalink() ),
-                                    esc_html( get_the_title() )
-                                );
-                                }
-                                echo '</ul></div>';
-                                wp_reset_postdata();
-                            }
-                            }
-                            ?>
-                        </div>
-
-                        <?php if ( in_category('member') ): // 「かわら版」のときだけカテゴリ別を表示 ?>
-                        <div>
-                            <h3 class="widget-title">カテゴリ別</h3>
-                            <ul class="news-box__right--list">
-                              <?php
-                              $base_term = get_category_by_slug('member');
-                              if ( $base_term ) {
-                                $subs = get_categories([
-                                  'child_of'   => $base_term->term_id,
-                                  'hide_empty' => true,
-                                  'orderby'    => 'name',
-                                ]);
-                                foreach ( $subs as $sub ) {
-                                  $url    = add_query_arg( 'subcat', $sub->slug, $base );
-                                  $active = ( get_query_var('subcat') === $sub->slug ) ? ' class="is-current"' : '';
-                                  printf(
-                                    '<li%s><a href="%s">%s（%d）</a></li>',
-                                    $active,
-                                    esc_url( $url ),
-                                    esc_html( $sub->name ),
-                                    esc_html( $sub->count )
-                                  );
-                                }
-                              }
-                              ?>
-                            </ul>
-                        </div>
-                        <?php endif; ?>
-
-                        <div>
-                            <h3 class="widget-title">年度別</h3>
-                            <ul class="c-archive-list">
-                            <?php foreach ( $years as $y ) :
-                                // 各年の投稿数を取得
-                                $count = count( get_posts([
-                                'post_type'           => 'post',
-                                'posts_per_page'      => -1,
-                                'fields'              => 'ids',
-                                'category_name'       => $cat,
-                                'year'                => $y,
-                                'ignore_sticky_posts' => true,
-                                ]) );
-                            ?>
-                                <li>
-                                <a href="<?php echo esc_url( "{$base}/{$y}/" ); ?>">
-                                    <?php echo esc_html( $y ); ?>年（<?php echo $count; ?>）
-                                </a>
-                                </li>
-                            <?php endforeach; ?>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-            <?php endif; ?>
-
-          </div>
-          
         <!-- パンくずリスト -->
         <ul class="c-brd">
             <li><a href="<?php echo esc_url( home_url('') ); ?>">TOP</a></li>
@@ -268,14 +143,14 @@
             <li><a href="#"><?php the_title(); ?></a></li>
         </ul>
         </div>
-       
-      </main>
-   
+    
+        </main>
+
         <!--  フッタ読込 -->
         <?php get_footer('120'); ?>
         <!--  フッタ読込 -->
 
-          <?php wp_footer(); ?>
+        <?php wp_footer(); ?>
 
-        </body>
-    </html>
+    </body>
+</html>

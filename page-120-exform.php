@@ -15,7 +15,7 @@
 
       <main class="c-main">
         <div class="c-page-header lazyload" data-bg="<?php echo esc_url(get_template_directory_uri()); ?>/img/header/page-header6.jpg">
-          <div class="c-column c-page-header__inner">
+          <div class="c-column s-page-header__inner">
             <h1 class="c-page-header__title">Form
               <span>フォーム</span>
             </h1>

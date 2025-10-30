@@ -11,7 +11,7 @@
     <main class="c-main">
       <div class="c-page-header lazyload">
         <div class="c-column c-page-header__inner">
-          <h1 class="c-page-header__title">Sitemap
+          <h1 class="c-page-header__title _sub">Sitemap
             <span>サイトマップ</span>
           </h1>
         </div>
