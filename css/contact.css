@@ -1,10 +1,111 @@
+.c-main {
+  background-image: url(../img/common/bg_ashi_01.png);
+  background-repeat: repeat;
+}
+
+.c-page-header {
+  background: url("../img/contact/page-header.jpg") center / cover no-repeat;
+}
+
+@media screen and (max-width: 768px) {
+  .c-page-header {
+    background: url("../img/contact/page-header_sp.jpg") center / cover no-repeat;
+  }
+}
+
+form {
+  border: 1px solid #989E74;
+  border-radius: 18px;
+  padding: 100px 50px 155px;
+  background: #fff;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  form {
+    padding: 80px 20px 100px;
+  }
+}
+
+.for_deco span {
+  width: 82px;
+  height: 82px;
+  position: absolute;
+  background: url(../img/contact/img_ashi_01.png)left top / 100% 100%;
+}
+
+.for_deco span:nth-of-type(1),
+.for_deco span:nth-of-type(2) {
+  top: 20px;
+}
+
+.for_deco span:nth-of-type(3),
+.for_deco span:nth-of-type(4) {
+  bottom: 20px;
+}
+
+.for_deco span:nth-of-type(1),
+.for_deco span:nth-of-type(3) {
+  left: 20px;
+}
+
+.for_deco span:nth-of-type(2),
+.for_deco span:nth-of-type(4) {
+  right: 20px;
+}
+
+.for_deco span:nth-of-type(2) {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.for_deco span:nth-of-type(3) {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.for_deco span:nth-of-type(4) {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 767px) {
+  .for_deco span {
+    width: 60px;
+    height: 60px;
+  }
+
+  .for_deco span:nth-of-type(1),
+  .for_deco span:nth-of-type(2) {
+    top: 10px;
+  }
+
+  .for_deco span:nth-of-type(3),
+  .for_deco span:nth-of-type(4) {
+    bottom: 10px;
+  }
+
+  .for_deco span:nth-of-type(1),
+  .for_deco span:nth-of-type(3) {
+    left: 10px;
+  }
+
+  .for_deco span:nth-of-type(2),
+  .for_deco span:nth-of-type(4) {
+    right: 10px;
+  }
+}
+
 .c-form__lead {
   text-align: center;
   margin-bottom: 60px;
+  font-size: 18px;
 }
+
 .c-form__ckbox {
   margin-top: 60px;
 }
+
 @media screen and (max-width: 767px) {
   .c-form__lead {
     font-size: 1.4rem;
@@ -12,40 +113,53 @@
     margin-bottom: 20px;
   }
 }
+
 .c-form__list {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  border-bottom: 1px solid #e1e1e1;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.5);
   padding: 20px 0;
   -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
+
+.c-form__list:first-of-type {
+  border-top: 1px solid rgba(51, 51, 51, 0.5);
+}
+
 .c-form__list dt {
   padding-top: 10px;
   width: 220px;
 }
+
 .c-form__list dd {
   width: calc(100% - 220px);
 }
+
 @media screen and (max-width: 767px) {
   .c-form__list {
     padding: 12px 0 20px;
   }
+
   .c-form__list dt {
     padding-top: 0;
   }
-  .c-form__list dt, .c-form__list dd {
+
+  .c-form__list dt,
+  .c-form__list dd {
     width: 100%;
     font-size: 1.4rem;
   }
 }
+
 .c-form__required {
   color: #CF1126;
   padding-left: 20px;
 }
+
 .c-form input[type=text],
 .c-form input[type=email],
 .c-form input[type=tel],
@@ -56,7 +170,9 @@
   outline: none;
   background: #eee;
 }
+
 @media screen and (max-width: 767px) {
+
   .c-form input[type=text],
   .c-form input[type=email],
   .c-form input[type=tel],
@@ -64,19 +180,7 @@
     font-size: 1.4rem;
   }
 }
-.c-form__bttxt {
-  text-align: center;
-  margin-bottom: 30px;
-}
-.c-form__bttxt a {
-  text-decoration: underline;
-}
-@media screen and (max-width: 767px) {
-  .c-form__bttxt {
-    font-size: 1.4rem;
-    text-align: left;
-  }
-}
+
 .c-form .c-form__ckbtn {
   text-align: center;
   margin-top: 40px;
@@ -86,9 +190,14 @@
   display: flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
+
+#confirm .c-form .c-form__ckbtn {
+  margin-top: 120px;
+}
+
 .c-form .c-form__ckbtn input {
   display: block;
   width: 300px;
@@ -98,15 +207,20 @@
   position: relative;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  color: #03045E;
+  color: #fff;
   line-height: 60px;
-  border: 1px solid #03045E;
+  background: #243749;
+  border-radius: 50px;
+  color: #fff;
+  font-weight: 500;
 }
+
 .c-form .c-form__ckbtn input.formbtn.active {
   cursor: pointer;
-  background-color: #03045E;
+  background-color: #243749;
   color: #fff;
 }
+
 .c-form .c-form__ckbtn--back {
   display: block;
   width: 300px;
@@ -116,60 +230,114 @@
   position: relative;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  color: #03045E;
+  color: #243749;
   line-height: 60px;
-  border: 1px solid #03045E;
+  border: 1px solid #243749;
+  font-weight: 500;
+  border-radius: 50px;
 }
+
 @media screen and (max-width: 767px) {
   .c-form .c-form__ckbtn {
     font-size: 1.4rem;
   }
+
   .c-form .c-form__ckbtn input {
     width: 100%;
     font-size: 1.4rem;
     margin: 0 10px;
     line-height: 45px;
   }
+
   .c-form .c-form__ckbtn--back {
     font-size: 1.4rem;
     margin: 0 10px;
     line-height: 45px;
   }
 }
+
 .c-form .checkbox-area {
   text-align: center;
 }
+
+.c-form .checkbox-area a {
+  text-decoration: underline;
+}
+
+.c-form__bx {
+  background: #fff;
+  border: 1px solid #989E74;
+  border-radius: 18px;
+  padding: 120px 50px 280px;
+  position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .c-form__bx {
+    padding: 70px 20px 120px;
+  }
+}
+
 .c-form__done {
   font-size: 2rem;
   text-align: center;
   margin-top: 0px;
   font-weight: 500;
 }
-.c-form__done + p {
+
+.c-form__done+p {
   text-align: center;
   margin-top: 40px;
-  padding-bottom: 300px;
 }
+
 @media screen and (max-width: 767px) {
   .c-form__done {
     font-size: 1.8rem;
     text-align: left;
   }
-  .c-form__done + p {
+
+  .c-form__done+p {
     font-size: 1.4rem;
     text-align: left;
-    padding-bottom: 200px;
   }
 }
 
 #confirm .c-form__list dd {
   padding-top: 10px;
 }
+
 #confirm input[type=submit] {
   cursor: pointer;
   background-color: #03045E;
   color: #fff;
 }
+
 #confirm input[type=submit]:hover {
   opacity: 0.7;
+}
+
+/* あしらい */
+.deco {
+  display: block;
+  position: absolute;
+}
+
+._01 {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.deco._01 span {
+  height: 0;
+  width: 267px;
+  padding-top: 70.76%;
+  display: block;
+  background: url(../img/contact/img_deco_01.png) left top / 100% 100% no-repeat;
+}
+
+@media screen and (max-width: 767px) {
+  .deco._01 span {
+    width: 180px;
+  }
 }

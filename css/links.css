@@ -1,21 +1,37 @@
 .c-main {
-  position: relative;
-  overflow: hidden;
+  background-image: url(../img/common/bg_ashi_01.png);
+  background-repeat: repeat;
+}
+
+.c-page-header {
+  background: url("../img/privacypolicy/page-header.jpg") center / cover no-repeat;
+}
+
+@media screen and (max-width: 768px) {
+  .c-page-header {
+    background: url("../img/privacypolicy/page-header_sp.jpg") center / cover no-repeat;
+  }
+}
+
+.title-type-02 {
+  border-bottom: 1px solid #DCDCDC;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  margin-top: 60px;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 100%;
 }
 
 @media screen and (min-width: 0px) and (max-width: 767px) {
   .title-type-02 {
-    font-size: 5vw;
+    font-size: 7vw;
+    margin-top: 0;
   }
 }
-@media screen and (min-width: 768px) {
-  .title-type-02 {
-    font-size: 2.3rem;
-  }
-}
-.title-type-02 {
-  border-bottom: 1px solid #DCDCDC;
-  margin-bottom: 20px;
+
+.links .link-lists li {
+  font-weight: 700;
 }
 
 @media screen and (min-width: 768px) {
@@ -28,53 +44,48 @@
     -ms-flex-pack: justify;
     -ms-flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
-            flex-wrap: wrap;
+    flex-wrap: wrap;
   }
+
   .links .link-lists li {
     -ms-flex-preferred-size: 32%;
     -webkit-flex-basis: 32%;
-            flex-basis: 32%;
+    flex-basis: 32%;
     margin-bottom: 20px;
-  }
-}
-.link-pdf::after, .link-external::after {
-  padding-left: 0.25em;
-  vertical-align: middle;
-  font-family: "Material Icons";
-}
-
-@media screen and (min-width: 0px) and (max-width: 767px) {
-  .link-pdf::after, .link-external::after {
-    font-size: 4.6875vw;
-  }
-}
-@media screen and (min-width: 768px) {
-  .link-pdf::after, .link-external::after {
-    font-size: 2.1rem;
-  }
-}
-@media screen and (min-width: 768px) {
-  .link-pdf a, .link-external a {
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-  }
-  .link-pdf a:hover, .link-external a:hover {
-    opacity: 0.7;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-  }
-}
-.partnership-golf {
-  margin-top: 80px;
-  margin-bottom: 15px;
-}
-@media screen and (max-width: 767px) {
-  .partnership-golf {
-    margin-top: 40px;
-    margin-bottom: 7px;
   }
 }
 
 .link-external::after {
-  content: url(../img/links/links.svg);
+  content: url(../img/links/icn_link_01.svg);
+}
+
+.link-external::after {
+  padding-left: 1em;
+  vertical-align: middle;
+}
+
+.partnership-golf {
+  margin-top: 80px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+@media screen and (max-width: 767px) {
+  .partnership-golf {
+    margin-top: 40px;
+    margin-bottom: 7px;
+    font-size: 20px;
+    padding-bottom: 15px
+  }
+}
+
+#links .c-box {
+  padding: 60px 50px 268px;
+}
+
+@media screen and (max-width: 767px) {
+  #links .c-box {
+    padding: 30px 20px 80px;
+  }
 }
