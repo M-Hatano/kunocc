@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!--Google Fonts 使用する場合挿入-->
-  <link href="https://fonts.googleapis.com/css2?family=Playwrite+IN:wght@100..400&family=Quicksand:wght@300..700&family=Shippori+Mincho&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+IN:wght@100..400&family=Quicksand:wght@300..700&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js"></script>
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/plugins/unveilhooks/ls.unveilhooks.min.js"></script>
@@ -76,70 +76,35 @@
       <nav class="c-nav" role="navigation" id="nav">
         <div class="c-nav__inner">
           <div class="c-nav__name">
-            <div class="c-nav__logo"><a href="<?php echo esc_url(home_url('')); ?>/"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/common/logo_nav.svg" alt=""/></a></div>
+            <div class="c-nav__logo"><a href="<?php echo esc_url(home_url('')); ?>/"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/common/logo.png" alt=""/></a></div>
           </div>
           <div class="c-nav__conts">
             <div class="c-nav__box">
 
               <ul class="c-nav__list">
                 <li>
-                  <p class="c-nav__list--head">倶楽部紹介</p>
-                  <div class="c-nav__sub">
-                    <ul>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/club/">- 倶楽部概要</a></li>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/club/history/">- 倶楽部の歴史</a></li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/news/">ニュース</a>
-                </li>
-                <li>
-                  <p class="c-nav__list--head">コース案内</p>
-                  <div class="c-nav__sub">
-                    <ul>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/course/">- コース全景</a></li>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole01/">- ホール紹介</a></li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/facility/">施設案内</a>
-                </li>
-                <li>
-                  <p class="c-nav__list--head">ご利用案内</p>
-                  <div class="c-nav__sub">
-                  <?php
-                    // オプションページから「header_text」フィールドを取得
-                    $header_text = get_field('header_text', 'option');?>
-                    <ul>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/guide/#gd-fee">- ご利用料金</a></li>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/guide/#gd-compe">- コンペのご案内</a></li>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/public/">- 県民開放デー情報</a></li>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/dresscode/">- ドレスコード &amp; エチケット</a></li>
-                      <?php
-                        // オプションページからフィールドを取得
-                        $link1 = get_field('hdr_link1', 'option'); // フィールド "リンク1"
-                        $name1 = get_field('hdr_name1', 'option'); // フィールド "名前1"
-                        $link2 = get_field('hdr_link2', 'option'); // フィールド "リンク2"
-                        $name2 = get_field('hdr_name2', 'option'); // フィールド "名前2"
-
-                        // リストアイテムを出力
-                        if ($link1 && $name1) {
-                            echo '<li><a href="' . esc_url($link1) . '" target="_blank">' . esc_html($name1) . '</a></li>';
-                        }
-                        if ($link2 && $name2) {
-                            echo '<li><a href="' . esc_url($link2) . '" target="_blank">' . esc_html($name2) . '</a></li>';
-                        }
-                      ?>
-                    </ul>
-                  </div>
+                  <a href="<?php echo esc_url(home_url('')); ?>">ご予約方法について</a>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/restaurant/">レストラン</a>
                 </li>
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/access/">アクセス</a>
+                  <a href="<?php echo esc_url(home_url('')); ?>">プライベートルーム</a>
+                </li>
+                <li>
+                  <a href="<?php echo esc_url(home_url('')); ?>/facility/">施設案内</a>
+                </li>
+                <li>
+                  <a href="<?php echo esc_url(home_url('')); ?>/course/">コース紹介</a>
+                </li>
+                <li>
+                  <a href="<?php echo esc_url(home_url('')); ?>/access/">アクセス&#12539;近隣ホテル情報</a>
+                </li>
+                <li>
+                  <a href="<?php echo esc_url(home_url('')); ?>/news/">ニュース</a>
+                </li>
+                <li>
+                  <a href="<?php echo esc_url(home_url('')); ?>">倶楽部概要</a>
                 </li>
               </ul>
 
@@ -148,21 +113,16 @@
 
               <ul class="c-nav__list">
                 <li>
-                  <p class="c-nav__list--head">県民開放デー情報</p>
-                  <div class="c-nav__sub">
-                    <ul>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/public/#km_01">- 県民大会</a></li>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/public/#km_02">- 県民レディース大会</a></li>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/public/#km_03">- 県民シニア・県民グランドシニア大会</a></li>
-                      <li><a href="<?php echo esc_url(home_url('')); ?>/public/public_detail/">- お申込み方法</a></li>
-                    </ul>
-                  </div>
+                  <a href="<?php echo esc_url(home_url('')); ?>">ゴルフ練習場概要</a>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a>
                 </li>
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/lesson/">ゴルフ教室受講生募集</a>
+                  <a href="<?php echo esc_url(home_url('')); ?>">会員募集について</a>
+                </li>
+                <li>
+                  <a href="<?php echo esc_url(home_url('')); ?>/dresscode/">ドレスコード</a>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/sitepolicy/">サイトポリシー</a>
@@ -174,7 +134,7 @@
                   <a href="<?php echo esc_url(home_url('')); ?>/links/">リンク集</a>
                 </li>
                 <li>
-                  <a href="https://forms.gle/BNssmZvMEZEAej8d8" target="_blank">お問い合わせ</a>
+                  <a href="<?php echo esc_url(home_url('')); ?>/contact/">お問い合わせ</a>
                 </li>
               </ul>
 

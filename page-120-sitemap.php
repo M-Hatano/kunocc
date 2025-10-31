@@ -24,14 +24,14 @@
             <div class="page-links">
               <div class="page-links-half">
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">ホーム</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/">ホーム</a></h3>
                 </section>
                 <section>
                   <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">ご予約方法について</a></h3>
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">レストラン</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/restaurant/">レストラン</a></h3>
                 </section>
 
                 <section>
@@ -39,19 +39,19 @@
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">施設案内</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/facility/">施設案内</a></h3>
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">コース紹介</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/course/">コース紹介</a></h3>
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">アクセス・近隣ホテル情報</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/access/">アクセス・近隣ホテル情報</a></h3>
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">ニュース</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/news/">ニュース</a></h3>
                 </section>
 
                 <section>
@@ -67,7 +67,7 @@
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">求人情報</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a></h3>
                 </section>
 
                 <section>
@@ -75,23 +75,23 @@
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">ドレスコード</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/dresscode/">ドレスコード</a></h3>
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">サイトポリシー</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/sitepolicy/">サイトポリシー</a></h3>
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">プライバシーポリシー</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/privacypolicy/">プライバシーポリシー</a></h3>
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">リンク集</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/links/">リンク集</a></h3>
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">お問い合わせフォーム</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/contact/">お問い合わせフォーム</a></h3>
                 </section>
 
               </div>

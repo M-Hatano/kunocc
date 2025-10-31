@@ -566,7 +566,7 @@ table {
   -ms-flex-pack: center;
   justify-content: center;
   font-size: 2vw;
-  border-right: 1px dotted #000;
+  border-right: 1px solid #989E74;
   padding-right: 4%;
   width: 26vw;
 }
@@ -630,7 +630,7 @@ table {
   }
 
   .c-nav__logo {
-    width: 78vw;
+    width: 25vw;
   }
 
   .c-nav__logo--txt {
@@ -672,7 +672,7 @@ table {
 @media screen and (max-width: 767px) {
   .c-nav__conts {
     width: 100%;
-    padding-top: 90px;
+    padding-top: 0;
     padding-bottom: 40px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -730,6 +730,9 @@ table {
   justify-content: center;
   font-size: 1.5vw;
   background: #243749;
+  background: #878B6B;
+  margin-left: 10px;
+  font-family: "Shippori Mincho";
 }
 
 .c-nav__bnr--wtr {
@@ -739,8 +742,8 @@ table {
 }
 
 ._weat {
-  background: #878B6B;
-  margin-left: 10px;
+  background: #243749;
+  margin-left: 0;
 }
 
 @media screen and (max-width: 767px) {
@@ -753,21 +756,15 @@ table {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 10px 0 0 0;
+    margin: 40px 0 0 0;
   }
 
   .c-nav__bnr a {
     margin: 0;
-    width: calc(50% - 7.5px);
-    height: 50px;
+    width: 50%;
+    height: 40px;
     border: none;
-    background: linear-gradient(90deg, #0077B6 0%, #00B4D8 100%);
-    color: #fff;
-    font-weight: bold;
+    margin: 0 10px;
   }
 
   .c-nav__bnr a._member {
@@ -781,12 +778,16 @@ table {
 }
 
 .c-nav__list>li {
-  border-top: 1px solid #ccc;
-  padding: 8px 15px;
+  border-top: 1px dotted #989E74;
+  padding: 15px;
+}
+
+.c-nav__list>li:last-of-type {
+  border-bottom: 1px dotted #989E74;
 }
 
 .c-nav__list>li>a {
-  font-weight: 500;
+  font-weight: 700;
   display: block;
 }
 
@@ -806,7 +807,9 @@ table {
   }
 
   .c-nav__list>li {
-    padding: 8px 0;
+    padding: 10px 0;
+    border-top: none;
+    border-bottom: 1px dotted #989E74;
   }
 }
 
@@ -870,7 +873,6 @@ table {
 }
 
 .c-header__member {
-  left: auto;
   height: 45px;
 }
 
@@ -890,6 +892,8 @@ table {
   height: 100%;
   font-family: "Shippori Mincho";
   font-weight: 700;
+  width: 180px;
+  text-align: center;
 }
 
 @media screen and (max-width: 767px) {
@@ -901,6 +905,7 @@ table {
     font-size: 14px;
     padding: 0px 15px;
     line-height: 40px;
+    width: auto;
   }
 }
 
@@ -978,7 +983,6 @@ table {
   .c-header__menu {
     width: auto;
     height: 40px;
-    right: 0;
     margin-left: 10px;
     padding: 0 10px;
   }
