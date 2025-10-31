@@ -58,9 +58,21 @@
   padding: 40px 40px 70px;
 }
 
+@media screen and (max-width: 767px) {
+  .news-box__left {
+    padding: 20px 20px 40px;
+  }
+}
+
 #single-page .news-box__left {
   width: 100%;
   padding: 60px 40px;
+}
+
+@media screen and (max-width: 767px) {
+  #single-page .news-box__left{
+    padding: 30px 20px;
+  }
 }
 
 .news-box__left p {
@@ -228,6 +240,12 @@
   padding: 50px 30px 35px;
 }
 
+@media screen and (max-width: 767px) {
+  .news-box__right {
+    padding: 30px 20px 50px;
+  }
+}
+
 .news-box__right--box {
   font-size: 1.4rem;
 }
@@ -237,7 +255,12 @@
   font-weight: 700;
   font-size: 20px;
   border-bottom: solid 2px #A3A786;
+}
 
+@media screen and (max-width: 767px) {
+  .news-box__right--box h3 {
+    font-size: 18px;
+  }
 }
 
 .recent-posts-box li {
@@ -256,7 +279,7 @@
 
   .news-box__right {
     width: 100%;
-    padding-left: 0;
+    margin-left: 0;
     margin-top: 40px;
   }
 }

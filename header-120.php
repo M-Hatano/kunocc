@@ -59,46 +59,15 @@
   <div class="c-wrapper">
 
   <header class="c-header" role="banner" id="inc-hd">
-  <a href="<?php echo esc_url(home_url('')); ?>/" class="sp-logo"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/common/logo_nav.svg" alt="" loading="lazy"/></a>
+
   <div class="c-header__inner">
-
-      <nav class="pc-header">
-        <div>
-          <div class="c-header__logo">
-            <a href="<?php echo esc_url(home_url('')); ?>/"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/common/logo_nav_w.png" alt="" loading="lazy"/></a>
-          </div>
-          <ul class="c-header__nav">
-            <li>
-               <a href="<?php echo esc_url(home_url('')); ?>/">ホーム</a>
-            </li>
-            <li>
-               <a href="<?php echo esc_url(home_url('')); ?>/guide/">ご利用案内</a>
-            </li>
-            <li>
-               <a href="<?php echo esc_url(home_url('')); ?>/course/">コース案内</a>
-            </li>
-            <li>
-               <a href="<?php echo esc_url(home_url('')); ?>/facility/">施設案内</a>
-            </li>
-            <li>
-               <a href="<?php echo esc_url(home_url('')); ?>/restaurant/">レストラン</a>
-            </li>
-            <li>
-               <a href="<?php echo esc_url(home_url('')); ?>/access/">アクセス</a>
-            </li>
-            <li class="pc-header-member">
-               <a href="https://pp-web2.jp/calendars/fujiheigen/calendar/" target="_blank">予約カレンダー</a>
-            </li>
-            <li class="pc-header-member _member">
-               <a href="https://pp-web2.jp/clubs/fujiheigen-gc/session/page_new" target="_blank">会員ログイン</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      <p class="c-header__member"><a href="https://pp-web2.jp/calendars/fujiheigen/calendar" target="_blank">予約</a></p>
+      <div class="c-header__logo">
+      <a href="<?php echo esc_url(home_url('')); ?>/"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/common/logo.svg" alt="ロゴ画像"/></a>
+      </div>
+      <p class="c-header__member"><a href="" target="_blank">会員専用</a></p>
       <div class="c-header__menu js-menu">
         <div>
+          <span>MENU</span>
           <div class="c-header__menu--inner">
             <span></span><span></span><span></span>
           </div>
@@ -107,40 +76,70 @@
       <nav class="c-nav" role="navigation" id="nav">
         <div class="c-nav__inner">
           <div class="c-nav__name">
-            <div class="c-nav__logo"><a href="<?php echo esc_url(home_url('')); ?>/"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/common/logo_nav.svg" alt="" loading="lazy"/></a></div>
+            <div class="c-nav__logo"><a href="<?php echo esc_url(home_url('')); ?>/"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/common/logo_nav.svg" alt=""/></a></div>
           </div>
           <div class="c-nav__conts">
             <div class="c-nav__box">
 
               <ul class="c-nav__list">
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/">ホーム</a>
+                  <p class="c-nav__list--head">倶楽部紹介</p>
+                  <div class="c-nav__sub">
+                    <ul>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/club/">- 倶楽部概要</a></li>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/club/history/">- 倶楽部の歴史</a></li>
+                    </ul>
+                  </div>
                 </li>
-                <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/solo/">一人予約について</a>
-                </li>
-                <!-- <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/club/">（要確認）当倶楽部について</a>
-                </li> -->
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/news/">ニュース</a>
                 </li>
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/course/">コース案内</a>
+                  <p class="c-nav__list--head">コース案内</p>
+                  <div class="c-nav__sub">
+                    <ul>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/course/">- コース全景</a></li>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole01/">- ホール紹介</a></li>
+                    </ul>
+                  </div>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/facility/">施設案内</a>
                 </li>
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/guide/">ご利用案内</a>
+                  <p class="c-nav__list--head">ご利用案内</p>
                   <div class="c-nav__sub">
+                  <?php
+                    // オプションページから「header_text」フィールドを取得
+                    $header_text = get_field('header_text', 'option');?>
                     <ul>
-                    <li><a href="<?php echo esc_url(home_url('')); ?>/guide/#gd-member">- プレー料金</a></li>
-                    <li><a href="<?php echo esc_url(home_url('')); ?>/guide/#gd-twilight">- 練習場</a></li>
-                    <li><a href="<?php echo esc_url(home_url('')); ?>/restaurant/">- レストラン</a></li>
-                    <li><a href="<?php echo esc_url(home_url('')); ?>/guide/#gd-rental">- ご予約について</a></li>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/guide/#gd-fee">- ご利用料金</a></li>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/guide/#gd-compe">- コンペのご案内</a></li>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/public/">- 県民開放デー情報</a></li>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/dresscode/">- ドレスコード &amp; エチケット</a></li>
+                      <?php
+                        // オプションページからフィールドを取得
+                        $link1 = get_field('hdr_link1', 'option'); // フィールド "リンク1"
+                        $name1 = get_field('hdr_name1', 'option'); // フィールド "名前1"
+                        $link2 = get_field('hdr_link2', 'option'); // フィールド "リンク2"
+                        $name2 = get_field('hdr_name2', 'option'); // フィールド "名前2"
+
+                        // リストアイテムを出力
+                        if ($link1 && $name1) {
+                            echo '<li><a href="' . esc_url($link1) . '" target="_blank">' . esc_html($name1) . '</a></li>';
+                        }
+                        if ($link2 && $name2) {
+                            echo '<li><a href="' . esc_url($link2) . '" target="_blank">' . esc_html($name2) . '</a></li>';
+                        }
+                      ?>
                     </ul>
                   </div>
+                </li>
+                <li>
+                  <a href="<?php echo esc_url(home_url('')); ?>/restaurant/">レストラン</a>
+                </li>
+                <li>
+                  <a href="<?php echo esc_url(home_url('')); ?>/access/">アクセス</a>
                 </li>
               </ul>
 
@@ -149,25 +148,39 @@
 
               <ul class="c-nav__list">
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/restaurant/">レストラン</a>
+                  <p class="c-nav__list--head">県民開放デー情報</p>
+                  <div class="c-nav__sub">
+                    <ul>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/public/#km_01">- 県民大会</a></li>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/public/#km_02">- 県民レディース大会</a></li>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/public/#km_03">- 県民シニア・県民グランドシニア大会</a></li>
+                      <li><a href="<?php echo esc_url(home_url('')); ?>/public/public_detail/">- お申込み方法</a></li>
+                    </ul>
+                  </div>
                 </li>
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/access/">アクセス</a>
+                  <a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a>
+                </li>
+                <li>
+                  <a href="<?php echo esc_url(home_url('')); ?>/lesson/">ゴルフ教室受講生募集</a>
+                </li>
+                <li>
+                  <a href="<?php echo esc_url(home_url('')); ?>/sitepolicy/">サイトポリシー</a>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/privacypolicy/">プライバシーポリシー</a>
                 </li>
-                <!-- <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/links/">リンク集</a>
-                </li> -->
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/contact/">お問い合わせ</a>
+                  <a href="<?php echo esc_url(home_url('')); ?>/links/">リンク集</a>
+                </li>
+                <li>
+                  <a href="https://forms.gle/BNssmZvMEZEAej8d8" target="_blank">お問い合わせ</a>
                 </li>
               </ul>
 
               <div class="c-nav__bnr">
-                <a href="https://pp-web2.jp/calendars/fujiheigen/calendar/" class="c-nav__bnr--mbr" target="_blank">空き状況＆WEB予約</a>
-                <a href="https://pp-web2.jp/clubs/fujiheigen-gc/session/page_new" class="c-nav__bnr--mbr _member" target="_blank">会員ログイン</a>
+                <a href="https://weathernews.jp/golf/" class="c-nav__bnr--mbr _weat" target="_blank">久能CCの天気</a>
+                <a href="https://wst1.asts.jp/public/golfnet/0213cc/pps/cllinp.asp" class="c-nav__bnr--mbr" target="_blank">会員専用ページ</a>
               </div>
             </div>
         </div>
