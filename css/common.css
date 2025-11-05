@@ -1255,12 +1255,12 @@ table {
 #	フッター
 # ================================================================= */
 .c-footer {
-  background: #CAF0F8;
-  color: #03045E;
+  background: #324A5B url(../img/common/bg_ashi_04.png);
+  color: #fff;
 }
 
 .c-footer a {
-  color: #03045E;
+  color: #fff;
   font-weight: 400;
 }
 
@@ -1274,7 +1274,8 @@ table {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  padding: 50px 0 20px;
+  padding: 80px 0 70px;
+  font-family: 'Shippori Mincho';
 }
 
 .c-footer__flex::after {
@@ -1284,7 +1285,7 @@ table {
   left: 50%;
   width: 1px;
   height: 98px;
-  background: #03045E;
+  background: #fff;
 }
 
 .c-footer__flex>div {
@@ -1295,14 +1296,20 @@ table {
   text-align: center;
 }
 
-.c-footer__flex>div:nth-of-type(1)>p:nth-of-type(1) {
-  font-weight: 500;
-  margin-bottom: 5px;
+.c-footer__flex>div:nth-of-type(1)>p {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
-.c-footer__flex>div:nth-of-type(1)>p:nth-of-type(1) img {
-  width: 50%;
+.c-footer__flex>div:nth-of-type(1)>p:nth-of-type(2) {
+  font-weight: 400;
+  margin-bottom: 0;
 }
+
+/* .c-footer__flex>div:nth-of-type(1)>p:nth-of-type(1) img {
+  width: 50%;
+} */
 
 .c-footer__flex>div:nth-of-type(2) {
   padding-left: 80px;
@@ -1316,7 +1323,7 @@ table {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    padding-top: 30px;
+    padding: 43.5px 0 35px;
   }
 
   .c-footer__flex>div {
@@ -1324,18 +1331,22 @@ table {
   }
 
   .c-footer__flex>div:nth-of-type(1) p {
-    font-size: 1.4rem;
-    line-height: 1.4;
+    font-size: 22.5px;
+    line-height: 119%;
   }
 
   .c-footer__flex>div:nth-of-type(1) p+p {
-    font-size: 1.4rem;
-    margin-top: 12px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .c-footer__flex>div:nth-of-type(1) p+p span {
+    padding-right: 1em;
   }
 
   .c-footer__flex>div:nth-of-type(2) {
     padding-left: 0;
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1348,11 +1359,24 @@ table {
   .c-footer__flex>div:nth-of-type(1)>p:nth-of-type(1) img {
     width: 260px;
   }
+
+  .c-footer__flex>div:nth-of-type(1) ul {
+    padding-bottom: 30px;
+    border-bottom: solid 3px #fff;
+  }
 }
 
 .c-footer__num {
   font-size: 2.8rem;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.c-footer__emal {
+  font-size: 22px;
+  font-weight: 400;
   display: flex;
   align-items: center;
 }
@@ -1366,20 +1390,22 @@ table {
 }
 
 .c-footer__num span {
-  font-size: 1.6rem;
+  font-size: 22px;
   font-weight: 400;
   display: inline-block;
-  width: 60px;
 }
 
 @media screen and (max-width: 767px) {
   .c-footer__num {
-    font-size: 2rem;
-    text-align: center;
+    font-size: 18px;
   }
 
   .c-footer__num span {
-    font-size: 1.4rem;
+    font-size: 14px;
+  }
+
+  .c-footer__emal {
+    font-size: 14px;
   }
 }
 
@@ -1411,11 +1437,12 @@ table {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  font-size: 1.4rem;
-  padding-bottom: 30px;
+  font-size: 14px;
+  padding-bottom: 25px;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  font-family: 'Shippori Mincho';
 }
 
 .c-footer__links li {
@@ -1426,8 +1453,8 @@ table {
   content: "";
   display: block;
   width: 1px;
-  height: 15px;
-  background: #03045E;
+  height: 16px;
+  background: #fff;
   position: absolute;
   right: 0;
   top: 50%;
@@ -1445,12 +1472,18 @@ table {
 
 @media screen and (max-width: 767px) {
   .c-footer__links {
-    line-height: 1.2;
+    padding-bottom: 37.5px;
   }
 
   .c-footer__links li {
     width: 50%;
   }
+
+  .c-footer__links li:nth-of-type(1),
+  .c-footer__links li:nth-of-type(2) {
+    margin-bottom: 5px;
+  }
+
 
   .c-footer__links li::before {
     content: none;
@@ -1458,11 +1491,12 @@ table {
 
   .c-footer__links li:nth-of-type(2n + 1)::before {
     content: "";
+    height: 28px;
   }
 
   .c-footer__links li a {
     width: 100%;
-    font-size: 1.2rem;
+    font-size: 14px;
     display: inline-block;
     text-align: center;
     padding: 0;
@@ -1470,11 +1504,11 @@ table {
 }
 
 #c-float {
-  width: 80px;
+  width: 100px;
   position: fixed;
   bottom: 50%;
   /* 画面下からの距離 */
-  right: 20px;
+  right: 0;
   /* 画面右からの距離 */
   display: none;
   /* 初期状態では非表示 */
@@ -1484,24 +1518,16 @@ table {
 
 @media screen and (max-width: 767px) {
   #c-float {
-    right: 10px;
+    /* right: 10px; */
     width: 60px;
   }
 }
 
-.c-pagetop {
-  z-index: 1;
-  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  margin-top: 10px;
-}
-
 .c-pagetop a {
-  background: rgba(234, 234, 234, 0.7);
-  color: #03045E;
-  border: 1px solid #03045E;
-  width: 80px;
-  height: 80px;
+  background: linear-gradient(90deg, rgba(36, 55, 73, 0.75) 30.29%, rgba(54, 87, 118, 0.75) 100%);
+  border: 3px solid #8F8F8F;
+  width: 100px;
+  height: 100px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1524,24 +1550,31 @@ table {
   font-weight: 500;
 }
 
-.c-pagetop a::before {
-  content: "";
-  width: 30px;
-  height: 50px;
-  background: url(../img/common/ic_top.png) left top/100% 100% no-repeat;
-  display: inline-block;
-  margin: 5px 0;
-}
-
 @media screen and (max-width: 767px) {
   .c-pagetop a {
     width: 60px;
     height: 60px;
-    font-size: 1rem;
   }
+}
 
+.c-pagetop a::before {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-right: 3px solid #fff;
+  border-top: 3px solid #fff;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+@media screen and (max-width: 767px) {
   .c-pagetop a::before {
-    margin: 3px 0 0;
+    width: 15px;
+    height: 15px;
+    border-right: 2px solid #fff;
+    border-top: 2px solid #fff;
+    top: 55%;
   }
 }
 
@@ -1616,11 +1649,12 @@ table {
 }
 
 .c-copy {
-  background: #03045E;
+  background: #243749;
   text-align: center;
   color: #fff;
   font-size: 1.4rem;
   padding: 10px 0;
+  font-family: 'Shippori Mincho';
 }
 
 @media screen and (max-width: 767px) {
@@ -2502,12 +2536,11 @@ table {
 }
 
 /* # =================================================================
-#	フッター上バナー
+#	フッター上
 # ================================================================= */
 .c-btbnr {
-  background: url(../img/common/bg_bnbnr.jpg) center/cover no-repeat;
-  padding: 50px 0;
-  position: relative;
+  background: url(../img/common/bg_footer_01.jpg) center/cover no-repeat;
+  padding: 0 0 20px;
 }
 
 @media screen and (max-width: 767px) {
@@ -2521,11 +2554,6 @@ table {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 750px;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
@@ -2533,24 +2561,18 @@ table {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  margin: 0 auto;
-  padding: 0 15px;
 }
 
 @media screen and (max-width: 767px) {
   .c-btbnr ul {
     width: 100%;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+    flex-direction: column;
   }
 }
 
 .c-btbnr ul li {
-  margin: 10px;
-  width: 300px;
-  height: 100px;
+  margin: 10px 0;
+  width: 480px;
 }
 
 .c-btbnr ul li a {
@@ -2560,11 +2582,6 @@ table {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
@@ -2574,49 +2591,73 @@ table {
   -ms-flex-pack: center;
   justify-content: center;
   color: #fff;
-  background: #ccc;
-  line-height: 1;
   font-size: 2.2rem;
-  text-align: center;
+  background: linear-gradient(90deg, #243749 0%, #385168 100%);
+  padding: 50px 0;
+  position: relative;
 }
 
-.c-btbnr ul li:nth-of-type(1) a {
-  background: url(../img/common/bg_btbnr-01.jpg) left top/100% 100% no-repeat;
-}
-
-.c-btbnr ul li:nth-of-type(2) a {
-  background: url(../img/common/bg_btbnr-02.jpg) left top/100% 100% no-repeat;
-}
-
-.c-btbnr ul li:nth-of-type(3) a {
-  background: url(../img/common/bg_btbnr-03.jpg) left top/100% 100% no-repeat;
-}
-
-.c-btbnr ul li:nth-of-type(4) a {
-  background: url(../img/common/bg_btbnr-04.jpg) left top/100% 100% no-repeat;
+.c-btbnr ul li a::before {
+  content: "";
+  position: absolute;
+  right: 30px;
+  width: 15px;
+  height: 15px;
+  border-right: 1px solid #fff;
+  border-top: 1px solid #fff;
+  transform: rotate(45deg);
 }
 
 .c-btbnr ul li a span {
-  font-size: 1.4rem;
-  margin-top: 5px;
+  font-weight: 700;
+  border-bottom: solid 1px #fff;
+}
+
+.c-btbnr ul li:nth-child(1) a {
+  font-size: 24px;
+  border: solid 3px #fff;
+  border-radius: 20px;
+  padding: 20px 0;
+}
+
+.c-btbnr ul li:nth-child(1) {
+  margin: 0 0 45px;
+}
+
+.c-btbnr ul li:nth-child(1) a::before {
+  display: none;
 }
 
 @media screen and (max-width: 767px) {
   .c-btbnr ul li {
-    width: 49%;
+    width: 100%;
     margin: 10px 0 0 0;
     height: inherit;
   }
 
   .c-btbnr ul li a {
-    font-size: 1.2rem;
+    font-size: 18px;
     padding: 20px 0;
     font-weight: bold;
   }
 
-  .c-btbnr ul li a span {
-    font-size: 1rem;
+  .c-btbnr ul li:nth-child(1) a {
+    font-size: 18px;
   }
+
+  .c-btbnr ul li:nth-child(1) {
+    margin: 0 0 30px;
+  }
+
+  .c-btbnr ul li a span {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+._line::after {
+  height: 490px;
+  width: 3px;
 }
 
 /* # =================================================================
@@ -2977,3 +3018,67 @@ table {
   display: block;
   position: absolute;
 }
+
+/* # =================================================================
+# ご予約方法について
+# ================================================================= */
+.c-rease {
+  background: #324A5B url(../img/common/bg_ashi_04.png);
+  color: #fff;
+  padding: 70px 0;
+}
+
+.c-rease>div {
+  background: #989E74;
+  width: 62.2%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 18px;
+  padding: 30px 0px 50px;
+}
+
+.c-rease>div p {
+  margin-bottom: 20px;
+  font-family: 'Yu Gothic';
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.c-rease>div a {
+  color: #324A5B;
+  background: #fff;
+  width: fit-content;
+  border-radius: 20px;
+  padding: 20px 70px;
+  margin: auto;
+  font-family: 'Shippori Mincho';
+  font-weight: 700;
+  font-size: 26px;
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  .c-rease>div {
+    width: 100%;
+  }
+
+  .c-rease>div p {
+    font-size: 14px;
+  }
+
+  .c-rease>div a {
+    font-size: 18px;
+    padding: 20px;
+  }
+}
+
+/* # =================================================================
+# 会員専用
+# ================================================================= */
+.c-member {
+  background:
+    #F8F7F2 url("../img/member/bg_member_01.png") repeat,
+    url("../img/member/bg_ashi_01.png") left top 400px no-repeat / 432px 373px,
+    url("../img/member/bg_ashi_02.png") right bottom no-repeat / 611px 394px;
+}
+

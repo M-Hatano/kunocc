@@ -124,7 +124,6 @@
           </li>
         </ul>
 
-        <!-- <span class="c-deco _01"><span></span></span> -->
       </div>
     </div>
 
