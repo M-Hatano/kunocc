@@ -9,7 +9,7 @@
     <!--  header -->
 
     <main class="c-member">
-      <!-- <span class="deco _01"><span></span></span> -->
+      <span class="deco _01"><span></span></span>
       <div class="c-page-header lazyload">
         <div class="c-column c-page-header__inner">
           <h1 class="c-page-header__title">Member
@@ -17,6 +17,14 @@
           </h1>
         </div>
       </div>
+      <ul class="m-list">
+        <li><a href="">会員様お知らせ</a></li>
+        <li><a href="">営業案内</a></li>
+        <li><a href="">くすのき会</a></li>
+        <li><a href="">提携コース</a></li>
+        <li><a href="">ビジター様料金</a></li>
+        <li><a href="">コンペ申込</a></li>
+      </ul>
 
       <div class="c-column">
         <div class="news-box">
@@ -209,7 +217,8 @@
         <!-- パンくずリスト -->
         <ul class="c-brd">
           <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-          <li><a href="">ニュース一覧</a></li>
+          <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員サイト</a></li>
+          <li><a href="">会員様お知らせ</a></li>
         </ul>
       </div>
 

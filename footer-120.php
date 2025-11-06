@@ -1,11 +1,9 @@
 <footer class="c-footer" role="contentinfo" id="inc-ft">
 
-  <div class="c-column">
-    <div class="c-rease">
-      <div>
-        <p>ご予約のスタートはお電話でお受けしております。</p>
-        <a href="">ご予約方法についてはこちら</a>
-      </div>
+  <div class="c-rease">
+    <div>
+      <p>ご予約のスタートはお電話でお受けしております。</p>
+      <a href="">ご予約方法についてはこちら</a>
     </div>
   </div>
 
@@ -13,18 +11,18 @@
     <div class="c-column">
       <div class="c-footer__flex _line">
         <div>
+          <p class="reseinf">WEBからのご予約情報送信はこちら</p>
           <ul>
-            <li><a href="">WEBからのご予約情報送信はこちら</a></li>
             <li><a href="">ご予約連絡フォーム</a></li>
             <li><a href="" target="_blank">組み合わせ送信フォーム</a></li>
           </ul>
         </div>
 
         <div>
+          <p class="reseinf"><a href="mailto:info@kunocc.co.jp">メール</a>でのご予約情報送信はこちら</a></p>
           <ul>
-            <li><a href=""><span>メール</span>でのご予約情報送信はこちら</a></li>
-            <li><a href="">ご予約連絡フォーム(エクセル)</a></li>
-            <li><a href="" target="_blank">ご予約連絡フォーム(PDF)</a></li>
+            <li><a href="">ご予約連絡フォーム<br class=".c-brsp">(エクセル)</a></li>
+            <li><a href="" target="_blank">ご予約連絡フォーム<br class=".c-brsp">(PDF)</a></li>
           </ul>
         </div>
       </div>
@@ -32,9 +30,9 @@
   </div>
 
   <div class="c-column">
-    <div class="c-footer__flex">
+    <div class="c-footer__flex _bottom">
       <div>
-        <p>久能カントリー俱楽部</p>
+        <p class="c-footer__name">久能カントリー俱楽部</p>
         <p><span>〒286-0203</span>千葉県富里市久能722</p>
       </div>
       <div>

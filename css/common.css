@@ -1261,7 +1261,6 @@ table {
 
 .c-footer a {
   color: #fff;
-  font-weight: 400;
 }
 
 .c-footer__flex {
@@ -1296,17 +1295,6 @@ table {
   text-align: center;
 }
 
-.c-footer__flex>div:nth-of-type(1)>p {
-  font-weight: 700;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.c-footer__flex>div:nth-of-type(1)>p:nth-of-type(2) {
-  font-weight: 400;
-  margin-bottom: 0;
-}
-
 /* .c-footer__flex>div:nth-of-type(1)>p:nth-of-type(1) img {
   width: 50%;
 } */
@@ -1323,21 +1311,20 @@ table {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    padding: 43.5px 0 35px;
+    padding: 0;
+  }
+
+  ._bottom {
+    padding: 45px 0 0;
   }
 
   .c-footer__flex>div {
     width: 100%;
   }
 
-  .c-footer__flex>div:nth-of-type(1) p {
-    font-size: 22.5px;
-    line-height: 119%;
-  }
-
   .c-footer__flex>div:nth-of-type(1) p+p {
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 35px;
   }
 
   .c-footer__flex>div:nth-of-type(1) p+p span {
@@ -1346,7 +1333,6 @@ table {
 
   .c-footer__flex>div:nth-of-type(2) {
     padding-left: 0;
-    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1356,13 +1342,10 @@ table {
     content: none;
   }
 
-  .c-footer__flex>div:nth-of-type(1)>p:nth-of-type(1) img {
-    width: 260px;
-  }
-
   .c-footer__flex>div:nth-of-type(1) ul {
     padding-bottom: 30px;
-    border-bottom: solid 3px #fff;
+    border-bottom: solid 1px #fff;
+    margin-bottom: 30px;
   }
 }
 
@@ -1372,6 +1355,22 @@ table {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.c-footer__name {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.c-footer__name+p {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.c-footer__name+p span {
+  padding-right: 1em;
 }
 
 .c-footer__emal {
@@ -1406,6 +1405,10 @@ table {
 
   .c-footer__emal {
     font-size: 14px;
+  }
+
+  .c-footer__name {
+    font-size: 22px;
   }
 }
 
@@ -1472,7 +1475,7 @@ table {
 
 @media screen and (max-width: 767px) {
   .c-footer__links {
-    padding-bottom: 37.5px;
+    padding: 30px 0;
   }
 
   .c-footer__links li {
@@ -1564,7 +1567,7 @@ table {
   height: 25px;
   border-right: 3px solid #fff;
   border-top: 3px solid #fff;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%) rotate(-45deg);
 }
 
@@ -1660,6 +1663,7 @@ table {
 @media screen and (max-width: 767px) {
   .c-copy {
     font-size: 1rem;
+    padding: 0;
   }
 }
 
@@ -1679,10 +1683,11 @@ table {
 .c-page-header {
   position: relative;
   margin-bottom: 80px;
-  height: 400px;
+  height: 343px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  margin-top: 97px;
 }
 
 .c-page-header__inner {
@@ -1694,18 +1699,16 @@ table {
   right: 0;
   margin: auto;
   top: 50%;
+  transform: translateY(-50%);
 }
 
 @media screen and (max-width: 767px) {
   .c-page-header {
-    height: 200px;
+    height: 140px;
     margin-bottom: 30px;
+    margin-top: 61px;
   }
 
-  .c-page-header__inner {
-    -webkit-transform: translateY(calc(-50% + 30px));
-    transform: translateY(calc(-50% + 30px));
-  }
 }
 
 .c-page-header__title {
@@ -1759,6 +1762,7 @@ table {
 
   .c-page-header__title span {
     font-size: 1.6rem;
+    line-height: 30px;
   }
 
   .c-page-header__title._s {
@@ -2545,7 +2549,7 @@ table {
 
 @media screen and (max-width: 767px) {
   .c-btbnr {
-    padding: 30px 0;
+    padding: 47px 0;
   }
 }
 
@@ -2608,24 +2612,20 @@ table {
   transform: rotate(45deg);
 }
 
-.c-btbnr ul li a span {
+.reseinf a {
   font-weight: 700;
   border-bottom: solid 1px #fff;
 }
 
-.c-btbnr ul li:nth-child(1) a {
+.reseinf {
   font-size: 24px;
   border: solid 3px #fff;
   border-radius: 20px;
   padding: 20px 0;
-}
-
-.c-btbnr ul li:nth-child(1) {
-  margin: 0 0 45px;
-}
-
-.c-btbnr ul li:nth-child(1) a::before {
-  display: none;
+  margin-bottom: 45px;
+  background: #324A5B;
+  text-align: center;
+  width: 480px;
 }
 
 @media screen and (max-width: 767px) {
@@ -2635,23 +2635,38 @@ table {
     height: inherit;
   }
 
+  .c-btbnr ul li:nth-of-type(1) {
+    margin: 0 0 0 0;
+  }
+
   .c-btbnr ul li a {
     font-size: 18px;
-    padding: 20px 0;
-    font-weight: bold;
+    padding: 23px 0;
+    text-align: center;
   }
 
-  .c-btbnr ul li:nth-child(1) a {
-    font-size: 18px;
+
+  .c-btbnr .c-footer__flex div:nth-child(2) ul li a {
+    padding: 17px 0;
   }
 
-  .c-btbnr ul li:nth-child(1) {
-    margin: 0 0 30px;
+  .reseinf {
+    padding: 12px 0;
+    font-size: 16px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    width: 100%;
   }
 
-  .c-btbnr ul li a span {
+  .reseinf a {
     font-size: 18px;
     font-weight: 500;
+  }
+
+  .c-btbnr ul li a::before {
+    right: 35px;
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -3025,12 +3040,12 @@ table {
 .c-rease {
   background: #324A5B url(../img/common/bg_ashi_04.png);
   color: #fff;
-  padding: 70px 0;
+  padding: 70px 15px;
 }
 
 .c-rease>div {
   background: #989E74;
-  width: 62.2%;
+  width: 47.22%;
   margin: 0 auto;
   text-align: center;
   border-radius: 18px;
@@ -3058,17 +3073,25 @@ table {
 }
 
 @media screen and (max-width: 767px) {
+  .c-rease {
+    padding: 30px 15px 48px;
+  }
+
   .c-rease>div {
     width: 100%;
+    padding: 35px 0px 30px;
+    border-radius: 10px;
   }
 
   .c-rease>div p {
-    font-size: 14px;
+    font-size: 13px;
+    margin-bottom: 15px;
   }
 
   .c-rease>div a {
-    font-size: 18px;
-    padding: 20px;
+    font-size: 17px;
+    padding: 10px 17px;
+    border-radius: 10px;
   }
 }
 
@@ -3076,9 +3099,69 @@ table {
 # 会員専用
 # ================================================================= */
 .c-member {
-  background:
-    #F8F7F2 url("../img/member/bg_member_01.png") repeat,
-    url("../img/member/bg_ashi_01.png") left top 400px no-repeat / 432px 373px,
-    url("../img/member/bg_ashi_02.png") right bottom no-repeat / 611px 394px;
+  background-color: #F8F7F2;
+  background-image:
+    url("../img/member/bg_member_01.png"),
+    url("../img/member/bg_ashi_01.png"),
+    url("../img/member/bg_ashi_02.png");
+  background-repeat: repeat, no-repeat, no-repeat;
+  background-position: right bottom, left top 400px;
+  background-size: 611px 394px, 432px 373px;
+  position: relative;
 }
 
+.m-list {
+  display: flex;
+  background: #fff;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 24px;
+  border-top: 0.5px solid #8F8F8F;
+  border-bottom: solid 0.5px #8F8F8F;
+  padding: 15px 0;
+  margin-bottom: 110px;
+}
+
+.m-list li {
+  padding-left: 20px;
+  padding-right: 20px;
+  border-left: solid 2px #989E74;
+}
+
+.m-list li:first-of-type {
+  padding-left: 0;
+  border-left: unset;
+}
+
+@media screen and (max-width: 767px) {
+  .c-member {
+    background-position: right bottom, left top 258px;
+    background-size: 305.5px 197px, 216px 186.5px;
+  }
+
+  .m-list {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    font-size: 16px;
+    padding: 15px;
+    margin-bottom: 50px;
+  }
+
+  .m-list li {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+    width: 50%;
+    text-align: center;
+  }
+
+  .m-list li:first-of-type {
+    padding-left: 10px;
+    border-left: solid 2px #989E74;
+  }
+
+  .m-list li:nth-of-type(2n) {
+    border-right: solid 2px #989E74;
+  }
+
+}
