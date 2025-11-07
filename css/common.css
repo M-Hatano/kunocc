@@ -1293,6 +1293,7 @@ table {
 
 .c-footer__flex>div:nth-of-type(1) {
   text-align: center;
+  padding-right: 80px;
 }
 
 /* .c-footer__flex>div:nth-of-type(1)>p:nth-of-type(1) img {
@@ -1340,6 +1341,10 @@ table {
 
   .c-footer__flex::after {
     content: none;
+  }
+
+  .c-footer__flex>div:nth-of-type(1){
+    padding-right: 0;
   }
 
   .c-footer__flex>div:nth-of-type(1) ul {
@@ -2625,7 +2630,7 @@ table {
   margin-bottom: 45px;
   background: #324A5B;
   text-align: center;
-  width: 480px;
+  /* width: 480px; */
 }
 
 @media screen and (max-width: 767px) {

@@ -8,19 +8,7 @@
     color: #243749;
 }
 
-.c-head2 {
-    text-align: left;
-    font-weight: 400;
-    font-size: 3.2rem;
-}
-
-@media screen and (max-width: 767px) {
-    .c-head2 {
-        font-size: 2.4rem;
-    }
-}
-
-.c-head6 {
+.m-news .c-head6 {
     font-size: 32px;
     align-items: unset;
     color: #324A5B;
@@ -28,7 +16,7 @@
     padding: 0 0 45px;
 }
 
-.c-head6::after {
+.m-news .c-head6::after {
     border-bottom: solid 4px rgba(50, 74, 91, 0.3);
     display: inline-block;
     width: calc(100% + 80px);
@@ -42,6 +30,24 @@
 .c-head6 span {
     font-size: 55px;
     margin-top: -75px;
+}
+
+#partnership .c-head6 {
+    text-align: center;
+    align-items: center;
+}
+
+#partnership .c-head6 {
+    text-align: center;
+    align-items: center;
+}
+
+#partnership .c-head6 span {
+    margin-top: -75px;
+}
+
+#partnership .c-head6::after {
+    display: none;
 }
 
 @media screen and (max-width: 767px) {
@@ -118,8 +124,9 @@
 }
 
 .news-box__left p {
-    overflow: hidden;
+    /* overflow: hidden; */
     line-height: 1.6;
+    margin-bottom: 20px;
 }
 
 .news-box__left p img {
@@ -127,7 +134,7 @@
 }
 
 .news-box__left img {
-    margin: 0 20px 5px 0;
+    margin-bottom: 20px;
 }
 
 .news-box__list {
@@ -295,6 +302,8 @@
     border: solid 1px #989E74;
     border-radius: 10px;
     padding: 50px 30px 35px;
+    position: relative;
+    z-index: 1;
 }
 
 @media screen and (max-width: 767px) {
@@ -338,14 +347,37 @@
         width: 100%;
         margin-left: 0;
         margin-top: 40px;
-        position: relative;
-        z-index: 1;
     }
 }
 
 .news-box__right--list li {
     padding: 10px 0;
     border-bottom: dotted 1px #A3A786;
+}
+
+/* # =================================================================
+#	提携コース
+# ================================================================= */
+.box-pat{
+    background: #fff;
+    padding: 160px 20px 165px;
+    position: relative;
+}
+
+.box-pat ul li{
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 46px;
+}
+
+.box-pat ul li:last-of-type{
+    margin-bottom: 0;
+}
+
+.box-pat ul li a::after{
+    display: block;
+    background: url(/img/member/img_ashi_02.png);
+    padding-left: 1em;
 }
 
 /* あしらい */
@@ -358,6 +390,7 @@
     width: 237px;
     bottom: 263px;
     right: 96px;
+    z-index: 0;
 }
 
 ._01 span {
@@ -372,6 +405,14 @@
         width: 118.5px;
         bottom: 75px;
         right: 0px;
-        z-index: 0;
     }
+}
+
+._02 {
+    width: 82px;
+    height: 82px;
+}
+
+._02 span {
+    background: url(/img/member/img_ashi_01.png)left top / 100% 100%;
 }

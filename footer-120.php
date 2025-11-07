@@ -21,8 +21,8 @@
         <div>
           <p class="reseinf"><a href="mailto:info@kunocc.co.jp">メール</a>でのご予約情報送信はこちら</a></p>
           <ul>
-            <li><a href="">ご予約連絡フォーム<br class=".c-brsp">(エクセル)</a></li>
-            <li><a href="" target="_blank">ご予約連絡フォーム<br class=".c-brsp">(PDF)</a></li>
+            <li><a href="">ご予約連絡フォーム<br class="c-brsp">(エクセル)</a></li>
+            <li><a href="" target="_blank">ご予約連絡フォーム<br class="c-brsp">(PDF)</a></li>
           </ul>
         </div>
       </div>
