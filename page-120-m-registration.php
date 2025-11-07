@@ -1,6 +1,6 @@
     <?php
     /*
-      Template Name: 提携コース
+      Template Name: コンペ申し込み
       */
     ?>
 
@@ -13,7 +13,7 @@
       <div class="c-page-header lazyload">
         <div class="c-column c-page-header__inner">
           <h1 class="c-page-header__title">Member
-            <span>提携コースのご案内</span>
+            <span>コンペ申し込み</span>
           </h1>
         </div>
       </div>
@@ -23,25 +23,21 @@
         <li><a href="<?php echo esc_url(home_url('')); ?>/m-kusunoki/">くすのき会</a></li>
         <li><a href="<?php echo esc_url(home_url('')); ?>/m-partner/">提携コース</a></li>
         <li><a href="">ビジター様料金</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-partner/">提携コース</a></li>
+        <li><a href="<?php echo esc_url(home_url('')); ?>/m-registration/">コンペ申込</a></li>
       </ul>
 
       <div class="c-column">
-        <h2 class="c-head6 m_head">提携コースのご案内<span>Partner Courses</span></h2>
+        <h2 class="c-head6 m_head">コンペ申し込み<span>Registration</span></h2>
         <p>当倶楽部の提携コースの情報を掲載しております</p>
         <div class="box-pat">
-          <div class="p_deco">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+          <div class="apply">
+            <p>お申込み方法</p>
           </div>
+
+          <p>WEB上でご入力をされないお客様は、以下にご予約連絡フォーム（エクセル形式・PDF形式）をそれぞれご用意しております。</p>
           <ul>
-            <li><a href="" target="_blank">パサージュ琴海</a></li>
-            <li><a href="" target="_blank">釧路カントリークラブ</a></li>
-            <li><a href="" target="_blank">大浅間ゴルフクラブ</a></li>
-            <li><a href="" target="_blank">三井の森蓼科ゴルフ倶楽部</a></li>
-            <li><a href="" target="_blank">フォレストカントリークラブ 三井の森</a></li>
+            <li><a href=""><span>2025年 9月19日(金)</span>2025年秋季くすのき会会員懇親ゴルフコンペ</a></li>
+            <li><a href=""><span>2026年 3月19日(木)</span>2026年春季くすのき会会員懇親ゴルフコンペ</a></li>
           </ul>
         </div>
 
@@ -49,7 +45,7 @@
         <ul class="c-brd">
           <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
           <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員サイト</a></li>
-          <li><a href="">提携コースのご案内</a></li>
+          <li><a href="">コンペ申し込み</a></li>
         </ul>
       </div>
 

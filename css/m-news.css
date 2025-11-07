@@ -32,21 +32,18 @@
     margin-top: -75px;
 }
 
-#partnership .c-head6 {
+.m-news .m_head {
     text-align: center;
     align-items: center;
+    font-size: 45px;
 }
 
-#partnership .c-head6 {
-    text-align: center;
-    align-items: center;
-}
-
-#partnership .c-head6 span {
+.m-news .m_head span {
     margin-top: -75px;
+    font-size: 75px;
 }
 
-#partnership .c-head6::after {
+.m-news .m_head::after {
     display: none;
 }
 
@@ -64,6 +61,15 @@
     .c-head6::after {
         width: calc(100% + 40px);
         left: -20px;
+    }
+
+    .m-news .m_head {
+        font-size: 20px;
+    }
+
+    .m-news .m_head span {
+        margin-top: -30px;
+        font-size: 25px;
     }
 }
 
@@ -358,29 +364,144 @@
 /* # =================================================================
 #	提携コース
 # ================================================================= */
-.box-pat{
+.box-pat {
     background: #fff;
     padding: 160px 20px 165px;
     position: relative;
+    border-radius: 20px;
+    border: solid 1px #989E74;
 }
 
-.box-pat ul li{
+.c-head6+p {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 100px;
+    padding-bottom: 30px;
+}
+
+.box-pat ul li {
     text-align: center;
     font-weight: 700;
     margin-bottom: 46px;
 }
 
-.box-pat ul li:last-of-type{
+.box-pat ul li:last-of-type {
     margin-bottom: 0;
 }
 
-.box-pat ul li a::after{
-    display: block;
-    background: url(/img/member/img_ashi_02.png);
+.box-pat ul li a {
+    position: relative;
+    padding-right: 25px;
+    display: inline-block;
+}
+
+.box-pat ul li a::after {
+    content: "";
+    display: inline-block;
+    background: url(../img/member/img_ashi_02.png);
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    margin-left: 1em;
+}
+
+@media screen and (max-width: 767px) {
+    .box-pat {
+        padding: 80px 20px 85px;
+    }
+
+    .c-head6+p {
+        font-size: 16px;
+        margin-top: 25px;
+        padding-bottom: 15px;
+    }
+
+    .box-pat ul li {
+        margin-bottom: 25px;
+    }
+
+    .box-pat ul li a::after {
+        margin-left: 0;
+        top: 2px;
+        right: 0;
+    }
+}
+
+
+/* # =================================================================
+#	コンペ申し込み
+# ================================================================= */
+#registration .box-pat {
+    border-radius: 0;
+    position: relative;
+    padding: 113px 20px 65px;
+}
+
+#registration .c-head6+p {
+    padding-bottom: 75px;
+}
+
+#registration .box-pat ul {
+    background: #F1F1F1;
+    width: 70.6%;
+    margin: 0 auto;
+    padding: 60px 77px;
+}
+
+#registration .box-pat ul li {
+    margin-bottom: 30px;
+}
+
+#registration .box-pat ul li:last-of-type{
+    margin-bottom: 0;
+}
+
+#registration .box-pat ul li a {
     padding-left: 1em;
 }
 
-/* あしらい */
+#registration .box-pat ul li a span {
+    padding-right: 1em;
+}
+
+#registration .box-pat ul li a::before {
+    content: "・";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+}
+
+.apply {
+    background: linear-gradient(90deg, #90966F 0%, #B1B983 100%);
+    font-weight: 700;
+    font-size: 24px;
+    color: #FFFFFF;
+    padding: 4px;
+    text-align: center;
+    width: 32.45%;
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.apply>p {
+    border: 1px solid #fff;
+    padding: 10px;
+}
+
+.apply + p{
+    margin-bottom: 34px;
+    text-align: center;
+}
+
+#registration .box-pat ul li a::after{
+    margin-left: 0;
+}
+
+/* # =================================================================
+#	あしらい
+# ================================================================= */
 .deco {
     display: block;
     position: absolute;
@@ -408,11 +529,48 @@
     }
 }
 
-._02 {
+.p_deco span {
     width: 82px;
     height: 82px;
+    position: absolute;
+    background: url(../img/member/img_ashi_01.png)left top / 100% 100%;
 }
 
-._02 span {
-    background: url(/img/member/img_ashi_01.png)left top / 100% 100%;
+.p_deco span:nth-of-type(1),
+.p_deco span:nth-of-type(2) {
+    top: 20px;
+}
+
+.p_deco span:nth-of-type(3),
+.p_deco span:nth-of-type(4) {
+    bottom: 20px;
+}
+
+.p_deco span:nth-of-type(2),
+.p_deco span:nth-of-type(4) {
+    right: 20px;
+}
+
+.p_deco span:nth-of-type(1),
+.p_deco span:nth-of-type(3) {
+    left: 20px;
+}
+
+.p_deco span:nth-of-type(2) {
+    transform: rotate(90deg);
+}
+
+.p_deco span:nth-of-type(3) {
+    transform: rotate(-90deg);
+}
+
+.p_deco span:nth-of-type(4) {
+    transform: rotate(180deg);
+}
+
+@media screen and (max-width: 767px) {
+    .p_deco span {
+        width: 50px;
+        height: 50px;
+    }
 }
