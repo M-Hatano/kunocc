@@ -377,7 +377,7 @@ body {
   font-weight: 500;
   line-height: 24px;
   color: #333;
-  letter-spacing: 0.1em;
+  letter-spacing: 0;
   word-wrap: break-word;
   overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
@@ -1703,8 +1703,8 @@ table {
   left: 0;
   right: 0;
   margin: auto;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 55%;
+  transform: translateY(-55%);
 }
 
 @media screen and (max-width: 767px) {
@@ -3123,8 +3123,8 @@ table {
   font-size: 24px;
   border-top: 0.5px solid #8F8F8F;
   border-bottom: solid 0.5px #8F8F8F;
-  padding: 15px 0;
-  margin-bottom: 110px;
+  padding: 19px 0;
+  margin-bottom: 118px;
 }
 
 .m-list li {

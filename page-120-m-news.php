@@ -19,11 +19,11 @@
       </div>
       <ul class="m-list">
         <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員様お知らせ</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-sales/">営業案内</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-kusunoki/">くすのき会</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-partner/">提携コース</a></li>
+        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-sales/">営業案内</a></li>
+        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-kusunoki/">くすのき会</a></li>
+        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-partner/">提携コース</a></li>
         <li><a href="">ビジター様料金</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-partner/">提携コース</a></li>
+        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-registration/">コンペ申込</a></li>
       </ul>
 
       <div class="c-column">
