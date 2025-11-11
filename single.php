@@ -111,24 +111,7 @@
                     <?php endif; ?>
                 <?php endwhile; endif; ?>
 
-                <!-- ニュース一覧へのリンク -->
-                <?php
-                // 「news」カテゴリを優先判定
-                if ( in_category( 'news' ) ): ?>
-                    <a href="<?php echo esc_url( home_url( '/news' ) ); ?>" class="news__all">ニュース一覧へ戻る</a>
-                <?php
-                // 次に「member」カテゴリ
-                elseif ( in_category( 'member' ) ): ?>
-                    <a href="<?php echo esc_url( home_url( '/news/kawaraban' ) ); ?>" class="news__all">かわら版一覧へ戻る</a>
-                <?php
-                // その他はデフォルトでニュース一覧へ
-                else: ?>
-                    <a href="<?php echo esc_url( home_url( '/news' ) ); ?>" class="news__all">ニュース一覧へ戻る</a>
-                <?php endif; ?>
             </div>
-
-            
-
         </div>
 
         <!-- パンくずリスト -->

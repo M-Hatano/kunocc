@@ -1687,7 +1687,7 @@ table {
 # ================================================================= */
 .c-page-header {
   position: relative;
-  margin-bottom: 80px;
+  margin-bottom: 120px;
   height: 343px;
   background-position: center;
   background-size: cover;
@@ -1710,8 +1710,8 @@ table {
 @media screen and (max-width: 767px) {
   .c-page-header {
     height: 140px;
-    margin-bottom: 30px;
-    margin-top: 61px;
+    margin-bottom: 60px;
+    margin-top: 60px;
   }
 
 }
@@ -1934,10 +1934,18 @@ table {
 .tb-01 a {
   text-decoration: underline;
   color: #4846B0;
+  margin-bottom: 20px;
+  display: inline-block;
 }
 
 .tb-01 td {
   background: #fff;
+  border-top: solid 1px #989E74;
+  border-bottom: solid 1px #989E74;
+}
+
+#d-rage .tb-01 td {
+  width: 74.9%;
 }
 
 .tb-01+p {
@@ -1945,9 +1953,14 @@ table {
   margin-bottom: 20px;
 }
 
-.tb-01 p+p {
-  margin-top: 10px;
+.tb-01__dtex {
+  margin-bottom: 20px;
+  width: 75%;
 }
+
+/* .tb-01 p+p {
+  margin-top: 10px;
+} */
 
 .tb-01 caption {
   text-align: left;
@@ -1955,58 +1968,57 @@ table {
   letter-spacing: 0.05em;
 }
 
-@media screen and (min-width: 0px) and (max-width: 767px) {
+@media screen and (max-width: 767px) {
 
   .tb-01 th,
   .tb-01 td {
     display: block;
   }
-}
 
-@media screen and (min-width: 768px) {
-
-  .tb-01 th,
-  .tb-01 td {
-    padding: 1em 1.5em;
+  .tb-01__dtex {
+    width: 100%;
   }
 }
 
+.tb-01 th,
+.tb-01 td {
+  padding: 40px 20px;
+}
+
+
 .tb-01 th {
-  background-color: #f1fdff;
+  background-color: #E9EBD5;
   font-weight: bold;
+  border-top: solid 1px #989E74;
+  border-bottom: solid 1px #989E74;
+  text-align: center;
+}
+
+#d-range .tb-01 th {
+  width: 25.09%;
 }
 
 @media screen and (min-width: 0px) and (max-width: 767px) {
   .tb-01 th {
     padding: 0.5em 1em;
-    border-top: solid 1px #cecece;
+    border-top: solid 1px #989E74;
+  }
+
+  #d-range .tb-01 th {
+    width: 100%;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .tb-01 th {
-    border-top: solid 1px #cecece;
-    border-bottom: solid 1px #cecece;
-    text-align: center;
-  }
-}
 
 @media screen and (min-width: 0px) and (max-width: 767px) {
 
   .tb-01 td,
   .tb-01 th {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   .tb-01 td {
-    padding: 0.5em 1em 1.5em 1em;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .tb-01 td {
-    border-top: solid 1px #cecece;
-    border-bottom: solid 1px #cecece;
+    padding: 10px;
   }
 }
 
@@ -2389,7 +2401,7 @@ table {
 .c-head3 {
   font-weight: 500;
   text-align: center;
-  font-size: 2.3rem;
+  font-size: 2.4rem;
 }
 
 @media screen and (max-width: 767px) {

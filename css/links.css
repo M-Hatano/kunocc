@@ -30,10 +30,6 @@
   }
 }
 
-.links .link-lists li {
-  font-weight: 700;
-}
-
 @media screen and (min-width: 768px) {
   .links .link-lists {
     display: -webkit-box;
@@ -52,6 +48,7 @@
     -webkit-flex-basis: 32%;
     flex-basis: 32%;
     margin-bottom: 20px;
+    font-weight: 700;
   }
 }
 

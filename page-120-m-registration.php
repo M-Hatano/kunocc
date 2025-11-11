@@ -29,7 +29,7 @@
       <div class="c-column">
         <h2 class="c-head6 m_head">コンペ申し込み<span>Registration</span></h2>
         <p>コンペのご予約については<br class="c-brsp">以下よりお送りください。</p>
-        <div class="box-pat">
+        <div class="box-pat c-form">
           <div class="apply">
             <p>お申込み方法</p>
           </div>

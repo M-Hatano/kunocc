@@ -29,6 +29,7 @@
 
         <div class="c-colomun">
             <h2 class="c-head6 m_head">ビジター様料金カレンダー<span>Calender</span></h2>
+            <p>料金については以下をご覧ください。</p>
             <div class="calendar-container">
                 <div>
                     <div class="calendar-head">

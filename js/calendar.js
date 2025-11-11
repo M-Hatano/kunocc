@@ -39,7 +39,7 @@ function updateCalendar() {
     const lastDate = new Date(viewYear, viewMonth, 0).getDate();
 
     // ラベル（★月曜始まり）
-    const labels = ['月', '火', '水', '木', '金', '土', '日'];
+    const labels = [ '日', '月', '火', '水', '木', '金', '土',];
     labels.forEach(labelText => {
         const label = document.createElement('div');
         label.className = 'day label';
@@ -47,9 +47,9 @@ function updateCalendar() {
         calendarEl.appendChild(label);
     });
 
-    // 空白セル（★月曜始まりに補正）
-    let shift = firstDay.getDay() - 1;
-    if (shift < 0) shift = 6;
+    // 空白セル（★日曜始まりに）
+    let shift = firstDay.getDay();
+
     for (let i = 0; i < shift; i++) {
         const blank = document.createElement('div');
         blank.className = 'day blank';
@@ -99,9 +99,9 @@ function updateCalendar() {
         }
 
         // 曜日クラス（★月曜始まり調整）
-        const adjustedDay = (day + 6) % 7;
-        if (adjustedDay === 6) cell.classList.add('sun');
-        else if (adjustedDay === 5) cell.classList.add('sat');
+        const adjustedDay = day;
+        if (adjustedDay === 0) cell.classList.add('sun');
+        else if (adjustedDay === 6) cell.classList.add('sat');
 
         // 祝日クラス
         if (holidays[ymd]) {

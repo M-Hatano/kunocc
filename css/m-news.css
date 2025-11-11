@@ -49,7 +49,7 @@
 
 @media screen and (max-width: 767px) {
     .m-news .c-head6 {
-        font-size: 2px;
+        font-size: 20px;
         padding: 0 0 40px;
     }
 
@@ -405,7 +405,7 @@
 
     .c-head6+p {
         font-size: 16px;
-        margin-top: 25px;
+        margin-top: 0;
         padding-bottom: 15px;
     }
 
@@ -479,6 +479,7 @@
 
     #m-registration .c-head6+p {
         padding-bottom: 40px;
+        margin-top: 0;
     }
 
     #m-registration .box-pat ul {
@@ -486,14 +487,10 @@
         padding: 30px 10px;
     }
 
-    #m-registration .box-pat ul li a {
-        padding-left: 16px;
-    }
-
     #m-registration .box-pat ul li {
         text-align: unset;
+        font-size: 16px;
     }
-
 }
 
 .apply {
@@ -632,9 +629,15 @@
 /* # =================================================================
 #	料金カレンダー
 # ================================================================= */
+#m-calendar .c-head6+p {
+    text-align: center;
+    margin-top: 35px;
+    padding-bottom: 0;
+}
+
 .calendar-container {
     max-width: 1100px;
-    margin: 50px auto;
+    margin: 40px auto;
 }
 
 .calendar-container .calendar-head {
