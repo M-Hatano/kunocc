@@ -49,7 +49,7 @@
 
 @media screen and (max-width: 767px) {
     .m-news .c-head6 {
-        font-size: 24px;
+        font-size: 2px;
         padding: 0 0 40px;
     }
 
@@ -364,13 +364,6 @@
 /* # =================================================================
 #	提携コース
 # ================================================================= */
-.box-pat {
-    background: #fff;
-    padding: 160px 20px 165px;
-    position: relative;
-    border-radius: 20px;
-    border: solid 1px #989E74;
-}
 
 .c-head6+p {
     font-size: 18px;
@@ -493,6 +486,14 @@
         padding: 30px 10px;
     }
 
+    #m-registration .box-pat ul li a {
+        padding-left: 16px;
+    }
+
+    #m-registration .box-pat ul li {
+        text-align: unset;
+    }
+
 }
 
 .apply {
@@ -524,6 +525,15 @@
     .apply {
         width: 60%;
         font-size: 22px;
+    }
+
+    .apply>p {
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    .apply+p {
+        text-align: unset;
     }
 
 }
@@ -573,7 +583,7 @@
     .regi_send+a {
         width: 100%;
         padding: 10px 10px 10px 30px;
-        font-size: 24px;
+        font-size: 18px;
     }
 
     .regi_send+a::before {
@@ -616,51 +626,7 @@
     }
 }
 
-.p_deco span {
-    width: 82px;
-    height: 82px;
-    position: absolute;
-    background: url(../img/member/img_ashi_01.png)left top / 100% 100%;
-}
 
-.p_deco span:nth-of-type(1),
-.p_deco span:nth-of-type(2) {
-    top: 20px;
-}
-
-.p_deco span:nth-of-type(3),
-.p_deco span:nth-of-type(4) {
-    bottom: 20px;
-}
-
-.p_deco span:nth-of-type(2),
-.p_deco span:nth-of-type(4) {
-    right: 20px;
-}
-
-.p_deco span:nth-of-type(1),
-.p_deco span:nth-of-type(3) {
-    left: 20px;
-}
-
-.p_deco span:nth-of-type(2) {
-    transform: rotate(90deg);
-}
-
-.p_deco span:nth-of-type(3) {
-    transform: rotate(-90deg);
-}
-
-.p_deco span:nth-of-type(4) {
-    transform: rotate(180deg);
-}
-
-@media screen and (max-width: 767px) {
-    .p_deco span {
-        width: 50px;
-        height: 50px;
-    }
-}
 
 
 /* # =================================================================
@@ -716,34 +682,44 @@
     right: 0;
 }
 
+@media screen and (max-width: 767px) {
+    .calendar-container .calendar-head {
+        font-size: 20px;
+    }
+
+    .calendar-container .calendar-nav {
+        font-size: 20px;
+    }
+}
+
 #calendar-events {
     display: none;
 }
 
 .custom-content {
-    margin-top: 4px;
-    font-size: 12px;
+    font-size: 20px;
     line-height: 1.4;
+    margin: 0 auto;
 }
 
 .custom-content .price-group {
-    margin-bottom: 4px;
+    margin-bottom: 10px;
 }
 
-.custom-content .price-group .member {
-    color: #f39c12;
+/* .custom-content .price-group .member {
     font-weight: 500;
+
 }
 
 .custom-content .price-group .visitor {
-    color: #2ecc71;
     font-weight: 500;
-}
+} */
 
 .custom-content .event-name {
     margin: 0;
-    font-size: 14px;
-    color: #333;
+    font-size: 20px;
+    font-weight: 700;
+    color: #243749;
 }
 
 #calendar {
@@ -751,22 +727,38 @@
     grid-template-columns: repeat(7, 1fr);
     border-collapse: collapse;
     margin: 0 auto;
-    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
 }
 
 @media screen and (max-width: 767px) {
+    .calendar-container {
+        margin: 10px auto;
+    }
+
+    .custom-content {
+        font-size: 18px;
+        margin: unset;
+    }
+
+    .custom-content .event-name {
+        font-size: 18px;
+    }
+
     #calendar {
         display: unset;
+    }
+
+    .custom-content .price-group {
+        margin-top: 20px;
     }
 }
 
 #calendar .day {
     aspect-ratio: 1/1;
-    border: 1px solid #ddd;
+    border: 1px solid #8F8F8F;
     padding: 6px;
     position: relative;
-    font-size: 14px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -786,15 +778,28 @@
     align-items: flex-start;
     overflow: hidden;
     background: #fff;
-    font-family: Yu Gothic;
-    font-weight: 700;
+    font-family: 'Yu Gothic';
+    font-weight: 500;
     font-size: 20px;
     line-height: 100%;
+    justify-content: center;
+}
+
+.date-number {
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 @media screen and (max-width: 767px) {
     #calendar .day {
         aspect-ratio: unset;
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    .date-number {
+        position: unset;
     }
 }
 
@@ -819,17 +824,15 @@
 }
 
 #calendar .day.sun {
-    color: #e74c3c;
-    background-color: #fdecea;
+    background-color: #FEE4E4;
 }
 
 #calendar .day.sat {
-    color: #3498db;
-    background-color: #eaf3ff;
+    background-color: #E4FCFE;
 }
 
 #calendar .day.holiday {
-    background-color: #fdecea;
+    background-color: #FEE4E4;
 }
 
 #calendar .day.label {
@@ -843,7 +846,7 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    background: #f0f0f0;
+    background: #F1F1F1;
     aspect-ratio: unset;
 }
 
@@ -855,7 +858,7 @@
 
 #calendar .day.blank {
     background: #fff;
-    border: 1px solid #f0f0f0;
+    border: 1px solid #8F8F8F;
 }
 
 @media screen and (max-width: 767px) {
@@ -865,19 +868,15 @@
 
 }
 
-.calendar-month-label {
-    text-align: center;
-    font-size: 25px;
-    font-weight: 500;
-}
-
 .weekday {
     display: none;
 }
 
 @media screen and (max-width: 767px) {
+
     .weekday {
         display: inline-block;
+        padding-left: 5px;
     }
 }
 

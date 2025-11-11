@@ -18,7 +18,7 @@
   </div>
 
   <section class="_mtl">
-    <div class="c-column-s">
+    <div class="c-column">
 
       <div class="c-box">
         <h2 class="title-type-02">リンク集</h2>

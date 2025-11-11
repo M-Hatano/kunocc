@@ -372,7 +372,7 @@ html {
 }
 
 body {
-  font-family: "Yu Gothic", "Shippori Mincho", "Playwrite IN", "Quicksand";
+  font-family: "Yu Gothic";
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 24px;
@@ -1343,7 +1343,7 @@ table {
     content: none;
   }
 
-  .c-footer__flex>div:nth-of-type(1){
+  .c-footer__flex>div:nth-of-type(1) {
     padding-right: 0;
   }
 
@@ -3034,9 +3034,81 @@ table {
 }
 
 /* あしらい */
-.c-deco {
-  display: block;
+.for_deco span {
+  width: 82px;
+  height: 82px;
   position: absolute;
+  background: url(../img/common/img_ashi_01.png)left top / 100% 100%;
+}
+
+.for_deco span:nth-of-type(1),
+.for_deco span:nth-of-type(2) {
+  top: 20px;
+}
+
+.for_deco span:nth-of-type(3),
+.for_deco span:nth-of-type(4) {
+  bottom: 20px;
+}
+
+.for_deco span:nth-of-type(1),
+.for_deco span:nth-of-type(3) {
+  left: 20px;
+}
+
+.for_deco span:nth-of-type(2),
+.for_deco span:nth-of-type(4) {
+  right: 20px;
+}
+
+.for_deco span:nth-of-type(2) {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.for_deco span:nth-of-type(3) {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.for_deco span:nth-of-type(4) {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 767px) {
+  .for_deco span {
+    width: 60px;
+    height: 60px;
+  }
+
+  .for_deco span:nth-of-type(1),
+  .for_deco span:nth-of-type(2) {
+    top: 10px;
+  }
+
+  .for_deco span:nth-of-type(3),
+  .for_deco span:nth-of-type(4) {
+    bottom: 10px;
+  }
+
+  .for_deco span:nth-of-type(1),
+  .for_deco span:nth-of-type(3) {
+    left: 10px;
+  }
+
+  .for_deco span:nth-of-type(2),
+  .for_deco span:nth-of-type(4) {
+    right: 10px;
+  }
+}
+
+.c-form {
+  border: 1px solid #989E74;
+  border-radius: 18px;
+  padding: 100px 50px 155px;
+  background: #fff;
+  position: relative;
 }
 
 /* # =================================================================

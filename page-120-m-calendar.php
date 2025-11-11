@@ -13,7 +13,7 @@
         <div class="c-page-header lazyload">
             <div class="c-column c-page-header__inner">
                 <h1 class="c-page-header__title">Member
-                    <span>会員様お知らせ</span>
+                    <span>ビジター様料金</span>
                 </h1>
             </div>
         </div>
@@ -22,14 +22,14 @@
             <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-sales/">営業案内</a></li>
             <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-kusunoki/">くすのき会</a></li>
             <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-partner/">提携コース</a></li>
-            <li><a href="">ビジター様料金</a></li>
+            <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-calendar/">ビジター様料金</a></li>
             <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-registration/">コンペ申込</a></li>
         </ul>
 
 
         <div class="c-colomun">
+            <h2 class="c-head6 m_head">ビジター様料金カレンダー<span>Calender</span></h2>
             <div class="calendar-container">
-
                 <div>
                     <div class="calendar-head">
                         <button id="prev" class="calendar-nav left">＜</button>
@@ -61,8 +61,13 @@
                     ?>
                             <div data-date="<?php echo esc_attr($date); ?>">
                                 <div class="price-group">
-                                    <div class="member">メンバー：<?php echo esc_html($member); ?></div>
-                                    <div class="visitor">ビジター：<?php echo esc_html($visitor); ?></div>
+                                    <?php if (!empty($member)): ?>
+                                        <div class="member"><!-- メンバー： -->&yen;<?php echo esc_html($member); ?></div>
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($visitor)): ?>
+                                        <div class="visitor"><!-- ビジター： -->&yen;<?php echo esc_html($visitor); ?></div>
+                                    <?php endif; ?>
                                 </div>
 
                                 <!-- イベント 処理 -->
@@ -98,12 +103,14 @@
             </div>
 
 
-            <!-- パンくずリスト -->
-            <ul class="c-brd">
-                <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-                <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員サイト</a></li>
-                <li><a href="">コンペ申し込み</a></li>
-            </ul>
+            <div class="c-column">
+                <!-- パンくずリスト -->
+                <ul class="c-brd">
+                    <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
+                    <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員サイト</a></li>
+                    <li><a href="">コンペ申し込み</a></li>
+                </ul>
+            </div>
         </div>
 
     </main>

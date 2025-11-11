@@ -9,7 +9,12 @@
     <!--  header -->
 
     <main class="c-member">
-      <span class="deco _01"><span></span></span>
+      <div class="for_deco">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
       <div class="c-page-header lazyload">
         <div class="c-column c-page-header__inner">
           <h1 class="c-page-header__title">Member
@@ -22,15 +27,15 @@
         <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-sales/">営業案内</a></li>
         <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-kusunoki/">くすのき会</a></li>
         <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-partnership/">提携コース</a></li>
-        <li><a href="">ビジター様料金</a></li>
+        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-calendar/">ビジター様料金</a></li>
         <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-registration/">コンペ申込</a></li>
       </ul>
 
       <div class="c-column">
         <h2 class="c-head6 m_head">提携コースのご案内<span>Partner Courses</span></h2>
         <p>当倶楽部の提携コースの情報を掲載しております</p>
-        <div class="box-pat">
-          <div class="p_deco">
+        <div class="c-form box-pat">
+          <div class="for_deco">
             <span></span>
             <span></span>
             <span></span>

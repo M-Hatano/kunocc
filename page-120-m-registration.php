@@ -22,13 +22,13 @@
         <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-sales/">営業案内</a></li>
         <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-kusunoki/">くすのき会</a></li>
         <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-partner/">提携コース</a></li>
-        <li><a href="">ビジター様料金</a></li>
+        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-calendar/">ビジター様料金</a></li>
         <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-registration/">コンペ申込</a></li>
       </ul>
 
       <div class="c-column">
         <h2 class="c-head6 m_head">コンペ申し込み<span>Registration</span></h2>
-        <p>コンペのご予約については以下よりお送りください。</p>
+        <p>コンペのご予約については<br class="c-brsp">以下よりお送りください。</p>
         <div class="box-pat">
           <div class="apply">
             <p>お申込み方法</p>
