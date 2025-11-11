@@ -443,7 +443,7 @@ function course_navigation()
 
     // 出力（デザインに合わせたHTML構造）
     echo '<a href="' . esc_url(home_url($prev_url)) . '" class="b-c-dtl__btn pre">Preview</a>';
-    echo '<a href="' . esc_url(home_url($overview_url)) . '" class="b-c-dtl__btm--top"><span>' . esc_html($course_name) . '</span>コース全景へ</a>';
+    echo '<a href="' . esc_url(home_url($overview_url)) . '" class="b-c-dtl__btm--top"><span>' . esc_html($course_name) . '</span></a>';
     echo '<a href="' . esc_url(home_url($next_url)) . '" class="b-c-dtl__btn nxt">Next</a>';
 }
 
