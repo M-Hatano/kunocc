@@ -1,5 +1,5 @@
 <?php
-/*
+      /*
       Template Name: お問い合わせ-完了
       */
 ?>
@@ -154,32 +154,27 @@ function h($s)
   return htmlspecialchars($s, ENT_QUOTES, "UTF-8");
 }
 
-
 //設定==================================================================================================
-//管理者アドレス
-// $adm_mail = 'info@fujiheigen-gc.com';
-$adm_mail = 'hp-order@create-golf.co.jp';
 
-//入力者宛てメール 本文
+//問い合わせ送り先メールアドレス
+//$adm_mail  = 'info@kunocc.co.jp';
+$adm_mail  = 'k-mizushina@create-golf.co.jp';
 //日時取得
 date_default_timezone_set('Asia/Tokyo');
 
-$text1 = '';
-$text1 .= $_SESSION['formated_name_kanji'];
-$text1 .= "様\n\n";
+// 入力者宛てメール本文
+$text1  = '';
+$text1  = ($_SESSION['formated_name_kanji'] ?? '') . " 様\n\n";
 $text1 .= "この度はお問い合わせいただき、誠にありがとうございました。\n\n";
-$text1 .= "このメールは、受付完了および入力内容のご確認のために\n送信しております。\n\n";
+$text1 .= "このメールは、受付完了および入力内容のご確認のためにお送りしております。\n\n";
 $text1 .= "[日時]：" . date("Y-m-d H:i") . "\n";
 $text1 .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
-$text1 .= "【氏名】" . $_SESSION['formated_name_kanji'] . "\n\n";
-$text1 .= "【フリガナ】" . $_SESSION['formated_name_kana'] . "\n\n";
-$text1 .= "【メールアドレス】" . $_SESSION['formated_mail'] . "\n\n";
-$text1 .= "【電話番号】" . $_SESSION['formated_tel_number'] . "\n\n";
-$text1 .= "【お問い合わせ内容】\n";
-if ($_SESSION['formated_comment'] != '') {
-  $text1 .= $_SESSION['formated_comment'] . "\n\n";
-}
-$text1 .= "【個人情報の取り扱い】" . $_SESSION['formated_agreement'] . "\n\n";
+$text1 .= "【氏名】" . ($_SESSION['formated_name_kanji'] ?? '') . "\n\n";
+$text1 .= "【フリガナ】" . ($_SESSION['formated_name_kana'] ?? '') . "\n\n";
+$text1 .= "【メールアドレス】" . ($_SESSION['formated_mail'] ?? '') . "\n\n";
+$text1 .= "【電話番号】" . ($_SESSION['formated_tel_number'] ?? '') . "\n\n";
+$text1 .= "【お問い合わせ内容】\n" . ($_SESSION['formated_comment'] ?? '') . "\n\n";
+$text1 .= "【個人情報の取り扱い】" . ($_SESSION['formated_agreement'] ?? '') . "\n\n";
 $text1 .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
 $text1 .= "====================================================\n";
 $text1 .= "久能カントリー倶楽部 \n\n";
@@ -188,39 +183,74 @@ $text1 .= "　TEL：0476-93-9000 \n";
 $text1 .= "　FAX：0476-92-5063 \n";
 $text1 .= "====================================================\n";
 
-//管理者宛てメール 本文	
-$text2 = '';
-$text2 .= "久能カントリー倶楽部　お問い合わせご担当者様\n\n";
+// 管理者宛てメール本文
+$text2  = '';
+$text2  = "久能カントリー倶楽部 ご担当者様\n\n";
 $text2 .= "以下の内容でHPからお問い合わせがありました。\n\n";
 $text2 .= "[日時]：" . date("Y-m-d H:i") . "\n";
 $text2 .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
-$text2 .= "【氏名】" . $_SESSION['formated_name_kanji'] . "\n\n";
-$text2 .= "【フリガナ】" . $_SESSION['formated_name_kana'] . "\n\n";
-$text2 .= "【メールアドレス】" . $_SESSION['formated_mail'] . "\n\n";
-$text2 .= "【電話番号】" . $_SESSION['formated_tel_number'] . "\n\n";
-$text2 .= "【お問い合わせ内容】\n";
-if ($_SESSION['formated_comment'] != '') {
-  $text2 .= $_SESSION['formated_comment'] . "\n\n";
-}
-$text2 .= "【個人情報の取り扱い】" . $_SESSION['formated_agreement'] . "\n\n";
+$text2 .= "【氏名】" . ($_SESSION['formated_name_kanji'] ?? '') . "\n\n";
+$text2 .= "【フリガナ】" . ($_SESSION['formated_name_kana'] ?? '') . "\n\n";
+$text2 .= "【メールアドレス】" . ($_SESSION['formated_mail'] ?? '') . "\n\n";
+$text2 .= "【電話番号】" . ($_SESSION['formated_tel_number'] ?? '') . "\n\n";
+$text2 .= "【お問い合わせ内容】\n" . ($_SESSION['formated_comment'] ?? '') . "\n\n";
+$text2 .= "【個人情報の取り扱い】" . ($_SESSION['formated_agreement'] ?? '') . "\n\n";
 $text2 .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
 
-//入力者宛てメール 本文以外	
-$title1 = '【久能カントリー倶楽部】お問い合わせのご確認';
-$header1 = 'From:' . $adm_mail;
-$text1 = h($text1, ENT_QUOTES, 'UTF-8');
+// 件名設定
+$title1 = "【久能カントリー倶楽部】お問い合わせのご確認";
+$title2 = "【久能カントリー倶楽部】HPからお問い合わせがありました";
+
+// 文字化け対策設定
 mb_language('ja');
 mb_internal_encoding('UTF-8');
 
-//管理者宛てメール 本文以外	
-$title2 = '【久能カントリー倶楽部】HPからお問い合わせがありました';
-$header2 = 'From:' . $adm_mail;
-$text2 = h($text2, ENT_QUOTES, 'UTF-8');
-mb_language('ja');
-mb_internal_encoding('UTF-8');
+// SMTP設定（WordPress wp_mail用）
+if (!function_exists('kunocc_setup_smtp_for_this_request')) {
+  function kunocc_setup_smtp_for_this_request($phpmailer)
+  {
+      $phpmailer->isSMTP();
+      //$phpmailer->Host       = '';
+      $phpmailer->Host       = 'create-biz.sakura.ne.jp';  // 送信サーバー
+      $phpmailer->SMTPAuth   = true;
+      //$phpmailer->Username   = '';
+      $phpmailer->Username   = 'hp-order@create-golf.co.jp'; // 送信されるアドレス
+      //$phpmailer->Password   = '';
+      $phpmailer->Password   = 'q5Fqt/Q!SNjB';                // 送信されるアドレスのパスワード
+      $phpmailer->SMTPSecure = 'tls';                    // 通信暗号化方式（tls/587 または ssl/465）
+      $phpmailer->Port       = 587;                      // TLS→587 / SSL→465
+      $phpmailer->SMTPAutoTLS   = true;
+      $phpmailer->Timeout       = 15;
+      $phpmailer->SMTPKeepAlive = false;
+      $phpmailer->CharSet    = 'UTF-8';
+      $phpmailer->Encoding   = 'base64';
+      $phpmailer->isHTML(false); // プレーンテキスト
+      //$phpmailer->setFrom('', '久能カントリー倶楽部', false); 
+      $phpmailer->setFrom('hp-order@create-golf.co.jp', '久能カントリー倶楽部', false); // 送信者（From）メールアドレスと表示名
+      //$phpmailer->addReplyTo('', '久能カントリー倶楽部');
+      $phpmailer->addReplyTo('hp-order@create-golf.co.jp', '久能カントリー倶楽部'); // 返信先（Reply-To）メールアドレスと表示名
+  }
+  add_action('phpmailer_init', 'kunocc_setup_smtp_for_this_request');
+}
 
-mb_send_mail($_SESSION['formated_mail'], $title1, $text1, $header1);
-mb_send_mail($adm_mail, $title2, $text2, $header2);
+// メール送信処理
+$user_mail = $_SESSION['formated_mail'] ?? '';
+$ok1 = !empty($user_mail) ? wp_mail($user_mail, $title1, $text1) : false;
+$ok2 = wp_mail($adm_mail, $title2, $text2);
+
+//エラーの際に送信結果をFTPにログ出力
+if (!$ok1 || !$ok2) {
+  error_log('[Kunocc Contact] send failed: user=' . ($user_mail ?: 'N/A') . 
+      ' ok1=' . ($ok1 ? '1' : '0') . ' ok2=' . ($ok2 ? '1' : '0'));
+}
+
+// フック解除（他テンプレへの影響防止）
+if (function_exists('remove_action')) {
+  remove_action('phpmailer_init', 'kunocc_setup_smtp_for_this_request');
+}
+
+unset($_SESSION['key']);
+unset($_SESSION['token']);
 ?>
 
 <!--  header -->
@@ -245,8 +275,16 @@ mb_send_mail($adm_mail, $title2, $text2, $header2);
         <span></span>
         <span></span>
       </div>
-      <p class="c-form__done">お問い合わせの送信が完了いたしました。</p>
-      <p>この度は、お問い合わせいただきありがとうございます。<br>お問い合わせいただいた内容については、<br>ご確認の上、後日担当者がご連絡させていただきます。</p>
+      <?php if ($ok1 && $ok2) : ?>
+        <p class="c-form__done">お問い合わせの送信が完了いたしました。</p>
+        <p>この度は、お問い合わせいただきありがとうございます。<br>
+          内容を確認の上、後日担当者よりご連絡いたします。<br>
+          ご入力のメールアドレス宛に確認メールを送信いたしました。</p>
+      <?php else : ?>
+        <p class="c-form__done _error">メール送信に失敗しました。</p>
+        <p>恐れ入りますが、時間をおいて再度お試しください。<br>
+          またはお電話にてお問い合わせください。</p>
+      <?php endif; ?>
     </div>
     <ul class="c-brd">
       <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
