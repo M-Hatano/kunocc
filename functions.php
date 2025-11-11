@@ -453,34 +453,34 @@ add_filter('wp_editor_set_quality', fn() => 70);
 add_filter('jpeg_quality',          fn() => 70);   //旧WP互換5.8以下
 
 // /* 横幅 1000pxに上書きリサイズ”*/
-// add_filter( 'big_image_size_threshold', '__return_false' );
-// add_filter( 'wp_handle_upload', function ( $fileinfo ) {
+add_filter( 'big_image_size_threshold', '__return_false' );
+add_filter( 'wp_handle_upload', function ( $fileinfo ) {
 
-// 	// 画像imageファイル以外はそのまま処理する
-// 	if ( strpos( $fileinfo['type'], 'image/' ) !== 0 ) {
-// 		return $fileinfo;
-// 	}
+	// 画像imageファイル以外はそのまま処理する
+	if ( strpos( $fileinfo['type'], 'image/' ) !== 0 ) {
+		return $fileinfo;
+	}
 
-//     // 画像リサイズにエラーが出た場合は元画像をそのまま処理する
-// 	$path   = $fileinfo['file'];
-// 	$editor = wp_get_image_editor( $path );
-// 	if ( is_wp_error( $editor ) ) {
-// 		return $fileinfo;                    
-// 	}
+    // 画像リサイズにエラーが出た場合は元画像をそのまま処理する
+	$path   = $fileinfo['file'];
+	$editor = wp_get_image_editor( $path );
+	if ( is_wp_error( $editor ) ) {
+		return $fileinfo;                    
+	}
 
-//     // 幅1000以上ならリサイズ、以下ならそのまま処理
-// 	$size = $editor->get_size();
-// 	if ( $size['width'] <= 1000 ) {
-// 		return $fileinfo;                    
-// 	}
+    // 幅1000以上ならリサイズ、以下ならそのまま処理
+	$size = $editor->get_size();
+	if ( $size['width'] <= 1000 ) {
+		return $fileinfo;                    
+	}
 
-// 	/* 縮小してリサイズ、同じファイル名で上書き保存 */
-// 	$editor->resize( 1000, null, false );   // 横は1000　高さは指定なし
-// 	$editor->set_quality( 70 );             // 画像サイズ再指定
-// 	$editor->save( $path );                 // ファイル名はそのままになるように上書き保存
+	/* 縮小してリサイズ、同じファイル名で上書き保存 */
+	$editor->resize( 1000, null, false );   // 横は1000　高さは指定なし
+	$editor->set_quality( 70 );             // 画像サイズ再指定
+	$editor->save( $path );                 // ファイル名はそのままになるように上書き保存
 
-// 	return $fileinfo;
-// }, 20 );
+	return $fileinfo;
+}, 20 );
 
 /*  中間サイズの自動トリミングを完全停止 */
 add_filter('intermediate_image_sizes_advanced', '__return_empty_array');
@@ -490,8 +490,6 @@ add_filter('wp_generate_attachment_metadata', function ($meta) {
     $meta['sizes'] = [];
     return $meta;
 }, 20);
-
-
 
 
 /**
@@ -512,31 +510,7 @@ function cg_strip_img_attributes($html, $id, $caption, $title, $align, $url, $si
 add_filter('image_send_to_editor', 'cg_strip_img_attributes', 10, 8);
 
 
-//画像遅延読み込み
-// function add_lazy_loading_to_content_images($content) {
-// imgタグに loading="lazy" が無ければ追加
-//     $content = preg_replace('/<img(?![^>]*loading=)([^>]*)>/i', '<img loading="lazy"$1>', $content);
-//     return $content;
-//   }
-// add_filter('the_content', 'add_lazy_loading_to_content_images');
 
-//画像遅延読み込み　フィールド指定してlazyふよ
-// function enhance_images_in_news_fields( $value, $post_id, $field ) {
-//     $target_fields = ['news_txt', 'news_txt2'];
-
-//     if ( in_array($field['name'], $target_fields, true) ) {
-//         $value = preg_replace_callback(
-//             '/<img(?![^>]+loading=)([^>]+)>/',
-//             function ($matches) {
-//                 return '<img loading="lazy" decoding="async" sizes="auto, (max-width: 420px) 100vw, 420px"' . $matches[1] . '>';
-//             },
-//             $value
-//         );
-//     }
-
-//     return $value;
-// }
-// add_filter( 'acf/format_value/type=wysiwyg', 'enhance_images_in_news_fields', 10, 3 );
 
 // <img> タグに loading="lazy" 等を追加（post_type が 'post' の場合のみ）
 function add_lazy_attributes_to_images($content_or_value, $post_id = null, $field = null)
