@@ -50,6 +50,13 @@
             </td>
           </tr>
           <tr>
+            <th>本社所在地</th>
+            <td>
+              <p>〒286-0041<span>千葉県成田市飯田町27番地</span></p>
+              <p>TEL&period;0476-22-2285&nbsp;FAX&period;0476-22-2286</p>
+            </td>
+          </tr>
+          <tr>
             <th>開場日</th>
             <td>1989年11月28日（平成元年）</td>
           </tr>
@@ -64,10 +71,6 @@
           <tr>
             <th>クラブハウス</th>
             <td>設計&nbsp;ノルテック総合設計/施工&nbsp;鹿島建設</td>
-          </tr>
-          <tr>
-            <th>付帯設備</th>
-            <td>練習場（24打席、300Y）</td>
           </tr>
           <tr>
             <th>代表者</th>
@@ -105,24 +108,116 @@
     <section class="_mtl">
       <h2 class="c-head6">理事<span>Board&nbsp;Member</span></h2>
       </h2>
-      <table class="tb-01">
+      <table class="tb-01 _board">
         <tbody>
           <tr>
-            <th>所在地</th>
-            <td>〒412-0001<br>
-              静岡県御殿場市水土野300-1</td>
+            <th></th>
+            <th>氏名</th>
+            <th>会社名</th>
+            <th>役職名</th>
           </tr>
           <tr>
-            <th>電話</th>
-            <td><a href="tel:0550-89-2000">0550-89-2000(代)</a></td>
+            <th>理事長</th>
+            <td>岩沙&nbsp;弘道</td>
+            <td>三井不動産株式会社</td>
+            <td>相談役</td>
           </tr>
           <tr>
-            <th>FAX</th>
-            <td>0550-89-6703</td>
+            <th>副理事長</th>
+            <td>數土&nbsp;文夫</td>
+            <td>JFEホールディングス株式会社</td>
+            <td>名誉顧問</td>
           </tr>
           <tr>
-            <th>E-mail</th>
-            <td>info@fujiheigen-gc.jp（代表）</td>
+            <th rowspan="18">理事</th>
+            <td>青柳&nbsp;俊一</td>
+            <td>株式会社千葉興業銀行</td>
+            <td>取締役会長</td>
+          </tr>
+          <tr>
+            <td>池田&nbsp;弘一</td>
+            <td>アサヒグループホールディングス株式会社</td>
+            <td>社友</td>
+          </tr>
+          <tr>
+            <td>大橋&nbsp;洋治</td>
+            <td>ANAホールディングス株式会社</td>
+            <td>相談役</td>
+          </tr>
+          <tr>
+            <td>岡田&nbsp;民雄</td>
+            <td>日本ルツボ株式会社</td>
+            <td>元代表取締役会長</td>
+          </tr>
+          <tr>
+            <td>金丸 恭文</td>
+            <td>フューチャー株式会社</td>
+            <td>代表取締役会長兼社長</td>
+          </tr>
+          <tr>
+            <td>熊谷&nbsp;俊行</td>
+            <td>株式会社京葉銀行</td>
+            <td>取締役頭取</td>
+          </tr>
+          <tr>
+            <td>小出&nbsp;伸一</td>
+            <td>株式会社セールスフォース・ジャパン</td>
+            <td>代表取締役会長兼社長</td>
+          </tr>
+          <tr>
+            <td>齋藤&nbsp;宏</td>
+            <td>株式会社みずほフィナンシャルグループ</td>
+            <td>名誉顧問</td>
+          </tr>
+          <tr>
+            <td>佃&nbsp;和夫</td>
+            <td>三菱重工業株式会社</td>
+            <td>元代表取締役会長</td>
+          </tr>
+          <tr>
+            <td>中野&nbsp;祥三郎</td>
+            <td>キッコーマン株式会社</td>
+            <td>代表取締役社長</td>
+          </tr>
+          <tr>
+            <td>花田&nbsp;力</td>
+            <td>京成電鉄株式会社</td>
+            <td>相談役</td>
+          </tr>
+          <tr>
+            <td>松尾&nbsp;憲治</td>
+            <td>明治安田生命保険相互会社</td>
+            <td>名誉顧問</td>
+          </tr>
+          <tr>
+            <td>三木&nbsp;正浩</td>
+            <td>株式会社エービーシー・マート</td>
+            <td>最高顧問</td>
+          </tr>
+          <tr>
+            <td>三毛&nbsp;兼承</td>
+            <td>株式会社三菱UFJフィナンシャルグループ</td>
+            <td>取締役執行役会長</td>
+          </tr>
+          <tr>
+            <td>米本&nbsp;努</td>
+            <td>株式会社千葉銀行</td>
+            <td>取締役頭取</td>
+          </tr>
+          <tr>
+            <td>藤崎&nbsp;祥弘</td>
+            <td>株式会社久能カントリー倶楽部</td>
+            <td>代表取締役社長</td>
+          </tr>
+          <tr>
+            <td>茂木&nbsp;康三郎</td>
+            <td>利根コカ&bull;コーラボトリング株式会社</td>
+            <td>元代表取締役社長</td>
+          </tr>
+          <tr>
+            <td>小林&nbsp;浩美</td>
+            <td>日本女子プロゴルフ協会</td>
+            <td>会長</td>
           </tr>
         </tbody>
       </table>

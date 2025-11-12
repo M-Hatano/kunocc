@@ -10,15 +10,68 @@
 
 .tbox {
   position: relative;
-  margin-top: 30px;
+  margin-top: 60px;
 }
 
 .tbox>div {
   text-align: center;
 }
 
-.tbox>div p:first-of-type{
-  padding-bottom: 40px;
+.tbox>div p:first-of-type {
+  padding-bottom: 20px;
+}
+
+#club ._mtl {
+  margin-top: 145px;
+}
+
+#club .tb-01 {
+  margin-top: 55px;
+}
+
+.tb-01._board td {
+  text-align: center;
+  border-left: 1px solid #989E74;
+}
+
+.tb-01._board td:first-of-type {
+  border-left: unset;
+}
+
+#club .tb-01 th:first-of-type {
+  width: 20.90%;
+}
+
+#club .tb-01 th,
+.tb-01 td {
+  padding: 13px 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .tbox {
+    margin-top: 35px;
+  }
+
+  #club ._mtl {
+    margin-top: 60px;
+  }
+
+  #club .tb-01 th:first-of-type {
+    width: 100%;
+  }
+
+  .tb-01._board td:nth-of-type(2),
+  .tb-01._board td:nth-of-type(3) {
+    display: none;
+  }
+
+  .tb-01._board td {
+    border-left: unset;
+  }
+
+  .tb-01._board tr:first-of-type {
+    display: none;
+  }
 }
 
 /* あしらい */
@@ -43,6 +96,6 @@
 
 @media screen and (max-width: 767px) {
   .deco._01 span {
-    width: 180px;
+    width: 210px;
   }
 }
