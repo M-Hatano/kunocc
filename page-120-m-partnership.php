@@ -33,7 +33,7 @@
 
       <div class="c-column">
         <h2 class="c-head6 m_head">提携コースのご案内<span>Partner Courses</span></h2>
-        <p>当倶楽部の提携コースの情報を掲載しております</p>
+        <p>当倶楽部の提携コースの情報を<br class="c-brsp">掲載しております</p>
         <div class="c-form box-pat">
           <div class="for_deco">
             <span></span>

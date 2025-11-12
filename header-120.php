@@ -64,7 +64,7 @@
       <div class="c-header__logo">
       <a href="<?php echo esc_url(home_url('')); ?>/"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/common/logo.svg" alt="ロゴ画像"/></a>
       </div>
-      <p class="c-header__member"><a href="" target="_blank">会員専用</a></p>
+      <p class="c-header__member"><a href="<?php echo esc_url(home_url('')); ?>/m-news/" target="_blank">会員専用</a></p>
       <div class="c-header__menu js-menu">
         <div>
           <span>MENU</span>
@@ -104,7 +104,7 @@
                   <a href="<?php echo esc_url(home_url('')); ?>/news/">ニュース</a>
                 </li>
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>">倶楽部概要</a>
+                  <a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部概要</a>
                 </li>
               </ul>
 
@@ -113,7 +113,7 @@
 
               <ul class="c-nav__list">
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>">ゴルフ練習場概要</a>
+                  <a href="<?php echo esc_url(home_url('')); ?>/d-range/">ゴルフ練習場概要</a>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a>
