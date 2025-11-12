@@ -12,130 +12,61 @@
         <div class="c-page-header lazyload" data-bg="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/page-header.jpg">
           <div class="c-column c-page-header__inner">
             <h1 class="c-page-header__title">Course
-              <span>コース案内</span>
+              <span>コース紹介</span>
             </h1>
           </div>
         </div>
 
-        <section class="_mtl">
-          <h2 class="c-head1">
-            コース詳細
-            <span class="c-head1__en">Detail</span>
-          </h2>
-            <div class="detail">
-              <a href="<?php echo esc_url(home_url('/course/fuji/')); ?>">
-                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/img_course_fuji.jpg" alt="富士コース" loading="lazy">
-                <div>
-                  <span>富士コース</span>
-                  <p>
-                    3コース中で最も距離が長く、<br>
-                    しかもフェアウェイの幅が広いので<br>
-                    ドライバーを豪快に振り回して<br>
-                    思いっきり攻略できるのが最大の魅力。
-                  </p>
-                  <p>
-                    ストレートなホールが続き、<br>
-                    さながら、富士山と散歩しながらの<br>
-                    ゴルフが楽しめます。<br>
-                  </p>
-                  <p class="detail__btn">コースレイアウト</p>
-                </div>
-              </a>
-              <a href="<?php echo esc_url(home_url('/course/hakone/')); ?>">
-                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/img_course_hakone.jpg" alt="箱根コース" loading="lazy">
-                <div>
-                  <span>箱根コース</span>
-                  <p>
-                    フラットで豪快な富士コースとは対照的に<br>
-                    戦略性に富む9ホール。<br>
-                    距離もたっぷりあり、<br>
-                    ドッグレッグするホールもある。
-                  </p>
-                  <p>
-                    ゴルファーの技量を試すに<br>
-                    ふさわしいコースです。<br>
-                  </p>
-                  <p class="detail__btn">コースレイアウト</p>
-                </div>
-              </a>
-              <a href="<?php echo esc_url(home_url('/course/tanzawa/')); ?>">
-                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/img_course_tanzawa.jpg" alt="丹沢コース" loading="lazy">
-                <div>
-                  <span>丹沢コース</span>
-                  <p>
-                    全体に距離は短めだが、<br>
-                    コース全体が変化に富んでいるので<br>
-                    正確なショットが要求されるコース。
-                  </p>
-                  <p>
-                    力まずに確実性重視でコースを攻略すれば、<br>
-                    好スコアが期待できます。
-                  </p>
-                  <p class="detail__btn">コースレイアウト</p>
-                </div>
-              </a>
-            </div>
-        </section>
 
         <section class="_mtl">
           <h2 class="c-head1">
-            コース全景
-            <span class="c-head1__en">View</span>
+            コースマップ
+            <span class="c-head1__en">Course Map</span>
           </h2>
           <div class="c-column">
             <div class="map">
               <figure class="crs__img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/img_course_04.png" alt="コース全景" usemap="#ImageMap"></figure>
-              <map name="ImageMap">
-                <area shape="poly" coords="141,46,160,25,226,37,301,36,323,45,368,100,398,176,403,217,376,227,353,240,227,272,166,306,133,308,119,191,131,130,139,63,139,63" href="<?php echo esc_url(home_url('/course/hakone')); ?>" alt="" />
-                <area shape="poly" coords="326,40,530,96,778,183,891,230,885,246,757,258,617,252,519,244,453,235,400,216,410,197,406,170,325,48,364,69" href="<?php echo esc_url(home_url('/course/fuji')); ?>" alt="" />
-                <area shape="poly" coords="130,319,212,282,320,246,367,244,381,265,478,249,506,278,535,315,464,349,421,369,319,388,253,417,197,468,157,498,127,485,128,322,136,329" href="<?php echo esc_url(home_url('/course/tanzawa')); ?>" alt="" />
-
-              </map>
-
-
             </div>
 
             <div class="crs-ytb _mtm" id="vw-point">
               <h4 class=" c-head3 c-tac">富士山世界遺産 平原ベストビューポイント</h4>
               <p>どのホールからも富士山が望める富士平原ゴルフクラブ ベストビューポイント５か所の紹介です。</p>
-              <iframe width="560" class="_mts"  height="315" src="https://www.youtube.com/embed/yESG1PHP7M8?si=dK7dmF5WJnXAaLBV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-              <div class="ex-view _mts">
-                <ul>
-                  <li>
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/photo_bestview_002_tamba_3.jpg" alt="丹沢コース３番" loading="lazy">
-                    <p>丹沢コース３番</p>
-                  </li>
-                  <li>
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/photo_bestview_003_tamba_7.gif" alt="丹沢コース７番" loading="lazy">
-                    <p>丹沢コース７番</p>
-                  </li>
-                  <li>
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/photo_bestview_004_tamba_9.jpg" alt="丹沢コース９番" loading="lazy">
-                    <p>丹沢コース９番</p>
-                  </li>
-                  <li>
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/photo_bestview_001_fuji_1.jpg" alt="富士コース１番" loading="lazy">
-                    <p>富士コース１番</p>
-                  </li>
-                  <li>
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/photo_bestview_008_fuji_1.gif" alt="昭和34年オープン当時の富士コース１番" loading="lazy">
-                    <p>昭和34年オープン当時の<br>富士コース１番</p>
-                  </li>
-                  <li>
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/photo_bestview_005_tamba_4.gif" alt="富士コース４番" loading="lazy">
-                    <p>富士コース４番</p>
-                  </li>
-                  <li>
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/photo_bestview_001_fuji_1.gif" alt="富士コース１番" loading="lazy">
-                    <p>富士コース１番</p>
-                  </li>
-                </ul>
-              </div>
 
             </div>
           </div>
         </section>
+
+        <div class="b-c-dtl__csbtn">
+            <div>
+              <p>OUT</p>
+                <ul>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole1/">1</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole2/">2</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole3/">3</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole4/">4</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole5/">5</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole6/">6</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole7/">7</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole8/">8</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole9/">9</a></li>
+                </ul>
+            </div>
+
+            <div>
+              <p>IN</p>
+                <ul>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole10/">10</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole11/">11</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole12/">12</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole13/">13</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole14/">14</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole15/">15</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole16/">16</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole17/">17</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole18/">18</a></li>
+                </ul>
+            </div>
+          </div>
 
         <section class="_mtl">
           <h2 class="c-head1">
@@ -145,7 +76,7 @@
           <div class="c-column">
             <div class="table-scroll">
               <table class="table-type-02 table-course">
-                <caption>富士</caption>
+                <caption>OUT</caption>
                 <thead>
                   <tr>
                     <th width="20%">HOLES</th>
@@ -158,7 +89,7 @@
                     <th width="8%">7</th>
                     <th width="8%">8</th>
                     <th width="8%">9</th>
-                    <th width="8%">TOTAL</th>
+                    <th width="8%">OUT</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -232,7 +163,7 @@
             </div>
             <div class="table-scroll">
               <table class="table-type-02 table-course">
-                <caption>箱根</caption>
+                <caption>IN</caption>
                 <thead>
                   <tr>
                     <th width="20%">HOLES</th>
@@ -317,93 +248,116 @@
                 </tbody>
               </table>
             </div>
-            <div class="table-scroll">
-              <table class="table-type-02 table-course">
-                <caption>丹沢</caption>
-                <thead>
-                  <tr>
-                    <th width="20%">HOLES</th>
-                    <th width="7.27%">1</th>
-                    <th width="7.27%">2</th>
-                    <th width="7.27%">3</th>
-                    <th width="7.27%">4</th>
-                    <th width="7.27%">5</th>
-                    <th width="7.27%">6</th>
-                    <th width="7.27%">7</th>
-                    <th width="7.27%">8</th>
-                    <th width="7.27%">9</th>
-                    <th width="7.27%">TOTAL</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>Hdcp</th>
-                    <td>2</td>
-                    <td>9</td>
-                    <td>1</td>
-                    <td>7</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>3</td>
-                    <td>8</td>
-                    <td>4</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th>Back</th>
-                    <td>474</td>
-                    <td>186</td>
-                    <td>408</td>
-                    <td>160</td>
-                    <td>358</td>
-                    <td>127</td>
-                    <td>373</td>
-                    <td>268</td>
-                    <td>472</td>
-                    <td>2,826</td>
-                  </tr>
-                  <tr>
-                    <th>Front</th>
-                    <td>466</td>
-                    <td>171</td>
-                    <td>396</td>
-                    <td>144</td>
-                    <td>323</td>
-                    <td>105</td>
-                    <td>355</td>
-                    <td>254</td>
-                    <td>451</td>
-                    <td>2,665</td>
-                  </tr>
-                  <tr>
-                    <th>Ladys</th>
-                    <td>457</td>
-                    <td>125</td>
-                    <td>300</td>
-                    <td>144</td>
-                    <td>285</td>
-                    <td>105</td>
-                    <td>311</td>
-                    <td>254</td>
-                    <td>383</td>
-                    <td>2,364</td>
-                  </tr>
-                  <tr>
-                    <th>Par</th>
-                    <td>5</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>35</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          </div>
+        </section>
+
+        <section class="_mtl">
+          <div class="c-column-s">
+
+            <h2 class="c-head1 c-tac _mtl">各ホール詳細<span class="c-head1__en">HoleInfo</span></h2>
+
+            <!-- OUTコース -->
+            <?php if (have_rows('hi_out_holes')) : ?>
+              <h3 class="c-head3">OUT</h3>
+              <p class="c-ct-lead">
+                3コース中で最も距離が長く、しかもフェアウェイの幅が広いので<br>
+                ドライバーを豪快に振り回して思いっきり攻略できるのが最大の魅力。<br>
+                ストレートなホールが続き、さながら、富士山と散歩しながらのゴルフが楽しめます。
+              </p>
+
+              <div class="cslist">
+                <?php while (have_rows('hi_out_holes')) : the_row(); ?>
+                  <?php
+                    $hole_no = get_sub_field('hi_hole_no');        // ホール番号（1〜9）
+                    $thumb   = get_sub_field('hi_hole_image');     // 画像
+                    $link    = $hole_no ? home_url("/course/hole{$hole_no}/") : '#';
+
+                    // グリーン情報（Par / Yardなど）
+                    $stats = [];
+                    if (have_rows('hi_green_info')) :
+                      while (have_rows('hi_green_info')) : the_row();
+                        $label = trim(get_sub_field('hi_green_label'));
+                        if ($label !== '') $stats[] = $label;
+                      endwhile;
+                    endif;
+                  ?>
+
+                  <div class="csbox csbox2">
+                    <a href="<?php echo esc_url($link); ?>">
+
+                      <?php if ($hole_no) : ?>
+                        <p class="csbox__ttl">HOLE<span><?php echo esc_html($hole_no); ?></span></p>
+                      <?php endif; ?>
+
+                      <?php if (!empty($stats)) : ?>
+                        <div class="csbox__hd">
+                          <?php foreach ($stats as $stat) : ?>
+                            <p class="csbox__hd--txt"><?php echo esc_html($stat); ?></p>
+                          <?php endforeach; ?>
+                        </div>
+                      <?php endif; ?>
+
+                      <?php if ($thumb) : ?>
+                        <img src="<?php echo esc_url($thumb); ?>" alt="" loading="lazy">
+                      <?php endif; ?>
+
+                    </a>
+                  </div>
+                <?php endwhile; ?>
+              </div>
+            <?php endif; ?>
+
+
+            <!-- INコース -->
+            <?php if (have_rows('hi_in_holes')) : ?>
+              <h3 class="c-head3">IN</h3>
+              <p class="c-ct-lead">
+                3コース中で最も距離が長く、しかもフェアウェイの幅が広いので<br>
+                ドライバーを豪快に振り回して思いっきり攻略できるのが最大の魅力。<br>
+                ストレートなホールが続き、さながら、富士山と散歩しながらのゴルフが楽しめます。
+              </p>
+
+              <div class="cslist">
+                <?php while (have_rows('hi_in_holes')) : the_row(); ?>
+                  <?php
+                    $hole_no = get_sub_field('hi_hole_no');        // ホール番号（10〜18）
+                    $thumb   = get_sub_field('hi_hole_image');
+                    $link    = $hole_no ? home_url("/course/hole{$hole_no}/") : '#';
+
+                    $stats = [];
+                    if (have_rows('hi_green_info')) :
+                      while (have_rows('hi_green_info')) : the_row();
+                        $label = trim(get_sub_field('hi_green_label'));
+                        if ($label !== '') $stats[] = $label;
+                      endwhile;
+                    endif;
+                  ?>
+
+                  <div class="csbox csbox2">
+                    <a href="<?php echo esc_url($link); ?>">
+
+                      <?php if ($hole_no) : ?>
+                        <p class="csbox__ttl">HOLE<span><?php echo esc_html($hole_no); ?></span></p>
+                      <?php endif; ?>
+
+                      <?php if (!empty($stats)) : ?>
+                        <div class="csbox__hd">
+                          <?php foreach ($stats as $stat) : ?>
+                            <p class="csbox__hd--txt"><?php echo esc_html($stat); ?></p>
+                          <?php endforeach; ?>
+                        </div>
+                      <?php endif; ?>
+
+                      <?php if ($thumb) : ?>
+                        <img src="<?php echo esc_url($thumb); ?>" alt="" loading="lazy">
+                      <?php endif; ?>
+
+                    </a>
+                  </div>
+                <?php endwhile; ?>
+              </div>
+            <?php endif; ?>
+
           </div>
         </section>
 

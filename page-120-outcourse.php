@@ -12,7 +12,7 @@
         <div class="c-page-header lazyload" data-bg="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/page-header1.jpg">
           <div class="c-column c-page-header__inner">
             <h1 class="c-page-header__title">Course
-              <span>富士コース</span>
+              <span>コース紹介</span>
             </h1>
           </div>
         </div>
@@ -125,7 +125,9 @@
                 <?php if ( get_field('sub_image_a') || get_field('sub_text_a') ) : ?>
                   <li>
                     <?php if ( get_field('sub_image_a') ) : ?>
-                      <img src="<?php the_field('sub_image_a'); ?>" alt="" loading="lazy">
+                      <a href="<?php the_field('sub_image_a'); ?>" class="fancybox">
+                        <img src="<?php the_field('sub_image_a'); ?>" alt="" loading="lazy">
+                      </a>
                     <?php endif; ?>
                     <?php if ( get_field('sub_text_a') ) : ?>
                       <p><?php the_field('sub_text_a'); ?></p>
@@ -136,7 +138,9 @@
                 <?php if ( get_field('sub_image_b') || get_field('sub_text_b') ) : ?>
                   <li>
                     <?php if ( get_field('sub_image_b') ) : ?>
-                      <img src="<?php the_field('sub_image_b'); ?>" alt="" loading="lazy">
+                      <a href="<?php the_field('sub_image_b'); ?>" class="fancybox">
+                        <img src="<?php the_field('sub_image_b'); ?>" alt="" loading="lazy">
+                      </a>
                     <?php endif; ?>
                     <?php if ( get_field('sub_text_b') ) : ?>
                       <p><?php the_field('sub_text_b'); ?></p>
@@ -147,7 +151,9 @@
                 <?php if ( get_field('sub_image_c') || get_field('sub_text_c') ) : ?>
                   <li>
                     <?php if ( get_field('sub_image_c') ) : ?>
-                      <img src="<?php the_field('sub_image_c'); ?>" alt="" loading="lazy">
+                      <a href="<?php the_field('sub_image_c'); ?>" class="fancybox">
+                        <img src="<?php the_field('sub_image_c'); ?>" alt="" loading="lazy">
+                      </a>
                     <?php endif; ?>
                     <?php if ( get_field('sub_text_c') ) : ?>
                       <p><?php the_field('sub_text_c'); ?></p>
@@ -159,7 +165,9 @@
 
             <div class="b-c-dtl_info--rt">
               <?php if ( get_field('hole_image') ) : ?>
-                <img src="<?php the_field('hole_image'); ?>" alt="" loading="lazy">
+                <a href="<?php the_field('hole_image'); ?>" class="fancybox">
+                  <img src="<?php the_field('hole_image'); ?>" alt="" loading="lazy">
+                </a>
               <?php endif; ?>
             </div>
           </div>
@@ -256,6 +264,11 @@
         <!--  フッタ読込 -->
         <?php get_footer('120'); ?>
           <!--  フッタ読込 -->
+          <script>
+          jQuery(function($){
+            $('a.fancybox').fancybox();
+          });
+          </script>
 
           <?php wp_footer(); ?>
 
