@@ -170,12 +170,16 @@
 
   <?php
   // 確認ボタン押下時
+  $_SESSION['token'] = h($_POST['token'], ENT_QUOTES, 'UTF-8');
   $_SESSION['formated_name_kanji'] = h($formated_name_kanji, ENT_QUOTES, 'UTF-8');
   $_SESSION['formated_name_kana'] = h($formated_name_kana, ENT_QUOTES, 'UTF-8');
   $_SESSION['formated_tel_number'] = h($formated_tel_number, ENT_QUOTES, 'UTF-8');
   $_SESSION['formated_mail'] = h($formated_mail, ENT_QUOTES, 'UTF-8');
   $_SESSION['formated_comment'] = h($formated_comment, ENT_QUOTES, 'UTF-8');
   $_SESSION['formated_agreement'] = h($formated_agreement, ENT_QUOTES, 'UTF-8');
+  // 多重送信防止 key を生成
+  $key = md5(time() . "kunocc_secure_key");
+  $_SESSION['key'] = $key;
   ?>
 
 
@@ -188,7 +192,7 @@
     <div class="c-page-header changeArea">
       <div class="c-column c-page-header__inner">
         <h1 class="c-page-header__title _sub">Contact
-          <span>- お問い合わせ -</span>
+          <span>お問い合わせ</span>
         </h1>
       </div>
     </div>
@@ -241,6 +245,7 @@
         <div class="c-form__ckbtn">
           <a href="javascript:void(0);" onclick="history.back()" class="c-form__ckbtn--back">入力画面へ戻る</a>
           <input type="hidden" name="token" value="<?php echo h($_POST['token'], ENT_QUOTES, 'UTF-8') ?>">
+          <input type="hidden" name="key" value="<?php echo $_SESSION['key']; ?>">
           <input type="submit" class="formbtn" name="check" value="送信する">
         </div>
 

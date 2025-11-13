@@ -148,6 +148,11 @@ if ($_SERVER['HTTPS'] !== 'on') {
   error_page('不正な送信元ドメインです。', 'ページが正常に動作しませんでした。');
 }
 
+// keyチェック（多重送信防止）
+if (!isset($_SESSION['key'], $_POST['key']) || $_SESSION['key'] !== $_POST['key']) {
+  error_page('不正な送信です。', 'ページが正常に動作しませんでした。');
+}
+
 // エスケープ関数
 function h($s)
 {
@@ -156,9 +161,6 @@ function h($s)
 
 //設定==================================================================================================
 
-//問い合わせ送り先メールアドレス
-//$adm_mail  = 'info@kunocc.co.jp';
-$adm_mail  = 'k-mizushina@create-golf.co.jp';
 //日時取得
 date_default_timezone_set('Asia/Tokyo');
 
@@ -200,6 +202,10 @@ $text2 .= "━━━━━━━━━━━━━━━━━━━━━━━
 // 件名設定
 $title1 = "【久能カントリー倶楽部】お問い合わせのご確認";
 $title2 = "【久能カントリー倶楽部】HPからお問い合わせがありました";
+
+//問い合わせ送り先メールアドレス
+//$adm_mail  = 'info@kunocc.co.jp';
+$adm_mail  = 'k-mizushina@create-golf.co.jp';
 
 // 文字化け対策設定
 mb_language('ja');
@@ -261,7 +267,7 @@ unset($_SESSION['token']);
   <div class="c-page-header changeArea">
     <div class="c-column c-page-header__inner">
       <h1 class="c-page-header__title _sub">Contact
-        <span>- お問い合わせ -</span>
+        <span>お問い合わせ</span>
       </h1>
     </div>
   </div>
@@ -278,8 +284,8 @@ unset($_SESSION['token']);
       <?php if ($ok1 && $ok2) : ?>
         <p class="c-form__done">お問い合わせの送信が完了いたしました。</p>
         <p>この度は、お問い合わせいただきありがとうございます。<br>
-          内容を確認の上、後日担当者よりご連絡いたします。<br>
-          ご入力のメールアドレス宛に確認メールを送信いたしました。</p>
+          お問い合わせいただいた内容につきましては<br>
+          確認の上、後日担当よりご連絡させていただきます。</p>
       <?php else : ?>
         <p class="c-form__done _error">メール送信に失敗しました。</p>
         <p>恐れ入りますが、時間をおいて再度お試しください。<br>
