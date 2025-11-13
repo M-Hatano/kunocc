@@ -1,6 +1,6 @@
     <?php
     /*
-      Template Name: お知らせ
+      Template Name: ニュース
       */
     ?>
 
@@ -12,7 +12,7 @@
       <div class="c-page-header lazyload">
         <div class="c-column c-page-header__inner">
           <h1 class="c-page-header__title">News
-            <span>- ニュース -</span>
+            <span>ニュース</span>
           </h1>
         </div>
       </div>

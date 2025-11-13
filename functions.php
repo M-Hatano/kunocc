@@ -680,6 +680,8 @@ function fhg_get_news_years()
     return array_map('intval', $years);
 }
 
+
+
 // 検索結果から特定カテゴリ・特定固定ページを除外
 function fhg_exclude_from_search($query)
 {
