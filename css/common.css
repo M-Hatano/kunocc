@@ -2860,6 +2860,10 @@ table {
 }
 
 @media screen and (max-width: 767px) {
+  .c-scroll{
+    justify-content: center;
+  }
+
   .c-scroll>li {
     width: 50%;
   }
@@ -2919,7 +2923,7 @@ table {
   line-height: 50px;
   display: block;
   text-align: center;
-  margin: 40px auto;
+  margin: 60px auto 0;
   font-family: 'Shippori Mincho';
   font-weight: 400;
   font-size: 16px;
@@ -2927,7 +2931,7 @@ table {
 
 @media screen and (max-width: 767px) {
   .c-btn {
-    width: 62%;
+    width: 80%;
     line-height: 40px;
     padding: 0 20px;
   }
