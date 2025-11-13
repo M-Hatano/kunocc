@@ -29,8 +29,11 @@
             </div>
 
             <div class="crs-ytb _mtm" id="vw-point">
-              <h4 class=" c-head3 c-tac">富士山世界遺産 平原ベストビューポイント</h4>
-              <p>どのホールからも富士山が望める富士平原ゴルフクラブ ベストビューポイント５か所の紹介です。</p>
+              <p>俊英・加藤俊輔氏の自信作。<br>
+                  自然の地形を活かしつつ、美しく設計されたコースは、各ホールに変化と魅力に富んでいる。<br>
+                  高低差は10メートル以内で、適度なアンジュレーションがプレーヤーの闘志をかき立てる。<br>
+                  杉や広葉樹の大木が残る林が随所に見られ、自然の恵みを活かしたレイアウトも特徴。<br>
+                  なかでも16番ホールは名物ホールとして知られている。</p>
 
             </div>
           </div>
@@ -79,7 +82,7 @@
                 <caption>OUT</caption>
                 <thead>
                   <tr>
-                    <th width="20%">HOLES</th>
+                    <th width="20%">HOLE</th>
                     <th width="8%">1</th>
                     <th width="8%">2</th>
                     <th width="8%">3</th>
@@ -94,69 +97,69 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <th>Hdcp</th>
-                    <td>4</td>
-                    <td>1</td>
-                    <td>9</td>
-                    <td>8</td>
-                    <td>6</td>
-                    <td>3</td>
-                    <td>7</td>
-                    <td>2</td>
-                    <td>5</td>
-                    <td></td>
+                    <th>Back</th>
+                    <td>420</td>
+                    <td>404</td>
+                    <td>210</td>
+                    <td>552</td>
+                    <td>390</td>
+                    <td>166</td>
+                    <td>387</td>
+                    <td>420</td>
+                    <td>532</td>
+                    <td>3,481</td>
                   </tr>
                   <tr>
-                    <th>Back</th>
-                    <td>435</td>
-                    <td>533</td>
-                    <td>148</td>
-                    <td>356</td>
-                    <td>186</td>
-                    <td>535</td>
-                    <td>383</td>
-                    <td>463</td>
-                    <td>445</td>
-                    <td>3,484</td>
+                    <th>Regular</th>
+                    <td>401</td>
+                    <td>370</td>
+                    <td>185</td>
+                    <td>538</td>
+                    <td>367</td>
+                    <td>140</td>
+                    <td>370</td>
+                    <td>408</td>
+                    <td>500</td>
+                    <td>3,279</td>
                   </tr>
                   <tr>
                     <th>Front</th>
-                    <td>405</td>
-                    <td>503</td>
-                    <td>138</td>
-                    <td>332</td>
-                    <td>170</td>
-                    <td>492</td>
-                    <td>362</td>
-                    <td>361</td>
-                    <td>388</td>
-                    <td>3,151</td>
+                    <td>355</td>
+                    <td>326</td>
+                    <td>149</td>
+                    <td>456</td>
+                    <td>339</td>
+                    <td>103</td>
+                    <td>337</td>
+                    <td>316</td>
+                    <td>462</td>
+                    <td>2,843</td>
                   </tr>
                   <tr>
-                    <th>Ladys</th>
-                    <td>333</td>
-                    <td>432</td>
-                    <td>120</td>
-                    <td>332</td>
-                    <td>155</td>
-                    <td>446</td>
-                    <td>328</td>
-                    <td>318</td>
-                    <td>388</td>
-                    <td>2,852</td>
-                  </tr>
-                  <tr>
-                    <th>Par</th>
+                    <th>Par.</th>
                     <td>4</td>
-                    <td>5</td>
-                    <td>3</td>
                     <td>4</td>
                     <td>3</td>
                     <td>5</td>
                     <td>4</td>
+                    <td>3</td>
                     <td>4</td>
                     <td>4</td>
+                    <td>5</td>
                     <td>36</td>
+                  </tr>
+                  <tr>
+                    <th>Hdcp.</th>
+                    <td>3</td>
+                    <td>15</td>
+                    <td>9</td>
+                    <td>1</td>
+                    <td>7</td>
+                    <td>13</td>
+                    <td>17</td>
+                    <td>5</td>
+                    <td>11</td>
+                    <td></td>
                   </tr>
                 </tbody>
               </table>
@@ -166,85 +169,97 @@
                 <caption>IN</caption>
                 <thead>
                   <tr>
-                    <th width="20%">HOLES</th>
-                    <th width="7.27%">1</th>
-                    <th width="7.27%">2</th>
-                    <th width="7.27%">3</th>
-                    <th width="7.27%">4</th>
-                    <th width="7.27%">5</th>
-                    <th width="7.27%">6</th>
-                    <th width="7.27%">7</th>
-                    <th width="7.27%">8</th>
-                    <th width="7.27%">9</th>
+                    <th width="20%">HOLE</th>
+                    <th width="7.27%">10</th>
+                    <th width="7.27%">11</th>
+                    <th width="7.27%">12</th>
+                    <th width="7.27%">13</th>
+                    <th width="7.27%">14</th>
+                    <th width="7.27%">15</th>
+                    <th width="7.27%">16</th>
+                    <th width="7.27%">17</th>
+                    <th width="7.27%">18</th>
+                    <th width="7.27%">IN</th>
                     <th width="7.27%">TOTAL</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th>Hdcp</th>
-                    <td>5</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>1</td>
-                    <td>4</td>
-                    <td>8</td>
-                    <td>7</td>
-                    <td>9</td>
-                    <td>6</td>
-                    <td></td>
-                  </tr>
+
                   <tr>
                     <th>Back</th>
-                    <td>427</td>
-                    <td>498</td>
-                    <td>399</td>
-                    <td>423</td>
-                    <td>507</td>
-                    <td>193</td>
-                    <td>348</td>
-                    <td>143</td>
-                    <td>401</td>
-                    <td>3,339</td>
+                    <td>340</td>
+                    <td>221</td>
+                    <td>360</td>
+                    <td>420</td>
+                    <td>442</td>
+                    <td>410</td>
+                    <td>522</td>
+                    <td>181</td>
+                    <td>560</td>
+                    <td>3,456</td>
+                    <td>6,937</td>
                   </tr>
+
+                  <tr>
+                    <th>Regular</th>
+                    <td>323</td>
+                    <td>186</td>
+                    <td>339</td>
+                    <td>408</td>
+                    <td>412</td>
+                    <td>384</td>
+                    <td>504</td>
+                    <td>160</td>
+                    <td>528</td>
+                    <td>3,244</td>
+                    <td>6,523</td>
+                  </tr>
+
                   <tr>
                     <th>Front</th>
-                    <td>405</td>
-                    <td>476</td>
-                    <td>366</td>
-                    <td>394</td>
-                    <td>498</td>
-                    <td>170</td>
-                    <td>312</td>
-                    <td>128</td>
-                    <td>377</td>
-                    <td>3,126</td>
+                    <td>265</td>
+                    <td>138</td>
+                    <td>310</td>
+                    <td>353</td>
+                    <td>328</td>
+                    <td>341</td>
+                    <td>446</td>
+                    <td>135</td>
+                    <td>464</td>
+                    <td>2,780</td>
+                    <td>5,623</td>
                   </tr>
+
                   <tr>
-                    <th>Ladys</th>
-                    <td>342</td>
-                    <td>448</td>
-                    <td>327</td>
-                    <td>314</td>
-                    <td>393</td>
-                    <td>164</td>
-                    <td>282</td>
-                    <td>128</td>
-                    <td>324</td>
-                    <td>2,722</td>
-                  </tr>
-                  <tr>
-                    <th>Par</th>
+                    <th>Par.</th>
                     <td>4</td>
-                    <td>5</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>4</td>
                     <td>4</td>
                     <td>4</td>
                     <td>5</td>
                     <td>3</td>
-                    <td>4</td>
-                    <td>3</td>
-                    <td>4</td>
+                    <td>5</td>
                     <td>36</td>
+                    <td>72</td>
                   </tr>
+
+                  <tr>
+                    <th>Hdcp.</th>
+                    <td>16</td>
+                    <td>4</td>
+                    <td>10</td>
+                    <td>14</td>
+                    <td>2</td>
+                    <td>8</td>
+                    <td>12</td>
+                    <td>18</td>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+
                 </tbody>
               </table>
             </div>
@@ -254,15 +269,14 @@
         <section class="_mtl">
           <div class="c-column-s">
 
-            <h2 class="c-head1 c-tac _mtl">各ホール詳細<span class="c-head1__en">HoleInfo</span></h2>
+            <h2 class="c-head1 c-tac _mtl">各コース紹介<span class="c-head1__en">Course</span></h2>
 
             <!-- OUTコース -->
             <?php if (have_rows('hi_out_holes')) : ?>
               <h3 class="c-head3">OUT</h3>
               <p class="c-ct-lead">
-                3コース中で最も距離が長く、しかもフェアウェイの幅が広いので<br>
-                ドライバーを豪快に振り回して思いっきり攻略できるのが最大の魅力。<br>
-                ストレートなホールが続き、さながら、富士山と散歩しながらのゴルフが楽しめます。
+              全体的にフェアウェイがほぼフラットコース。<br>
+              中盤以降から狙い目が難しいホールが続くので最後まで気が抜けない。
               </p>
 
               <div class="cslist">
@@ -312,9 +326,10 @@
             <?php if (have_rows('hi_in_holes')) : ?>
               <h3 class="c-head3">IN</h3>
               <p class="c-ct-lead">
-                3コース中で最も距離が長く、しかもフェアウェイの幅が広いので<br>
-                ドライバーを豪快に振り回して思いっきり攻略できるのが最大の魅力。<br>
-                ストレートなホールが続き、さながら、富士山と散歩しながらのゴルフが楽しめます。
+                全体的にフェアウェイはフラットだがトリッキーなホールからなる。<br>
+                左右に曲げると難しくなる。<br>
+                14番～16番は難ホールが続き、スコアメイクのポイントとなる。<br>
+                正確なティーショットが要求される。
               </p>
 
               <div class="cslist">
@@ -364,7 +379,7 @@
         <div class="c-column">
           <ul class="c-brd">
             <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-            <li><a href="">コース案内</a></li>
+            <li><a href="">コース紹介</a></li>
           </ul>
         </div>
 

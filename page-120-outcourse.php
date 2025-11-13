@@ -251,7 +251,7 @@
         <div class="c-column">
           <ul class="c-brd">
             <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-            <li><a href="<?php echo esc_url(home_url('')); ?>/course/">コース全景</a></li>
+            <li><a href="<?php echo esc_url(home_url('')); ?>/course/">コース紹介</a></li>
             <li><a href="/">hole<?php the_field('hole-no'); ?></a></li>
           </ul>
         </div>

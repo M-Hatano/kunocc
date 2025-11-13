@@ -63,23 +63,23 @@ add_action('init', 'disable_author_archive');
 function get_dynamic_meta_description()
 {
     $meta_descriptions = [
-        'club' => '富士平原ゴルフクラブ 公式サイト 倶楽部紹介ページです。倶楽部についての詳細を記載しております。',
-        'news' => '富士平原ゴルフクラブ 公式サイト ニュース一覧ページです。ニュース一覧を掲載しております。',
-        'course' => '富士平原ゴルフクラブ 公式サイト コース案内ページです。コースの詳細について掲載しております。',
-        'course/fuji' => '富士平原ゴルフクラブ 公式サイト コース案内ページです。富士コースの詳細について掲載しております。',
-        'course/hakone' => '富士平原ゴルフクラブ 公式サイト コース案内ページです。箱根コースの詳細について掲載しております。',
-        'course/tanzawa' => '富士平原ゴルフクラブ 公式サイト コース案内ページです。丹沢コースの詳細について掲載しております。',
-        'facility' => '富士平原ゴルフクラブ 公式サイト 施設案内ページです。施設の詳細について掲載しております。',
-        'guide' => '富士平原ゴルフクラブ 公式サイト ご利用案内ページです。料金情報、予約受付日、レンタルクラブ、お取り扱いカードについて掲載しております。',
-        'restaurant' => '富士平原ゴルフクラブ 公式サイト レストランページです。レストランメニューについて掲載しております。',
-        'access' => '富士平原ゴルフクラブ 公式サイト アクセス情報ページです。アクセス情報について掲載しております。',
-        'privacypolicy' => '富士平原ゴルフクラブ 公式サイト プライバシーポリシーページです。プライバシーポリシーについて掲載しております。',
-        'agreement' => '富士平原ゴルフクラブ 公式サイト 利用約款ページです。利用約款について掲載しております。',
-        'contact'     => '富士平原ゴルフクラブへのお問い合わせはこちらから。',
-        'contact/confirm'  => '富士平原ゴルフクラブへのお問い合わせはこちらから。',
-        'contact/complete' => '富士平原ゴルフクラブへのお問い合わせはこちらから。',
-        'dresscode' => '富士平原ゴルフクラブ 公式サイト ドレスコードページです。ドレスコードについて掲載しております。',
-        'solo-reserve' => '富士平原ゴルフクラブ 公式サイト 一人予約はこちらから。',
+        'club' => '久能カントリー倶楽部 公式サイト 倶楽部紹介ページです。倶楽部についての詳細を記載しております。',
+        'news' => '久能カントリー倶楽部 公式サイト ニュース一覧ページです。ニュース一覧を掲載しております。',
+        'course' => '久能カントリー倶楽部 公式サイト コース案内ページです。コースの詳細について掲載しております。',
+        'course/fuji' => '久能カントリー倶楽部 公式サイト コース案内ページです。富士コースの詳細について掲載しております。',
+        'course/hakone' => '久能カントリー倶楽部 公式サイト コース案内ページです。箱根コースの詳細について掲載しております。',
+        'course/tanzawa' => '久能カントリー倶楽部 公式サイト コース案内ページです。丹沢コースの詳細について掲載しております。',
+        'facility' => '久能カントリー倶楽部 公式サイト 施設案内ページです。施設の詳細について掲載しております。',
+        'guide' => '久能カントリー倶楽部 公式サイト ご利用案内ページです。料金情報、予約受付日、レンタルクラブ、お取り扱いカードについて掲載しております。',
+        'restaurant' => '久能カントリー倶楽部 公式サイト レストランページです。レストランメニューについて掲載しております。',
+        'access' => '久能カントリー倶楽部 公式サイト アクセス情報ページです。アクセス情報について掲載しております。',
+        'privacypolicy' => '久能カントリー倶楽部 公式サイト プライバシーポリシーページです。プライバシーポリシーについて掲載しております。',
+        'agreement' => '久能カントリー倶楽部 公式サイト 利用約款ページです。利用約款について掲載しております。',
+        'contact'     => '久能カントリー倶楽部へのお問い合わせはこちらから。',
+        'contact/confirm'  => '久能カントリー倶楽部へのお問い合わせはこちらから。',
+        'contact/complete' => '久能カントリー倶楽部へのお問い合わせはこちらから。',
+        'dresscode' => '久能カントリー倶楽部 公式サイト ドレスコードページです。ドレスコードについて掲載しております。',
+        'solo-reserve' => '久能カントリー倶楽部 公式サイト 一人予約はこちらから。',
     ];
 
     // 現在のURLパスを取得
@@ -87,12 +87,12 @@ function get_dynamic_meta_description()
 
     // フロントページの場合
     if (is_front_page() || $current_path === '') {
-        return '富士の麓に展開する27ホール。フラットで雄大なコースレイアウトは御殿場随一。女性、高齢者、上級者を問わず幅広いプレーヤーに親しまれる、富士平原ゴルフクラブ。';
+        return '富士の麓に展開する27ホール。フラットで雄大なコースレイアウトは御殿場随一。女性、高齢者、上級者を問わず幅広いプレーヤーに親しまれる、久能カントリー倶楽部。';
     }
 
     // single.php（ニュース詳細ページ）の場合
     if (is_single()) {
-        return '富士平原ゴルフクラブ 公式サイト ニュース詳細ページです。各ニュース記事を掲載しております。';
+        return '久能カントリー倶楽部 公式サイト ニュース詳細ページです。各ニュース記事を掲載しております。';
     }
 
     // ──────────────────────────────────────
@@ -100,11 +100,11 @@ function get_dynamic_meta_description()
     // 例: course/fuji/f01, course/hakone/h05, course/tanzawa/t09
     // ──────────────────────────────────────
     if (preg_match('/^course\/(fuji|hakone|tanzawa)\/[fht]0[1-9]$/', $current_path)) {
-        return '富士平原ゴルフクラブ 公式サイト コース案内ページです。ホールの詳細について掲載しております。';
+        return '久能カントリー倶楽部 公式サイト コース案内ページです。ホールの詳細について掲載しております。';
     }
 
     // 配列にあるURLに一致する場合はその説明文を返す
-    return $meta_descriptions[$current_path] ?? '富士平原ゴルフクラブ 公式サイト';
+    return $meta_descriptions[$current_path] ?? '久能カントリー倶楽部 公式サイト';
 }
 
 // bodyIDを取得する関数
@@ -402,49 +402,27 @@ function custom_pagination($query = null)
     }
 }
 // コースサブナビ
-function course_navigation()
-{
+function course_navigation() {
+    // 現在のホール番号を取得
     $nownum = intval(get_field('hole-no'));
     if (!$nownum) return;
 
-    // 現在の投稿の親ページ（=コース紹介ページ）を取得
-    global $post;
-    $parent_id = wp_get_post_parent_id($post->ID);
-    if (!$parent_id) return;
+    // 全18ホール仕様
+    $max_hole = 18;
 
-    $course_slug = get_post_field('post_name', $parent_id); // スラッグ名（例: fuji, hakone, tanzawa）
-    $prefix      = substr($course_slug, 0, 1);              // 頭文字（例: f, h, t）
-
-    $max_hole  = 9;
+    // 前後ホール番号を計算
     $prev_num = ($nownum > 1) ? $nownum - 1 : $max_hole;
     $next_num = ($nownum < $max_hole) ? $nownum + 1 : 1;
 
-    // URLを生成（例: /course/fuji/fhole02/）
-    $prev_url     = sprintf('/course/%s/%s%02d/', $course_slug, $prefix, $prev_num);
-    $next_url     = sprintf('/course/%s/%s%02d/', $course_slug, $prefix, $next_num);
-    $overview_url = '/course/' . $course_slug . '/';
+    // URLを生成
+    $prev_url     = home_url("/course/hole{$prev_num}/");
+    $next_url     = home_url("/course/hole{$next_num}/");
+    $overview_url = home_url("/course/");
 
-    // 表示用コース名に変換
-    $course_name = '';
-    switch ($course_slug) {
-        case 'fuji':
-            $course_name = '富士';
-            break;
-        case 'hakone':
-            $course_name = '箱根';
-            break;
-        case 'tanzawa':
-            $course_name = '丹沢';
-            break;
-        default:
-            $course_name = ucfirst($course_slug); // 万一未定義なら英語スラッグ先頭大文字
-            break;
-    }
-
-    // 出力（デザインに合わせたHTML構造）
-    echo '<a href="' . esc_url(home_url($prev_url)) . '" class="b-c-dtl__btn pre">Preview</a>';
-    echo '<a href="' . esc_url(home_url($overview_url)) . '" class="b-c-dtl__btm--top"><span>' . esc_html($course_name) . '</span></a>';
-    echo '<a href="' . esc_url(home_url($next_url)) . '" class="b-c-dtl__btn nxt">Next</a>';
+    // URL出力
+    echo '<a href="' . esc_url($prev_url) . '" class="b-c-dtl__btn pre">Preview</a>';
+    echo '<a href="' . esc_url($overview_url) . '" class="b-c-dtl__btm--top">コース全景へ</a>';
+    echo '<a href="' . esc_url($next_url) . '" class="b-c-dtl__btn nxt">Next</a>';
 }
 
 
