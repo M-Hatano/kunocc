@@ -8,270 +8,615 @@
     <?php get_header('120'); ?>
     <!--  header -->
 
-    <main class="c-main _bg">
-        <div class="c-page-header lazyload" data-bg="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/page-header.jpg">
-            <div class="c-column c-page-header__inner">
-                <h1 class="c-page-header__title">Restaurant<span>レストラン</span></h1>
+    <main class="c-main">
+            <div class="c-page-header lazyload" data-bg="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/bg_header_01.jpg">
             </div>
-        </div>
 
-        <div class="c-column-s"> 
-        <ul class="c-scroll">
-            <li><a href="#gd-launch">ランチメニュー</a></li>
-            <li><a href="#gd-morning">朝食メニュー</a></li>
-            <li><a href="#gd-party">パーティーメニュー</a></li>
-            <li><a href="#gd-snack">おつまみ</a></li>
-            <li><a href="#gd-alcohol">アルコール</a></li>
-        </ul>
-        </div>
-        
+            <!-- 導入部 -->
+            <section class="lead">
+                <div class="c-column">
+                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_titl_01.svg" class="rs-title" alt="レストランタイトル">
+                </div>
+                <div class="lead__recommend">
+                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lead_01.jpg" alt="うなぎ">
+                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lead_02.jpg" alt="担々麺">
+                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lead_03.jpg" alt="ハンバーグ">
+                </div>
 
-    <section id="link01">
-        <!-- <div class="contents c-column-s"> -->
-                <!-- <h2 class="c-head5 c-tac">クラブハウスレストラン<span>Club House</span></h2> -->
-                <?php /* if (have_rows('club-res')): ?>
-                    <?php while (have_rows('club-res')): the_row(); ?>
-                        <div class="rst-intro">
-                            <div class="rst-intro__txt">
-                                <!-- レストラン説明文 -->
-                                <p><?php the_sub_field('club-res-txt'); ?></p>
-                                <!-- レストラン備考 -->
-                                <ul class="r-list">
-                                    <?php if (have_rows('clb_list')): ?>
-                                        <?php while (have_rows('clb_list')): the_row(); ?>
-                                            <li><span>※</span><?php the_sub_field('clb_item'); ?></li>
-                                        <?php endwhile; ?>
-                                    <?php endif; ?>
-                                </ul>
-                            </div>
-                            <?php
-                            // レストラン画像
-                            $image = get_sub_field('image-cub-res');
-                            if ($image): ?>
-                                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-                            <?php endif; ?>
+                <div class="c-column">
+                    <p class="lead__text">
+                        料理も、コースも、味わって。
+                        <span>
+                            手作りにこだわり、彩り豊かに仕上げた<br class="c-brsp">レストランの逸品。<br>
+                            味はもちろん、盛り付けにも心を込めた一皿が、<br class="c-brsp">ラウンド後の時間をより豊かに彩ります。<br>
+                            多様な食のスタイルにも柔軟に対応いたします。
+                        </span>
+                    </p>
+
+                    <ul class="c-scroll sc_01">
+                        <li><a href="#private">プライベートルーム</a></li>
+                        <li><a href="#morning">モーニング</a></li>
+                        <li><a href="#lunch">ランチ</a></li>
+                        <li><a href="#cafe">茶屋</a></li>
+                        <li><a href="#party">パーティープラン</a></li>
+                        <li><a href="#drink">ドリンク</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- プライベートルーム -->
+            <section id="private" class="private">
+                <div class="c-column">
+                    <h2 class="c-head5">プライベートルーム<span>PrivateRoom</span></h2>
+                    <div class="feature">
+                        <figure>
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_private_01.jpg" alt="プライベートルーム">
+                        </figure>
+                        <div class="feature__text">
+                            <p>
+                                お食事の際、大切なお客様にゆっくりとご利用いただける個室を15室ご用意しております。<br>
+                                お部屋の詳細については施設紹介ページをご覧ください。
+                            </p>
+                            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/private-room.pdf" target="_blank" class="c-btn">プライベートルーム詳細</a>
                         </div>
-                    <?php endwhile; ?>
-                <?php endif; */?>
+                    </div>
+                </div>
+                <span class="deco _01"><span></span></span>
+            </section>
 
-        
-            <div class="contents c-column-s" id="gd-launch">
-              <h3 class="c-head1 c-tac">ランチメニュー<span class="c-head1__en">launch</span></h3>
-                <?php
-                // WordPressテーマファイル内に記述
-                if (have_rows('menu_items')) : ?>
-                    <ul class="menubox">
-                        <?php while (have_rows('menu_items')) : the_row(); ?>
-                            <li>
-                                <?php
-                                $image = get_sub_field('image'); // 画像フィールド
-                                $menuname = get_sub_field('menuname'); // pタグ内の説明文
-                                $price = get_sub_field('price'); // spanタグ内の価格
-                                $detail = get_sub_field('detail'); // pタグ内のメニュー詳細
-                                ?>
-
-                                <?php if ($image): ?>
-                                    <img loading="lazy" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-                                <?php endif; ?>
-
-                                <?php if ($menuname): ?>
-                                    <p class="menuname"><?php echo esc_html($menuname); ?></p>
-                                <?php endif; ?>
-
-                                <?php if ($price): ?>
-                                    <span><?php echo esc_html($price); ?></span>
-                                <?php endif; ?>
-
-                                <?php /* if ($detail): ?>
-                                    <p class="detail"><?php echo esc_html($detail); ?></p>
-                                <?php endif; */?>
-
-                            </li>
-                        <?php endwhile; ?>
+            <!-- モーニング -->
+            <section id="morning" class="morning">
+                <div class="c-column">
+                    <h2 class="c-head5">モーニングメニュー<span>Morning</span></h2>
+                    <ul class="list01">
+                        <li class="list01__item">
+                            <div class="list01__item--menu">
+                                <p>
+                                    <span class="list01__item--name">和風定食</span>
+                                    <span class="list01__item--price">1,650円</span>
+                                </p>
+                                <p class="list01__item--text">焼魚、明太子、いたわさ、海苔、小鉢、梅干し、香の物、みそ汁付き</p>
+                            </div>
+                        </li>
+                        <li class="list01__item">
+                            <div class="list01__item--menu">
+                                <p>
+                                    <span class="list01__item--name">洋風定食</span>
+                                    <span class="list01__item--price">1,650円</span>
+                                </p>
+                                <p class="list01__item--text">ジュース、フライドエッグ、ハム、ベーコン、サラダ、トースト、コーヒー又は紅茶付き</p>
+                            </div>
+                        </li>
+                        <li class="list01__item">
+                            <div class="list01__item--menu">
+                                <p>
+                                    <span class="list01__item--name">トースト・ミニサラダセット</span>
+                                    <span class="list01__item--price">1,100円</span>
+                                </p>
+                                <p class="list01__item--text">茹で卵、サラダ、コーヒー又は紅茶付き</p>
+                            </div>
+                        </li>
+                        <li class="list01__item">
+                            <div class="list01__item--menu">
+                                <p>
+                                    <span class="list01__item--name">納豆丼定食</span>
+                                    <span class="list01__item--price">880円</span>
+                                </p>
+                                <p class="list01__item--text">明太おろし、生卵、香の物、みそ汁付き</p>
+                            </div>
+                        </li>
+                        <li class="list01__item">
+                            <div class="list01__item--menu">
+                                <p>
+                                    <span class="list01__item--name">きつねうどん</span>
+                                    <span class="list01__item--price">1,650円</span>
+                                </p>
+                                <p class="list01__item--text">(卵とじうどんにも対応可)</p>
+                            </div>
+                        </li>
+                        <li class="list01__item">
+                            <div class="list01__item--menu">
+                                <p>
+                                    <span class="list01__item--name">パンケーキ</span>
+                                    <span class="list01__item--price">880円</span>
+                                </p>
+                                <p class="list01__item--text">(コーヒー又は紅茶付き)</p>
+                            </div>
+                        </li>
+                        <li class="list01__item">
+                            <div class="list01__item--menu">
+                                <p>
+                                    <span class="list01__item--name">オムレツ</span>
+                                    <span class="list01__item--price">660円</span>
+                                </p>
+                                <p class="list01__item--text">ハム・ベーコン添え</p>
+                            </div>
+                        </li>
+                        <li class="list01__item">
+                            <div class="list01__item--menu">
+                                <p>
+                                    <span class="list01__item--name">トースト</span>
+                                    <span class="list01__item--price">385円</span>
+                                </p>
+                                <p class="list01__item--text">バター・ジャム添え</p>
+                            </div>
+                        </li>
                     </ul>
-                <?php endif; ?>
-            </div>  
-            <div class="contents c-column-s _mtm" id="gd-morning">
-             <h3 class="c-head1 c-tac">朝食メニュー<span class="c-head1__en">morning</span></h3>
-                <?php
-                // WordPressテーマファイル内に記述
-                if (have_rows('menu_items2')) : ?>
-                    <ul class="menubox">
-                        <?php while (have_rows('menu_items2')) : the_row(); ?>
-                            <li>
-                                <?php
-                                $image = get_sub_field('image2'); // 画像フィールド
-                                $menuname = get_sub_field('menuname2'); // pタグ内の説明文
-                                $price = get_sub_field('price2'); // spanタグ内の価格
-                                $detail = get_sub_field('detail2'); // pタグ内のメニュー詳細
-                                ?>
 
-                                <?php if ($image): ?>
-                                    <img loading="lazy" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-                                <?php endif; ?>
-
-                                <?php if ($menuname): ?>
-                                    <p class="menuname"><?php echo esc_html($menuname); ?></p>
-                                <?php endif; ?>
-
-                                <?php if ($price): ?>
-                                    <span><?php echo esc_html($price); ?></span>
-                                <?php endif; ?>
-
-                                <?php /* if ($detail): ?>
-                                    <p class="detail"><?php echo esc_html($detail); ?></p>
-                                <?php endif; */?>
-
-                            </li>
-                        <?php endwhile; ?>
-                    </ul>
-                <?php endif; ?>
-            </div>
-  
-            <div class="contents c-column-s _mtm" id="gd-party">
-                <h3 class="c-head1 c-tac">パーティメニュー<span class="c-head1__en">party</span></h3>
-                    <ul class="menubox2">
-                        <?php if (have_rows('menu_items3')): ?>
-                            <?php while (have_rows('menu_items3')): the_row(); ?>
-                                <li>
-                                    <?php
-                                    // 画像フィールドを取得
-                                    $image = get_sub_field('image3');
-                                    if ($image): ?>
-                                        <img loading="lazy" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-                                    <?php endif; ?>
-                                        <div>
-                                            <p class="menubox2__ttl"><?php the_sub_field('title'); ?></p>
-                                            <p><?php the_sub_field('description'); ?></p>
-                                            <ul class="c-list">
-                                                <?php if (have_rows('c_list')): ?>
-                                                    <?php $counter = 0; ?>
-                                                    <?php while (have_rows('c_list') && $counter < 3): the_row(); ?>
-                                                        <li>
-                                                            <span>※</span>
-                                                            <?php the_sub_field('list_item'); ?>
-                                                        </li>
-                                                        <?php $counter++; ?>
-                                                    <?php endwhile; ?>
-                                                <?php endif; ?>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                <?php endwhile; ?>
-                            <?php endif; ?>
-                        </ul>
-            </div>
-            <div class="contents c-column-s _mtm" id="gd-snack">
-                <h3 class="c-head1 c-tac">おつまみ<span class="c-head1__en">Pppetizers</span></h3>
-                    <?php
-                        // WordPressテーマファイル内に記述
-                        if (have_rows('menu_items4')) : ?>
-                            <ul class="menubox">
-                                <?php while (have_rows('menu_items4')) : the_row(); ?>
-                                    <li>
-                                        <?php
-                                        $image = get_sub_field('image4'); // 画像フィールド
-                                        $menuname = get_sub_field('menuname4'); // pタグ内の説明文
-                                        $price = get_sub_field('price4'); // spanタグ内の価格
-                                        $detail = get_sub_field('detail4'); // pタグ内のメニュー詳細
-                                        ?>
-
-                                        <?php if ($image): ?>
-                                            <img loading="lazy" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-                                        <?php endif; ?>
-
-                                        <?php if ($menuname): ?>
-                                            <p class="menuname"><?php echo esc_html($menuname); ?></p>
-                                        <?php endif; ?>
-
-                                        <?php if ($price): ?>
-                                            <span><?php echo esc_html($price); ?></span>
-                                        <?php endif; ?>
-
-                                        <?php /* if ($detail): ?>
-                                            <p class="detail"><?php echo esc_html($detail); ?></p>
-                                        <?php endif; */?>
-
-                                    </li>
-                                <?php endwhile; ?>
-                            </ul>
-                        <?php endif; ?>
-            </div>
-  
-             <div class="contents c-column-s _mtm" id="gd-alcohol">          
-                <h3 class="c-head1 c-tac">アルコール<span class="c-head1__en">Alcohol</span></h3>
-
-                    <?php if (have_rows('menu_group')) : ?>
-                        <?php while (have_rows('menu_group')) : the_row(); ?>
-                            <?php
-                            $menu_title     = trim(get_sub_field('menu_title'));
-                            $group_title    = trim(get_sub_field('group_title'));
-                            $group_subtitle = trim(get_sub_field('group_subtitle'));
-                            $has_items      = false;
-                            ob_start(); // 出力を一時的に保存
-                            ?>
-
-                            <?php if (have_rows('item_list')) : ?>
-                                <?php while (have_rows('item_list')) : the_row(); ?>
-                                    <?php
-                                    $item_name  = trim(get_sub_field('item_name'));
-                                    $item_price = trim(get_sub_field('item_price'));
-                                    if ($item_name !== '' || $item_price !== '') :
-                                        $has_items = true;
-                                    ?>
-                                        <dl>
-                                            <?php if ($item_name !== '') : ?>
-                                                <dt><?php echo esc_html($item_name); ?></dt>
-                                            <?php endif; ?>
-                                            <?php if ($item_price !== '') : ?>
-                                                <dd><?php echo esc_html($item_price); ?></dd>
-                                            <?php endif; ?>
-                                        </dl>
-                                    <?php endif; ?>
-                                <?php endwhile; ?>
-                            <?php endif; ?>
-
-                            <?php
-                            $items_output = ob_get_clean(); // item_list の出力取得
-                            ?>
-
-                            <?php if ($menu_title !== '') : ?>
-                                <p class="textmenu__head _mts"><?php echo esc_html($menu_title); ?></p>
-                            <?php endif; ?>
-
-                            <?php if ($group_title !== '' || $group_subtitle !== '' || $has_items) : ?>
-                                <div class="textmenu__box">
-                                    <?php if ($group_title !== '' || $group_subtitle !== '') : ?>
-                                        <p class="textmenu__box--ttl">
-                                            <?php if ($group_title !== '') : ?>
-                                                <?php echo esc_html($group_title); ?>
-                                            <?php endif; ?>
-                                            <?php if ($group_subtitle !== '') : ?>
-                                                <span class="small"><?php echo esc_html($group_subtitle); ?></span>
-                                            <?php endif; ?>
-                                        </p>
-                                    <?php endif; ?>
-
-                                    <?php echo $items_output; ?>
+                    <!-- おつまみ -->
+                    <div class="l-card">
+                        <div class="l-card__inner">
+                            <h3 class="c-head6">おつまみ<span>Snack</span></h3>
+                            <div class="l-card__menu">
+                                <div>
+                                    <ul>
+                                        <li>茹で落花生<span>880円</span></li>
+                                        <li>キムチ<span>770円</span></li>
+                                        <li>ごぼう唐揚<span>770円</span></li>
+                                    </ul>
                                 </div>
-                            <?php endif; ?>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
+                                <div>
+                                    <ul>
+                                        <li>いたわさ<span>660円</span></li>
+                                        <li>オニオンライス<span>660円</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 飲み物 -->
+                    <div class="l-card _bgchange">
+                        <div class="l-card__inner">
+                            <div class="d_deco">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <h3 class="c-head6">飲み物<span>Drink</span></h3>
+                            <div class="l-card__menu l-card__menu--al01">
+                                <div>
+                                    <h3>【アルコール】</h3>
+                                    <ul>
+                                        <li>生ビール中<span>880円</span></li>
+                                        <li>生ビール小<span>770円</span></li>
+                                        <li>ハイボール<span>880円</span></li>
+                                        <li>日本酒<span>550円</span></li>
+                                        <li>ウーロンハイ<span>825円</span></li>
+                                        <li>レモンハイ<span>825円</span></li>
+                                        <li>かめ焼酎<span>825円</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3>【ソフトドリンク】</h3>
+                                    <ul>
+                                        <li>コーヒー (Hot or Ice)<span>660円</span></li>
+                                        <li>紅茶<span>550円</span></li>
+                                        <li>カフェオレ<span>715円</span></li>
+                                        <li>チョコレートミルク<span>715円</span></li>
+                                        <li>ミルク<span>495円</span></li>
+                                        <li>グレープフルーツジュース<span>495円</span></li>
+                                        <li>トマトジュース<span>495円</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-                  
-            </div>
-        </section>
+            </section>
 
-        <div class="c-column">
-            <ul class="c-brd">
-                <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-                <li><a href="<?php echo esc_url(home_url('')); ?>/restaurant/">レストラン</a></li>
-            </ul>
-        </div>
 
-    </main>
+            <!-- ランチメニュー -->
+            <section id="lunch" class="lunch">
+                <div class="c-column">
+                    <h2 class="c-head5">ランチメニュー<span>Lunch</span></h2>
+                    <span class="deco _02"><span></span></span>
+                    <span class="deco _02 reverse"><span></span></span>
+                    <ul class="lu-list">
+                        <li class="lu-list__item">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lunch_01.jpg" alt="うな重">
+                            <p>
+                                <span class="lu-list__item--name">うな重</span>
+                                <span class="lu-list__item--price">5,500円</span>
+                            </p>
+                            <p>成田はやっぱりうなぎ。<br>ふっくら蒸しあげています。</p>
+                        </li>
+                        <li class="lu-list__item ">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lunch_02.jpg" alt="ジンギスカン">
+                            <p>
+                                <span class="lu-list__item--name">ジンギスカン<span>(北海道肩ロース)</span></span>
+                                <span class="lu-list__item--price">2,970円</span>
+                            </p>
+                            <p>当クラブ人気のメニューです。運動した後にはやっぱりお肉！リピーター続出です。</p>
+                        </li>
+                        <li class="lu-list__item ">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lunch_03.jpg" alt="自家製ハンバーグ定食">
+                            <p>
+                                <span class="lu-list__item--name">自家製ハンバーグ定食</span>
+                                <span class="lu-list__item--price">2,200円</span>
+                            </p>
+                            <p>「こんなに美味しいハンバーグ食べたことない！」続出です。やわらかくて肉汁たっぷりのハンバーグをお試しください。</p>
+                        </li>
+                        <li class="lu-list__item ">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lunch_04.jpg" alt="担々麺">
+                            <p>
+                                <span class="lu-list__item--name">担々麺</span>
+                                <span class="lu-list__item--price">1,650円</span>
+                            </p>
+                            <p>説明のテキストが入ります。説明のテキストが入ります。説明のテキストが入ります。説明のテキストが入ります。</p>
+                        </li>
+                        <li class="lu-list__item ">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lunch_05.jpg" alt="マグロ丼">
+                            <p>
+                                <span class="lu-list__item--name">和風定食</span>
+                                <span class="lu-list__item--price">1,650円</span>
+                            </p>
+                            <p>説明のテキストが入ります。説明のテキストが入ります。説明のテキストが入ります。説明のテキストが入ります。</p>
+                        </li>
+                        <li class="lu-list__item ">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lunch_06.jpg" alt="厚切りロースかつ定食">
+                            <p>
+                                <span class="lu-list__item--name">厚切りロースかつ定食</span>
+                                <span class="lu-list__item--price">2,420円</span>
+                            </p>
+                            <p>お腹すいた〜！にお応えします。<br>さくさくじゅわ〜のカツ!をご堪能ください。</p>
+                        </li>
+                        <li class="lu-list__item ">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lunch_07.jpg" alt="天丼">
+                            <p>
+                                <span class="lu-list__item--name">和風定食</span>
+                                <span class="lu-list__item--price">1,650円</span>
+                            </p>
+                            <p>説明のテキストが入ります。説明のテキストが入ります。説明のテキストが入ります。説明のテキストが入ります。</p>
+                        </li>
+                        <li class="lu-list__item ">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lunch_08.jpg" alt="天ぷらひやむぎ">
+                            <p>
+                                <span class="lu-list__item--name">和風定食</span>
+                                <span class="lu-list__item--price">1,650円</span>
+                            </p>
+                            <p>説明のテキストが入ります。説明のテキストが入ります。説明のテキストが入ります。説明のテキストが入ります。</p>
+                        </li>
+                        <li class="lu-list__item ">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lunch_09.jpg" alt="生姜焼き">
+                            <p>
+                                <span class="lu-list__item--name">匠豚の生姜焼き定食</span>
+                                <span class="lu-list__item--price">2,310円</span>
+                            </p>
+                            <p>お召し上がりやすいスライスで提供致します。 是非、お楽しみください。</p>
+                        </li>
+                        <li class="lu-list__item ">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_lunch_10.jpg" alt="朝食？">
+                            <p>
+                                <span class="lu-list__item--name">和風定食</span>
+                                <span class="lu-list__item--price">1,650円</span>
+                            </p>
+                            <p>説明のテキストが入ります。説明のテキストが入ります。説明のテキストが入ります。説明のテキストが入ります。</p>
+                        </li>
+                    </ul>
 
+                    <!-- その他 -->
+                    <div class="other">
+                        <h2 class="c-head5">その他<span>Other</span></h2>
+                        <ul class="list01">
+                            <li class="list01__item u-other">
+                                <div class="list01__item--menu">
+                                    <p>
+                                        <span class="list01__item--name">カキフライ定食<span>(広島産2Lサイズ)</span></span>
+                                        <span class="list01__item--price">1,650円</span>
+                                    </p>
+                                    <p class="list01__item--text">こんなに大粒なカキフライ定食他では食べられません。牡蠣好きなら迷わずこちら！</p>
+                                </div>
+                            </li>
+                            <li class="list01__item u-other">
+                                <div class="list01__item--menu">
+                                    <p>
+                                        <span class="list01__item--name">サバ味噌煮定食</span>
+                                        <span class="list01__item--price">2,200円</span>
+                                    </p>
+                                    <p class="list01__item--text">ふっくら美味しいサバを是非ご堪能ください！</p>
+                                </div>
+                            </li>
+                            <li class="list01__item u-other">
+                                <div class="list01__item--menu">
+                                    <p>
+                                        <span class="list01__item--name">新鮮アジフライ定食</span>
+                                        <span class="list01__item--price">2,200円</span>
+                                    </p>
+                                    <p class="list01__item--text">刺身に使うアジを贅沢にフライにしています。シェフが一本一本骨を抜いて作っているので、安心してご堪能ください。
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="list01__item u-other">
+                                <div class="list01__item--menu">
+                                    <p>
+                                        <span class="list01__item--name">ハンバーグとエビフライ定食</span>
+                                        <span class="list01__item--price">2,750円</span>
+                                    </p>
+                                    <p class="list01__item--text">やわらかくて肉汁たっぷりのハンバーグとサックサックのエビフライのコラボレーションがたまりません！</p>
+                                </div>
+                            </li>
+                            <li class="list01__item u-other">
+                                <div class="list01__item--menu">
+                                    <p>
+                                        <span class="list01__item--name">長崎ちゃんぽん</span>
+                                        <span class="list01__item--price">1,650円</span>
+                                    </p>
+                                    <p class="list01__item--text">野菜がたっぷり食べられて体が温まります。人気メニューです！</p>
+                                </div>
+                            </li>
+                            <li class="list01__item u-other">
+                                <div class="list01__item--menu">
+                                    <p>
+                                        <span class="list01__item--name">天婦羅蕎麦<span>(温又は冷)</span></span>
+                                        <span class="list01__item--price">1,980円</span>
+                                    </p>
+                                    <p class="list01__item--text">こんなに大粒なカキフライ定食他では食べられません。牡蠣好きなら迷わずこちら！</p>
+                                </div>
+                            </li>
+                            <li class="list01__item u-other">
+                                <div class="list01__item--menu">
+                                    <p>
+                                        <span class="list01__item--name">ビーフカレー</span>
+                                        <span class="list01__item--price">1,980円</span>
+                                    </p>
+                                    <p class="list01__item--text">年齢を重ねても変わらない、この味への愛、カレー。心に残る美味しさをお楽しみください。</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <span class="deco _03"><span></span></span>
+            </section>
+
+            <section id="cafe" class="cafe">
+                <div class="c-column">
+                    <h2 class="c-head5">茶屋メニュー<span>Cafe</span></h2>
+
+                    <!-- おつまみ -->
+                    <div class="l-card">
+                        <div class="l-card__inner">
+                            <h3 class="c-head6">おつまみ<span>Snack</span></h3>
+                            <div class="l-card__menu">
+                                <div>
+                                    <ul>
+                                        <li>茹で落花生<span>880円</span></li>
+                                        <li>キムチ<span>770円</span></li>
+                                        <li>ごぼう唐揚<span>770円</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>いたわさ<span>660円</span></li>
+                                        <li>オニオンライス<span>660円</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 飲み物 -->
+                    <div class="l-card _bgchange">
+                        <div class="l-card__inner">
+                            <div class="d_deco">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <h3 class="c-head6">飲み物<span>Drink</span></h3>
+                            <div class="l-card__menu">
+                                <div>
+                                    <h3>【アルコール】</h3>
+                                    <ul>
+                                        <li>生ビール中<span>880円</span></li>
+                                        <li>生ビール小<span>770円</span></li>
+                                        <li>ハイボール<span>880円</span></li>
+                                        <li>日本酒<span>550円</span></li>
+                                        <li>ウーロンハイ<span>825円</span></li>
+                                        <li>レモンハイ<span>825円</span></li>
+                                        <li>かめ焼酎<span>825円</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3>【ソフトドリンク】</h3>
+                                    <ul>
+                                        <li>コーヒー (Hot or Ice)<span>660円</span></li>
+                                        <li>紅茶<span>550円</span></li>
+                                        <li>カフェオレ<span>715円</span></li>
+                                        <li>チョコレートミルク<span>715円</span></li>
+                                        <li>ミルク<span>495円</span></li>
+                                        <li>グレープフルーツジュース<span>495円</span></li>
+                                        <li>トマトジュース<span>495円</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="party" class="party">
+                <span class="deco _04"><span></span></span>
+                <div class="c-column">
+                    <h2 class="c-head5">パーティープラン<span>Party</span></h2>
+                    <!-- 軽食セット -->
+                    <h3>軽食セット</h3>
+                    <ul class="list02">
+                        <li class="list02__item">
+                            <div class="list02__menu">
+                                <div class="list02__menu--ribbon">
+                                    軽食セットA
+                                </div>
+                                <p class="list02__menu--text">ケーキセット<br>（コーヒー又は紅茶付き）</p>
+                                <p class="list02__menu--price">1,320円</p>
+                            </div>
+                        </li>
+                        <li class="list02__item">
+                            <div class="list02__menu">
+                                <div class="list02__menu--ribbon">
+                                    軽食セットB
+                                </div>
+                                <p class="list02__menu--text">サラダ等<br>さつま揚げ等<br>デザート等</p>
+                                <p class="list02__menu--price">1,320円</p>
+                            </div>
+                        </li>
+                        <li class="list02__item">
+                            <div class="list02__menu">
+                                <div class="list02__menu--ribbon">
+                                    軽食セットC
+                                </div>
+                                <p class="list02__menu--text">サラダ<br>揚げもの<br>サンドイッチ等<br>デザート等</p>
+                                <p class="list02__menu--price">1,650円</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- スタンダードセット -->
+                    <h3>スタンダードセット</h3>
+                    <ul class="list02 u-standard">
+                        <li class="list02__item">
+                            <div class="list02__menu">
+                                <div class="list02__menu--ribbon list02__menu--color">
+                                    スタンダードA
+                                </div>
+                                <p class="list02__menu--text">サラダ<br>一品料理<br>鶏肉料理<br>麺<br>デザート</p>
+                                <p class="list02__menu--price">2,200円</p>
+                            </div>
+                        </li>
+                        <li class="list02__item">
+                            <div class="list02__menu">
+                                <div class="list02__menu--ribbon list02__menu--color">
+                                    スタンダードB
+                                </div>
+                                <p class="list02__menu--text">一品料理<br>刺身<br>揚げ物<br>肉料理<br>デザート</p>
+                                <p class="list02__menu--price">2,750円</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- 会食セット -->
+                    <h3>会食セット</h3>
+                    <ul class="list02">
+                        <li class="list02__item">
+                            <div class="list02__menu list02__menu--pt01">
+                                <div class="list02__menu--ribbon">
+                                    会食セットA
+                                </div>
+                                <p class="list02__menu--text">
+                                    季節の一品料理1点<br>お造り（鮮魚1点）<br>焼魚（例：鮭の西京焼き）<br>揚げ物（名物新鮮アジフライ等）<br>チキンガーリックステーキ等<br>食事（茶そば）<br>デザート
+                                </p>
+                                <p class="list02__menu--price">4,400円</p>
+                            </div>
+                        </li>
+                        <li class="list02__item">
+                            <div class="list02__menu list02__menu--pt01">
+                                <div class="list02__menu--ribbon">
+                                    会食セットB
+                                </div>
+                                <p class="list02__menu--text">
+                                    季節の一品料理２点<br>お造り（鮮魚盛り合わせ）<br>焼魚（例：銀鱈の西京焼き）<br>揚物（名物新鮮アジフライ等）<br>和牛カルビ焼き等<br>食事（稲庭饂飩）<br>デザート叉は水菓子
+                                </p>
+                                <p class="list02__menu--price">5,500円</p>
+                            </div>
+                        </li>
+                        <li class="list02__item">
+                            <div class="list02__menu list02__menu--pt01">
+                                <div class="list02__menu--ribbon">
+                                    会食セットC
+                                </div>
+                                <p class="list02__menu--text">
+                                    前菜盛合せ<br>お造り（鮮魚盛り合わせ）<br>洋皿（例：ホタテ料理）<br>揚物（名物新鮮アジフライ等）<br>和牛ステーキ等<br>食事（選べる食事スタイル）<br>水菓子
+                                </p>
+                                <p class="list02__menu--price">6,600円</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="c-list">
+                        <li>食材の仕入れ情況により、メニューは変更になります。</li>
+                        <li>毎週末旬の食材を仕入れるため、メニュー確定は直近になります。</li>
+                        <li>お客様に合わせて内容変更できますのでご相談ください。</li>
+                        <li>飲み放題（2h）2,750円、2組以上で承ります。<br>（ビール、ウィスキー、ワイン、焼酎、ノンアルコール、日本酒、ソフトドリンク）</li>
+                        <li>ソフトドリンク飲み放題770円、2組以上で承ります。（烏龍茶、コーラ、ジンジャーエール、コーヒー）</li>
+                        <li>2日前からキャンセル料が発生いたします。</li>
+                    </ul>
+                </div>
+                <span class="deco _05"><span></span></span>
+            </section>
+
+            <!-- 飲み物メニュー -->
+            <section id="drink" class="drink">
+                <div class="bghd">
+                    <h2 class="c-head5">飲み物メニュー<span>Drink</span></h2>
+                    <div class="dwrap">
+                        <div class="c-column">
+                            <div class="dwrap__pic">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_drink_01.jpg" class="dwrap__pic--left" alt="ウィスキー">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_drink_02.jpg" class="dwrap__pic--right" alt="焼酎">
+                            </div>
+                            <p>ゴルフのあとのひとときに、<br class="c-brsp">すこし贅沢な一杯はいかがでしょうか。<br>こだわりの熟成酒や希少な銘柄など、<br
+                                    class="c-brsp">贅沢な時間をお楽しみください。</p>
+                            <span class="deco _06"><span></span></span>
+                            <span class="deco _07"><span></span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dbgmenu">
+                    <div class="c-column">
+                        <div class="dwrap02">
+                            <div class="dwrap02__inner">
+                                <h3>ビール・日本酒・焼酎・ワイン</h3>
+                                <ul>
+                                    <li>生ビール<span>&yen;880</span></li>
+                                    <li>生ビール (小)<span>&yen;770</span></li>
+                                    <li>ビール (中瓶)<span>&yen;880</span></li>
+                                    <li>大吟醸 (地酒4合)<span>&yen;5,500</span></li>
+                                    <li>みぞれ酒<span>&yen;1,320</span></li>
+                                    <li>地酒 (1合)<span>&yen;660</span></li>
+                                    <li>冷酒 (1合)<span>&yen;880</span></li>
+                                    <li>焼酎(麦・芋・米)<span>&yen;825</span></li>
+                                    <li>グラスワイン(赤・白)<span>&yen;1,320</span></li>
+                                    <li>ロゼワイン(ロゼレガンス)<span>&yen;1,100</span></li>
+                                    <li>ノンアルコールビール<span>&yen;660</span></li>
+                                </ul>
+                            </div>
+                            <div class="dwrap02__inner">
+                                <h3>ウィスキー</h3>
+                                <ul>
+                                    <li>ウィスキー<span>&yen;880</span></li>
+                                    <li>.W. ハーパー (バーボン)<span>&yen;880</span></li>
+                                    <li>ジャックダニエル (テネシー)<span>&yen;880</span></li>
+                                    <li>ハイボール<span>&yen;880</span></li>
+                                </ul>
+                            </div>
+                            <div class="dwrap02__inner">
+                                <h3>ソフトドリンク</h3>
+                                <ul>
+                                    <li>コーヒー (当店で豆を挽いております)<span>&yen;660</span></li>
+                                    <li>紅茶<span>&yen;550</span></li>
+                                    <li>チョコレートミルク<span>&yen;715</span></li>
+                                    <li>ミルク<span>&yen;495</span></li>
+                                    <li>ウーロン茶<span>&yen;495</span></li>
+                                    <li>グレープフルーツジュース<span>&yen;495</span></li>
+                                    <li>トマトジュース<span>&yen;495</span></li>
+                                    <li>コーラ、ジンジャーエール<span>&yen;495</span></li>
+                                    <li>生レモンスカッシュ<span>&yen;660</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <ul class="c-brd">
+                            <li><a href="/">TOP</a></li>
+                            <li><a>レストラン</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
     <!--  フッタ読込 -->
     <?php get_footer('120'); ?>
     <!--  フッタ読込 -->
