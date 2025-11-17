@@ -325,7 +325,7 @@ function enqueue_page_specific_scripts()
 }
 add_action('wp_enqueue_scripts', 'enqueue_page_specific_scripts');
 
-
+// ＝＝＝＝不要＝＝＝＝
 // かわら版用のショートコード
 function my_upload_uri_shortcode()
 {
@@ -333,74 +333,96 @@ function my_upload_uri_shortcode()
     return esc_url($u['baseurl']);
 }
 add_shortcode('upload_uri', 'my_upload_uri_shortcode');
+// ＝＝＝＝不要＝＝＝＝
 
+//ニュースページネーション
 function custom_pagination($query = null)
 {
-    // --- 追加：現在の絞り込み条件を取得 ---
-    $subcat = get_query_var('subcat');
-    $year   = get_query_var('year');
-
-    // 対象クエリを決定
+    // 対象クエリ決定
     if ($query instanceof WP_Query) {
         $target_query = $query;
     } else {
         global $wp_query;
-        $target_query = $wp_query;     // フォールバック
+        $target_query = $wp_query;
     }
 
     $total_pages  = (int) $target_query->max_num_pages;
     $current_page = max(1, (int) get_query_var('paged'));
 
-    // 表示範囲（現在の前後3ページずつ）
+    if ($total_pages <= 1) return;
+
+    // 絞り込み
+    $subcat = get_query_var('subcat');
+    $year   = get_query_var('year');
+
+    // ======== ベースURLの判定（最重要） ======== //
+    // 一般ニュース（/news/）
+    if (is_page('news')) {
+
+        if ($year) {
+            // 例：/news/2025/
+            $base_link = home_url("/news/{$year}/");
+        } else {
+            // 例：/news/
+            $base_link = home_url("/news/");
+        }
+
+    // 会員ニュース（/member/）
+    } elseif (is_page('member')) {
+
+        if ($subcat && $year) {
+            // 例：/member/kusunoki/2025/
+            $base_link = home_url("/member/{$subcat}/{$year}/");
+
+        } elseif ($subcat) {
+            // 例：/member/kusunoki/
+            $base_link = home_url("/member/{$subcat}/");
+
+        } elseif ($year) {
+            // 例：/member/2025/
+            $base_link = home_url("/member/{$year}/");
+
+        } else {
+            // 例：/member/
+            $base_link = home_url("/member/");
+        }
+
+    } else {
+        // 保険
+        $base_link = home_url('/');
+    }
+
+    // 末尾にスラッシュ
+    $base_link = trailingslashit($base_link);
+
+    // ======== ページ番号の範囲 ======== //
     $range = 1;
     $start = max(1, $current_page - $range);
     $end   = min($total_pages, $current_page + $range);
 
-    // --- ベースURLをテンプレート別に切り替え ---
-    if (is_page_template('page-120-news-kawaraban.php')) {
-        // かわら版一覧
-        if ($subcat) {
-            $base_link = home_url("/news/kawaraban/{$subcat}/");
-        } elseif ($year) {
-            $base_link = home_url("/news/kawaraban/{$year}/");
-        } else {
-            $base_link = home_url("/news/kawaraban/");
-        }
-    } elseif (is_page(142)) { // ← お知らせ一覧のページIDを指定
-        // お知らせ一覧
-        if ($year) {
-            $base_link = home_url("/news/{$year}/");
-        } else {
-            $base_link = home_url("/news/");
-        }
-    } else {
-        // それ以外（保険）
-        $base_link = home_url("/");
-    }
-    // 末尾にスラッシュを保証
-    $base_link = trailingslashit($base_link);
-
+    echo '<ul class="c-pagenation">';
 
     // 「最初」「前へ」
     if ($current_page > 1) {
         echo '<li class="c-pagenation__first"><a href="' . esc_url(get_pagenum_link(1)) . '">最初</a></li>';
-        $prev = $current_page - 1;
-        echo '<li class="c-pagenation__before"><a href="' . esc_url("{$base_link}page/{$prev}/") . '">←</a></li>';
+        echo '<li class="c-pagenation__before"><a href="' . esc_url("{$base_link}page/" . ($current_page - 1) . "/") . '">←</a></li>';
     }
 
-    // 数字リンク（現在の前後3つずつ）
+    // 数字リンク
     for ($i = $start; $i <= $end; $i++) {
-        $active = ($i === $current_page) ? ' class="is-current"' : '';
-        echo "<li{$active}><a href='" . esc_url("{$base_link}page/{$i}/") . "'>{$i}</a></li>";
+        $class = ($i === $current_page) ? ' class="is-current"' : '';
+        echo "<li{$class}><a href='" . esc_url("{$base_link}page/{$i}/") . "'>{$i}</a></li>";
     }
 
     // 「次へ」「最後」
     if ($current_page < $total_pages) {
-        $next = $current_page + 1;
-        echo '<li class="c-pagenation__after"><a href="' . esc_url("{$base_link}page/{$next}/") . '">→</a></li>';
+        echo '<li class="c-pagenation__after"><a href="' . esc_url("{$base_link}page/" . ($current_page + 1) . "/") . '">→</a></li>';
         echo '<li class="c-pagenation__last"><a href="' . esc_url(get_pagenum_link($total_pages)) . '">最後</a></li>';
     }
+
+    echo '</ul>';
 }
+
 // コースサブナビ
 function course_navigation() {
     // 現在のホール番号を取得
@@ -486,7 +508,6 @@ function cg_strip_img_attributes($html, $id, $caption, $title, $align, $url, $si
     return trim($html);
 }
 add_filter('image_send_to_editor', 'cg_strip_img_attributes', 10, 8);
-
 
 
 
@@ -605,43 +626,96 @@ function fhg_get_all_years()
 }
 
 
-// ① query_vars に subcat と year を登録
+/**
+ * ① query_vars に subcat と year を登録
+ * （ニュース・会員ニュースのURL制御に必要）
+ */
 add_filter('query_vars', function ($vars) {
     $vars[] = 'subcat';
     $vars[] = 'year';
     return $vars;
 });
 
-// ② 「かわら版」（page_id=6429）用のリライトルール
+
+/**
+ * ② 久能版ニュース・会員ニュース用リライトルール
+ *
+ * /news/
+ * /news/2025/
+ * /news/page/2/
+ * /member/
+ * /member/kusunoki/
+ * /member/2025/
+ * /member/kusunoki/page/2/
+ */
 add_action('init', function () {
-    $page_id = 6429;
 
-    // /news/kawaraban/{year}/
-    add_rewrite_rule(
-        '^news/kawaraban/([0-9]{4})/?$',
-        'index.php?page_id=' . $page_id . '&year=$matches[1]',
-        'top'
-    );
-    // /news/kawaraban/{year}/page/{paged}/
-    add_rewrite_rule(
-        '^news/kawaraban/([0-9]{4})/page/([0-9]+)/?$',
-        'index.php?page_id=' . $page_id . '&year=$matches[1]&paged=$matches[2]',
-        'top'
-    );
-    // /news/kawaraban/{subcat}/
-    add_rewrite_rule(
-        '^news/kawaraban/([^/]+)/?$',
-        'index.php?page_id=' . $page_id . '&subcat=$matches[1]',
-        'top'
-    );
-    // /news/kawaraban/{subcat}/page/{paged}/
-    add_rewrite_rule(
-        '^news/kawaraban/([^/]+)/page/([0-9]+)/?$',
-        'index.php?page_id=' . $page_id . '&subcat=$matches[1]&paged=$matches[2]',
-        'top'
-    );
+    /**
+     * ▼ 一般ニュース（固定ページ /news/）
+     */
+    $page_news = get_page_by_path('news');
+    if ($page_news) {
+        $page_news_id = $page_news->ID;
+
+        // /news/2025/
+        add_rewrite_rule(
+            '^news/([0-9]{4})/?$',
+            'index.php?page_id=' . $page_news_id . '&year=$matches[1]',
+            'top'
+        );
+
+        // /news/2025/page/2/
+        add_rewrite_rule(
+            '^news/([0-9]{4})/page/([0-9]+)/?$',
+            'index.php?page_id=' . $page_news_id . '&year=$matches[1]&paged=$matches[2]',
+            'top'
+        );
+
+        // /news/page/2/
+        add_rewrite_rule(
+            '^news/page/([0-9]+)/?$',
+            'index.php?page_id=' . $page_news_id . '&paged=$matches[1]',
+            'top'
+        );
+    }
+
+
+    /**
+     * ▼ 会員ニュース（固定ページ /member/）
+     */
+    $page_member = get_page_by_path('member');
+    if ($page_member) {
+        $page_member_id = $page_member->ID;
+
+        // /member/2025/
+        add_rewrite_rule(
+            '^member/([0-9]{4})/?$',
+            'index.php?page_id=' . $page_member_id . '&year=$matches[1]',
+            'top'
+        );
+
+        // /member/2025/page/2/
+        add_rewrite_rule(
+            '^member/([0-9]{4})/page/([0-9]+)/?$',
+            'index.php?page_id=' . $page_member_id . '&year=$matches[1]&paged=$matches[2]',
+            'top'
+        );
+
+        // /member/kusunoki/
+        add_rewrite_rule(
+            '^member/([^/]+)/?$',
+            'index.php?page_id=' . $page_member_id . '&subcat=$matches[1]',
+            'top'
+        );
+
+        // /member/kusunoki/page/2/
+        add_rewrite_rule(
+            '^member/([^/]+)/page/([0-9]+)/?$',
+            'index.php?page_id=' . $page_member_id . '&subcat=$matches[1]&paged=$matches[2]',
+            'top'
+        );
+    }
 });
-
 
 
 
