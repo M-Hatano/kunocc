@@ -3209,6 +3209,12 @@ table {
   height: fit-content;
 }
 
+@media screen and (max-width: 767px) {
+  #fancybox-outer {
+    width: 100%;
+  }
+}
+
 #fancybox-wrap {
   left: 400px;
 }
