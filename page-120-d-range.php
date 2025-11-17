@@ -33,24 +33,24 @@
         </p>
 
         <table class="tb-01">
-        <tbody>
-          <tr>
-            <th>料金</th>
-            <td>
-              ⚫︎⚫︎⚫︎円(税込) 
-            </td>
-          </tr>
-          <tr>
-            <th>申込み方法</th>
-            <td>
-              <p class="tb-01__dtex">ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト</p>
-              <a href="" target="_blank">練習場使用申込書</a>
-              <p>FAX&colon;<span>000-00-0000</span></p>
-              <p>メール&colon;info@kunocc.co.jp</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          <tbody>
+            <tr>
+              <th>料金</th>
+              <td>
+                ⚫︎⚫︎⚫︎円(税込)
+              </td>
+            </tr>
+            <tr>
+              <th>申込み方法</th>
+              <td>
+                <p class="tb-01__dtex">ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト</p>
+                <a href="" target="_blank">練習場使用申込書</a>
+                <p>FAX&colon;<span>000-00-0000</span></p>
+                <p>メール&colon;info@kunocc.co.jp</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
         <!-- パンくずリスト -->
         <ul class="c-brd">
