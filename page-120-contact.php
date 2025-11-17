@@ -145,7 +145,7 @@ function h($s)
   <div class="c-page-header changeArea">
     <div class="c-column c-page-header__inner">
       <h1 class="c-page-header__title _sub">Contact
-        <span>- お問い合わせ -</span>
+        <span>お問い合わせ</span>
       </h1>
     </div>
   </div>

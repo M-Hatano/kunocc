@@ -1,10 +1,21 @@
     <?php
-    /*
-      Template Name: お知らせアーカイブ
-      */
-    ?>
+    // 年を取得
+    $year = intval( get_query_var('year') );
 
-    <!--  header -->
+    // /news/2025/ などで news カテゴリの記事だけを表示する
+    if (get_query_var('news_archive')) {
+
+        add_action('pre_get_posts', function($query) use ($year) {
+            if (!is_admin() && $query->is_main_query()) {
+                $query->set('category_name', 'news'); // ← ここをあなたのカテゴリに合わせてもOK
+                $query->set('year', $year);
+            }
+        });
+
+    }
+    ?>
+   
+   <!--  header -->
     <?php get_header('120'); ?>
     <!--  header -->
 
@@ -12,13 +23,13 @@
       <div class="c-page-header lazyload">
         <div class="c-column c-page-header__inner">
           <h1 class="c-page-header__title">News
-            <span>- ニュース -</span>
+            <span>ニュース</span>
           </h1>
         </div>
       </div>
 
       <div class="c-column">
-        <h2 class="c-head6">2024年の記事一覧<span>News</span></h2>
+        <h2 class="c-head6"><?php echo esc_html( get_query_var('year') ); ?>年の記事一覧あああ<span>News</span></h2>
         <div class="news-box">
           <div class="news-box__left">
             <ul class="news-box__list">
@@ -208,7 +219,8 @@
         <!-- パンくずリスト -->
         <ul class="c-brd">
           <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-          <li><a href="">ニュース一覧</a></li>
+          <li><a href="<?php echo esc_url(home_url('')); ?>/news/">ニュース</a></li>
+          <li><a href=""><?php echo esc_html( get_query_var('year') ); ?>年</a></li>
         </ul>
       </div>
 
