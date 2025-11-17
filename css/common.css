@@ -2147,19 +2147,16 @@ table {
 }
 
 .table-type-02 caption {
-  margin-bottom: 0.25em;
+  margin-bottom: 30px;
   letter-spacing: 0.05em;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 30px;
 }
 
 @media screen and (min-width: 0px) and (max-width: 767px) {
   .table-type-02 caption {
     font-size: 4.6875vw;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .table-type-02 caption {
-    font-size: 2.6rem;
   }
 }
 
@@ -2174,19 +2171,19 @@ table {
 }
 
 .table-type-02 th {
-  border-right: solid 1px #ccc;
-  border-bottom: solid 1px #ccc;
-  border-left: solid 1px #03045E;
-  background-color: #03045E;
+  border-right: solid 1px #F1F1F1;
+  border-bottom: solid 1px #F1F1F1;
+  border-left: solid 1px #243749;
+  background-color: #243749;
   color: #fff;
-  font-weight: bold;
   white-space: nowrap;
+  font-size: 16px;
 }
 
 .table-type-02 td {
-  border-right: solid 1px #ccc;
-  border-bottom: solid 1px #ccc;
-  border-left: solid 1px #ccc;
+  border-right: solid 1px #F1F1F1;
+  border-bottom: solid 1px #F1F1F1;
+  border-left: solid 1px #F1F1F1;
   vertical-align: middle;
 }
 
@@ -2519,7 +2516,7 @@ table {
 }
 
 ._mtm {
-  padding-top: 100px;
+  padding-top: 60px;
 }
 
 ._mtl {
@@ -2532,7 +2529,7 @@ table {
   }
 
   ._mtm {
-    padding-top: 60px;
+    padding-top: 30px;
   }
 
   ._mtl {
@@ -2860,7 +2857,7 @@ table {
 }
 
 @media screen and (max-width: 767px) {
-  .c-scroll{
+  .c-scroll {
     justify-content: center;
   }
 

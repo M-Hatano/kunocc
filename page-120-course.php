@@ -9,74 +9,67 @@
       <!--  header -->
 
       <main class="c-main">
-        <div class="c-page-header lazyload" data-bg="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/page-header.jpg">
+        <div class="c-page-header lazyload">
           <div class="c-column c-page-header__inner">
-            <h1 class="c-page-header__title">Course
-              <span>コース紹介</span>
+            <h1 class="c-page-header__title">Facility
+              <span>施設案内</span>
             </h1>
           </div>
         </div>
 
 
-        <section class="_mtl">
-          <h2 class="c-head1">
-            コースマップ
-            <span class="c-head1__en">Course Map</span>
-          </h2>
-          <div class="c-column">
+        <div class="c-column">
+          <section class="_mtl">
+            <h2 class="c-head6">フロア図<span>Course&nbsp;Map</span></h2>
+            </h2>
             <div class="map">
-              <figure class="crs__img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/img_course_04.png" alt="コース全景" usemap="#ImageMap"></figure>
+              <figure><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/img_course_01.jpg" alt="コース全景" usemap="#ImageMap"></figure>
             </div>
 
             <div class="crs-ytb _mtm" id="vw-point">
               <p>俊英・加藤俊輔氏の自信作。<br>
-                  自然の地形を活かしつつ、美しく設計されたコースは、各ホールに変化と魅力に富んでいる。<br>
-                  高低差は10メートル以内で、適度なアンジュレーションがプレーヤーの闘志をかき立てる。<br>
-                  杉や広葉樹の大木が残る林が随所に見られ、自然の恵みを活かしたレイアウトも特徴。<br>
-                  なかでも16番ホールは名物ホールとして知られている。</p>
-
+                自然の地形を活かしつつ、美しく設計されたコースは、各ホールに変化と魅力に富んでいる。<br>
+                高低差は10メートル以内で、適度なアンジュレーションがプレーヤーの闘志をかき立てる。<br>
+                杉や広葉樹の大木が残る林が随所に見られ、自然の恵みを活かしたレイアウトも特徴。<br>
+                なかでも16番ホールは名物ホールとして知られている。</p>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <div class="b-c-dtl__csbtn">
+          <div class="b-c-dtl__csbtn">
             <div>
               <p>OUT</p>
-                <ul>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole1/">1</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole2/">2</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole3/">3</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole4/">4</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole5/">5</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole6/">6</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole7/">7</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole8/">8</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole9/">9</a></li>
-                </ul>
+              <ul>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole1/">1</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole2/">2</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole3/">3</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole4/">4</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole5/">5</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole6/">6</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole7/">7</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole8/">8</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole9/">9</a></li>
+              </ul>
             </div>
 
             <div>
               <p>IN</p>
-                <ul>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole10/">10</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole11/">11</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole12/">12</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole13/">13</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole14/">14</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole15/">15</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole16/">16</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole17/">17</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole18/">18</a></li>
-                </ul>
+              <ul>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole10/">10</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole11/">11</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole12/">12</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole13/">13</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole14/">14</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole15/">15</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole16/">16</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole17/">17</a></li>
+                <li><a href="<?php echo esc_url(home_url('')); ?>/course/hole18/">18</a></li>
+              </ul>
             </div>
           </div>
 
-        <section class="_mtl">
-          <h2 class="c-head1">
-            ヤーデージ
-            <span class="c-head1__en">Yardage</span>
-          </h2>
-          <div class="c-column">
+          <section class="_mtl">
+            <h2 class="c-head6">ヤーデージ<span>Yardage</span></h2>
+            </h2>
             <div class="table-scroll">
               <table class="table-type-02 table-course">
                 <caption>OUT</caption>
@@ -263,37 +256,37 @@
                 </tbody>
               </table>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
 
-        <section class="_mtl">
-          <div class="c-column-s">
+        <section class="_bgout">
 
-            <h2 class="c-head1 c-tac _mtl">各コース紹介<span class="c-head1__en">Course</span></h2>
+          <div class="c-column">
+            <h2 class="c-head6">各コース紹介<span>Course</span></h2>
 
             <!-- OUTコース -->
             <?php if (have_rows('hi_out_holes')) : ?>
               <h3 class="c-head3">OUT</h3>
               <p class="c-ct-lead">
-              全体的にフェアウェイがほぼフラットコース。<br>
-              中盤以降から狙い目が難しいホールが続くので最後まで気が抜けない。
+                全体的にフェアウェイがほぼフラットコース。<br>
+                中盤以降から狙い目が難しいホールが続くので最後まで気が抜けない。
               </p>
 
               <div class="cslist">
                 <?php while (have_rows('hi_out_holes')) : the_row(); ?>
                   <?php
-                    $hole_no = get_sub_field('hi_hole_no');        // ホール番号（1〜9）
-                    $thumb   = get_sub_field('hi_hole_image');     // 画像
-                    $link    = $hole_no ? home_url("/course/hole{$hole_no}/") : '#';
+                  $hole_no = get_sub_field('hi_hole_no');        // ホール番号（1〜9）
+                  $thumb   = get_sub_field('hi_hole_image');     // 画像
+                  $link    = $hole_no ? home_url("/course/hole{$hole_no}/") : '#';
 
-                    // グリーン情報（Par / Yardなど）
-                    $stats = [];
-                    if (have_rows('hi_green_info')) :
-                      while (have_rows('hi_green_info')) : the_row();
-                        $label = trim(get_sub_field('hi_green_label'));
-                        if ($label !== '') $stats[] = $label;
-                      endwhile;
-                    endif;
+                  // グリーン情報（Par / Yardなど）
+                  $stats = [];
+                  if (have_rows('hi_green_info')) :
+                    while (have_rows('hi_green_info')) : the_row();
+                      $label = trim(get_sub_field('hi_green_label'));
+                      if ($label !== '') $stats[] = $label;
+                    endwhile;
+                  endif;
                   ?>
 
                   <div class="csbox csbox2">
@@ -320,9 +313,12 @@
                 <?php endwhile; ?>
               </div>
             <?php endif; ?>
+          </div>
+        </section>
 
-
-            <!-- INコース -->
+        <section class="_bgin">
+          <!-- INコース -->
+          <div class="c-column">
             <?php if (have_rows('hi_in_holes')) : ?>
               <h3 class="c-head3">IN</h3>
               <p class="c-ct-lead">
@@ -335,17 +331,17 @@
               <div class="cslist">
                 <?php while (have_rows('hi_in_holes')) : the_row(); ?>
                   <?php
-                    $hole_no = get_sub_field('hi_hole_no');        // ホール番号（10〜18）
-                    $thumb   = get_sub_field('hi_hole_image');
-                    $link    = $hole_no ? home_url("/course/hole{$hole_no}/") : '#';
+                  $hole_no = get_sub_field('hi_hole_no');        // ホール番号（10〜18）
+                  $thumb   = get_sub_field('hi_hole_image');
+                  $link    = $hole_no ? home_url("/course/hole{$hole_no}/") : '#';
 
-                    $stats = [];
-                    if (have_rows('hi_green_info')) :
-                      while (have_rows('hi_green_info')) : the_row();
-                        $label = trim(get_sub_field('hi_green_label'));
-                        if ($label !== '') $stats[] = $label;
-                      endwhile;
-                    endif;
+                  $stats = [];
+                  if (have_rows('hi_green_info')) :
+                    while (have_rows('hi_green_info')) : the_row();
+                      $label = trim(get_sub_field('hi_green_label'));
+                      if ($label !== '') $stats[] = $label;
+                    endwhile;
+                  endif;
                   ?>
 
                   <div class="csbox csbox2">
@@ -373,15 +369,14 @@
               </div>
             <?php endif; ?>
 
+            <ul class="c-brd">
+              <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
+              <li><a href="">コース紹介</a></li>
+            </ul>
           </div>
         </section>
 
-        <div class="c-column">
-          <ul class="c-brd">
-            <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-            <li><a href="">コース紹介</a></li>
-          </ul>
-        </div>
+
 
       </main>
 
@@ -390,7 +385,9 @@
       <!--  フッタ読込 -->
 
       <script src="https://unpkg.com/image-map-resizer@1.0.10/js/imageMapResizer.min.js"></script>
-      <script>imageMapResize();</script>
+      <script>
+        imageMapResize();
+      </script>
 
       <?php wp_footer(); ?>
 
