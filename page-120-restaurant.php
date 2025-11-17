@@ -249,28 +249,30 @@
                                 <li class="lu-list__item">
 
                                     <?php if ( $image ) : ?>
-                                        <img 
-                                            loading="lazy"
-                                            src="<?php echo esc_url($image['url']); ?>"
-                                            alt="<?php echo esc_attr($image['alt'] ?: $name); ?>">
+                                        <a href="<?php echo esc_url($image['url']); ?>" class="fancybox">
+                                            <img 
+                                                loading="lazy"
+                                                src="<?php echo esc_url($image['url']); ?>"
+                                                alt="<?php echo esc_attr($image['alt'] ?: $name); ?>">
+                                        </a>
                                     <?php endif; ?>
 
                                     <p>
                                         <span class="lu-list__item--name">
                                             <?php echo esc_html($name); ?>
-                                            <?php if ($name_sub) : ?>
+                                            <?php if ( $name_sub ) : ?>
                                                 <span><?php echo esc_html($name_sub); ?></span>
                                             <?php endif; ?>
                                         </span>
 
-                                        <?php if ($price): ?>
+                                        <?php if ( $price ) : ?>
                                             <span class="lu-list__item--price">
                                                 <?php echo esc_html($price); ?>
                                             </span>
                                         <?php endif; ?>
                                     </p>
 
-                                    <?php if ($desc): ?>
+                                    <?php if ( $desc ) : ?>
                                         <p><?php echo nl2br(esc_html($desc)); ?></p>
                                     <?php endif; ?>
 
@@ -635,7 +637,11 @@
     <!--  フッタ読込 -->
     <?php get_footer('120'); ?>
     <!--  フッタ読込 -->
-
+    <script>
+        jQuery(function($) {
+          $('a.fancybox').fancybox();
+        });
+      </script>
     <?php wp_footer(); ?>
 
     </body>
