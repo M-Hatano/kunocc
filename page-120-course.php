@@ -11,8 +11,8 @@
       <main class="c-main">
         <div class="c-page-header lazyload">
           <div class="c-column c-page-header__inner">
-            <h1 class="c-page-header__title">Facility
-              <span>施設案内</span>
+            <h1 class="c-page-header__title">Course
+              <span>コース紹介</span>
             </h1>
           </div>
         </div>
