@@ -1,10 +1,4 @@
-    <?php
-    /*
-      Template Name: 会員お知らせ詳細
-      */
-    ?>
-
-    <!--  header -->
+   <!--  header -->
     <?php get_header('120'); ?>
     <!--  header -->
 

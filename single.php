@@ -112,7 +112,62 @@
                 <?php endwhile; endif; ?>
 
             </div>
-        </div>
+
+            <div class="news-box__right">
+
+                <h3 class="c-head5">Archive</h3>
+
+                <div class="news-box__right--box">
+
+                <!-- 新着記事5件 -->
+                <div class="recent-posts-box">
+                    <h3>新着記事</h3>
+                    <ul>
+                    <?php
+                        $recent_q = new WP_Query([
+                        'posts_per_page'      => 5,
+                        'category_name'       => 'news',
+                        'ignore_sticky_posts' => true,
+                        ]);
+                        while ($recent_q->have_posts()): $recent_q->the_post(); ?>
+                        <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+                    <?php endwhile; wp_reset_postdata(); ?>
+                    </ul>
+                </div>
+
+                <!-- 年度別 -->
+                <div>
+                    <h3>年度別</h3>
+                    <ul class="news-box__right--list">
+                    <?php
+                    $all_years = fhg_get_all_years();
+                    $years = [];
+
+                    foreach ($all_years as $y) {
+                        $count = count(get_posts([
+                            'post_type'      => 'post',
+                            'posts_per_page' => -1,
+                            'fields'         => 'ids',
+                            'category_name'  => 'news',
+                            'year'           => $y,
+                        ]));
+                        if ($count > 0) $years[$y] = $count;
+                    }
+
+                    foreach ($years as $y => $count): ?>
+                        <li>
+                        <a href="<?php echo esc_url(home_url("/news/{$y}/")); ?>">
+                            <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
+                        </a>
+                        </li>
+                    <?php endforeach; ?>
+                    </ul>
+                </div>
+
+                </div>
+            </div>
+      </div>
+
 
         <!-- パンくずリスト -->
         <ul class="c-brd">
