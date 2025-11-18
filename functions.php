@@ -107,9 +107,29 @@ function get_dynamic_meta_description()
     return $meta_descriptions[$current_path] ?? '久能カントリー倶楽部 公式サイト';
 }
 
+/**
+ * カテゴリーによって single テンプレートを切り替え
+ */
+add_filter('single_template', function ($template) {
+
+    // 投稿が member（会員ニュース）カテゴリーなら専用テンプレートを使用
+    if (has_category('member')) {
+        $member_template = locate_template('single-member.php');
+        if ($member_template) {
+            return $member_template;
+        }
+    }
+
+    // それ以外は通常の single.php を使う
+    return $template;
+});
+
 // bodyIDを取得する関数
 function my_custom_body_id()
 {
+    if (is_single() && has_category('member')) {
+        return 'm-news';
+    }
     if (is_front_page()) {
         return 'top';
     } elseif (is_404()) {
@@ -135,6 +155,15 @@ function my_custom_body_id()
 // body_classにカスタムクラス（ルート親のスラッグ）を追加する関数
 function my_custom_body_class()
 {
+    // ▼ 投稿（single）で member / kusunoki カテゴリのとき
+    if (is_single() && (has_category('member') || has_category('kusunoki'))) {
+        return 'm-news';
+    }
+
+    // ▼ 固定ページ member / kusunoki のとき
+    if (is_page(array('member', 'kusunoki'))) {
+        return 'm-news';
+    }
     if (is_front_page()) {
         return 'top';
     } elseif (is_404()) {
@@ -180,12 +209,35 @@ function enqueue_page_specific_styles()
         echo '<link href="' . $dir . '/css/common.css" rel="stylesheet">' . "\n";
     });
 
+    if (
+        (is_single() && (has_category('member') || has_category('kusunoki'))) ||
+        is_page('member') ||
+        is_page('kusunoki')
+    ) {
+        wp_enqueue_style('m-news-style', $dir . '/css/m-news.css');
+        add_action('wp_head', function () use ($dir) {
+            echo '<link href="' . $dir . '/css/m-news.css" rel="stylesheet">' . "\n";
+        });
+        return; // ← 他のCSSを読まない
+    }
+
+
+
     // トップページの場合
     if (is_front_page()) {
         wp_enqueue_style('top-style', $dir . '/css/top.css');
         add_action('wp_head', function () use ($dir) {
             echo '<link href="' . $dir . '/css/top.css" rel="stylesheet">' . "\n";
         });
+    // ◆ 会員系ニュース（カテゴリ member / kusunoki → single-member.php）
+    if (is_single() && (has_category('member') || has_category('kusunoki'))) {
+        wp_enqueue_style('m-news-style', $dir . '/css/m-news.css');
+        add_action('wp_head', function () use ($dir) {
+            echo '<link href="' . $dir . '/css/m-news.css" rel="stylesheet">' . "\n";
+        });
+        return;
+    }
+    
     } elseif (is_single()) {
         // 投稿ページの場合
         wp_enqueue_style('news-style', $dir . '/css/news.css');
