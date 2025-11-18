@@ -29,7 +29,7 @@
       </div>
 
       <div class="c-column">
-        <h2 class="c-head6"><?php echo esc_html( get_query_var('year') ); ?>年の記事一覧あああ<span>News</span></h2>
+        <h2 class="c-head6"><?php echo esc_html( get_query_var('year') ); ?>年の記事一覧<span>News</span></h2>
         <div class="news-box">
           <div class="news-box__left">
             <ul class="news-box__list">

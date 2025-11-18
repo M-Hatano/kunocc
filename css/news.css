@@ -65,7 +65,7 @@
 }
 
 #single-page .news-box__left {
-  width: 100%;
+  width: calc(100% - 430px);
   padding: 60px 40px;
 }
 
