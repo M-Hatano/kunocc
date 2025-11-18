@@ -160,6 +160,32 @@
                       <?php endif; ?>
                     </li>
                   <?php endif; ?>
+
+                  <?php if (get_field('sub_image_d') || get_field('sub_text_d')) : ?>
+                    <li>
+                      <?php if (get_field('sub_image_d')) : ?>
+                        <a href="<?php the_field('sub_image_d'); ?>" class="fancybox">
+                          <img src="<?php the_field('sub_image_d'); ?>" alt="" loading="lazy">
+                        </a>
+                      <?php endif; ?>
+                      <?php if (get_field('sub_text_d')) : ?>
+                        <p><?php the_field('sub_text_d'); ?></p>
+                      <?php endif; ?>
+                    </li>
+                  <?php endif; ?>
+
+                  <?php if (get_field('sub_image_e') || get_field('sub_text_e')) : ?>
+                    <li>
+                      <?php if (get_field('sub_image_e')) : ?>
+                        <a href="<?php the_field('sub_image_e'); ?>" class="fancybox">
+                          <img src="<?php the_field('sub_image_e'); ?>" alt="" loading="lazy">
+                        </a>
+                      <?php endif; ?>
+                      <?php if (get_field('sub_text_e')) : ?>
+                        <p><?php the_field('sub_text_e'); ?></p>
+                      <?php endif; ?>
+                    </li>
+                  <?php endif; ?>
                 </ul>
               </div>
 

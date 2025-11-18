@@ -2408,32 +2408,35 @@ table {
 }
 
 .c-head4 {
-  font-size: 2.8rem;
-  font-weight: 400;
   position: relative;
-  line-height: 1;
   z-index: 1;
   padding: 0 0 30px;
-  color: #03045E;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 100%;
+  color: #fff;
 }
 
 .c-head4 span {
-  font-size: 4.25rem;
-  font-family: "Playwrite IN", sans-serif;
-  color: #90E0EF;
+  font-family: "Playwrite IN";
   font-weight: 200;
   position: absolute;
   left: 0;
   z-index: -1;
   -webkit-transform: translateY(10px);
   transform: translateY(10px);
-  letter-spacing: 0;
+  font-weight: 300;
+  font-size: 60px;
+  line-height: 100%;
+  color: #fff;
+  opacity: 0.2;
 }
 
 .c-head4+p {
   position: relative;
   z-index: 2;
-  margin: 5px 0 0 0;
+  margin: 30px 0 0 0;
+  color: #fff;
 }
 
 @media screen and (max-width: 767px) {
@@ -2449,15 +2452,44 @@ table {
 }
 
 .c-head5 {
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 4.5rem;
+  font-weight: 400;
+  line-height: 1;
   padding: 0 0 30px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #243749;
+}
+
+.c-head5 span {
+  font-size: 7.5rem;
+  font-family: "Playwrite IN", cursive;
+  color: #324A5B;
+  font-weight: 300;
+  margin-top: -63px;
+  opacity: 0.15;
 }
 
 @media screen and (max-width: 767px) {
   .c-head5 {
-    font-size: 2rem;
+    font-size: 2.4rem;
     padding: 0 0 15px;
+  }
+
+  .c-head5 span {
+    font-size: 4rem;
+    margin-top: -45px;
   }
 }
 
@@ -2955,19 +2987,12 @@ table {
   margin-top: 60px;
 }
 
-._bg {
-  background: url(../img/common/pt_fuji.jpg) repeat;
-}
 
 @media screen and (max-width: 767px) {
   .table-scroll {
     margin-right: 1vw;
     overflow-x: scroll;
     margin-top: 30px;
-  }
-
-  ._bg {
-    background: url(../img/common/pt_fuji.jpg) center / 60px 50px repeat;
   }
 }
 
@@ -3204,17 +3229,6 @@ table {
 /* # =================================================================
 # ポップアップ
 # ================================================================= */
-#fancybox-outer {
-  width: 680px;
-  height: fit-content;
-}
-
-@media screen and (max-width: 767px) {
-  #fancybox-outer {
-    width: 100%;
-  }
-}
-
-#fancybox-wrap {
-  left: 400px;
+.fancybox-title-float #fancybox-title {
+  display: none;
 }
