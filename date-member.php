@@ -28,7 +28,7 @@ if (strpos($uri, 'information') !== false) {
 
 if (strpos($uri, 'kusunoki') !== false) {
     $main_cat = 'kusunoki';
-    $main_title = 'くすのき会';
+    $main_title = 'くすのき会お知らせ';
     $base_slug = 'member/kusunoki';
 }
 
@@ -64,19 +64,14 @@ add_action('pre_get_posts', function($query) use ($main_cat, $year){
           </h1>
         </div>
       </div>
-      <ul class="m-list">
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員様お知らせ</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-sales/">営業案内</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-kusunoki/">くすのき会</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-partner/">提携コース</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-calendar/">ビジター様料金</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-registration/">コンペ申込</a></li>
-      </ul>
+      <!-- 共通メニュー -->
+      <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
+      <!-- 共通メニュー -->
 
       <div class="c-column">
         <div class="news-box">
           <div class="news-box__left">
-          <h2 class="c-head6"><?php echo esc_html($main_title); ?><span>Member</span></h2>
+          <h2 class="c-head6"><?php echo esc_html($main_title); ?><span>News</span></h2>
           <ul class="news-box__list">
           <?php
           /* -------------------------------------------------

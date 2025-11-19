@@ -17,14 +17,10 @@
           </h1>
         </div>
       </div>
-      <ul class="m-list">
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員様お知らせ</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-sales/">営業案内</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-kusunoki/">くすのき会</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-partnership/">提携コース</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-calendar/">ビジター様料金</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-registration/">コンペ申込</a></li>
-      </ul>
+
+      <!-- 共通メニュー -->
+      <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
+      <!-- 共通メニュー -->
 
       <div class="c-column">
         <div class="news-box">
@@ -83,40 +79,32 @@
 
             <!-- ページネーション -->
             <ul class="c-pagenation">
-                <?php custom_pagination($normal_q); ?>
+              <?php custom_pagination($kusunoki_q); ?>
             </ul>
           </div>
 
           <?php
           // サイドバー：Archive リンク
-          $years = fhg_get_news_years();  // news カテゴリ限定の年リスト
-          if (! empty($years)) :
-            $base = home_url('news'); // ベース URL
+          $years = fhg_get_all_years();  // 全年取得
+          $base = home_url('member/information');  // 営業案内のベースURL
           ?>
             <div class="news-box__right">
               <h3 class="c-head5">Archive</h3>
               <div class="news-box__right--box">
-                <!-- ★ ①ここから：新着記事ボックス -->
                 <div class="recent-posts-box">
                   <h3>新着記事</h3>
                   <ul>
                     <?php
-                    // テンプレートごとに大カテゴリを切り替えてください
-                    $cat = 'news';
                     $recent_q = new WP_Query([
                       'posts_per_page'      => 5,
-                      'category_name'       => $cat,
+                      'category_name'       => 'information',
                       'ignore_sticky_posts' => true,
                     ]);
-                    if ($recent_q->have_posts()):
-                      while ($recent_q->have_posts()): $recent_q->the_post();
-                    ?>
-                        <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-                    <?php
-                      endwhile;
-                      wp_reset_postdata();
-                    endif;
-                    ?>
+
+                    while ($recent_q->have_posts()): $recent_q->the_post(); ?>
+                      <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+                    <?php endwhile;
+                    wp_reset_postdata(); ?>
                   </ul>
                 </div>
                 <!-- ★ ①ここまで：新着記事ボックス -->
@@ -124,16 +112,16 @@
                 <div>
                   <h3>年度別</h3>
                   <ul class="news-box__right--list">
-                    <?php foreach ($years as $y) :
-                      // 各年の投稿数を取得
+                    <?php foreach ($years as $y):
                       $count = count(get_posts([
-                        'post_type'           => 'post',
-                        'posts_per_page'      => -1,
-                        'fields'              => 'ids',
-                        'category_name'       => 'information',
-                        'year'                => $y,
-                        'ignore_sticky_posts' => true,
+                        'post_type'      => 'post',
+                        'fields'         => 'ids',
+                        'category_name'  => 'information',
+                        'year'           => $y,
+                        'posts_per_page' => -1,
                       ]));
+
+                      if ($count <= 0) continue;
                     ?>
                       <li>
                         <a href="<?php echo esc_url("{$base}/{$y}/"); ?>">
@@ -145,14 +133,12 @@
                 </div>
               </div>
             </div>
-          <?php endif; ?>
-
         </div>
 
         <!-- パンくずリスト -->
         <ul class="c-brd">
           <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-          <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員サイト</a></li>
+          <li><a href="<?php echo esc_url(home_url('')); ?>/member/">会員サイト</a></li>
           <li><a href="">営業案内</a></li>
         </ul>
       </div>

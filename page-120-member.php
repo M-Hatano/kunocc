@@ -28,14 +28,10 @@
   </div>
 
   <!-- 会員ナビ -->
-  <ul class="m-list">
-    <li><a href="<?php echo esc_url(home_url('/m-news/')); ?>">会員様お知らせ</a></li>
-    <li><a href="<?php echo esc_url(home_url('/m-news/m-sales/')); ?>">営業案内</a></li>
-    <li><a href="<?php echo esc_url(home_url('/m-news/m-kusunoki/')); ?>">くすのき会</a></li>
-    <li><a href="<?php echo esc_url(home_url('/m-news/m-partner/')); ?>">提携コース</a></li>
-    <li><a href="<?php echo esc_url(home_url('/m-news/m-calendar/')); ?>">ビジター様料金</a></li>
-    <li><a href="<?php echo esc_url(home_url('/m-news/m-registration/')); ?>">コンペ申込</a></li>
-  </ul>
+
+  <!-- 共通メニュー -->
+  <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
+    <!-- 共通メニュー -->
 
   <div class="c-column">
     <div class="news-box">
