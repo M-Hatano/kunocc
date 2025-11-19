@@ -31,7 +31,6 @@
           <div class="news-box__left">
             <h2 class="c-head6">くすのき会お知らせ<span>News</span></h2>
             <ul class="news-box__list">
-
         <?php
         /*
          * 基本設定
@@ -84,8 +83,8 @@
 
         <!-- ページネーション -->
         <ul class="c-pagenation">
-          <?php custom_pagination($kusunoki_q); ?>
-        </ul>
+                <?php custom_pagination($kusunoki_q); ?>
+            </ul>
       </div>
 
           <!-- ======================
@@ -119,7 +118,6 @@
               <div>
                 <h3>年度別</h3>
                 <ul class="news-box__right--list">
-
                   <?php
                   $all_years = fhg_get_all_years();
 

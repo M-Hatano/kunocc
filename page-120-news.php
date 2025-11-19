@@ -222,8 +222,7 @@
               <!-- 新着5件 -->
               <div class="recent-posts-box">
                 <h3>新着記事</h3>
-                <ul>
-                  
+                <ul> 
                 <?php
                 /* ----------------------------
                 * 新着記事（5件）
@@ -347,9 +346,9 @@
 
                   foreach ($years as $y => $count): ?>
                     <li>
-                      <a href="<?php echo esc_url(home_url( $mode === 'news' ? "/news/{$y}/" : "/member/{$y}/" )); ?>">
+                    <a href="<?php echo esc_url( home_url( "/{$mode}/{$y}/" ) ); ?>">
                         <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
-                      </a>
+                    </a>
                     </li>
                   <?php endforeach; ?>
 
