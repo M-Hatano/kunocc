@@ -60,9 +60,9 @@
           <h2 class="ahead">お車をご利用の方</h2>
           <div class="abox">
             <p>東関東自動車道路&nbsp;富里ICより&nbsp;<br class="c-brsp">約3.4Km（車で5分）</p>
-            <img src="/img/access/img_access_01.jpg" alt="" class="for-pc abox__mod">
-            <img src="/img/access/img_access_02.jpg" alt="" class="for-pc">
-            <img src="/img/access/img_access_04.jpg" alt="" class="for-sp">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_01.jpg" alt="" class="for-pc abox__mod">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_02.jpg" alt="" class="for-pc">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_04.jpg" alt="" class="for-sp">
             <a href="" class="c-btn" target="_blank">印刷用PDFダウンロード</a>
           </div>
         </section>
@@ -71,13 +71,13 @@
           <h2 class="ahead">電車をご利用の方</h2>
           <div class="abox for-pc">
             <p>JR成田駅／京成成田駅より&nbsp;約4.0Km（車で10分）</p>
-            <img src="/img/access/img_access_03.jpg" alt="" class="for-pc">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_03.jpg" alt="" class="for-pc">
           </div>
           <div class="abox for-sp">
-            <img src="/img/access/img_access_05.jpg" alt="" class="for-sp">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_05.jpg" alt="" class="for-sp">
           </div>
           <div class="abox for-sp">
-            <img src="/img/access/img_access_06.jpg" alt="" class="for-sp">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_06.jpg" alt="" class="for-sp">
           </div>
         </section>
 
@@ -117,7 +117,7 @@
               <tr>
                 <td>センターホテル成田2&nbsp;R51</td>
                 <td><a href="https://www.c-hotel.jp/r51/">https://www.c-hotel.jp/r51/</a></td>
-                <td>TEL&period;<a href="tel:0476-23-1112">0476-23-1112</a></td>
+                <td>TEL&period;<a href="tel:0476-23-1133">0476-23-1112</a></td>
               </tr>
               <tr>
                 <td>リッチモンドホテル成田</td>
@@ -127,7 +127,7 @@
               <tr>
                 <td>ホテルウェルコ成田</td>
                 <td><a href="https://www.hotelwelconarita.com/">https://www.hotelwelconarita.com/</a></td>
-                <td>TEL&period;<a href="tel:0476-23-1133">0476-23-7000</a></td>
+                <td>TEL&period;<a href="tel:0476-23-7000">0476-23-7000</a></td>
               </tr>
             </tbody>
           </table>
@@ -143,7 +143,7 @@
             </tbody>
           </table>
 
-          <h3 class="ahead02">空港周辺ホテル</h3>
+          <h3 class="ahead02">富里市内ホテル</h3>
           <table class="acctab">
             <tbody>
               <tr>
@@ -153,7 +153,7 @@
               </tr>
               <tr>
                 <td>ANAクラウンプラザホテル成田</td>
-                <td><a href="http://www.anahotel-narita.com/">http://www.ishinhotels.com/</a></td>
+                <td><a href="http://www.anahotel-narita.com/">http://www.anahotel-narita.com/</a></td>
                 <td>TEL&period;<a href="tel:0476-33-1311">0476-33-1311</a></td>
               </tr>
               <tr>
@@ -164,19 +164,20 @@
               <tr>
                 <td>アートホテル成田</td>
                 <td><a href="https://art-narita.com/">https://art-narita.com/</a></td>
-                <td>TEL&period;<a href="tel:0476-33-1121">0476-32-1111</a></td>
+                <td>TEL&period;<a href="tel:0476-32-1111">0476-32-1111</a></td>
               </tr>
               <tr>
                 <td>ホテルマイステイズプレミア成田</td>
                 <td><a href="https://www.mystays.com/narita/ja/">https://www.mystays.com/narita/ja/</a></td>
-                <td>TEL&period;<a href="tel:0476-33-1121">03-3434-3939</a></td>
+                <td>TEL&period;<a href="tel:03-3434-3939">03-3434-3939</a></td>
               </tr>
             </tbody>
           </table>
+
         </section>
 
         <ul class="c-brd">
-          <li><a href="/">TOP</a></li>
+          <li><a href="<?php echo esc_url(home_url('')); ?>/">TOP</a></li>
           <li><a href="">アクセス</a></li>
         </ul>
 

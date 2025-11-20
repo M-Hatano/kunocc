@@ -1,10 +1,10 @@
 .c-page-header {
-  background: url("../img/common/page-header.png") left/874px 100% no-repeat, url("../img/facility/page-header.jpg") center/100% 100% no-repeat;
+  background: url("../img/common/page-header.png") left/874px 100% no-repeat, url("../img/access/page-header.jpg") center/100% 100% no-repeat;
 }
 
 @media screen and (max-width: 767px) {
   .c-page-header {
-    background: url("../img/common/page-header_sp.png") left/60% 100% no-repeat, url("../img/facility/page-header_sp.jpg") center/100% 100% no-repeat;
+    background: url("../img/common/page-header_sp.png") left/60% 100% no-repeat, url("../img/access/page-header_sp.jpg") center/100% 100% no-repeat;
   }
 }
 #access .c-scroll > li {
@@ -12,7 +12,7 @@
 }
 
 #access .c-scroll > li:nth-of-type(4),
-.c-scroll > li:nth-of-type(5) {
+#access .c-scroll > li:nth-of-type(5) {
   width: 50%;
 }
 
@@ -81,6 +81,7 @@ iframe {
   }
   .abox {
     padding: 40px 10px 30px;
+    margin-bottom: 30px;
   }
   .abox p {
     margin-bottom: 25px;
@@ -144,11 +145,16 @@ iframe {
 
 @media screen and (max-width: 767px) {
   .acctab {
-    width: unset;
+    margin-bottom: 40px;
+    display: block;
+  }
+  .acctab tbody {
+    overflow: scroll;
+    display: block;
   }
   .acctab td {
-    width: unset;
     padding: 10px;
+    white-space: nowrap;
   }
 }
 #link01,
