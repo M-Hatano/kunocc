@@ -71,6 +71,7 @@ iframe {
   border-radius: 20px;
   padding: 80px 0 50px;
   text-align: center;
+  width: 100%;
 }
 .abox p {
   margin-bottom: 48px;
@@ -156,6 +157,8 @@ iframe {
   .acctab tbody {
     overflow: scroll;
     display: block;
+    margin-right: -15px;
+    padding-right: 15px;
   }
   .acctab td {
     padding: 10px;
