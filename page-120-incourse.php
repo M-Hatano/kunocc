@@ -9,7 +9,7 @@
       <!--  header -->
 
       <main class="c-main">
-        <div class="c-page-header lazyload" data-bg="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/page-header1.jpg">
+        <div class="c-page-header lazyload">
           <div class="c-column c-page-header__inner">
             <h1 class="c-page-header__title">Course
               <span>コース紹介</span>
@@ -17,56 +17,56 @@
           </div>
         </div>
 
-        
-          <section class="_mtl">
-            <div class="c-column-s">
 
-              <div class="b-c-dtl__top">
-                <?php
-                  // ホール番号取得
-                  $hole_num = intval(get_field('hole-no'));
-                  $max_hole     = 18;
+        <section class="_mtl">
+          <div class="c-column-s">
 
-                  // 前後ホール番号（ループ）
-                  $prev_num = ($hole_num > 1) ? $hole_num - 1 : $max_hole;
-                  $next_num = ($hole_num < $max_hole) ? $hole_num + 1 : 1;
+            <div class="b-c-dtl__top">
+              <?php
+              // ホール番号取得
+              $hole_num = intval(get_field('hole-no'));
+              $max_hole     = 18;
 
-                  // URL組み立て
-                  $prev_url = home_url(sprintf('/course/hole%d/', $prev_num));
-                  $next_url = home_url(sprintf('/course/hole%d/', $next_num));
-                ?>
+              // 前後ホール番号（ループ）
+              $prev_num = ($hole_num > 1) ? $hole_num - 1 : $max_hole;
+              $next_num = ($hole_num < $max_hole) ? $hole_num + 1 : 1;
 
-                <div>
-                  <a href="<?php echo esc_url($prev_url); ?>" class="b-c-dtl__btn pre">Preview</a>
-                  <h2 class="b-c-dtl__top--hd">Hole<span><?php the_field('hole-no'); ?></span></h2>
-                  <a href="<?php echo esc_url($next_url); ?>" class="b-c-dtl__btn nxt">Next</a>
-                </div>
+              // URL組み立て
+              $prev_url = home_url(sprintf('/course/hole%d/', $prev_num));
+              $next_url = home_url(sprintf('/course/hole%d/', $next_num));
+              ?>
+
+              <div>
+                <a href="<?php echo esc_url($prev_url); ?>" class="b-c-dtl__btn pre">Preview</a>
+                <h2 class="b-c-dtl__top--hd">Hole<span><?php the_field('hole-no'); ?></span></h2>
+                <a href="<?php echo esc_url($next_url); ?>" class="b-c-dtl__btn nxt">Next</a>
               </div>
-          
-              <div class="b-c-dtl__rate">
-                <p class="b-c-dtl__rate--hd">
-                  <span><?php the_field('par'); ?></span> / <span><?php the_field('hdcp'); ?></span>
+            </div>
+
+            <div class="b-c-dtl__rate">
+              <p class="b-c-dtl__rate--hd">
+                <span><?php the_field('par'); ?></span> / <span><?php the_field('hdcp'); ?></span>
                 <span class="b-c-dtl__rate--small">
-                <span class="div">
-                  <?php if( have_rows('green_info') ): ?>
-                    <?php while( have_rows('green_info') ): the_row(); ?>
-                      <?php
+                  <span class="div">
+                    <?php if (have_rows('green_info')): ?>
+                      <?php while (have_rows('green_info')): the_row(); ?>
+                        <?php
                         $label = get_sub_field('green_label');
                         if (preg_match('/^(.+?)\s+(\d+)(Y?)$/', $label, $matches)) {
                           echo '<span>' . esc_html($matches[1]) . ' ' . esc_html($matches[2] . $matches[3]) . '</span>';
                         } else {
                           echo '<span>' . esc_html($label) . '</span>';
                         }
-                      ?>
-                    <?php endwhile; ?>
-                  <?php endif; ?>
+                        ?>
+                      <?php endwhile; ?>
+                    <?php endif; ?>
+                  </span>
                 </span>
-              </span>
               </p>
-  
-            
-            
-            
+
+
+
+
               <ul class="b-c-dtl__yd">
                 <li>
                   <span>BACK</span>
@@ -117,134 +117,160 @@
                   </span>
                 </li>
               </ul>
-          </div>
+            </div>
 
-          <div class="b-c-dtl_info">
-            <div class="b-c-dtl_info--lt">
-              <ul>
-                <?php if ( get_field('sub_image_a') || get_field('sub_text_a') ) : ?>
-                  <li>
-                    <?php if ( get_field('sub_image_a') ) : ?>
-                      <a href="<?php the_field('sub_image_a'); ?>" class="fancybox">
-                        <img src="<?php the_field('sub_image_a'); ?>" alt="" loading="lazy">
-                      </a>
-                    <?php endif; ?>
-                    <?php if ( get_field('sub_text_a') ) : ?>
-                      <p><?php the_field('sub_text_a'); ?></p>
-                    <?php endif; ?>
-                  </li>
+            <div class="b-c-dtl_info">
+              <div class="b-c-dtl_info--lt">
+                <ul>
+                  <?php if (get_field('sub_image_a') || get_field('sub_text_a')) : ?>
+                    <li>
+                      <?php if (get_field('sub_image_a')) : ?>
+                        <a href="<?php the_field('sub_image_a'); ?>" class="fancybox">
+                          <img src="<?php the_field('sub_image_a'); ?>" alt="" loading="lazy">
+                        </a>
+                      <?php endif; ?>
+                      <?php if (get_field('sub_text_a')) : ?>
+                        <p><?php the_field('sub_text_a'); ?></p>
+                      <?php endif; ?>
+                    </li>
+                  <?php endif; ?>
+
+                  <?php if (get_field('sub_image_b') || get_field('sub_text_b')) : ?>
+                    <li>
+                      <?php if (get_field('sub_image_b')) : ?>
+                        <a href="<?php the_field('sub_image_b'); ?>" class="fancybox">
+                          <img src="<?php the_field('sub_image_b'); ?>" alt="" loading="lazy">
+                        </a>
+                      <?php endif; ?>
+                      <?php if (get_field('sub_text_b')) : ?>
+                        <p><?php the_field('sub_text_b'); ?></p>
+                      <?php endif; ?>
+                    </li>
+                  <?php endif; ?>
+
+                  <?php if (get_field('sub_image_c') || get_field('sub_text_c')) : ?>
+                    <li>
+                      <?php if (get_field('sub_image_c')) : ?>
+                        <a href="<?php the_field('sub_image_c'); ?>" class="fancybox">
+                          <img src="<?php the_field('sub_image_c'); ?>" alt="" loading="lazy">
+                        </a>
+                      <?php endif; ?>
+                      <?php if (get_field('sub_text_c')) : ?>
+                        <p><?php the_field('sub_text_c'); ?></p>
+                      <?php endif; ?>
+                    </li>
+                  <?php endif; ?>
+
+                  <?php if (get_field('sub_image_d') || get_field('sub_text_d')) : ?>
+                    <li>
+                      <?php if (get_field('sub_image_d')) : ?>
+                        <a href="<?php the_field('sub_image_d'); ?>" class="fancybox">
+                          <img src="<?php the_field('sub_image_d'); ?>" alt="" loading="lazy">
+                        </a>
+                      <?php endif; ?>
+                      <?php if (get_field('sub_text_d')) : ?>
+                        <p><?php the_field('sub_text_d'); ?></p>
+                      <?php endif; ?>
+                    </li>
+                  <?php endif; ?>
+
+                  <?php if (get_field('sub_image_e') || get_field('sub_text_e')) : ?>
+                    <li>
+                      <?php if (get_field('sub_image_e')) : ?>
+                        <a href="<?php the_field('sub_image_e'); ?>" class="fancybox">
+                          <img src="<?php the_field('sub_image_e'); ?>" alt="" loading="lazy">
+                        </a>
+                      <?php endif; ?>
+                      <?php if (get_field('sub_text_e')) : ?>
+                        <p><?php the_field('sub_text_e'); ?></p>
+                      <?php endif; ?>
+                    </li>
+                  <?php endif; ?>
+                </ul>
+              </div>
+
+              <div class="b-c-dtl_info--rt">
+                <?php if (get_field('hole_image')) : ?>
+                  <a href="<?php the_field('hole_image'); ?>" class="fancybox">
+                    <img src="<?php the_field('hole_image'); ?>" alt="" loading="lazy">
+                  </a>
                 <?php endif; ?>
+              </div>
+            </div>
 
-                <?php if ( get_field('sub_image_b') || get_field('sub_text_b') ) : ?>
+
+
+            <div class="b-c-dtl__btm">
+              <?php course_navigation(); ?>
+            </div>
+
+            <div class="b-c-dtl__csbtn">
+              <div>
+                <ul>
                   <li>
-                    <?php if ( get_field('sub_image_b') ) : ?>
-                      <a href="<?php the_field('sub_image_b'); ?>" class="fancybox">
-                        <img src="<?php the_field('sub_image_b'); ?>" alt="" loading="lazy">
-                      </a>
-                    <?php endif; ?>
-                    <?php if ( get_field('sub_text_b') ) : ?>
-                      <p><?php the_field('sub_text_b'); ?></p>
-                    <?php endif; ?>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole1/">1</a>
                   </li>
-                <?php endif; ?>
-
-                <?php if ( get_field('sub_image_c') || get_field('sub_text_c') ) : ?>
                   <li>
-                    <?php if ( get_field('sub_image_c') ) : ?>
-                      <a href="<?php the_field('sub_image_c'); ?>" class="fancybox">
-                        <img src="<?php the_field('sub_image_c'); ?>" alt="" loading="lazy">
-                      </a>
-                    <?php endif; ?>
-                    <?php if ( get_field('sub_text_c') ) : ?>
-                      <p><?php the_field('sub_text_c'); ?></p>
-                    <?php endif; ?>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole2/">2</a>
                   </li>
-                <?php endif; ?>
-              </ul>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole3/">3</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole4/">4</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole5/">5</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole6/">6</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole7/">7</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole8/">8</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole9/">9</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <ul>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole10/">10</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole11/">11</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole12/">12</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole13/">13</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole14/">14</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole15/">15</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole16/">16</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole17/">17</a>
+                  </li>
+                  <li>
+                    <a href="<?php echo esc_url(home_url('')); ?>/course/hole18/">18</a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            <div class="b-c-dtl_info--rt">
-              <?php if ( get_field('hole_image') ) : ?>
-                <a href="<?php the_field('hole_image'); ?>" class="fancybox">
-                  <img src="<?php the_field('hole_image'); ?>" alt="" loading="lazy">
-                </a>
-              <?php endif; ?>
-            </div>
           </div>
-
-          
-
-          <div class="b-c-dtl__btm">
-            <?php course_navigation(); ?>
-          </div>
-
-          <div class="b-c-dtl__csbtn">
-            <div>
-            <ul>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole1/">1</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole2/">2</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole3/">3</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole4/">4</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole5/">5</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole6/">6</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole7/">7</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole8/">8</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole9/">9</a>
-              </li>
-            </ul>
-            </div>
-
-            <div>
-            <ul>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole10/">10</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole11/">11</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole12/">12</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole13/">13</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole14/">14</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole15/">15</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole16/">16</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole17/">17</a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(home_url('')); ?>/course/hole18/">18</a>
-              </li>
-            </ul>
-            </div>
-          </div>
-            
-         </div>
         </section>
 
 
@@ -255,23 +281,23 @@
             <li><a href="/">hole<?php the_field('hole-no'); ?></a></li>
           </ul>
         </div>
-       
-        </main>
+
+      </main>
 
 
 
 
-        <!--  フッタ読込 -->
-        <?php get_footer('120'); ?>
-          <!--  フッタ読込 -->
-          <script>
-          jQuery(function($){
-            $('a.fancybox').fancybox();
-          });
-          </script>
+      <!--  フッタ読込 -->
+      <?php get_footer('120'); ?>
+      <!--  フッタ読込 -->
+      <script>
+        jQuery(function($) {
+          $('a.fancybox').fancybox();
+        });
+      </script>
 
-          <?php wp_footer(); ?>
+      <?php wp_footer(); ?>
 
-        </body>
+      </body>
 
-        </html>
+      </html>

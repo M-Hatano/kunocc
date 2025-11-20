@@ -35,6 +35,10 @@ Template Name: トップページ
         <div class="kv-img" style="background-image: url('<?php echo esc_url($image_3['url']); ?>');"></div>
       <?php endif; ?>
     </div>
+    <div class="top-mtxt">
+      <h1>心をほどく、<br class="">美しさと味わいの時間を。</h1>
+      <p>緑が彩るコース、旬を味わう料理、<br class="c-brsp">心を尽くした接遇。<br>訪れるたび、ここを選んでよかったと思える。<br class="c-brpc">気持ちを込めて、上質なおもてなしをお届けします。</p>
+    </div>
   </div>
 
 

@@ -217,6 +217,7 @@
 
   .facility__info>div {
     padding: 50px 10px 10px;
+    min-height: initial;
   }
 
   .facility__info>div p {
@@ -443,7 +444,7 @@
     width: 105px;
   }
 
-  .deco._02 span{
+  .deco._02 span {
     width: 171px;
   }
 }

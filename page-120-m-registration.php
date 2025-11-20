@@ -42,7 +42,7 @@
 
           <p class="regi_send">ご入力後のファイルは以下アドレス、またはFAXにて送信をお願いいたします。<br>（手書きで持参いただくことも可能です。）</p>
 
-          <a href="mailto:info@kunocc.co.jp"><span></span>info@kunocc.co.jp</a>
+          <a href="mailto:info@kunocc.co.jp" class="mailbox"><span></span>info@kunocc.co.jp</a>
         </div>
 
         <!-- パンくずリスト -->

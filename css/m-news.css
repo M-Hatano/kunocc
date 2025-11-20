@@ -493,85 +493,12 @@
     }
 }
 
-.apply {
-    background: linear-gradient(90deg, #90966F 0%, #B1B983 100%);
-    font-weight: 700;
-    font-size: 24px;
-    color: #FFFFFF;
-    padding: 4px;
-    text-align: center;
-    width: 32.45%;
-    position: absolute;
-    top: -28px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.apply>p {
-    border: 1px solid #fff;
-    padding: 15px;
-}
-
-.apply+p {
-    margin-bottom: 34px;
-    text-align: center;
-    letter-spacing: 0;
-}
-
-@media screen and (max-width: 767px) {
-    .apply {
-        width: 60%;
-        font-size: 22px;
-    }
-
-    .apply>p {
-        padding: 10px;
-        font-size: 18px;
-    }
-
-    .apply+p {
-        text-align: unset;
-    }
-
-}
 
 #m-registration .box-pat ul li a::after {
     margin-left: 0;
 }
 
-.regi_send {
-    text-align: center;
-    padding-top: 40px;
-    margin-bottom: 40px;
-}
-
-.regi_send+a {
-    color: #324A5B;
-    font-family: 'Yu Gothic';
-    font-weight: 500;
-    font-size: 35px;
-    line-height: 100%;
-    border: solid 1px #8F8F8F;
-    width: 43.5%;
-    margin: 0 auto;
-    padding: 25px 20px 30px 35px;
-    display: flex;
-    align-items: center;
-}
-
-.regi_send+a::before {
-    content: "";
-    display: inline-block;
-    background: url(../img/member/icn_02.png)center / 100% 100% no-repeat;
-    width: 55px;
-    height: 44px;
-}
-
-.regi_send+a span {
-    padding-right: 40px;
-}
-
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
     .regi_send {
         padding-top: 25px;
         margin-bottom: 25px;
@@ -591,7 +518,7 @@
     .regi_send+a span {
         padding-right: 20px
     }
-}
+} */
 
 /* # =================================================================
 #	あしらい
