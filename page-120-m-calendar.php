@@ -17,15 +17,10 @@
                 </h1>
             </div>
         </div>
-        <ul class="m-list">
-            <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員様お知らせ</a></li>
-            <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-sales/">営業案内</a></li>
-            <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-kusunoki/">くすのき会</a></li>
-            <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-partner/">提携コース</a></li>
-            <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-calendar/">ビジター様料金</a></li>
-            <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-registration/">コンペ申込</a></li>
-        </ul>
 
+        <!-- 共通メニュー -->
+        <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
+        <!-- 共通メニュー -->
 
         <div class="c-colomun">
             <h2 class="c-head6 m_head">ビジター様料金カレンダー<span>Calender</span></h2>
@@ -108,8 +103,8 @@
                 <!-- パンくずリスト -->
                 <ul class="c-brd">
                     <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-                    <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員サイト</a></li>
-                    <li><a href="">コンペ申し込み</a></li>
+                    <li><a href="<?php echo esc_url(home_url('')); ?>/member/">会員サイト</a></li>
+                    <li><a href="">ビジター様料金</a></li>
                 </ul>
             </div>
         </div>
