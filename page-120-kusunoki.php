@@ -17,21 +17,16 @@
           </h1>
         </div>
       </div>
-      <ul class="m-list">
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員様お知らせ</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-sales/">営業案内</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-kusunoki/">くすのき会</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-partner/">提携コース</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-calendar/">ビジター様料金</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-registration/">コンペ申込</a></li>
-      </ul>
-
+      
+      <!-- 共通メニュー -->
+      <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
+      <!-- 共通メニュー -->
+      
       <div class="c-column">
         <div class="news-box">
           <div class="news-box__left">
             <h2 class="c-head6">くすのき会お知らせ<span>News</span></h2>
             <ul class="news-box__list">
-
         <?php
         /*
          * 基本設定
@@ -84,8 +79,8 @@
 
         <!-- ページネーション -->
         <ul class="c-pagenation">
-          <?php custom_pagination($kusunoki_q); ?>
-        </ul>
+                <?php custom_pagination($kusunoki_q); ?>
+            </ul>
       </div>
 
           <!-- ======================
@@ -119,7 +114,6 @@
               <div>
                 <h3>年度別</h3>
                 <ul class="news-box__right--list">
-
                   <?php
                   $all_years = fhg_get_all_years();
 
@@ -136,7 +130,7 @@
                   ?>
 
                     <li>
-                      <a href="<?php echo esc_url(home_url("/m-news/m-kusunoki/{$y}/")); ?>">
+                      <a href="<?php echo esc_url(home_url("/member/kusunoki/{$y}/")); ?>">
                         <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
                       </a>
                     </li>
@@ -154,8 +148,8 @@
         <!-- パンくずリスト -->
         <ul class="c-brd">
           <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-          <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員サイト</a></li>
-          <li><a href="">くすのき会</a></li>
+          <li><a href="<?php echo esc_url(home_url('')); ?>/member/">会員サイト</a></li>
+          <li><a href="">くすのき会お知らせ</a></li>
         </ul>
       </div>
 
