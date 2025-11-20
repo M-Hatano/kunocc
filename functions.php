@@ -242,17 +242,23 @@ add_filter('single_template', function ($template) {
 // bodyIDを取得する関数
 function my_custom_body_id()
 {
-    $uri = $_SERVER['REQUEST_URI'] ?? '';
+    // ★ 追加：/kunocc/cms/ を除去する前処理
+    $uri = trim($_SERVER['REQUEST_URI'] ?? '', '/');
+    $uri = preg_replace('#^[^/]+/[^/]+/#', '', $uri); 
+    // 例) /kunocc/cms/member/information/page/2/ → member/information/page/2/
 
-    if (preg_match('#member/(information|kusunoki|)$#', $uri)) {
+    // ▼ information / kusunoki のページネーション
+    if (preg_match('#^member/(information|kusunoki)/page/[0-9]+/?$#', $uri)) {
         return 'm-news';
     }
 
-    if (preg_match('#member/(information|kusunoki)/page/[0-9]+/?$#', $uri)) {
+    // ▼ member ページネーション
+    if (preg_match('#^member/page/[0-9]+/?$#', $uri)) {
         return 'm-news';
     }
 
-    if (preg_match('#member/page/[0-9]+/?$#', $uri)) {
+    // ▼ 固定トップ（information, kusunoki）
+    if (preg_match('#^member/(information|kusunoki)/?$#', $uri)) {
         return 'm-news';
     }
 
@@ -261,32 +267,27 @@ function my_custom_body_id()
         return 'm-news';
     }
 
-    // 年別 /news/2025/
-    if (is_date() && strpos($uri, '/news/') !== false) {
-        return 'news';
-    }
-
-    // ▼ 固定ページ member / kusunoki / information
+    // ▼ 固定ページ（slug: member, kusunoki, information）
     if (is_page(array('member', 'kusunoki', 'information'))) {
         return 'm-news';
     }
 
-    // ▼ 年別 /member/2025/
-    if (is_date() && strpos($uri, '/member/') !== false) {
+    // ▼ 年別ニュース
+    if (is_date() && strpos($uri, 'news/') !== false) {
+        return 'news';
+    }
+
+    // ▼ 年別会員ニュース
+    if (is_date() && strpos($uri, 'member/') !== false) {
         return 'm-news';
     }
 
-    // 通常ページ
     if (is_front_page()) return 'top';
     if (is_404()) return 'errorpage';
     if (is_single()) return 'single-page';
 
     if (is_page()) {
         global $post;
-        $parent_id = wp_get_post_parent_id($post->ID);
-        if ($parent_id) {
-            return get_post_field('post_name', $post);
-        }
         return get_post_field('post_name', $post);
     }
 
@@ -296,41 +297,46 @@ function my_custom_body_id()
 // body_classにカスタムクラス（ルート親のスラッグ）を追加する関数
 function my_custom_body_class()
 {
-    $uri = $_SERVER['REQUEST_URI'] ?? '';
+    // ★ 追加：/kunocc/cms/ を除去
+    $uri = trim($_SERVER['REQUEST_URI'] ?? '', '/');
+    $uri = preg_replace('#^[^/]+/[^/]+/#', '', $uri);
+    // 例) /kunocc/cms/member/information/page/2/ → member/information/page/2/
 
-    if (preg_match('#member/(information|kusunoki|)$#', $uri)) {
+    // ▼ information / kusunoki ページネーション
+    if (preg_match('#^member/(information|kusunoki)/page/[0-9]+/?$#', $uri)) {
         return 'm-news';
     }
 
-    if (preg_match('#member/(information|kusunoki)/page/[0-9]+/?$#', $uri)) {
+    // ▼ member ページネーション
+    if (preg_match('#^member/page/[0-9]+/?$#', $uri)) {
         return 'm-news';
     }
 
-    if (preg_match('#member/page/[0-9]+/?$#', $uri)) {
+    // ▼ 固定トップ
+    if (preg_match('#^member/(information|kusunoki)/?$#', $uri)) {
         return 'm-news';
     }
 
-    // ▼ single（member / kusunoki / information）
+    // ▼ single
     if (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information'))) {
         return 'm-news';
     }
 
-    // ▼ 固定ページ member / kusunoki / information
+    // ▼ 固定ページ
     if (is_page(array('member', 'kusunoki', 'information'))) {
         return 'm-news';
     }
 
-    // ▼ 年別 /news/2025/
-    if (is_date() && strpos($uri, '/news/') !== false) {
+    // ▼ 年別ニュース
+    if (is_date() && strpos($uri, 'news/') !== false) {
         return 'news';
     }
 
-    // ▼ 年別 /member/2025/
-    if (is_date() && strpos($uri, '/member/') !== false) {
+    // ▼ 年別会員ニュース
+    if (is_date() && strpos($uri, 'member/') !== false) {
         return 'm-news';
     }
 
-    // 通常ページ
     if (is_front_page()) return 'top';
     if (is_404()) return 'errorpage';
     if (is_single()) return 'news';
@@ -378,24 +384,31 @@ function enqueue_page_specific_styles()
     );
 
     /* -----------------------------------
-     * ▼ 会員ニュース（single / page / 年別）
-     * member / information / kusunoki
-     * ----------------------------------- */
+    * ▼ 会員ニュース（member / information / kusunoki）
+    *    single / 固定ページ / ページネーション / 年別
+    * ----------------------------------- */
     if (
+        // single
         (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information')))
-        || is_page('member')
-        || is_page('kusunoki')
-        || is_page('information')
+
+        // 固定ページ
+        || is_page(array('member', 'kusunoki', 'information'))
+
+        // 年別
         || (is_date() && strpos($uri, '/member/') !== false)
+
+        // ★ ページネーション（今回追加する部分）
+        || preg_match('#/member/information/page/[0-9]+/?$#', $uri)
+        || preg_match('#/member/kusunoki/page/[0-9]+/?$#', $uri)
+        || preg_match('#/member/page/[0-9]+/?$#', $uri)
     ) {
-        // 会員ニュース専用
+
         wp_enqueue_style(
             'm-news-style',
             $dir . '/css/m-news.css',
             [],
             null
         );
-
         return;
     }
 
