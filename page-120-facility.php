@@ -23,11 +23,15 @@
     <div class="fimg">
       <div>
         <p class="fimg__flo">1F</p>
-        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_01" alt="フロア図1F" loading="lazy">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_01.jpg" class="fancybox" data-fancybox="floor-map">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_01.jpg" alt="フロア図1F" loading="lazy">
+          </a>
       </div>
       <div>
         <p class="fimg__flo">2F</p>
-        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_02" alt="フロア図2F" loading="lazy">
+        <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_02.jpg" class="fancybox" data-fancybox="floor-map">
+          <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_02.jpg" alt="フロア図2F" loading="lazy">
+        </a>
       </div>
     </div>
 
@@ -49,7 +53,11 @@
             <p>クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_01.jpg" alt="エントランス" loading="lazy"></span>
+          <span class="facility__flex--img">
+            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_01.jpg" class="fancybox" data-fancybox="facility">
+              <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_01.jpg" alt="エントランス" loading="lazy">
+            </a>
+        </span>
       </div>
     </section>
 
@@ -61,7 +69,11 @@
             <p>フロントの説明テキストが入ります。フロントの説明テキストが入ります。フロントの説明テキストが入ります。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_02.jpg" alt="レストラン" loading="lazy"></span>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_02.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_02.jpg" alt="レストラン" loading="lazy">
+          </a>
+        </span>
       </div>
       <a href="<?php echo esc_url(home_url('')); ?>/restaurant/" class="c-btn">レストランメニュー詳細へ</a>
     </section>
@@ -81,7 +93,11 @@
             <p>クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_03.jpg" alt="洋室" loading="lazy"></span>
+          <span class="facility__flex--img">
+            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_03.jpg" class="fancybox" data-fancybox="facility">
+              <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_03.jpg" alt="洋室" loading="lazy">
+            </a>
+          </span>
       </div>
 
       <div class="facility__flex">
@@ -91,7 +107,11 @@
             <p>クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。クラブハウスの説明テキストが入ります。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_04.jpg" alt="和室" loading="lazy"></span>
+          <span class="facility__flex--img">
+            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_04.jpg" class="fancybox" data-fancybox="facility">
+              <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_04.jpg" alt="和室" loading="lazy">
+            </a>
+          </span>
       </div>
 
       <div class="proom">
@@ -160,8 +180,10 @@
           </tr>
         </table>
         <div class="proom__tb--imgbox">
-          <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_03.jpg" alt="個室平面図" loading="lazy">
-        </div>
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_03.jpg" class="fancybox" data-fancybox="floor-map">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_03.jpg" alt="個室平面図" loading="lazy">
+          </a>
+      </div>
       </div>
       <p>より多くのお客様のご要望にお答えできるよう、個室の確定はご利用開始直前とさせていただきます。（料金&colon;1万円〜2万円）</p>
     </div>
@@ -176,7 +198,11 @@
             <p>気品と落ち着きを兼ね備えたロッカールーム。<br class="c-brpc">広々とした動線、美しい木製ロッカー、天窓から差し込む柔らかな自然光に包まれてゆったりとした時間をお過ごしください。<br class="c-brpc">プレー前の高揚感も、ラウンド後の余韻も、この空間が穏やかに包み込みます。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_05.jpg" alt="ロッカールーム" loading="lazy"></span>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_05.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_05.jpg" alt="ロッカールーム" loading="lazy">
+          </a>
+        </span>
       </div>
     </section>
 
@@ -190,7 +216,11 @@
             <p>ゴルフを満喫したあとは、広々とした屋内浴場で心と体を癒してください。<br class="c-brpc">大きな窓越しに広がる緑豊かな景色が、まるで森の中にいるような非日常のひとときを演出します。<br class="c-brpc">やわらかな光と静けさに包まれながら、贅沢なリラックスタイムをお楽しみいただけます。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_06.jpg" alt="更衣室" loading="lazy"></span>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_06.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_06.jpg" alt="更衣室" loading="lazy">
+          </a>
+        </span>
       </div>
 
       <div class="facility__flex">
@@ -200,7 +230,11 @@
             <p>ゴルフを満喫したあとは、広々とした屋内浴場で心と体を癒してください。<br class="c-brpc">大きな窓越しに広がる緑豊かな景色が、まるで森の中にいるような非日常のひとときを演出します。<br class="c-brpc">やわらかな光と静けさに包まれながら、贅沢なリラックスタイムをお楽しみいただけます。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_07.jpg" alt="大浴場" loading="lazy"></span>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_07.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_07.jpg" alt="大浴場" loading="lazy">
+          </a>
+        </span>
       </div>
 
       <div class="facility__flex">
@@ -210,7 +244,11 @@
             <p>上質な天然木を贅沢に使用した、ゆったりとくつろげるサウナをご用意しております。<br class="c-brpc">木の香りとやわらかな温もりに包まれながら、心と身体をゆっくりと整えるひとときをお過ごしください。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_08.jpg" alt="サウナ" loading="lazy"></span>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_08.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_08.jpg" alt="サウナ" loading="lazy">
+          </a>
+        </span>
       </div>
 
       <div class="facility__flex">
@@ -220,7 +258,11 @@
             <p>女性のお客様用の、ゆったりと落ち着いた雰囲気のパウダールームです。大きな鏡と清潔な空間で、リラックスしてお使いいただけます。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_09.jpg" alt="パウダールーム" loading="lazy"></span>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_09.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_09.jpg" alt="パウダールーム" loading="lazy">
+          </a>
+        </span>
       </div>
     </section>
 
@@ -232,7 +274,11 @@
             <p>館内に足を踏み入れると、ガラス越しに現れるのは、静寂に包まれた美しい中庭。<br class="c-brpc">凛とした竹がすっと伸び、自然と建築が調和したこの庭は、訪れる方の心に静かな感動をもたらします。<br class="c-brpc">プレー前後のひとときに、ぜひその美しさをご鑑賞ください。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_10.jpg" alt="洋中庭室" loading="lazy"></span>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_10.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_10.jpg" alt="洋中庭室" loading="lazy">
+          </a>
+        </span>
       </div>
     </section>
 
@@ -245,7 +291,11 @@
             <p>館内に足を踏み入れると、ガラス越しに現れるのは、静寂に包まれた美しい中庭。<br class="c-brpc">凛とした竹がすっと伸び、自然と建築が調和したこの庭は、訪れる方の心に静かな感動をもたらします。<br class="c-brpc">プレー前後のひとときに、ぜひその美しさをご鑑賞ください。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_11.jpg" alt="ドライビングレンジ" loading="lazy"></span>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_11.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_11.jpg" alt="ドライビングレンジ" loading="lazy">
+          </a>
+        </span>
       </div>
 
       <div class="facility__flex">
@@ -255,7 +305,11 @@
             <p>館内に足を踏み入れると、ガラス越しに現れるのは、静寂に包まれた美しい中庭。<br class="c-brpc">凛とした竹がすっと伸び、自然と建築が調和したこの庭は、訪れる方の心に静かな感動をもたらします。<br class="c-brpc">プレー前後のひとときに、ぜひその美しさをご鑑賞ください。</p>
           </div>
         </div>
-        <span class="facility__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_12.jpg" alt="バンカー" loading="lazy"></span>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_12.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_12.jpg" alt="バンカー" loading="lazy">
+          </a>
+        </span>
       </div>
       <a href="<?php echo esc_url(home_url('')); ?>/d-range/" class="c-btn">ゴルフ練習場概要へ</a>
     </section>
@@ -275,6 +329,11 @@
 <!--  フッタ読込 -->
 <?php get_footer('120'); ?>
 <!--  フッタ読込 -->
+<script>
+  jQuery(function($) {
+    $('a.fancybox').fancybox();
+  });
+</script>
 
 <?php wp_footer(); ?>
 
