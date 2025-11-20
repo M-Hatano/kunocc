@@ -21,8 +21,8 @@
       <div class="c-column">
         <ul class="c-scroll">
           <li><a href="#link01">車でお越しの方</a></li>
-          <li><a href="#link02">電車でお越しの方</a></li>
-          <li><a href="#link03">クラブバスでお越しの方</a></li>
+          <li><a href="#link02">電車で<br class="c-brsp">お越しの方</a></li>
+          <li><a href="#link03">クラブバスで<br class="c-brsp">お越しの方</a></li>
           <li><a href="#link04">タクシーのご案内</a></li>
           <li><a href="#link05">近隣宿泊施設のご案内</a></li>
         </ul>
@@ -63,7 +63,7 @@
             <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_01.jpg" alt="" class="for-pc abox__mod">
             <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_02.jpg" alt="" class="for-pc">
             <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_04.jpg" alt="" class="for-sp">
-            <a href="" class="c-btn" target="_blank">印刷用PDFダウンロード</a>
+            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/kunomap.pdf" class="c-btn" target="_blank">印刷用PDFダウンロード</a>
           </div>
         </section>
 
@@ -93,7 +93,7 @@
           <p>
             所要時間&nbsp;10分
           </p>
-          <a href="" class="c-btn" target="_blank">クラブバス乗り場案内図はこちら（PDF）</a>
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/bus161102-1.pdf" class="c-btn" target="_blank">クラブバス乗り場案内図はこちら（PDF）</a>
         </section>
 
         <section id="link04">

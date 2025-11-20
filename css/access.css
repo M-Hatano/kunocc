@@ -28,6 +28,11 @@
   }
   .c-scroll > li a {
     font-size: 13px;
+    line-height: unset;
+    text-align: center;
+  }
+  .c-scroll > li a::after {
+    transform: translateY(0px) rotate(45deg);
   }
 }
 iframe {
