@@ -22,14 +22,10 @@
           </h1>
         </div>
       </div>
-      <ul class="m-list">
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員様お知らせ</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-sales/">営業案内</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-kusunoki/">くすのき会</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-partnership/">提携コース</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-calendar/">ビジター様料金</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-registration/">コンペ申込</a></li>
-      </ul>
+
+     <!-- 共通メニュー -->
+    <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
+    <!-- 共通メニュー -->
 
       <div class="c-column">
         <h2 class="c-head6 m_head">提携コースのご案内<span>Partner Courses</span></h2>
@@ -42,18 +38,40 @@
             <span></span>
           </div>
           <ul>
-            <li><a href="" target="_blank">パサージュ琴海</a></li>
-            <li><a href="" target="_blank">釧路カントリークラブ</a></li>
-            <li><a href="" target="_blank">大浅間ゴルフクラブ</a></li>
-            <li><a href="" target="_blank">三井の森蓼科ゴルフ倶楽部</a></li>
-            <li><a href="" target="_blank">フォレストカントリークラブ 三井の森</a></li>
+            <?php if (have_rows('partner_courses')): ?>
+              <?php while (have_rows('partner_courses')): the_row(); ?>
+
+                <?php
+                  $name = get_sub_field('course_name');
+                  $pdf  = get_sub_field('course_pdf');
+                  $pdf_url = '';
+
+                  if (is_array($pdf) && !empty($pdf['url'])) {
+                      $pdf_url = $pdf['url'];
+                  }
+                ?>
+
+                <?php if (!empty($name)): ?>
+                  <li>
+                    <?php if ($pdf_url): ?>
+                      <a href="<?php echo esc_url($pdf_url); ?>" target="_blank" rel="noopener">
+                        <?php echo esc_html($name); ?>
+                      </a>
+                    <?php else: ?>
+                      <?php echo esc_html($name); ?>
+                    <?php endif; ?>
+                  </li>
+                <?php endif; ?>
+
+              <?php endwhile; ?>
+            <?php endif; ?>
           </ul>
         </div>
 
         <!-- パンくずリスト -->
         <ul class="c-brd">
           <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-          <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員サイト</a></li>
+          <li><a href="<?php echo esc_url(home_url('')); ?>/member/">会員サイト</a></li>
           <li><a href="">提携コースのご案内</a></li>
         </ul>
       </div>

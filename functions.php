@@ -104,6 +104,11 @@ add_filter('template_include', function ($template) {
         $uri = preg_replace('#^[^/]+/[^/]+/#', '', $uri);
     }
 
+    // ★ カレンダー
+    if ($uri === 'member/calendar') {
+        return locate_template('page-120-calendar.php');
+    }
+
     if (preg_match('#^member/information/page/[0-9]+/?$#', $uri)) {
         return locate_template('page-120-information.php');
     }
@@ -388,19 +393,24 @@ function enqueue_page_specific_styles()
     *    single / 固定ページ / ページネーション / 年別
     * ----------------------------------- */
     if (
+
         // single
         (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information')))
 
         // 固定ページ
-        || is_page(array('member', 'kusunoki', 'information'))
+        || is_page(array('member', 'kusunoki', 'information', 'partnership', 'm-calendar'))
 
         // 年別
         || (is_date() && strpos($uri, '/member/') !== false)
 
-        // ★ ページネーション（今回追加する部分）
+        // ★ ページネーション
         || preg_match('#/member/information/page/[0-9]+/?$#', $uri)
         || preg_match('#/member/kusunoki/page/[0-9]+/?$#', $uri)
         || preg_match('#/member/page/[0-9]+/?$#', $uri)
+
+        // ★★★ partnership を強制的に適用 ★★★
+        || strpos($uri, '/member/partnership') !== false
+        || strpos($uri, '/member/calendar') !== false
     ) {
 
         wp_enqueue_style(
@@ -412,9 +422,7 @@ function enqueue_page_specific_styles()
         return;
     }
 
-    /* -----------------------------------
-     * ▼ /news/2025/（年別ニュース）
-     * ----------------------------------- */
+    /* 以下はそのまま */
     if (is_date() && strpos($uri, '/news/') !== false) {
         wp_enqueue_style(
             'news-style',
@@ -425,9 +433,6 @@ function enqueue_page_specific_styles()
         return;
     }
 
-    /* -----------------------------------
-     * ▼ トップページ
-     * ----------------------------------- */
     if (is_front_page()) {
         wp_enqueue_style(
             'top-style',
@@ -438,9 +443,6 @@ function enqueue_page_specific_styles()
         return;
     }
 
-    /* -----------------------------------
-     * ▼ 通常投稿ページ（一般ニュース single）
-     * ----------------------------------- */
     if (is_single()) {
         wp_enqueue_style(
             'news-style',
@@ -451,12 +453,8 @@ function enqueue_page_specific_styles()
         return;
     }
 
-    /* -----------------------------------
-     * ▼ 固定ページ（スラッグ名 = CSS）
-     * ----------------------------------- */
     if (is_page()) {
         global $post;
-
         $slug = $post->post_name;
         $anc  = get_post_ancestors($post->ID);
         if (!empty($anc)) {
