@@ -67,9 +67,18 @@
   .tb-01._board tr:first-of-type {
     display: none;
   }
-  
-  .tb-01._board tr:nth-of-type(n+4) td:first-of-type{
+
+  .tb-01._board tr:nth-of-type(n+4) td:first-of-type {
     background: #FCFEF0;
+  }
+
+  .tb-01._board tr:nth-of-type(n+4) td {
+    border-top: unset;
+    border-bottom: unset;
+  }
+
+  .tb-01._board tr:nth-of-type(4) td:first-of-type {
+    border-top: solid 1px #989E74;
   }
 }
 

@@ -525,6 +525,10 @@
   .b-c-dtl__top--hd {
     font-size: 3rem;
   }
+
+  .b-c-dtl__csbtn._cdtlb>div{
+    width: 100%;
+  }
 }
 
 .b-c-dtl__csname {
@@ -615,6 +619,7 @@
   border-top: 1px solid #8F8F8F;
   border-right: 1px solid #8F8F8F;
   border-left: 1px solid #8F8F8F;
+  background: #fff;
 }
 
 .b-c-dtl__rate ul>li:nth-last-of-type(1),
@@ -859,6 +864,7 @@
 
   .b-c-dtl__btm+.b-c-dtl__csbtn {
     margin-top: 50px;
+    flex-direction: column;
   }
 }
 

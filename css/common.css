@@ -3324,23 +3324,37 @@ table {
 }
 
 @media screen and (max-width: 767px) {
-    .regi_send {
-        padding-top: 25px;
-        margin-bottom: 25px;
-    }
+  .regi_send {
+    padding-top: 25px;
+    margin-bottom: 25px;
+  }
 
-    .mailbox {
-        width: 100%;
-        padding: 10px 10px 10px 30px;
-        font-size: 18px;
-    }
+  .mailbox {
+    width: 100%;
+    padding: 10px 10px 10px 30px;
+    font-size: 18px;
+  }
 
-    .mailbox::before {
-        width: 30px;
-        height: 24px;
-    }
+  .mailbox::before {
+    width: 30px;
+    height: 24px;
+  }
 
-    .mailbox span {
-        padding-right: 20px
-    }
+  .mailbox span {
+    padding-right: 20px
+  }
+}
+
+/* ポップアップ画像SP */
+@media screen and (max-width: 767px) {
+
+  #fancybox-wrap {
+    width: calc(100% - 30px) !important;
+    height: auto !important;
+    left: 15px !important;
+  }
+}
+
+.fancybox-title-float #fancybox-title{
+  display: none !important;
 }
