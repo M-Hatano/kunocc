@@ -38,11 +38,33 @@
             <span></span>
           </div>
           <ul>
-            <li><a href="" target="_blank">パサージュ琴海</a></li>
-            <li><a href="" target="_blank">釧路カントリークラブ</a></li>
-            <li><a href="" target="_blank">大浅間ゴルフクラブ</a></li>
-            <li><a href="" target="_blank">三井の森蓼科ゴルフ倶楽部</a></li>
-            <li><a href="" target="_blank">フォレストカントリークラブ 三井の森</a></li>
+            <?php if (have_rows('partner_courses')): ?>
+              <?php while (have_rows('partner_courses')): the_row(); ?>
+
+                <?php
+                  $name = get_sub_field('course_name');
+                  $pdf  = get_sub_field('course_pdf');
+                  $pdf_url = '';
+
+                  if (is_array($pdf) && !empty($pdf['url'])) {
+                      $pdf_url = $pdf['url'];
+                  }
+                ?>
+
+                <?php if (!empty($name)): ?>
+                  <li>
+                    <?php if ($pdf_url): ?>
+                      <a href="<?php echo esc_url($pdf_url); ?>" target="_blank" rel="noopener">
+                        <?php echo esc_html($name); ?>
+                      </a>
+                    <?php else: ?>
+                      <?php echo esc_html($name); ?>
+                    <?php endif; ?>
+                  </li>
+                <?php endif; ?>
+
+              <?php endwhile; ?>
+            <?php endif; ?>
           </ul>
         </div>
 
