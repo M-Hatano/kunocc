@@ -709,9 +709,9 @@
 }
 
 /* 富士平原REGULARだけ非表示 */
-.b-c-dtl__yd li:nth-of-type(2) {
+/* .b-c-dtl__yd li:nth-of-type(2) {
   display: none;
-}
+} */
 
 @media screen and (max-width: 767px) {
   .b-c-dtl__yd li {

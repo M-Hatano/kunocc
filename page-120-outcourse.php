@@ -81,18 +81,6 @@
                   </span>
                 </li>
                 <li>
-                  <span>REG</span>
-                  <span>
-                    <?php if (have_rows('tee_reg')) : ?>
-                      <?php while (have_rows('tee_reg')) : the_row(); ?>
-                        <?php if (get_sub_field('yard')) : ?>
-                          <span class="div"><?php the_sub_field('yard'); ?></span>
-                        <?php endif; ?>
-                      <?php endwhile; ?>
-                    <?php endif; ?>
-                  </span>
-                </li>
-                <li>
                   <span>FRONT</span>
                   <span>
                     <?php if (have_rows('tee_front')) : ?>
@@ -105,10 +93,10 @@
                   </span>
                 </li>
                 <li>
-                  <span>LADIES</span>
+                  <span>REGULAR</span>
                   <span>
-                    <?php if (have_rows('tee_ladies')) : ?>
-                      <?php while (have_rows('tee_ladies')) : the_row(); ?>
+                    <?php if (have_rows('tee_reg')) : ?>
+                      <?php while (have_rows('tee_reg')) : the_row(); ?>
                         <?php if (get_sub_field('yard')) : ?>
                           <span class="div"><?php the_sub_field('yard'); ?></span>
                         <?php endif; ?>
@@ -278,7 +266,7 @@
           <ul class="c-brd">
             <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
             <li><a href="<?php echo esc_url(home_url('')); ?>/course/">コース紹介</a></li>
-            <li><a href="/">hole<?php the_field('hole-no'); ?></a></li>
+            <li><a href="/">Hole<?php the_field('hole-no'); ?></a></li>
           </ul>
         </div>
 
