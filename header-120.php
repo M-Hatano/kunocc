@@ -89,7 +89,7 @@
                   <a href="<?php echo esc_url(home_url('')); ?>/restaurant/">レストラン</a>
                 </li>
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>">プライベートルーム</a>
+                  <a href="<?php echo esc_url(home_url('')); ?>/facility/#link03">プライベートルーム</a>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/facility/">施設案内</a>
@@ -119,7 +119,7 @@
                   <a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a>
                 </li>
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>">会員募集について</a>
+                  <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf">会員募集について</a>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/dresscode/">ドレスコード</a>
@@ -139,8 +139,8 @@
               </ul>
 
               <div class="c-nav__bnr">
-                <a href="https://weathernews.jp/golf/" class="c-nav__bnr--mbr _weat" target="_blank">久能CCの天気</a>
-                <a href="https://wst1.asts.jp/public/golfnet/0213cc/pps/cllinp.asp" class="c-nav__bnr--mbr" target="_blank">会員専用ページ</a>
+                <a href="https://weathernews.jp/golf/kanto/chiba/724/" class="c-nav__bnr--mbr _weat" target="_blank">久能CCの天気</a>
+                <a href="<?php echo esc_url(home_url('')); ?>/member/" class="c-nav__bnr--mbr" target="_blank">会員専用ページ</a>
               </div>
             </div>
         </div>
