@@ -21,8 +21,12 @@
         <h2 class="c-head6">ゴルフ練習場概要<span>Driving&nbsp;Range</span></h2>
 
         <div class="picare">
-          <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_01.jpg" alt="練習場">
-          <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_02.jpg" alt="練習場">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_01.jpg" class="fancybox" data-fancybox="range">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_01.jpg" alt="練習場">
+          </a>
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_02.jpg" class="fancybox" data-fancybox="range">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_02.jpg" alt="練習場">
+          </a>
         </div>
 
         <p>
@@ -64,7 +68,11 @@
     <!--  フッタ読込 -->
     <?php get_footer('120'); ?>
     <!--  フッタ読込 -->
-
+    <script>
+      jQuery(function($) {
+        $('a.fancybox').fancybox();
+      });
+    </script>
     <?php wp_footer(); ?>
 
     </body>
