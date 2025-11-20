@@ -1,113 +1,188 @@
-@charset "UTF-8";
-.access__map {
-  padding-top: 50%;
-  position: relative;
-}
-
-.access__map iframe {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.c-head3 {
-  margin-bottom: 20px;
-}
-
-dl {
-  margin-top: 40px;
-}
-
-.bus-image img {
-  max-width: 100%;
-  height: auto;
-}
-
-.bus-text {
-  flex: 1;
-  min-width: 200px;
-}
-
-.access_img {
-  width: 100%;
-  max-width: 700px;
-  /* ← ここで統一する幅を指定 */
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-
-/*地図下部のボタン*/
-.btn-wrapper {
-  display: flex;
-  justify-content: center; /* 中央揃え */
-  gap: 40px; /* ボタン同士の間隔 */
-  flex-wrap: wrap; /* スマホなど狭い画面では折り返す */
-  margin-top: 50px;
-}
-
-.btn-wrapper .c-btn{
-  display: inline-block;
-  margin: 5px 0;
-}
-
-@media screen and (max-width: 768px) {
-  .btn-wrapper{
-    gap: 0;
-  }
-
-.tb-md01 {
-  background: #CAF0F8;
-  color: unset;
-}
-}
-
-.arrow {
-  display: inline-block;
-  width: 55px;
-  height: 40px;
-  background: url(../img/access/arrow-access.png) center / 100% 100% no-repeat;
+.c-page-header {
+  background: url("../img/common/page-header.png") left/874px 100% no-repeat, url("../img/facility/page-header.jpg") center/100% 100% no-repeat;
 }
 
 @media screen and (max-width: 767px) {
-  .arrow {
-    width: 40px;
-    height: 40px;
+  .c-page-header {
+    background: url("../img/common/page-header_sp.png") left/60% 100% no-repeat, url("../img/facility/page-header_sp.jpg") center/100% 100% no-repeat;
   }
 }
-
-.link_dl{
-  color: #67A4C2;
-  text-decoration: underline;
-
+#access .c-scroll > li {
+  width: 33.33%;
 }
 
-
-.table-scroll {
-  overflow-x: auto;
+#access .c-scroll > li:nth-of-type(4),
+.c-scroll > li:nth-of-type(5) {
+  width: 50%;
 }
 
-.table-type-02 {
+@media screen and (max-width: 767px) {
+  .c-scroll {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .c-scroll > li {
+    width: 50%;
+  }
+  .c-scroll > li a {
+    font-size: 13px;
+  }
+}
+iframe {
+  margin-top: 120px;
+  margin-bottom: 103px;
   width: 100%;
-  border-collapse: collapse;
 }
 
-.table-type-02 th,
-.table-type-02 td {
-  border: 1px solid #ccc;
-  padding: 8px;
+@media screen and (max-width: 767px) {
+  iframe {
+    margin-top: 60px;
+    margin-bottom: 50px;
+  }
+}
+.tb-01 {
+  margin-bottom: 80px;
+}
+
+@media screen and (max-width: 767px) {
+  .tb-01 {
+    margin-bottom: 40px;
+  }
+}
+.ahead {
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 100%;
+  border-left: 9px solid #324A5B;
+  padding-left: 7px;
+  margin-bottom: 60px;
+}
+
+.abox {
+  background: #fff;
+  border: 1px solid #989E74;
+  border-radius: 20px;
+  padding: 80px 0 50px;
   text-align: center;
-  white-space: nowrap;
+}
+.abox p {
+  margin-bottom: 48px;
+}
+.abox__mod {
+  margin-bottom: 104px;
 }
 
-/* 先頭列（1列目）と最後列以外を統一幅に */
-.table-type-02 th:nth-child(3),
-.table-type-02 th:nth-child(4),
-.table-type-02 th:nth-child(5),
-.table-type-02 th:nth-child(6) {
-  width: 150px; /* お好みの幅に調整 */
+@media screen and (max-width: 767px) {
+  .ahead {
+    font-size: 25px;
+    margin-bottom: 30px;
+  }
+  .abox {
+    padding: 40px 10px 30px;
+  }
+  .abox p {
+    margin-bottom: 25px;
+  }
+  .abox__mod {
+    margin-bottom: 55px;
+  }
+}
+#link03 p:nth-of-type(2) {
+  margin-bottom: 49px;
+}
+#link03 p:nth-of-type(3) {
+  margin-bottom: 1em;
 }
 
+@media screen and (max-width: 767px) {
+  #link03 p span {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #link03 p:nth-of-type(2) {
+    margin-bottom: 20px;
+  }
+  #link03 .c-btn {
+    width: 90%;
+    font-size: 14px;
+  }
+}
+#link05 p {
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+.ahead02 {
+  font-weight: 500;
+  font-size: 24px;
+  color: #243749;
+  padding-bottom: 20px;
+}
+
+.acctab {
+  width: 100%;
+  margin-bottom: 80px;
+}
+.acctab td {
+  background: #fff;
+  border: 1px solid #989E74;
+  width: 33.33%;
+  padding: 11px 13.5px;
+}
+.acctab:last-of-type {
+  margin-bottom: unset;
+}
+
+@media screen and (max-width: 767px) {
+  .acctab {
+    width: unset;
+  }
+  .acctab td {
+    width: unset;
+    padding: 10px;
+  }
+}
+#link01,
+#link02 {
+  padding-top: 100px;
+}
+
+#link03,
+#link04 {
+  padding-top: 80px;
+}
+
+#link05 {
+  padding-top: 242px;
+}
+#link05 p {
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  #link01,
+  #link02 {
+    padding-top: 50px;
+  }
+  #link03,
+  #link04 {
+    padding-top: 40px;
+  }
+  #link05 {
+    padding-top: 100px;
+  }
+  #link05 p {
+    margin-bottom: 70px;
+    text-align: center;
+  }
+}
