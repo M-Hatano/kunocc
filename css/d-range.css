@@ -14,8 +14,11 @@
     margin: 90px 0 50px;
 }
 
-.picare img {
+.picare a {
     width: calc(50% - (20px / 2));
+}
+
+.picare img {
     border-radius: 10px;
 }
 
@@ -25,16 +28,20 @@
 }
 
 @media screen and (max-width: 767px) {
-    .picare{
+    .picare {
         flex-direction: column;
         margin: 30px 0 30px;
     }
 
-    .picare img{
+    .picare a {
         width: 100%;
     }
 
-    .picare+p{
+    .picare img {
+        width: 100%;
+    }
+
+    .picare+p {
         margin-bottom: 30px;
         text-align: unset;
     }

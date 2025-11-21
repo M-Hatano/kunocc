@@ -493,6 +493,15 @@
   margin: 0 5px;
 }
 
+.b-c-dtl__csbtn._cdtlb>div:first-of-type>ul li{
+  background: #fff;
+  border: unset;
+}
+
+.b-c-dtl__csbtn._cdtlb>div:first-of-type>ul li a{
+  color: #243749;
+}
+
 .b-c-dtl__top {
   margin-top: 50px;
 }

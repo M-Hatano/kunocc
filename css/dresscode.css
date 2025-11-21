@@ -137,15 +137,10 @@ section h2 {
     padding: 47px 10px 42.5px;
   }
   .dbox__flex {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
     gap: 25px;
   }
   .dbox__flex img {
-    width: 49.27%;
+    width: calc(50% - (25px / 2));
     margin: 0 auto;
   }
   .dbox__ngsty {
