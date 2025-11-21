@@ -398,7 +398,7 @@ function enqueue_page_specific_styles()
         (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information')))
 
         // 固定ページ
-        || is_page(array('member', 'kusunoki', 'information', 'partnership', 'm-calendar'))
+        || is_page(array('member', 'kusunoki', 'information', 'partnership', 'm-calendar', 'm-registration'))
 
         // 年別
         || (is_date() && strpos($uri, '/member/') !== false)

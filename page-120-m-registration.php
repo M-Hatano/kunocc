@@ -35,14 +35,30 @@
           </div>
 
           <p>WEB上でご入力をされないお客様は、以下にご予約連絡フォーム（エクセル形式・PDF形式）をそれぞれご用意しております。</p>
-          <ul>
-            <li><a href="" target="_blank"><span>2025年 9月19日(金)</span>2025年秋季くすのき会会員懇親ゴルフコンペ</a></li>
-            <li><a href="" target="_blank"><span>2026年 3月19日(木)</span>2026年春季くすのき会会員懇親ゴルフコンペ</a></li>
-          </ul>
+          <?php if (have_rows('event_list')): ?>
+            <ul>
+              <?php while (have_rows('event_list')): the_row();
+                $date_raw = get_sub_field('event_date');  // 例: 2025-09-19
+                $title = get_sub_field('event_title');
+                $link = get_sub_field('event_link');
+
+                // カレンダー形式に変換（例：2025年 9月19日(金)）
+                $date_formatted = date_i18n('Y年 n月 j日(D)', strtotime($date_raw));
+              ?>
+                <li>
+                  <a href="<?php echo esc_url($link); ?>" target="_blank">
+                    <span><?php echo esc_html($date_formatted); ?></span>
+                    <?php echo esc_html($title); ?>
+                  </a>
+                </li>
+              <?php endwhile; ?>
+            </ul>
+          <?php endif; ?>
+
 
           <p class="regi_send">ご入力後のファイルは以下アドレス、またはFAXにて送信をお願いいたします。<br>（手書きで持参いただくことも可能です。）</p>
 
-          <a href="mailto:info@kunocc.co.jp" class="mailbox"><span></span>info@kunocc.co.jp</a>
+          <a href="mailto:info@kunocc.co.jp" class="mailbox">info@kunocc.co.jp</a>
         </div>
 
         <!-- パンくずリスト -->

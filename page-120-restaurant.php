@@ -81,7 +81,7 @@
                                 $text     = get_sub_field('text');      // 詳細（textarea）
                                 ?>
 
-                                <li class="list01__item u-other">
+                                <li class="list01__item">
                                     <div class="list01__item--menu">
                                         <p>
                                             <span class="list01__item--name">

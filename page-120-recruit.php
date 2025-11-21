@@ -1,65 +1,96 @@
     <?php
-      /*
-      Template Name: 求人情報
+    /*
+    Template Name: 求人情報
       */
-      ?>
+    ?>
 
-      <!--  header -->
-      <?php get_header('120'); ?>
-      <!--  header -->
+    <!--  header -->
+    <?php get_header('120'); ?>
+    <!--  header -->
 
-      <main class="c-main">
-            <div class="c-page-header lazyload" data-bg="<?php echo esc_url(get_template_directory_uri()); ?>/img/recruit/page-header.jpg">
-                <div class="c-column c-page-header__inner">
-                    <h1 class="c-page-header__title">Recruit<span>求人情報</span></h1>
-                </div>
+    <main class="c-main">
+        <div class="c-page-header lazyload">
+            <div class="c-column c-page-header__inner">
+                <h1 class="c-page-header__title">Recruit
+                    <span>求人情報</span>
+                </h1>
             </div>
+        </div>
 
-            <section>
-                <div class="c-column-s">
-                    <img class="pc-img" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/recruit/recruit.jpg" alt="リクルート情報" loading="lazy">
-                    <img class="sp-img" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/recruit/sp-recruit.jpg" alt="リクルート情報" loading="lazy">
+        <div class="c-column">
+            <section class="rbox">
+                <h2 class="rbox__rechead">キャディスタッフ募集中<br class="c-brsp">（正社員・パート社員）</h2>
+                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/recruit/dummy_01.jpg" alt="ダミー">
+                <!-- 表部分 -->
+                <?php if (have_rows('job_items')): ?>
+                    <table class="tb-01">
+                        <tbody>
+                            <?php while (have_rows('job_items')): the_row();
+                                $title = get_sub_field('title');   // th
+                                $content = get_sub_field('content'); // td
+                            ?>
+                                <tr>
+                                    <th><?php echo esc_html($title); ?></th>
+                                    <td><?php echo nl2br(esc_html($content)); ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
 
-                    <div class="slider-box">
-                        <p class="c-forsp slider-box__txt--s">スクロールしてご覧になれます→</p>
-                        <div class="slider-box__inner">
-                            <img class="sp-img sp-img2" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/recruit/sp-recruit2.jpg" alt="リクルート情報" loading="lazy">
-                        </div>
-                        <p class="c-forsp slider-box__txt c-tac">詳細はPDFをご確認ください！</p>
-                        <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/recruit/pdf_rec.pdf" class="slider-box__btn c-forsp" target="_blank">PDFをダウンロード</a>
+                <p class="rbox__notes">備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。</p>
+                <p class="rbox__notes">備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。</p>
+            </section>
+
+            <section class="rbox">
+                <h2 class="rbox__rechead">レストランスタッフ（ホール）</h2>
+                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/recruit/dummy_02.jpg" alt="ダミー">
+                <!-- 表部分 -->
+                <?php if (have_rows('job_items2')): ?>
+                    <table class="tb-01">
+                        <tbody>
+                            <?php while (have_rows('job_items2')): the_row();
+                                $title = get_sub_field('title2');   // th
+                                $content = get_sub_field('content2'); // td
+                            ?>
+                                <tr>
+                                    <th><?php echo esc_html($title); ?></th>
+                                    <td><?php echo nl2br(esc_html($content)); ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+
+                <p class="rbox__notes">備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。</p>
+                <p class="rbox__notes">備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。テキストが入ります。備考テキストが入ります。</p>
+
+                <p class="rbox__com">未経験の方からでも丁寧に指導いたしますので安心してご応募いただけます。<br>現在、活躍しているスタッフのほとんどが未経験からスタートしています。</p>
+
+                <div class="c-rease">
+                    <div>
+                        <p>まずはお気軽にお電話ください。</p>
+                        <a href="tel:0476-93-9000">0476-93-9000</a>
                     </div>
-
-                    <div id="youtube">
-                        <iframe width="560" height="315"
-                            src="https://www.youtube.com/embed/JLoAYUQIxsM?si=4aBKdgIyqBMFA3pa"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                        </iframe>
-                        <h3>\　WEBからの応募はこちら↓　/</h3>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf1SgM4vY-vAHctcgLp5ICClCO5awv8tSfzlBlu2SwWj0rC7w/viewform?usp=sharing" class="request-btn" target="_blank">応募に進む</a>
-                    </div>
-
                 </div>
             </section>
 
-            <div class="c-column">
-                <ul class="c-brd">
-                    <li><a href="<?php echo esc_url(home_url('')); ?>/">TOP</a></li>
-                    <li><a href="">求人情報</a></li>
-                </ul>
-            </div>
 
-        </main>
 
-        <!--  フッタ読込 -->
-        <?php get_footer('120'); ?>
-        <!--  フッタ読込 -->
+            <ul class="c-brd">
+                <li><a href="<?php echo esc_url(home_url('')); ?>/">TOP</a></li>
+                <li><a href="">求人情報</a></li>
+            </ul>
+        </div>
 
-          <?php wp_footer(); ?>
+    </main>
 
-        </body>
+    <!--  フッタ読込 -->
+    <?php get_footer('120'); ?>
+    <!--  フッタ読込 -->
 
-</html>
+    <?php wp_footer(); ?>
 
-        
+    </body>
+
+    </html>

@@ -3309,18 +3309,16 @@ table {
 .mailbox::before {
   content: "";
   display: inline-block;
-  background: url(/img/common/icn_01.png)center / 100% 100% no-repeat;
+  background: url(../img/common/icn_01.png)center / 100% 100% no-repeat;
   width: 55px;
   height: 44px;
-}
-
-.mailbox span {
-  padding-right: 40px;
+  margin-right: 30px;
 }
 
 .regi_send {
   padding-top: 40px;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 @media screen and (max-width: 767px) {
@@ -3338,6 +3336,7 @@ table {
   .mailbox::before {
     width: 30px;
     height: 24px;
+    margin-right: 25px;
   }
 
   .mailbox span {

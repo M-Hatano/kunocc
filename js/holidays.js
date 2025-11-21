@@ -33,7 +33,7 @@ function getAllHolidays(year) {
     holidays[getHappyMonday(year, 10, 2)] = "スポーツの日";   // 10月第2月曜
 
     // 天皇誕生日（令和基準なら 2月23日／昭和なら 12月23日）
-    holidays[`${year}-12-23`] = "天皇誕生日";
+    holidays[`${year}-2-23`] = "天皇誕生日";
 
     return addSubstituteHolidays(holidays);
 }
@@ -55,6 +55,30 @@ function addSubstituteHolidays(holidays) {
             }
         }
     });
+
+    return newHolidays;
+}
+
+function addNationalHolidays(holidays) {
+    const newHolidays = { ...holidays };
+    const dates = Object.keys(holidays).sort(); // 昇順にソート
+
+    for (let i = 0; i < dates.length - 1; i++) {
+        const date1 = new Date(dates[i]);
+        const date2 = new Date(dates[i + 1]);
+
+        let diff = (date2 - date1) / (1000*60*60*24);
+        if(diff > 1){
+            for(let d=1; d<diff; d++){
+                let nh = new Date(date1);
+                nh.setDate(nh.getDate()+d);
+                const nhStr = nh.toISOString().slice(0,10);
+                if(!newHolidays[nhStr] && nh.getDay()!==0){
+                    newHolidays[nhStr] = "国民の休日";
+                }
+            }
+        }
+    }
 
     return newHolidays;
 }

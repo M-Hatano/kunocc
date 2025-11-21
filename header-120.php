@@ -15,18 +15,18 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
-  <title><?php wp_title('|', true, 'right'); ?>富士平原ゴルフクラブ　御殿場随一の雄大なゴルフ場</title>
+  <title><?php wp_title('|', true, 'right'); ?>久能カントリー倶楽部</title>
   <!-- OGP-->
   <?php
   $meta_description = get_dynamic_meta_description();
   ?>
   <meta content="<?php echo esc_attr($meta_description); ?>" name="description">
-  <meta content="富士平原ゴルフクラブ　御殿場随一の雄大なゴルフ場" property="og:title">
+  <meta content="久能カントリー倶楽部" property="og:title">
   <meta content="<?php echo esc_attr($meta_description); ?>" property="og:description">
   <meta content="<?php echo esc_url(home_url()); ?>" property="og:url">
   <meta content="ja_JP" property="og:locale">
   <meta content="<?php echo esc_url(get_template_directory_uri() . '/img/ogp.jpg'); ?>" property="og:image">
-  <meta property="og:site_name" content="富士平原ゴルフクラブ　御殿場随一の雄大なゴルフ場">
+  <meta property="og:site_name" content="久能カントリー倶楽部">
   <meta content="website" property="og:type">
   <link rel="canonical" href="<?php echo esc_url(home_url()); ?>">
   <!-- FAVICON-->
