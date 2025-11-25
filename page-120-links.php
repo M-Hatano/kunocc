@@ -1,7 +1,7 @@
 <?php
 /*
-      Template Name: リンク集
-      */
+Template Name: リンク集
+*/
 ?>
 
 <!--  header -->
