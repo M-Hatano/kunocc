@@ -41,13 +41,10 @@ Template Name: トップページ
     </div>
   </div>
 
-
-  <div class="c-rease">
-    <div>
-      <p>ご予約のスタートはお電話でお受けしております。</p>
-      <a href="">ご予約方法についてはこちら</a>
-    </div>
-  </div>
+  <!-- 共通パーツ -->
+  <?php include get_template_directory() . '/include-120-reservation-start.php'; ?>
+  <!-- 共通パーツ -->
+  
 
   <section class="top-news">
     <div class="bg-news">
