@@ -213,19 +213,19 @@
 }
 
 .kv-img:nth-child(1) {
-  background-image: url(../img/top/kv_1.jpg);
+  background-image: url("../img/top/kv_1.jpg");
   -webkit-animation-delay: -2s;
   animation-delay: -2s;
 }
 
 .kv-img:nth-child(2) {
-  background-image: url(../img/top/kv_2.jpg);
+  background-image: url("../img/top/kv_2.jpg");
   -webkit-animation-delay: 6s;
   animation-delay: 6s;
 }
 
 .kv-img:nth-child(3) {
-  background-image: url(../img/top/kv_2.jpg);
+  background-image: url("../img/top/kv_2.jpg");
   -webkit-animation-delay: 14s;
   animation-delay: 14s;
 }
@@ -328,8 +328,8 @@
 
 
 .btnarea {
-  background: url(../img/top/bg_btn_01.png) left center no-repeat,
-    url(../img/top/bg_btn_02.png) right center no-repeat,
+  background: url("../img/top/bg_btn_01.png") left center no-repeat,
+    url("../img/top/bg_btn_02.png") right center no-repeat,
     linear-gradient(90deg, #939971 0%, #AEB390 50%, #939971 100%);
   padding: 58px 0;
 }
@@ -541,29 +541,29 @@
 }
 
 .top__info {
-  background: url(../img/top/bg_top_01.jpg) center / 100% 100% no-repeat;
+  background: url("../img/top/bg_top_01.jpg") center / 100% 100% no-repeat;
   padding: 90px 511px 70px 40px;
   width: calc(100% - 80px);
 }
 
 .top__flex:nth-of-type(2) .top__info {
-  background: url(../img/top/bg_top_02.jpg) center / 100% 100% no-repeat;
+  background: url("../img/top/bg_top_02.jpg") center / 100% 100% no-repeat;
 }
 
 .top__flex:nth-of-type(3) .top__info {
-  background: url(../img/top/bg_top_03.jpg) center / 100% 100% no-repeat;
+  background: url("../img/top/bg_top_03.jpg") center / 100% 100% no-repeat;
 }
 
 .top__flex:nth-of-type(4) .top__info {
-  background: url(../img/top/bg_top_04.jpg) center / 100% 100% no-repeat;
+  background: url("../img/top/bg_top_04.jpg") center / 100% 100% no-repeat;
 }
 
 .top__flex:nth-of-type(5) .top__info {
-  background: url(../img/top/bg_top_05.jpg) center / 100% 100% no-repeat;
+  background: url("../img/top/bg_top_05.jpg") center / 100% 100% no-repeat;
 }
 
 .top__flex:nth-of-type(6) .top__info {
-  background: url(../img/top/bg_top_06.jpg) center / 100% 100% no-repeat;
+  background: url("../img/top/bg_top_06.jpg") center / 100% 100% no-repeat;
 }
 
 @media screen and (max-width: 767px) {
@@ -629,7 +629,7 @@
   width: 410px;
   padding-top: 111.21%;
   display: block;
-  background: url(../img/top/img_ashi_01.png) left top/100% 100% no-repeat;
+  background: url("../img/top/img_ashi_01.png") left top/100% 100% no-repeat;
 }
 
 ._02 {
@@ -642,7 +642,7 @@
   width: 410px;
   padding-top: 106.97%;
   display: block;
-  background: url(../img/top/img_ashi_02.png) left top/100% 100% no-repeat;
+  background: url("../img/top/img_ashi_02.png") left top/100% 100% no-repeat;
 }
 
 ._03 {
@@ -655,7 +655,7 @@
   width: 410px;
   padding-top: 109.52%;
   display: block;
-  background: url(../img/top/img_ashi_03.png) left top/100% 100% no-repeat;
+  background: url("../img/top/img_ashi_03.png") left top/100% 100% no-repeat;
 }
 
 @media screen and (max-width: 767px) {

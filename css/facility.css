@@ -423,7 +423,7 @@
   width: 504px;
   padding-top: 106.7%;
   display: block;
-  background: url(../img/facility/img_ashi_01.png) left top / 100% 100% no-repeat;
+  background: url("../img/facility/img_ashi_01.png") left top / 100% 100% no-repeat;
 }
 
 ._02 {
@@ -436,7 +436,7 @@
   width: 342px;
   padding-top: 290.9%;
   display: block;
-  background: url(../img/facility/img_ashi_02.png) left top / 100% 100% no-repeat;
+  background: url("../img/facility/img_ashi_02.png") left top / 100% 100% no-repeat;
 }
 
 @media screen and (max-width: 767px) {
