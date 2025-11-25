@@ -111,48 +111,69 @@ add_filter('single_template', function ($template) {
     return $template;
 });
 
+// 会員ニュースの年度別ページだけ date-member.php を適用
+add_filter('template_include', function($template){
+
+    $uri = trim($_SERVER['REQUEST_URI'], '/');
+
+    // /member/◯◯/2025/ の形式を判定
+    if (preg_match('#^member/(information|kusunoki)/[0-9]{4}/?$#', $uri) ||
+        preg_match('#^member/[0-9]{4}/?$#', $uri)) {
+
+        $member_tpl = get_template_directory() . '/date-member.php';
+
+        if (file_exists($member_tpl)) {
+            return $member_tpl;
+        }
+    }
+
+    return $template;
+});
+
 // bodyIDを取得する関数
 function my_custom_body_id()
 {
-    // ★ 追加：/kunocc/cms/ を除去する前処理
+    // ★ /kunocc/cms/ を除去
     $uri = trim($_SERVER['REQUEST_URI'] ?? '', '/');
-    $uri = preg_replace('#^[^/]+/[^/]+/#', '', $uri); 
-    // 例) /kunocc/cms/member/information/page/2/ → member/information/page/2/
+    $uri = preg_replace('#^[^/]+/[^/]+/#', '', $uri);
 
-    // ▼ 固定トップ（information, kusunoki）
-    if (preg_match('#^member/(information|kusunoki)/?$#', $uri)) {
-        return 'm-news';
-    }
-
-    // ▼ single（member / kusunoki / information）
+    /* ---------------------------------------------------
+     * ▼ 1) 会員ニュース SINGLE
+     *    カテゴリが member / kusunoki / information
+     * --------------------------------------------------- */
     if (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information'))) {
+        return 'single-page';   // ID は single-page
+    }
+
+    /* ---------------------------------------------------
+     * ▼ 2) 会員ニュース 固定ページ or ページネーション
+     * --------------------------------------------------- */
+    if (is_page(array('member', 'kusunoki', 'information')) ||
+        preg_match('#^member/(information|kusunoki)/page/[0-9]+/?$#', $uri) ||
+        preg_match('#^member/page/[0-9]+/?$#', $uri)) {
+
         return 'm-news';
     }
 
-    // ▼ 固定ページ（slug: member, kusunoki, information）
-    if (is_page(array('member', 'kusunoki', 'information'))) {
-        return 'm-news';
+    /* ---------------------------------------------------
+     * ▼ 3) 一般ニュース SINGLE
+     * --------------------------------------------------- */
+    if (is_single() && has_category('news')) {
+        return 'single-page';  // ID: single-page
     }
 
-    // 年別アーカイブ（/2025/ など）は一般ニュース扱い
+    /* ---------------------------------------------------
+     * ▼ 4) 年別アーカイブ（一般ニュース）
+     * --------------------------------------------------- */
     if (is_date()) {
-        return 'single-page';   // ★ date.php は必ず single-page
+        return 'single-page';  
     }
 
-    // 以下、従来処理
+    /* ---------------------------------------------------
+     * ▼ 以下は共通
+     * --------------------------------------------------- */
     if (is_front_page()) return 'top';
     if (is_404()) return 'errorpage';
-
-    if (is_single()) return 'single-page';
-
-    if (is_page()) {
-        global $post;
-        return get_post_field('post_name', $post);
-    }
-
-    if (is_front_page()) return 'top';
-    if (is_404()) return 'errorpage';
-    if (is_single()) return 'single-page';
 
     if (is_page()) {
         global $post;
