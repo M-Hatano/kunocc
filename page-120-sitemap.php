@@ -27,7 +27,7 @@
                   <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/">ホーム</a></h3>
                 </section>
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>">ご予約方法について</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/reservation/">ご予約方法について</a></h3>
                 </section>
 
                 <section>
