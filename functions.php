@@ -593,6 +593,20 @@ function my_upload_uri_shortcode()
 add_shortcode('upload_uri', 'my_upload_uri_shortcode');
 // ＝＝＝＝不要＝＝＝＝
 
+
+// ACF オプションページ「ご予約方法」追加
+if ( function_exists('acf_add_options_page') ) {
+
+    acf_add_options_page(array(
+        'page_title'  => 'ご予約方法について',   // ページタイトル
+        'menu_title'  => 'ご予約方法',           // 管理メニューの表示名
+        'menu_slug'   => 'reservation_settings', // スラッグ（ACF JSONと一致）
+        'capability'  => 'edit_posts',           // 権限
+        'redirect'    => false                   // サブページに飛ばさない
+    ));
+
+}
+
 //ニュースページネーション（NEWS / MEMBER 自動判定：query 内容を優先）
 function custom_pagination($query = null)
 {
