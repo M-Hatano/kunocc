@@ -5,23 +5,48 @@ add_filter('template_include', function($template){
     return $template;
 });
 
-add_filter('template_include', function ($template) {
+/*--------------------------------
+ * STEP3：/member/ 以下をログイン必須（ID保持版）
+ --------------------------------*/
+ add_action('init', function () {
 
-    // URLパスを取得（固定ページのスラッグ判定を強化）
-    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-
-    // /member/ または /member/?xxx の場合すべて一致
-    if ($path === 'kunocc/cms/member' || $path === 'member') {
-
-        $new_template = locate_template('page-120-member.php');
-        if ($new_template) {
-            return $new_template;
-        }
+    if (is_user_logged_in()) {
+        return;
     }
 
-    return $template;
-});
+    // 現在のURLパス
+    $request_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+    // クエリ文字列も取得（?id=9017 を落とさない）
+    $query_string = isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING']
+        ? '?' . $_SERVER['QUERY_STRING']
+        : '';
+
+    // WordPress のベースパス（例：/kunocc/cms/）
+    $home_path = wp_parse_url(home_url('/'), PHP_URL_PATH);
+    if (!$home_path) {
+        $home_path = '/';
+    }
+
+    // /member/ の絶対パス
+    $member_base = rtrim($home_path, '/') . '/member/';
+
+    // /member/以下ならログイン必須
+    if (strpos($request_path, $member_base) === 0) {
+
+        // 重複を防ぐ
+        $clean_path = preg_replace('#^' . preg_quote($home_path, '#') . '#', '', $request_path);
+
+        // ▼ redirect_to（?id=9017 を必ず付ける）
+        $redirect_to = home_url('/' . ltrim($clean_path, '/')) . $query_string;
+
+        // ▼ あなた専用ログインURL
+        $login_url = home_url('/knc-120.php') . '?redirect_to=' . rawurlencode($redirect_to);
+
+        wp_redirect($login_url);
+        exit;
+    }
+});
 
 // WordPressの管理画面ログインURLを変更する
 define('LOGIN_CHANGE_PAGE', 'knc-120.php');
@@ -840,3 +865,157 @@ add_action('template_redirect', function () {
         error_log('-------------------------------');
     }
 });
+
+/*--------------------------------
+ * 会員向け記事用カスタム投稿タイプ
+ * URL例：
+ *   一覧   : /member/news/
+ *   個別   : /member/news/スラッグ/
+ --------------------------------*/
+ add_action( 'init', 'my_register_member_post_type' );
+ function my_register_member_post_type() {
+ 
+     $labels = array(
+         'name'          => '会員向け記事',
+         'singular_name' => '会員向け記事',
+         'add_new'       => '新規追加',
+         'add_new_item'  => '会員向け記事を追加',
+         'edit_item'     => '会員向け記事を編集',
+         'new_item'      => '新しい会員向け記事',
+         'view_item'     => '会員向け記事を表示',
+         'search_items'  => '会員向け記事を検索',
+         'not_found'     => '会員向け記事はありません。',
+     );
+ 
+     register_post_type( 'member_post', array(
+         'labels'             => $labels,
+         'public'             => true,
+         'show_ui'            => true,
+         'show_in_menu'       => true,
+         'menu_position'      => 5,
+         'menu_icon'          => 'dashicons-lock',
+         'has_archive'        => 'member/news',
+         'rewrite'            => array(
+             'slug'       => 'member/news',
+             'with_front' => false,
+         ),
+         'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+         'exclude_from_search'=> true,
+         'publicly_queryable' => true,
+         'show_in_rest'       => true,
+     ) );
+ }
+
+ /*--------------------------------
+ * STEP2：会員向けカテゴリ（タクソノミー）
+ --------------------------------*/
+add_action( 'init', 'my_register_member_taxonomy' );
+function my_register_member_taxonomy() {
+
+    $labels = array(
+        'name'              => '会員向けカテゴリ',
+        'singular_name'     => '会員向けカテゴリ',
+        'search_items'      => 'カテゴリを検索',
+        'all_items'         => 'すべてのカテゴリ',
+        'edit_item'         => 'カテゴリを編集',
+        'update_item'       => 'カテゴリを更新',
+        'add_new_item'      => '新規カテゴリを追加',
+        'new_item_name'     => '新しいカテゴリ名',
+        'menu_name'         => '会員向けカテゴリ',
+    );
+
+    register_taxonomy(
+        'member_category',      // タクソノミー名
+        'member_post',          // 紐づける投稿タイプ
+        array(
+            'hierarchical'      => true, // カテゴリ型（階層あり）
+            'labels'            => $labels,
+            'show_ui'           => true,
+            'show_admin_column' => true,
+            'show_in_rest'      => true, // ブロックエディタ対応
+            'rewrite'           => array(
+                'slug'       => 'member/news/category',
+                'with_front' => false,
+            ),
+        )
+    );
+}
+
+/*--------------------------------
+ * STEP4-1：メディアに「会員専用ファイル」チェック追加
+ --------------------------------*/
+ add_filter( 'attachment_fields_to_edit', 'my_member_flag_field', 10, 2 );
+ function my_member_flag_field( $form_fields, $post ) {
+ 
+     $is_member_only = get_post_meta( $post->ID, '_member_only', true );
+ 
+     $form_fields['member_only'] = array(
+         'label' => '会員専用ファイル',
+         'input' => 'html',
+         'html'  => '<label><input type="checkbox" name="attachments[' . $post->ID . '][member_only]" value="1" ' . checked( $is_member_only, '1', false ) . '> このファイルを会員専用にする</label>',
+         'helps' => 'チェックすると、このファイルは会員限定でのみアクセスできます。',
+     );
+ 
+     return $form_fields;
+ }
+ 
+ add_filter( 'attachment_fields_to_save', 'my_member_flag_field_save', 10, 2 );
+ function my_member_flag_field_save( $post, $attachment ) {
+ 
+     $is_member_only = isset( $attachment['member_only'] ) ? '1' : '0';
+     update_post_meta( $post['ID'], '_member_only', $is_member_only );
+ 
+     return $post;
+ }
+
+ /*--------------------------------
+ * STEP4-2：本文内の会員専用ファイルURLを保護URLに自動変換
+ --------------------------------*/
+add_filter( 'the_content', 'my_member_protect_member_only_files' );
+function my_member_protect_member_only_files( $content ) {
+
+    $upload_dir = wp_get_upload_dir();
+    $baseurl    = $upload_dir['baseurl'];
+    if ( ! $baseurl ) return $content;
+
+    $baseurl_pattern = preg_quote( $baseurl, '#' );
+
+    // --- PDFなどの<a href="">リンク変換 ---
+    $content = preg_replace_callback(
+        '#<a([^>]+)href=["\'](' . $baseurl_pattern . '[^"\']+)["\']([^>]*)>#i',
+        function ( $m ) {
+
+            $attachment_id = attachment_url_to_postid( $m[2] );
+            if ( ! $attachment_id ) return $m[0];
+
+            $is_member_only = get_post_meta( $attachment_id, '_member_only', true );
+            if ( $is_member_only !== '1' ) return $m[0];
+
+            $url = add_query_arg( array( 'id' => $attachment_id ), home_url( '/member/member-file/' ) );
+            return '<a' . $m[1] . 'href="' . esc_url( $url ) . '"' . $m[3] . '>';
+        },
+        $content
+    );
+
+    // --- 画像<img src="">も会員専用にする場合 ---
+    $content = preg_replace_callback(
+        '#<img([^>]+)src=["\'](' . $baseurl_pattern . '[^"\']+)["\']([^>]*)>#i',
+        function ( $m ) {
+
+            $attachment_id = attachment_url_to_postid( $m[2] );
+            if ( ! $attachment_id ) return $m[0];
+
+            $is_member_only = get_post_meta( $attachment_id, '_member_only', true );
+            if ( $is_member_only !== '1' ) return $m[0];
+
+            $url = add_query_arg( array( 'id' => $attachment_id ), home_url( '/member/member-file/' ) );
+            return '<img' . $m[1] . 'src="' . esc_url( $url ) . '"' . $m[3] . '>';
+        },
+        $content
+    );
+
+    return $content;
+}
+
+
+ 
