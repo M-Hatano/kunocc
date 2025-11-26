@@ -38,8 +38,16 @@
                     </table>
                 <?php endif; ?>
 
-                <p class="rbox__notes">備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。</p>
-                <p class="rbox__notes">備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。</p>
+                <?php if (have_rows('notes')): ?>
+                    <?php while (have_rows('notes')): the_row();
+                        $note = get_sub_field('note_text');
+                    ?>
+                        <p class="rbox__notes">
+                            <?php echo nl2br(esc_html($note)); ?>
+                        </p>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+
             </section>
 
             <section class="rbox">
@@ -61,9 +69,15 @@
                         </tbody>
                     </table>
                 <?php endif; ?>
-
-                <p class="rbox__notes">備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。</p>
-                <p class="rbox__notes">備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。備考テキストが入ります。テキストが入ります。備考テキストが入ります。</p>
+                <?php if (have_rows('notes2')): ?>
+                    <?php while (have_rows('notes2')): the_row();
+                        $note = get_sub_field('note_text2');
+                    ?>
+                        <p class="rbox__notes">
+                            <?php echo nl2br(esc_html($note)); ?>
+                        </p>
+                    <?php endwhile; ?>
+                <?php endif; ?>
 
                 <p class="rbox__com">未経験の方からでも丁寧に指導いたしますので安心してご応募いただけます。<br>現在、活躍しているスタッフのほとんどが未経験からスタートしています。</p>
 
