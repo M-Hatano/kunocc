@@ -17,7 +17,6 @@
     </div>
   </div>
 
-  <!-- 共通メニュー -->
   <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
 
   <div class="c-column">
@@ -26,12 +25,10 @@
 
         <h2 class="c-head6">会員様お知らせ<span>Member News</span></h2>
 
-        <ul class="news-box__list">
-
         <?php
-        /* -------------------------------------------------
-         * 取得カテゴリは「member + 子カテゴリ全部」
-         * ------------------------------------------------*/
+        /* ----------------------------------------
+         * 対象カテゴリ
+         * ---------------------------------------- */
         $category_slugs = ['member', 'kusunoki', 'information'];
 
         $tax_query = [
@@ -43,15 +40,24 @@
             ]
         ];
 
-        /* -------------------------------------------------
-         * 基本情報
-         * ------------------------------------------------*/
-        $paged          = max(1, get_query_var('paged'));
+        /* ----------------------------------------
+         * 年別フィルタ（★追加）
+         * ---------------------------------------- */
+        $year = isset($_GET['year']) ? intval($_GET['year']) : null;
+
+        /* ----------------------------------------
+         * ページ番号（GET対応）
+         * ---------------------------------------- */
+        $paged = max(1, (int) get_query_var('paged'));
+        if (!$paged) {
+            $paged = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
+        }
+
         $posts_per_page = 10;
 
-        /* -------------------------------------------------
+        /* ----------------------------------------
          * Sticky取得（1ページ目のみ）
-         * ------------------------------------------------*/
+         * ---------------------------------------- */
         $sticky_ids = [];
         $shown_ids  = [];
 
@@ -59,14 +65,19 @@
             $all_sticky = get_option('sticky_posts');
 
             if (!empty($all_sticky)) {
-                $sticky_ids = get_posts([
+                $sticky_args = [
                     'post_type'      => 'post',
                     'post__in'       => $all_sticky,
                     'fields'         => 'ids',
                     'posts_per_page' => -1,
                     'tax_query'      => $tax_query,
-                ]);
+                ];
 
+                if ($year) {
+                    $sticky_args['year'] = $year; // ★年フィルタ適用
+                }
+
+                $sticky_ids = get_posts($sticky_args);
                 $sticky_ids = array_slice($sticky_ids, 0, $posts_per_page);
             }
 
@@ -76,6 +87,8 @@
                     'post__in'  => $sticky_ids,
                     'orderby'   => 'post__in',
                 ]);
+
+                echo '<ul class="news-box__list">';
 
                 while ($sticky_q->have_posts()) :
                     $sticky_q->the_post();
@@ -98,24 +111,34 @@
                     </li>
         <?php
                 endwhile;
+                echo '</ul>';
                 wp_reset_postdata();
             endif;
         }
 
-        /* -------------------------------------------------
+        /* ----------------------------------------
          * 通常記事
-         * ------------------------------------------------*/
+         * ---------------------------------------- */
         $remain = ($paged === 1) ? $posts_per_page - count($shown_ids) : $posts_per_page;
 
-        $normal_q = new WP_Query([
+        $normal_args = [
             'post_type'           => 'post',
             'paged'               => $paged,
             'posts_per_page'      => $remain,
             'post__not_in'        => $shown_ids,
             'ignore_sticky_posts' => true,
             'tax_query'           => $tax_query,
-        ]);
+        ];
 
+        if ($year) {
+            $normal_args['year'] = $year; // ★年フィルタ適用
+        }
+
+        $normal_q = new WP_Query($normal_args);
+        ?>
+
+        <ul class="news-box__list">
+        <?php
         if ($normal_q->have_posts()):
             while ($normal_q->have_posts()): $normal_q->the_post();
         ?>
@@ -139,19 +162,17 @@
         else:
             echo '<li>現在お知らせはありません。</li>';
         endif;
-
-        wp_reset_postdata();
         ?>
         </ul>
 
-        <!-- ページネーション -->
+        <!-- ▼ ページネーション（custom_pagination使用） -->
         <ul class="c-pagenation">
             <?php custom_pagination($normal_q); ?>
         </ul>
 
       </div>
 
-      <!-- ▼ サイドバー（member専用） -->
+      <!-- 右側 -->
       <div class="news-box__right">
         <h3 class="c-head5">Archive</h3>
         <div class="news-box__right--box">
@@ -164,6 +185,7 @@
                 $recent_q = new WP_Query([
                     'posts_per_page' => 5,
                     'post_type'      => 'post',
+                    'ignore_sticky_posts' => true,
                     'tax_query'      => [
                         [
                             'taxonomy' => 'category',
@@ -188,12 +210,14 @@
                 <?php
                 $years = fhg_get_all_years();
                 foreach ($years as $y):
+
+                    // ★ この記事数を正しくカウント（カテゴリ + year を両方指定）
                     $count_posts = get_posts([
-                        'post_type' => 'post',
-                        'year'      => $y,
-                        'fields'    => 'ids',
+                        'post_type'      => 'post',
+                        'year'           => $y,
+                        'fields'         => 'ids',
                         'posts_per_page' => -1,
-                        'tax_query' => [
+                        'tax_query'      => [
                             [
                                 'taxonomy' => 'category',
                                 'field'    => 'slug',
@@ -202,24 +226,26 @@
                             ]
                         ]
                     ]);
+
                     if (!empty($count_posts)):
                 ?>
                     <li>
-                        <a href="<?php echo esc_url(home_url("/category/member/{$y}/")); ?>">
+                        <a href="<?php echo esc_url(add_query_arg('year', $y, home_url('/member/'))); ?>">
                             <?php echo $y; ?>年（<?php echo count($count_posts); ?>）
                         </a>
                     </li>
-                <?php endif; endforeach; ?>
+                <?php
+                    endif;
+                endforeach;
+                ?>
                 </ul>
             </div>
 
         </div>
       </div>
-      <!-- ▲ サイドバー -->
 
     </div>
 
-    <!-- パンくず -->
     <ul class="c-brd">
       <li><a href="<?php echo esc_url(home_url('/')); ?>">TOP</a></li>
       <li>会員様お知らせ</li>
