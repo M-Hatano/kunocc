@@ -293,7 +293,7 @@ section h2 {
 }
 .deco._01 span {
   padding-top: 3.889%;
-  background: url(../img/dresscode/img_ashi_01.png) left top/100% 100% no-repeat;
+  background: url("../img/dresscode/img_ashi_01.png") left top/100% 100% no-repeat;
 }
 @media screen and (max-width: 767px) {
   .deco._01 {

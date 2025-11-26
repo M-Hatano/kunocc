@@ -391,7 +391,7 @@
 .box-pat ul li a::after {
     content: "";
     display: inline-block;
-    background: url(../img/member/icn_01.png)no-repeat;
+    background: url("../img/member/icn_01.png")no-repeat;
     width: 24px;
     height: 24px;
     position: absolute;
@@ -539,7 +539,7 @@
     height: 0;
     padding-top: 100%;
     display: block;
-    background: url(../img/member/bg_ashi_03.png) left top / 100% 100% no-repeat;
+    background: url("../img/member/bg_ashi_03.png") left top / 100% 100% no-repeat;
 }
 
 @media screen and (max-width: 767px) {

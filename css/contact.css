@@ -1,5 +1,5 @@
 .c-main {
-  background-image: url(../img/common/bg_ashi_01.png);
+  background-image: url("../img/common/bg_ashi_01.png");
   background-repeat: repeat;
 }
 
@@ -250,7 +250,7 @@
   width: 267px;
   padding-top: 70.76%;
   display: block;
-  background: url(../img/contact/img_deco_01.png) left top / 100% 100% no-repeat;
+  background: url("../img/contact/img_deco_01.png") left top / 100% 100% no-repeat;
 }
 
 @media screen and (max-width: 767px) {

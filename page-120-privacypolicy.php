@@ -1,7 +1,7 @@
 <?php
 /*
-      Template Name: プライバシーポリシー
-      */
+Template Name: プライバシーポリシー
+*/
 ?>
 
 <!--  header -->

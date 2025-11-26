@@ -1,10 +1,7 @@
 <?php
-/*
- * 会員お知らせ 年別アーカイブ用 date.php
- * 3カテゴリを自動判定して切り替える
- * - member
- * - information
- * - kusunoki
+/**
+ * Template Name: 会員お知らせ 年別アーカイブ
+ * Template Post Type: post
  */
 ?>
 

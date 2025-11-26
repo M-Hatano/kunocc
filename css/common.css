@@ -1645,7 +1645,7 @@ table {
   content: "";
   width: 40px;
   height: 30px;
-  background: url(../img/common/ic_weather.png) left top/100% 100% no-repeat;
+  background: url("../img/common/ic_weather.png") left top/100% 100% no-repeat;
   display: inline-block;
   margin: 12px 0 10px;
 }
@@ -1653,7 +1653,7 @@ table {
 .c-weather.c-clothes a::before {
   width: 40px;
   height: 30px;
-  background: url(../img/common/ic_clothes.png) left top / 100% 100% no-repeat;
+  background: url("../img/common/ic_clothes.png") left top / 100% 100% no-repeat;
   margin: 10px 0 5px;
 }
 
@@ -1697,7 +1697,7 @@ table {
 #	メイン背景
 # ================================================================= */
 .c-main {
-  background-image: url(../img/common/bg_ashi_03.png);
+  background-image: url("../img/common/bg_ashi_03.png");
   background-repeat: repeat;
   background-color: #F8F7F2;
 }
@@ -2610,7 +2610,7 @@ table {
 #	フッター上
 # ================================================================= */
 .c-btbnr {
-  background: url(../img/common/bg_footer_01.jpg) center/cover no-repeat;
+  background: url("../img/common/bg_footer_01.jpg") center/cover no-repeat;
   padding: 0 0 20px;
 }
 
@@ -2800,7 +2800,7 @@ table {
   display: inline-block;
   width: 26px;
   height: 27px;
-  background: url(../img/common/icn_pdf.png) left top/100% 100% no-repeat;
+  background: url("../img/common/icn_pdf.png") left top/100% 100% no-repeat;
   -webkit-transform: translateY(6px);
   transform: translateY(6px);
 }
@@ -3042,7 +3042,7 @@ table {
   width: 82px;
   height: 82px;
   position: absolute;
-  background: url(../img/common/img_ashi_01.png)left top / 100% 100%;
+  background: url("../img/common/img_ashi_01.png")left top / 100% 100%;
 }
 
 .for_deco span:nth-of-type(1),
@@ -3309,7 +3309,7 @@ table {
 .mailbox::before {
   content: "";
   display: inline-block;
-  background: url(../img/common/icn_01.png)center / 100% 100% no-repeat;
+  background: url("../img/common/icn_01.png")center / 100% 100% no-repeat;
   width: 55px;
   height: 44px;
   margin-right: 30px;

@@ -1,11 +1,8 @@
 <footer class="c-footer" role="contentinfo" id="inc-ft">
 
-  <div class="c-rease">
-    <div>
-      <p>ご予約のスタートはお電話でお受けしております。</p>
-      <a href="">ご予約方法についてはこちら</a>
-    </div>
-  </div>
+  <!-- 共通パーツ -->
+  <?php include get_template_directory() . '/include-120-reservation-start.php'; ?>
+  <!-- 共通パーツ -->
 
   <div class="c-btbnr" id="c-btbnr">
     <div class="c-column">
@@ -20,9 +17,22 @@
 
         <div>
           <p class="reseinf"><a href="mailto:info@kunocc.co.jp">メール</a>でのご予約情報送信はこちら</a></p>
+          <?php
+          $excel = get_field('reservation_form_excel', 'option');
+          $pdf   = get_field('reservation_form_pdf', 'option');
+          ?>
+
           <ul>
-            <li><a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/common/yoyaku251006.xlsx">ご予約連絡フォーム<br class="c-brsp">(エクセル)</a></li>
-            <li><a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/common/yoyaku251008.pdf" target="_blank">ご予約連絡フォーム<br class="c-brsp">(PDF)</a></li>
+              <li>
+                  <a href="<?php echo $excel ? esc_url($excel['url']) : '#'; ?>" target="_blank">
+                      ご予約連絡フォーム<br class="c-brsp">(エクセル)
+                  </a>
+              </li>
+              <li>
+                  <a href="<?php echo $pdf ? esc_url($pdf['url']) : '#'; ?>" target="_blank">
+                      ご予約連絡フォーム<br class="c-brsp">(PDF)
+                  </a>
+              </li>
           </ul>
         </div>
       </div>

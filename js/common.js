@@ -72,7 +72,7 @@ $(document).ready(function() {
     $('html, body').animate({ scrollTop: 0 }, 'slow');
   });
   
-  // 富士平原wetherをクリックしたときに上に行かないようにする
+  // wetherをクリックしたときに上に行かないようにする
   $('.c-weather a').on('click', function(event) {
     event.preventDefault(); // ← これでデフォルトの「ページ上部に移動」動作を防止
     T.window_open('Awk8ddCfr2gLVrfkNslvIV34RUrlraHQ');
