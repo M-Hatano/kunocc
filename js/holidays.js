@@ -32,10 +32,22 @@ function getAllHolidays(year) {
     holidays[getHappyMonday(year, 9, 3)] = "敬老の日";        // 9月第3月曜
     holidays[getHappyMonday(year, 10, 2)] = "スポーツの日";   // 10月第2月曜
 
-    // 天皇誕生日（令和基準なら 2月23日／昭和なら 12月23日）
-    holidays[`${year}-2-23`] = "天皇誕生日";
+    // ---------------------------
+    // 天皇誕生日
+    // ---------------------------
+    if (year >= 2020) {
+        holidays[`${year}-02-23`] = "天皇誕生日"; // 令和
+    } else if (year >= 1989 && year <= 2018) {
+        holidays[`${year}-12-23`] = "天皇誕生日"; // 平成
+    }
 
-    return addSubstituteHolidays(holidays);
+    // ★ 振替休日
+    const withSubstitute = addSubstituteHolidays(holidays);
+
+    // ★ 国民の休日
+    const withNational = addNationalHolidays(withSubstitute);
+
+    return withNational;
 }
 
 function addSubstituteHolidays(holidays) {
@@ -59,30 +71,33 @@ function addSubstituteHolidays(holidays) {
     return newHolidays;
 }
 
-function addNationalHolidays(holidays) {
+// ---------------------------
+// 国民の休日
+// ---------------------------
+function addNationalHolidays(holidays){
     const newHolidays = { ...holidays };
-    const dates = Object.keys(holidays).sort(); // 昇順にソート
+    const dates = Object.keys(holidays).sort();
 
-    for (let i = 0; i < dates.length - 1; i++) {
+    for(let i=0; i<dates.length-1; i++){
         const date1 = new Date(dates[i]);
-        const date2 = new Date(dates[i + 1]);
+        const date2 = new Date(dates[i+1]);
 
-        let diff = (date2 - date1) / (1000*60*60*24);
-        if(diff > 1){
-            for(let d=1; d<diff; d++){
-                let nh = new Date(date1);
-                nh.setDate(nh.getDate()+d);
-                const nhStr = nh.toISOString().slice(0,10);
-                if(!newHolidays[nhStr] && nh.getDay()!==0){
-                    newHolidays[nhStr] = "国民の休日";
-                }
+        const diff = (date2 - date1) / (1000*60*60*24);
+
+        if(diff === 2){ // 前後の祝日に挟まれた平日1日
+            const nh = new Date(date1);
+            nh.setDate(nh.getDate()+1);
+            const nhStr = nh.toISOString().slice(0,10);
+
+            // 平日のみ追加（土日除外）
+            if(!newHolidays[nhStr] && nh.getDay() !== 0 && nh.getDay() !== 6){
+                newHolidays[nhStr] = "国民の休日";
             }
         }
     }
 
     return newHolidays;
 }
-
 
 // 春分の日（年によって変化、近似式）
 function getVernalEquinox(year) {
