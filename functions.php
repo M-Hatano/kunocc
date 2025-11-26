@@ -111,24 +111,6 @@ add_filter('single_template', function ($template) {
     return $template;
 });
 
-// 会員ニュースの年度別ページだけ date-member.php を適用
-add_filter('template_include', function($template){
-
-    $uri = trim($_SERVER['REQUEST_URI'], '/');
-
-    // /member/◯◯/2025/ の形式を判定
-    if (preg_match('#^member/(information|kusunoki)/[0-9]{4}/?$#', $uri) ||
-        preg_match('#^member/[0-9]{4}/?$#', $uri)) {
-
-        $member_tpl = get_template_directory() . '/date-member.php';
-
-        if (file_exists($member_tpl)) {
-            return $member_tpl;
-        }
-    }
-
-    return $template;
-});
 
 // bodyIDを取得する関数
 function my_custom_body_id()
@@ -138,39 +120,35 @@ function my_custom_body_id()
     $uri = preg_replace('#^[^/]+/[^/]+/#', '', $uri);
 
     /* ---------------------------------------------------
-     * ▼ 1) 会員ニュース SINGLE
-     *    カテゴリが member / kusunoki / information
+     * ▼ 会員ニュース（一覧 / 年別 / ページ2 / single）
+     *    カテゴリ: member / kusunoki / information
      * --------------------------------------------------- */
-    if (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information'))) {
-        return 'single-page';   // ID は single-page
-    }
+    if (
+        // 投稿 single
+        (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information')))
 
-    /* ---------------------------------------------------
-     * ▼ 2) 会員ニュース 固定ページ or ページネーション
-     * --------------------------------------------------- */
-    if (is_page(array('member', 'kusunoki', 'information')) ||
-        preg_match('#^member/(information|kusunoki)/page/[0-9]+/?$#', $uri) ||
-        preg_match('#^member/page/[0-9]+/?$#', $uri)) {
+        // category archive（年別含む）
+        || is_category(array('member','kusunoki','information'))
 
+        // 固定ページ /member/, /member/kusunoki/, /member/information/
+        || is_page(array('member','kusunoki','information'))
+    ) {
         return 'm-news';
     }
 
     /* ---------------------------------------------------
-     * ▼ 3) 一般ニュース SINGLE
+     * ▼ 一般ニュース（single, 年別）
      * --------------------------------------------------- */
     if (is_single() && has_category('news')) {
-        return 'single-page';  // ID: single-page
+        return 'single-page';
     }
 
-    /* ---------------------------------------------------
-     * ▼ 4) 年別アーカイブ（一般ニュース）
-     * --------------------------------------------------- */
     if (is_date()) {
-        return 'single-page';  
+        return 'single-page';
     }
 
     /* ---------------------------------------------------
-     * ▼ 以下は共通
+     * ▼ その他ページ
      * --------------------------------------------------- */
     if (is_front_page()) return 'top';
     if (is_404()) return 'errorpage';
@@ -186,27 +164,31 @@ function my_custom_body_id()
 // body_classにカスタムクラス（ルート親のスラッグ）を追加する関数
 function my_custom_body_class()
 {
-    // 年別アーカイブ（/2025/ など）は一般ニュース扱い
-    if (is_date()) {
-        return 'news';   // ★ date.php は必ず news
+    /* -----------------------------------------
+     * 会員ページ（一覧 / 年別 / single / 固定ページ）
+     * ----------------------------------------- */
+    if (
+        is_category(array('member','kusunoki','information')) ||
+        (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information'))) ||
+        is_page(array('member','kusunoki','information'))
+    ) {
+        return 'm-news';
     }
 
-    // single（general）は news
+    /* -----------------------------------------
+     * 一般ニュース
+     * ----------------------------------------- */
     if (is_single() && has_category('news')) {
         return 'news';
     }
 
-    // MEMBER 系 single
-    if (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information'))) {
-        return 'm-news';
+    if (is_date()) {
+        return 'news';
     }
 
-    // MEMBER 固定ページ
-    if (is_page(array('member', 'kusunoki', 'information'))) {
-        return 'm-news';
-    }
-
-    // 以下：通常固定ページ
+    /* -----------------------------------------
+     * 固定ページ
+     * ----------------------------------------- */
     if (is_page()) {
         global $post;
         $slug = get_post_field('post_name', $post);
@@ -221,7 +203,8 @@ function my_custom_body_class()
     if (is_404()) return 'errorpage';
     if (is_front_page()) return 'top';
 
-    return 'news'; // 予備
+    /* その他は news 扱い（予備） */
+    return 'news';
 }
 
 // body_class フィルターでカスタムクラスを追加
@@ -240,7 +223,6 @@ add_filter('body_class', 'my_custom_body_classes');
 function enqueue_page_specific_styles()
 {
     $dir = get_template_directory_uri();
-    $uri = $_SERVER['REQUEST_URI'] ?? '';
 
     /* -----------------------------------
      * ▼ 共通CSS（全ページ）
@@ -253,26 +235,25 @@ function enqueue_page_specific_styles()
     );
 
     /* -----------------------------------
-    * ▼ 会員ニュース（member / information / kusunoki）
-    * ----------------------------------- */
+     * ▼ 会員ニュース（member / information / kusunoki）
+     *    ・固定ページ
+     *    ・single（投稿）
+     *    ・カテゴリ一覧（年別含む）
+     *    → 必ず m-news.css を読み込む
+     * ----------------------------------- */
     if (
+        // カテゴリー（年別も含む）
+        is_category(array('member', 'kusunoki', 'information'))
 
-        // single（member 系）
-        (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information')))
+        // SINGLE（投稿）
+        || (is_single() && (
+                has_category('member') ||
+                has_category('kusunoki') ||
+                has_category('information')
+            ))
 
         // 固定ページ
-        || is_page(array('member', 'kusunoki', 'information', 'partnership', 'm-calendar', 'm-registration'))
-
-        // 年別アーカイブ（member 系）
-        || (is_date() && strpos($uri, '/member/') !== false)
-
-        // ページネーション
-        || preg_match('#/member/(information|kusunoki)/page/[0-9]+/?$#', $uri)
-        || preg_match('#/member/page/[0-9]+/?$#', $uri)
-
-        // その他 member 固定
-        || strpos($uri, '/member/partnership') !== false
-        || strpos($uri, '/member/calendar') !== false
+        || is_page(array('member', 'kusunoki', 'information'))
     ) {
 
         wp_enqueue_style(
@@ -281,63 +262,43 @@ function enqueue_page_specific_styles()
             [],
             null
         );
+
+        return; // 他のCSSはここで停止
+    }
+
+    /* -----------------------------------
+     * ▼ 一般ニュース（news カテゴリ）
+     * ----------------------------------- */
+    if (is_single() && has_category('news')) {
+        wp_enqueue_style('news-style', $dir . '/css/news.css', [], null);
+        return;
+    }
+
+    // 通常 WordPress の年別アーカイブ（/2025/）
+    if (is_date() && !is_category()) {
+        wp_enqueue_style('news-style', $dir . '/css/news.css', [], null);
         return;
     }
 
     /* -----------------------------------
-     * ▼ date.php（一般ニュース）
-     *    /2025/ /2024/ のような標準アーカイブ
+     * ▼ 固定ページの個別CSS（従来）
      * ----------------------------------- */
-    if (is_date()) {
-        wp_enqueue_style(
-            'news-style',
-            $dir . '/css/news.css',
-            [],
-            null
-        );
-        return;
-    }
-
-    /* -----------------------------------
-     * 以下従来通り
-     * ----------------------------------- */
-    if (is_front_page()) {
-        wp_enqueue_style(
-            'top-style',
-            $dir . '/css/top.css',
-            [],
-            null
-        );
-        return;
-    }
-
-    if (is_single()) {
-        wp_enqueue_style(
-            'news-style',
-            $dir . '/css/news.css',
-            [],
-            null
-        );
-        return;
-    }
-
     if (is_page()) {
         global $post;
         $slug = $post->post_name;
+
+        // 親ページがある場合は親スラッグに揃える
         $anc  = get_post_ancestors($post->ID);
         if (!empty($anc)) {
             $top  = end($anc);
             $slug = get_post_field('post_name', $top);
         }
 
-        $css_filename  = $slug . '.css';
-        $css_file_uri  = $dir . '/css/' . $css_filename;
-        $css_file_path = get_template_directory() . '/css/' . $css_filename;
-
-        if (file_exists($css_file_path)) {
+        $css_path = get_template_directory() . '/css/' . $slug . '.css';
+        if (file_exists($css_path)) {
             wp_enqueue_style(
                 $slug . '-style',
-                $css_file_uri,
+                $dir . '/css/' . $slug . '.css',
                 [],
                 null
             );
