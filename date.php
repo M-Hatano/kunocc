@@ -1,49 +1,19 @@
 <?php
-/*
- * 年別アーカイブ（/2025/）
- * NEWS / MEMBER を自動判定して記事を分岐させる
- */
+    // 年を取得
+    $year = intval( get_query_var('year') );
 
-// URL で news / member を判定
-$uri = $_SERVER['REQUEST_URI'] ?? '';
-$mode = (strpos($uri, '/member/') !== false) ? 'member' : 'news';
+    // /news/2025/ などで news カテゴリの記事だけを表示する
+    if (get_query_var('news_archive')) {
 
-add_action('pre_get_posts', function($query) use ($mode) {
+        add_action('pre_get_posts', function($query) use ($year) {
+            if (!is_admin() && $query->is_main_query()) {
+                $query->set('category_name', 'news'); // ← ここをあなたのカテゴリに合わせてもOK
+                $query->set('year', $year);
+            }
+        });
 
-    if (!is_admin() && $query->is_main_query() && is_year()) {
-
-        $year = get_query_var('year');
-
-        if ($mode === 'news') {
-            // NEWS のみ
-            $query->set('tax_query', [
-                [
-                    'taxonomy' => 'category',
-                    'field'    => 'slug',
-                    'terms'    => ['news'],
-                    'operator' => 'IN'
-                ]
-            ]);
-        }
-
-        if ($mode === 'member') {
-            // MEMBER 系（member / kusunoki / information）
-            $query->set('tax_query', [
-                [
-                    'taxonomy' => 'category',
-                    'field'    => 'slug',
-                    'terms'    => ['member', 'kusunoki', 'information'],
-                    'operator' => 'IN'
-                ]
-            ]);
-        }
-
-        // 年度フィルタ
-        $query->set('year', $year);
     }
-});
-?>
-
+    ?>
    
    <!--  header -->
     <?php get_header('120'); ?>
@@ -134,7 +104,7 @@ add_action('pre_get_posts', function($query) use ($mode) {
                 'paged'               => $paged,
                 'posts_per_page'      => $remain,
                 'category_name'       => 'news',
-                'post__not_in'        => $shown_ids,
+                'post__not_in'        => array_merge($shown_ids, $post__not_in ?? []),
                 'ignore_sticky_posts' => true,
                 'year'                => $year,     // ← 年度フィルタを追加
               ]);
@@ -180,7 +150,7 @@ add_action('pre_get_posts', function($query) use ($mode) {
 
             <!-- ページネーション -->
             <ul class="c-pagenation">
-              <?php custom_pagination($normal_q); ?>
+              <?php custom_pagination($normal_q); ?> <!-- ← $normal_q を渡す -->
             </ul>
           </div>
 
@@ -188,6 +158,7 @@ add_action('pre_get_posts', function($query) use ($mode) {
           // サイドバー：Archive リンク
           $years = fhg_get_news_years();  // news カテゴリ限定の年リスト
           if (! empty($years)) :
+            $base = home_url('news'); // ベース URL
           ?>
             <div class="news-box__right">
               <h3 class="c-head5">Archive</h3>
@@ -232,9 +203,9 @@ add_action('pre_get_posts', function($query) use ($mode) {
                       ]));
                     ?>
                       <li>
-                      <a href="<?php echo esc_url( home_url("/{$y}/") ); ?>">
+                        <a href="<?php echo esc_url("{$base}/{$y}/"); ?>">
                           <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
-                      </a>
+                        </a>
                       </li>
                     <?php endforeach; ?>
                   </ul>
