@@ -64,7 +64,7 @@
       <div class="c-header__logo">
       <a href="<?php echo esc_url(home_url('')); ?>/"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/common/logo.svg" alt="ロゴ画像"/></a>
       </div>
-      <p class="c-header__member"><a href="<?php echo esc_url(home_url('')); ?>/member/" target="_blank">会員専用</a></p>
+      <p class="c-header__member"><a href="<?php echo esc_url(home_url('')); ?>/member/">会員専用</a></p>
       <div class="c-header__menu js-menu">
         <div>
           <span>MENU</span>
@@ -119,7 +119,7 @@
                   <a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a>
                 </li>
                 <li>
-                  <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf">会員募集について</a>
+                  <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf" target="_blank">会員募集について</a>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/dresscode/">ドレスコード</a>
@@ -140,7 +140,7 @@
 
               <div class="c-nav__bnr">
                 <a href="https://weathernews.jp/golf/kanto/chiba/724/" class="c-nav__bnr--mbr _weat" target="_blank">久能CCの天気</a>
-                <a href="<?php echo esc_url(home_url('')); ?>/member/" class="c-nav__bnr--mbr" target="_blank">会員専用ページ</a>
+                <a href="<?php echo esc_url(home_url('')); ?>/member/" class="c-nav__bnr--mbr">会員専用ページ</a>
               </div>
             </div>
         </div>

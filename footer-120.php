@@ -24,7 +24,7 @@
 
           <ul>
               <li>
-                  <a href="<?php echo $excel ? esc_url($excel['url']) : '#'; ?>" target="_blank">
+                  <a href="<?php echo $excel ? esc_url($excel['url']) : '#'; ?>">
                       ご予約連絡フォーム<br class="c-brsp">(エクセル)
                   </a>
               </li>

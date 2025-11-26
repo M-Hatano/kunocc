@@ -489,16 +489,16 @@
   padding: unset;
 }
 
-.b-c-dtl__csbtn._cdtlb>div>ul li{
+.b-c-dtl__csbtn._cdtlb>div>ul li {
   margin: 0 5px;
 }
 
-.b-c-dtl__csbtn._cdtlb>div:first-of-type>ul li{
+.b-c-dtl__csbtn._cdtlb>div:first-of-type>ul li {
   background: #fff;
   border: unset;
 }
 
-.b-c-dtl__csbtn._cdtlb>div:first-of-type>ul li a{
+.b-c-dtl__csbtn._cdtlb>div:first-of-type>ul li a {
   color: #243749;
 }
 
@@ -535,7 +535,7 @@
     font-size: 3rem;
   }
 
-  .b-c-dtl__csbtn._cdtlb>div{
+  .b-c-dtl__csbtn._cdtlb>div {
     width: 100%;
   }
 }
@@ -637,7 +637,7 @@
 }
 
 .b-c-dtl__rate ul>li>span {
-  padding: 15px;
+  padding: 20px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: inline-block;
@@ -714,7 +714,8 @@
 }
 
 .b-c-dtl__yd li>span:nth-of-type(1) {
-  width: 100px;
+  width: 118px;
+  text-align: center;
 }
 
 /* REGULARだけ非表示 */
@@ -731,11 +732,11 @@
   }
 
   .b-c-dtl__yd li>span:nth-of-type(1) {
-    width: 50%;
+    width: 51%;
   }
 
   .b-c-dtl__yd li>span:nth-of-type(2) {
-    width: 50%;
+    width: 49%;
   }
 
   .b-c-dtl__yd li>span span {
