@@ -39,6 +39,121 @@
 
         <h2 class="c-head6">会員様お知らせ<span>Member News</span></h2>
 
+<<<<<<< Updated upstream
+=======
+        <?php
+        /* ----------------------------------------
+         * 対象カテゴリ
+         * ---------------------------------------- */
+        $category_slugs = ['member', 'kusunoki', 'information'];
+
+        $tax_query = [
+            [
+                'taxonomy' => 'category',
+                'field'    => 'slug',
+                'terms'    => $category_slugs,
+                'operator' => 'IN',
+            ]
+        ];
+
+        /* ----------------------------------------
+         * 年別フィルタ（★追加）
+         * ---------------------------------------- */
+        $year = isset($_GET['year']) ? intval($_GET['year']) : null;
+
+        /* ----------------------------------------
+         * ページ番号（GET対応）
+         * ---------------------------------------- */
+        $paged = max(1, get_query_var('paged'));
+        if (!$paged) {
+            $paged = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
+        }
+
+        $posts_per_page = 10;
+
+        /* ----------------------------------------
+         * Sticky取得（1ページ目のみ）
+         * ---------------------------------------- */
+        $sticky_ids = [];
+        $shown_ids  = [];
+
+        if ($paged === 1) {
+            $all_sticky = get_option('sticky_posts');
+
+            if (!empty($all_sticky)) {
+                $sticky_args = [
+                    'post_type'      => 'post',
+                    'post__in'       => $all_sticky,
+                    'fields'         => 'ids',
+                    'posts_per_page' => -1,
+                    'tax_query'      => $tax_query,
+                ];
+
+                if ($year) {
+                    $sticky_args['year'] = $year; // ★年フィルタ適用
+                }
+
+                $sticky_ids = get_posts($sticky_args);
+                $sticky_ids = array_slice($sticky_ids, 0, $posts_per_page);
+            }
+
+            if ($sticky_ids) :
+                $sticky_q = new WP_Query([
+                    'post_type' => 'post',
+                    'post__in'  => $sticky_ids,
+                    'orderby'   => 'post__in',
+                ]);
+
+                echo '<ul class="news-box__list">';
+
+                while ($sticky_q->have_posts()) :
+                    $sticky_q->the_post();
+                    $shown_ids[] = get_the_ID();
+        ?>
+                    <li>
+                        <a href="<?php
+                            $news_file = get_field('news_file');
+                            if (get_field('link_url')) {
+                                echo esc_url(get_field('link_url'));
+                            } elseif ($news_file && get_field('direct_link')) {
+                                echo esc_url($news_file);
+                            } else {
+                                the_permalink();
+                            }
+                        ?>">
+                        <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
+                        <?php the_title(); ?>
+                        </a>
+                    </li>
+        <?php
+                endwhile;
+                echo '</ul>';
+                wp_reset_postdata();
+            endif;
+        }
+
+        /* ----------------------------------------
+         * 通常記事
+         * ---------------------------------------- */
+        $remain = ($paged === 1) ? $posts_per_page - count($shown_ids) : $posts_per_page;
+
+        $normal_args = [
+            'post_type'           => 'post',
+            'paged'               => $paged,
+            'posts_per_page'      => $remain,
+            'post__not_in'        => $shown_ids,
+            'ignore_sticky_posts' => true,
+            'tax_query'           => $tax_query,
+        ];
+
+        if ($year) {
+            $normal_args['year'] = $year; // ★年フィルタ適用
+        }
+
+        $normal_q = new WP_Query($normal_args);
+        ?>
+
+>>>>>>> Stashed changes
         <ul class="news-box__list">
         <?php
           /* -------------------------------------------------

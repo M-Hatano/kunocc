@@ -18,23 +18,28 @@
         <div>
           <p class="reseinf"><a href="mailto:info@kunocc.co.jp">メール</a>でのご予約情報送信はこちら</a></p>
           <?php
-          $excel = get_field('reservation_form_excel', 'option');
-          $pdf   = get_field('reservation_form_pdf', 'option');
-          ?>
+            $excel = get_field('reservation_form_excel', 'option');
+            $pdf   = get_field('reservation_form_pdf', 'option');
 
-          <ul>
-              <li>
-                  <a href="<?php echo $excel ? esc_url($excel['url']) : '#'; ?>">
-                      ご予約連絡フォーム<br class="c-brsp">(エクセル)
-                  </a>
-              </li>
-              <li>
-                  <a href="<?php echo $pdf ? esc_url($pdf['url']) : '#'; ?>" target="_blank">
-                      ご予約連絡フォーム<br class="c-brsp">(PDF)
-                  </a>
-              </li>
-          </ul>
-        </div>
+            $excel_url = (is_array($excel) && isset($excel['url'])) ? $excel['url'] : '';
+            $pdf_url   = (is_array($pdf)   && isset($pdf['url']))   ? $pdf['url']   : '';
+            ?>
+            <div>
+              <p class="reseinf"><a href="mailto:info@kunocc.co.jp">メール</a>でのご予約情報送信はこちら</p>
+
+              <ul>
+                  <li>
+                      <a href="<?php echo $excel_url ? esc_url($excel_url) : '#'; ?>">
+                          ご予約連絡フォーム<br class="c-brsp">(エクセル)
+                      </a>
+                  </li>
+                  <li>
+                      <a href="<?php echo $pdf_url ? esc_url($pdf_url) : '#'; ?>" target="_blank">
+                          ご予約連絡フォーム<br class="c-brsp">(PDF)
+                      </a>
+                  </li>
+              </ul>
+            </div>
       </div>
     </div>
   </div>
