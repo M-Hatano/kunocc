@@ -1,20 +1,4 @@
-<?php
-    // 年を取得
-    $year = intval( get_query_var('year') );
 
-    // /news/2025/ などで news カテゴリの記事だけを表示する
-    if (get_query_var('news_archive')) {
-
-        add_action('pre_get_posts', function($query) use ($year) {
-            if (!is_admin() && $query->is_main_query()) {
-                $query->set('category_name', 'news'); // ← ここをあなたのカテゴリに合わせてもOK
-                $query->set('year', $year);
-            }
-        });
-
-    }
-    ?>
-   
    <!--  header -->
     <?php get_header('120'); ?>
     <!--  header -->

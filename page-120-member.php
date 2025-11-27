@@ -39,8 +39,6 @@
 
         <h2 class="c-head6">会員様お知らせ<span>Member News</span></h2>
 
-<<<<<<< Updated upstream
-=======
         <?php
         /* ----------------------------------------
          * 対象カテゴリ
@@ -153,7 +151,6 @@
         $normal_q = new WP_Query($normal_args);
         ?>
 
->>>>>>> Stashed changes
         <ul class="news-box__list">
         <?php
           /* -------------------------------------------------
@@ -469,9 +466,13 @@
 
                   foreach ($years as $y => $count): ?>
                     <li>
-                      <a href="<?php echo esc_url(home_url( $mode === 'news' ? "/news/{$y}/" : "/member/{$y}/" )); ?>">
-                        <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
-                      </a>
+                        <a href="<?php echo esc_url( trailingslashit( home_url(
+                            $mode === 'news'
+                                ? "/news/{$y}/"
+                                : "/member/{$y}/"
+                        )) ); ?>">
+                            <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
+                        </a>
                     </li>
                   <?php endforeach; ?>
 
