@@ -121,7 +121,7 @@
             * ------------------------------------------------*/
               $count_q = new WP_Query([
                 'post_type'           => 'post',
-                'year'                => $year,        // ← 追加
+                'year'                => $year,
                 'posts_per_page'      => 1,
                 'paged'               => $paged,
                 'posts_per_page'      => 10,
@@ -134,7 +134,7 @@
 
             <!-- ページネーション -->
             <ul class="c-pagenation">
-              <?php custom_pagination($normal_q); ?> <!-- ← $normal_q を渡す -->
+              <?php custom_pagination($normal_q); ?> 
             </ul>
           </div>
 

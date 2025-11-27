@@ -38,7 +38,7 @@
       <div class="news-box__left">
 
         <h2 class="c-head6">会員様お知らせ<span>Member News</span></h2>
-
+        <ul class="news-box__list">
         <?php
         /* ----------------------------------------
          * 対象カテゴリ
@@ -151,7 +151,6 @@
         $normal_q = new WP_Query($normal_args);
         ?>
 
-        <ul class="news-box__list">
         <?php
           /* -------------------------------------------------
           * ① スラッグ（または親スラッグ）を取得
@@ -215,7 +214,6 @@
           }
           ?>
 
-          <ul class="news-box__list">
           <?php
           /* -------------------------------------------------
           * 基本設定

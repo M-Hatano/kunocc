@@ -269,7 +269,7 @@ function enqueue_page_specific_styles()
         (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information')))
 
         // 固定ページ
-        || is_page(array('member', 'kusunoki', 'information', 'partnership', 'm-calendar', 'm-registration'))
+        || is_page(array('member', 'kusunoki', 'information', 'partnership', 'm-calendar', 'registration'))
 
         // 年別
         || (is_date() && strpos($uri, '/member/') !== false)
@@ -968,7 +968,28 @@ function my_acf_image_size_override($value, $post_id, $field)
 
 add_action('init', function () {
 
-    // news
+    /* -----------------------
+     * NEWS 年別アーカイブ（最優先）
+     * ----------------------- */
+
+    // /news/2025/
+    add_rewrite_rule(
+        '^news/([0-9]{4})/?$',
+        'index.php?post_type=post&category_name=news&year=$matches[1]',
+        'top'
+    );
+
+    // /news/2025/page/2/
+    add_rewrite_rule(
+        '^news/([0-9]{4})/page/([0-9]+)/?$',
+        'index.php?post_type=post&category_name=news&year=$matches[1]&paged=$matches[2]',
+        'top'
+    );
+
+
+    /* -----------------------
+     * NEWS 月別＋個別記事
+     * ----------------------- */
     add_rewrite_rule(
         '^news/([0-9]{4})/([0-9]{2})/([^/]+)/?$',
         'index.php?name=$matches[3]',

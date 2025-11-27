@@ -4,5 +4,5 @@
         <li><a href="<?php echo esc_url(home_url('')); ?>/member/kusunoki/">くすのき会</a></li>
         <li><a href="<?php echo esc_url(home_url('')); ?>/member/partner/">提携コース</a></li>
         <li><a href="<?php echo esc_url(home_url('')); ?>/member/m-calendar/">ビジター様料金</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/member/m-registration/">コンペ申込</a></li>
+        <li><a href="<?php echo esc_url(home_url('')); ?>/member/registration/">コンペ申込</a></li>
       </ul>
