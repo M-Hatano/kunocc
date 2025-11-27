@@ -7,6 +7,21 @@
  * - kusunoki
  */
 ?>
+<?php
+// news / member / kusunoki / information を判定
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = preg_replace('#^/[^/]+/[^/]+/#', '/', $uri); // /kunocc/cms/ 除去
+
+if (preg_match('#^/member/information#', $uri)) {
+    $mode = 'information';
+} elseif (preg_match('#^/member/kusunoki#', $uri)) {
+    $mode = 'kusunoki';
+} elseif (preg_match('#^/member/#', $uri)) {
+    $mode = 'member';
+} else {
+    $mode = 'news';
+}
+?>
 
 <?php
 // -------------------------
