@@ -1,95 +1,87 @@
 <?php
 
+/* ============================
+ * 管理ログイン正常化版（最優先で修復）
+ * ============================ */
 
-
-// WordPressの管理画面ログインURLを変更する
+// 管理ログインのユニークキー
 define('LOGIN_CHANGE', sha1('LZrxkvK4mwFG'));
 define('LOGIN_CHANGE_PAGE', 'knc-120.php');
 
-// 指定以外のログインURLはTOPページへリダイレクト
-add_action('login_init', function() {
 
-    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+/* ----------------------------------------
+ * STEP1：login_init（管理ログイン専用）
+ * ---------------------------------------- */
+add_action('login_init', function () {
 
-    // 会員ログインページなら何もしない
-    if (strpos($request_uri, '/member-login') !== false) {
+    $req = $_SERVER['REQUEST_URI'] ?? '';
+
+    // ★ 会員ログイン（固定ページ）は対象外
+    if (strpos($req, '/member-login') !== false) {
         return;
     }
 
-    // 管理ログインのみ knc-120.php を使わせる
-    if (!defined('LOGIN_CHANGE') || sha1('LZrxkvK4mwFG') != LOGIN_CHANGE) {
+    // ★ knc-120.php 経由アクセス → 無条件で通す（ここ超重要）
+    if (strpos($req, LOGIN_CHANGE_PAGE) !== false) {
+        return;
+    }
+
+    // ★ wp-login.php 直アクセスだけブロック
+    //    ただし「knc-120.php → wp-login.php 内部呼び出し」は除外
+    if (strpos($req, 'wp-login.php') !== false) {
         wp_safe_redirect(home_url());
         exit;
     }
 });
 
-/*------------------------------------
- * C方式：wp-login.php の置換制御（完成版）
- * ・会員ログイン（/member-login/）では置換しない
- * ・会員エリアへのログイン（redirect_to=/member/）も置換しない
- * ・管理ログインだけ knc-120.php に置換
- ------------------------------------*/
- add_filter('site_url', 'knc_wp_login_router', 10, 4);
- function knc_wp_login_router($url, $path, $orig_scheme, $blog_id) {
- 
-     // wp-login.php 以外は対象外
-     if ($path !== 'wp-login.php') {
-         return $url;
-     }
- 
-     $request_uri = $_SERVER['REQUEST_URI'] ?? '';
- 
-     //--------------------------------------
-     // ① 会員ログイン画面（固定ページ）
-     //--------------------------------------
-     if (strpos($request_uri, '/member-login') !== false) {
-         return $url; // 置換禁止
-     }
- 
-     //--------------------------------------
-     // ② 会員エリアへのログイン試行（redirect_to=/member/...）
-     //--------------------------------------
-     if (!empty($_POST['redirect_to']) && strpos($_POST['redirect_to'], '/member/') === 0) {
-         return $url; // 置換禁止
-     }
- 
-     //--------------------------------------
-     // ③ 管理画面ログイン（wp-login → knc-120.php）
-     //--------------------------------------
-     if (is_user_logged_in() || strpos($request_uri, LOGIN_CHANGE_PAGE) !== false) {
-         return str_replace('wp-login.php', LOGIN_CHANGE_PAGE, $url);
-     }
- 
-     return $url;
- }
 
-// ログアウト時のリダイレクト先の設定
-if (! function_exists('login_change_wp_redirect')) {
-    function login_change_wp_redirect($location, $status)
-    {
-        if (strpos($_SERVER['REQUEST_URI'], LOGIN_CHANGE_PAGE) !== false)
-            $location = str_replace('wp-login.php', LOGIN_CHANGE_PAGE, $location);
-        return $location;
+/* ----------------------------------------
+ * STEP2：wp-login.php の置換
+ * 管理ログインのみ knc-120.php に置換
+ * ---------------------------------------- */
+add_filter('site_url', function ($url, $path, $orig_scheme, $blog_id) {
+
+    // wp-login.php 以外は対象外
+    if ($path !== 'wp-login.php') {
+        return $url;
     }
-}
-add_filter('wp_redirect', 'login_change_wp_redirect', 10, 2);
 
-// ログアウトURLの置き換え
+    $req = $_SERVER['REQUEST_URI'] ?? '';
+
+    // ★ 会員ログインでは置換しない（後で調整）
+    if (strpos($req, '/member-login') !== false) {
+        return $url;
+    }
+
+    // ★ 会員エリアへのログイン redirect_to=/member/... は置換禁止
+    if (!empty($_POST['redirect_to']) && strpos($_POST['redirect_to'], '/member/') === 0) {
+        return $url;
+    }
+
+    // ★ 管理ログインの時だけ置換
+    return str_replace('wp-login.php', LOGIN_CHANGE_PAGE, $url);
+
+}, 10, 4);
+
+
+/* ----------------------------------------
+ * STEP3：logout 時のURL修正
+ * ---------------------------------------- */
+add_filter('wp_redirect', function ($location, $status) {
+    if (strpos($_SERVER['REQUEST_URI'], LOGIN_CHANGE_PAGE) !== false) {
+        return str_replace('wp-login.php', LOGIN_CHANGE_PAGE, $location);
+    }
+    return $location;
+}, 10, 2);
+
+
+/* ----------------------------------------
+ * STEP4：ログアウトURL（wp-login → knc-120.php）
+ * ---------------------------------------- */
 add_filter('logout_url', function ($logout_url, $redir) {
     return str_replace('wp-login.php', LOGIN_CHANGE_PAGE, $logout_url);
 }, 10, 2);
 
-
-//ログインURL隠し
-add_filter('author_rewrite_rules', '__return_empty_array');
-function disable_author_archive()
-{
-    if ($_GET['author'] || preg_match('#/author/.+#', $_SERVER['REQUEST_URI'])) {
-        wp_redirect(home_url('/404.php'));
-        exit;
-    }
-}
-add_action('init', 'disable_author_archive');
 
 
 
@@ -998,96 +990,6 @@ function my_acf_image_size_override($value, $post_id, $field)
     return $value;
 }
 
-add_action('init', function () {
-
-    /* -----------------------
-     * NEWS 年別アーカイブ（最優先）
-     * ----------------------- */
-
-    // /news/2025/
-    add_rewrite_rule(
-        '^news/([0-9]{4})/?$',
-        'index.php?post_type=post&category_name=news&year=$matches[1]',
-        'top'
-    );
-
-    // /news/2025/page/2/
-    add_rewrite_rule(
-        '^news/([0-9]{4})/page/([0-9]+)/?$',
-        'index.php?post_type=post&category_name=news&year=$matches[1]&paged=$matches[2]',
-        'top'
-    );
-
-
-    /* -----------------------
-     * NEWS 月別＋個別記事
-     * ----------------------- */
-    add_rewrite_rule(
-        '^news/([0-9]{4})/([0-9]{2})/([^/]+)/?$',
-        'index.php?name=$matches[3]',
-        'top'
-    );
-
-    // member (親)
-    add_rewrite_rule(
-        '^member/([0-9]{4})/([0-9]{2})/([^/]+)/?$',
-        'index.php?name=$matches[3]',
-        'top'
-    );
-
-    // information
-    add_rewrite_rule(
-        '^member/information/([0-9]{4})/([0-9]{2})/([^/]+)/?$',
-        'index.php?name=$matches[3]',
-        'top'
-    );
-
-    // kusunoki
-    add_rewrite_rule(
-        '^member/kusunoki/([0-9]{4})/([0-9]{2})/([^/]+)/?$',
-        'index.php?name=$matches[3]',
-        'top'
-    );
-
-    // member YYYY
-    add_rewrite_rule(
-        '^member/([0-9]{4})/?$',
-        'index.php?post_type=post&category_name=member&year=$matches[1]',
-        'top'
-    );
-
-    add_rewrite_rule(
-        '^member/([0-9]{4})/page/([0-9]+)/?$',
-        'index.php?post_type=post&category_name=member&year=$matches[1]&paged=$matches[2]',
-        'top'
-    );
-
-    // information YYYY
-    add_rewrite_rule(
-        '^member/information/([0-9]{4})/?$',
-        'index.php?post_type=post&category_name=information&year=$matches[1]',
-        'top'
-    );
-
-    add_rewrite_rule(
-        '^member/information/([0-9]{4})/page/([0-9]+)/?$',
-        'index.php?post_type=post&category_name=information&year=$matches[1]&paged=$matches[2]',
-        'top'
-    );
-
-    // kusunoki YYYY
-    add_rewrite_rule(
-        '^member/kusunoki/([0-9]{4})/?$',
-        'index.php?post_type=post&category_name=kusunoki&year=$matches[1]',
-        'top'
-    );
-
-    add_rewrite_rule(
-        '^member/kusunoki/([0-9]{4})/page/([0-9]+)/?$',
-        'index.php?post_type=post&category_name=kusunoki&year=$matches[1]&paged=$matches[2]',
-        'top'
-    );
-});
 
 
 /*--------------------------------
@@ -1181,89 +1083,6 @@ add_action('init', function () {
  
 
 
-
-add_filter('template_include', 'knc_template_router', 20);
-function knc_template_router($template) {
-
-    /* ---------------------------------------------------------
-     * 1) 正しい URI 正規化（★これだけ修正）
-     * --------------------------------------------------------- */
-    $uri_raw = $_SERVER['REQUEST_URI'] ?? '';
-    $uri = parse_url($uri_raw, PHP_URL_PATH);
-
-    // /kunocc/cms/ を完全に除去
-    // 例：/kunocc/cms/member/page/2/ → /member/page/2/
-    $uri = preg_replace('#^/[^/]+/[^/]+/#', '/', $uri);
-
-    $uri = trim($uri, '/'); 
-    // $uri の例： member/page/2
-
-
-    /* ---------------------------------------------------------
-     * 2) ここから先はあなたの既存ロジックをそのまま残す
-     * --------------------------------------------------------- */
-
-    // ★ カレンダー
-    if ($uri === 'member/calendar') {
-        return locate_template('page-120-calendar.php');
-    }
-
-    if (preg_match('#^member/information/page/[0-9]+/?$#', $uri)) {
-        return locate_template('page-120-information.php');
-    }
-
-    if (preg_match('#^member/kusunoki/page/[0-9]+/?$#', $uri)) {
-        return locate_template('page-120-kusunoki.php');
-    }
-
-    if (preg_match('#^member/page/[0-9]+/?$#', $uri)) {
-        return locate_template('page-120-member.php');
-    }
-
-    // 年別（information / kusunoki）
-    if (preg_match('#^member/(information|kusunoki)/[0-9]{4}(/page/[0-9]+)?/?$#', $uri)) {
-        return locate_template('date-member.php');
-    }
-
-    // 年別（information / kusunoki）
-    if (preg_match('#^member/(information|kusunoki)/[0-9]{4}(/page/[0-9]+)?/?$#', $uri)) {
-        return locate_template('date-member.php');
-    }
-
-    // 年別（member）
-    if (preg_match('#^member/[0-9]{4}(/page/[0-9]+)?/?$#', $uri)) {
-        return locate_template('date-member.php');
-    }
-
-    if ($uri === 'member/information') {
-        return locate_template('page-120-information.php');
-    }
-
-    if ($uri === 'member/kusunoki') {
-        return locate_template('page-120-kusunoki.php');
-    }
-
-    if ($uri === 'member') {
-        return locate_template('page-120-member.php');
-    }
-
-    return $template;
-}
-
-add_action('template_redirect', function () {
-    if (is_category() || is_archive()) {
-
-        global $wp_query;
-
-        error_log('---- CATEGORY ARCHIVE DEBUG ----');
-        error_log('REQUEST_URI: ' . $_SERVER['REQUEST_URI']);
-        error_log('is_category: ' . (is_category() ? 'YES':'NO'));
-        error_log('get_query_var(category_name): ' . get_query_var('category_name'));
-        error_log('get_query_var(year): ' . get_query_var('year'));
-        error_log('WP_Query posts found: ' . $wp_query->post_count);
-        error_log('-------------------------------');
-    }
-});
 
 /*--------------------------------
  * 会員向け記事用カスタム投稿タイプ
