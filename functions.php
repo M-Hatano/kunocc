@@ -3,33 +3,65 @@
 
 
 // WordPressの管理画面ログインURLを変更する
+define('LOGIN_CHANGE', sha1('LZrxkvK4mwFG'));
 define('LOGIN_CHANGE_PAGE', 'knc-120.php');
 
 // 指定以外のログインURLはTOPページへリダイレクト
-if (! function_exists('login_change_init')) {
-    function login_change_init()
-    {
-        if (!defined('LOGIN_CHANGE') || sha1('LZrxkvK4mwFG') != LOGIN_CHANGE) {
-            wp_safe_redirect(home_url());
-            exit;
-        }
-    }
-}
-add_action('login_init', 'login_change_init');
+add_action('login_init', function() {
 
-// ログイン済みか新設のログインURLの場合はwp-login.phpを置き換える
-if (! function_exists('login_change_site_url')) {
-    function login_change_site_url($url, $path, $orig_scheme, $blog_id)
-    {
-        if (
-            $path == 'wp-login.php' &&
-            (is_user_logged_in() || strpos($_SERVER['REQUEST_URI'], LOGIN_CHANGE_PAGE) !== false)
-        )
-            $url = str_replace('wp-login.php', LOGIN_CHANGE_PAGE, $url);
-        return $url;
+    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+
+    // 会員ログインページなら何もしない
+    if (strpos($request_uri, '/member-login') !== false) {
+        return;
     }
-}
-add_filter('site_url', 'login_change_site_url', 10, 4);
+
+    // 管理ログインのみ knc-120.php を使わせる
+    if (!defined('LOGIN_CHANGE') || sha1('LZrxkvK4mwFG') != LOGIN_CHANGE) {
+        wp_safe_redirect(home_url());
+        exit;
+    }
+});
+
+/*------------------------------------
+ * C方式：wp-login.php の置換制御（完成版）
+ * ・会員ログイン（/member-login/）では置換しない
+ * ・会員エリアへのログイン（redirect_to=/member/）も置換しない
+ * ・管理ログインだけ knc-120.php に置換
+ ------------------------------------*/
+ add_filter('site_url', 'knc_wp_login_router', 10, 4);
+ function knc_wp_login_router($url, $path, $orig_scheme, $blog_id) {
+ 
+     // wp-login.php 以外は対象外
+     if ($path !== 'wp-login.php') {
+         return $url;
+     }
+ 
+     $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+ 
+     //--------------------------------------
+     // ① 会員ログイン画面（固定ページ）
+     //--------------------------------------
+     if (strpos($request_uri, '/member-login') !== false) {
+         return $url; // 置換禁止
+     }
+ 
+     //--------------------------------------
+     // ② 会員エリアへのログイン試行（redirect_to=/member/...）
+     //--------------------------------------
+     if (!empty($_POST['redirect_to']) && strpos($_POST['redirect_to'], '/member/') === 0) {
+         return $url; // 置換禁止
+     }
+ 
+     //--------------------------------------
+     // ③ 管理画面ログイン（wp-login → knc-120.php）
+     //--------------------------------------
+     if (is_user_logged_in() || strpos($request_uri, LOGIN_CHANGE_PAGE) !== false) {
+         return str_replace('wp-login.php', LOGIN_CHANGE_PAGE, $url);
+     }
+ 
+     return $url;
+ }
 
 // ログアウト時のリダイレクト先の設定
 if (! function_exists('login_change_wp_redirect')) {
@@ -199,7 +231,7 @@ function my_custom_body_class()
     }
 
     // ▼ 固定ページ
-    if (is_page(array('member', 'kusunoki', 'information'))) {
+    if (is_page(array('member', 'kusunoki', 'information', 'member-login'))) {
         return 'm-news';
     }
 
@@ -269,7 +301,7 @@ function enqueue_page_specific_styles()
         (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information')))
 
         // 固定ページ
-        || is_page(array('member', 'kusunoki', 'information', 'partnership', 'm-calendar', 'registration'))
+        || is_page(array('member', 'kusunoki', 'information', 'partnership', 'm-calendar', 'registration', 'member-login'))
 
         // 年別
         || (is_date() && strpos($uri, '/member/') !== false)
@@ -1062,47 +1094,91 @@ add_action('init', function () {
  * STEP3：/member/ 以下をログイン必須（ID保持版）
  --------------------------------*/
  add_action('template_redirect', 'knc_member_login_check');
-function knc_member_login_check() {
-
-    if (is_user_logged_in()) return;
-
-    $request_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-    $home_path = wp_parse_url(home_url('/'), PHP_URL_PATH);
-    if (!$home_path) $home_path = '/';
-
-    $member_base = rtrim($home_path, '/') . '/member/';
-
-    // /member/（固定ページトップ）は例外
-    if ($request_path === $member_base) return;
-
-    // ページネーション例外
-    $pattern = '#^' . preg_quote($member_base, '#') .
-           '('
-           . 'page/[0-9]+'                         // /member/page/2/
-           . '|[0-9]{4}/page/[0-9]+'               // /member/2025/page/2/
-           . '|kusunoki/page/[0-9]+'               // /member/kusunoki/page/2/
-           . '|information/page/[0-9]+'            // /member/information/page/2/
-           . ')'
-           . '/?$#';
-
-    if (preg_match($pattern, $request_path)) {
-        return;
-    }
-
-    // /member/ 以下はログイン必須
-    if (strpos($request_path, $member_base) === 0) {
-
-        $query_string = !empty($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '';
-
-        $clean_path = preg_replace('#^' . preg_quote($home_path, '#') . '#', '', $request_path);
-
-        $redirect_to = home_url('/' . ltrim($clean_path, '/')) . $query_string;
-
-        wp_redirect(home_url('/knc-120.php') . '?redirect_to=' . rawurlencode($redirect_to));
-        exit;
-    }
-}
+ function knc_member_login_check() {
+ 
+     if (is_user_logged_in()) return;
+ 
+     $login_page_slug = 'member-login';
+     $login_page_url  = home_url('/' . $login_page_slug . '/');
+ 
+     $request_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+ 
+     $home_path = wp_parse_url(home_url('/'), PHP_URL_PATH);
+     if (!$home_path) $home_path = '/';
+ 
+     $member_base = rtrim($home_path, '/') . '/member/';
+ 
+     if (strpos($request_path, $member_base) === 0) {
+ 
+         // クエリ文字列そのまま保持
+         $query_string = !empty($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '';
+ 
+         // 相対パス化（超重要）
+         $clean_path = preg_replace('#^' . preg_quote($home_path, '#') . '#', '', $request_path);
+         $redirect_to = '/' . ltrim($clean_path, '/');
+         $redirect_to .= $query_string;
+ 
+         wp_redirect($login_page_url . '?redirect_to=' . rawurlencode($redirect_to));
+         exit;
+     }
+ }
+ 
+ 
+ /*--------------------------------
+  * ログイン失敗 → 固定ページに戻す
+  --------------------------------*/
+ add_action('wp_login_failed', 'knc_login_failed_redirect');
+ function knc_login_failed_redirect() {
+ 
+     $login_page_slug = 'member-login';
+     wp_redirect(home_url('/' . $login_page_slug . '/?login=failed'));
+     exit;
+ }
+ 
+ 
+ /*--------------------------------
+  * ログイン成功後のリダイレクト制御（完全修正版）
+  --------------------------------*/
+ add_filter('login_redirect', 'knc_login_redirect_fixed', 10, 3);
+ function knc_login_redirect_fixed($redirect_to, $requested_redirect_to, $user) {
+ 
+     // リクエストされた redirect_to を優先
+     $target = $requested_redirect_to ?: $redirect_to;
+ 
+     // 無ければ /member/ へ
+     if (empty($target)) {
+         return home_url('/member/');
+     }
+ 
+     /* --------------------------------------------------
+      * ① 絶対URL → 相対パスに変換
+      * -------------------------------------------------- */
+     $home = home_url();
+     if (strpos($target, $home) === 0) {
+         // site ドメインを削除 → 相対パスにする
+         $target = '/' . ltrim(str_replace($home, '', $target), '/');
+     }
+ 
+     /* --------------------------------------------------
+      * ② /member-login/ へ戻ろうとする場合 → /member/ へ
+      * -------------------------------------------------- */
+     if (strpos($target, '/member-login') === 0) {
+         return home_url('/member/');
+     }
+ 
+     /* --------------------------------------------------
+      * ③ 相対パスならそのまま使う（最重要）
+      * -------------------------------------------------- */
+     if (strpos($target, '/') === 0) {
+         return $target; // 例：/member/kusunoki/
+     }
+ 
+     /* --------------------------------------------------
+      * ④ fallback → /member/
+      * -------------------------------------------------- */
+     return home_url('/member/');
+ }
+ 
 
 
 
@@ -1351,4 +1427,97 @@ add_action('wp_loaded', function () {
     }
     error_log("----- REWRITE RULES END -----");
 });
+
+/* -------------------------------------------------------
+ * 会員ログイン関連のデバッグログ
+ * ------------------------------------------------------- */
+add_action('init', function () {
+
+    // ----------- ① 現在のアクセス状況をログ ----------
+    error_log("===== LOGIN DEBUG START =====");
+    error_log("REQUEST_URI: " . ($_SERVER['REQUEST_URI'] ?? 'none'));
+    error_log("QUERY_STRING: " . ($_SERVER['QUERY_STRING'] ?? 'none'));
+    error_log("is_user_logged_in: " . (is_user_logged_in() ? 'YES' : 'NO'));
+    error_log("================================");
+
+});
+
+
+/* -------------------------------------------------------
+ * ② /member/ → /member-login/ に飛ばす部分のログ
+ * ------------------------------------------------------- */
+add_action('template_redirect', function () {
+
+    if (is_user_logged_in()) return;
+
+    $request_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $login_page_url = home_url('/member-login/');
+
+    // /kunocc/cms/ 除去
+    $home_path = wp_parse_url(home_url('/'), PHP_URL_PATH);
+    if (!$home_path) $home_path = '/';
+    $member_base = rtrim($home_path, '/') . '/member/';
+
+    if (strpos($request_path, $member_base) === 0) {
+
+        $clean_path = preg_replace('#^' . preg_quote($home_path, '#') . '#', '', $request_path);
+        $redirect_to = '/' . ltrim($clean_path, '/');
+
+        error_log(">>> MEMBER ACCESS BUT NOT LOGGED IN <<<");
+        error_log("request_path: " . $request_path);
+        error_log("clean_path: " . $clean_path);
+        error_log("redirect_to: " . $redirect_to);
+        error_log("login_page_url: " . $login_page_url);
+        error_log("------------------------------------");
+    }
+}, 1);
+
+
+/* -------------------------------------------------------
+ * ③ login_redirect のログ
+ * ------------------------------------------------------- */
+add_filter('login_redirect', function ($redirect_to, $requested_redirect_to, $user) {
+
+    error_log(">>> login_redirect fired <<<");
+    error_log("requested_redirect_to(raw): " . $requested_redirect_to);
+    error_log("redirect_to (WP default): " . $redirect_to);
+
+    $home = home_url();
+
+    // 絶対URL → 相対パス化
+    $target = $requested_redirect_to ?: $redirect_to;
+    if (strpos($target, $home) === 0) {
+        $target = '/' . ltrim(str_replace($home, '', $target), '/');
+    }
+
+    error_log("normalized target: " . $target);
+
+    // /member-login/ → /member/
+    if (strpos($target, '/member-login') === 0) {
+        $target = '/member/';
+        error_log("target overwritten to /member/");
+    }
+
+    // 最終返却値
+    error_log("final redirect target: " . $target);
+    error_log("------------------------------------");
+
+    return $target;
+
+}, 10, 3);
+
+
+/* -------------------------------------------------------
+ * ④ wp_redirect ログ（最終リダイレクトURL）
+ * ------------------------------------------------------- */
+add_filter('wp_redirect', function ($location, $status) {
+
+    error_log(">>> wp_redirect <<<");
+    error_log("redirect_to: " . $location);
+    error_log("status: " . $status);
+    error_log("------------------------------------");
+
+    return $location;
+
+}, 10, 2);
 
