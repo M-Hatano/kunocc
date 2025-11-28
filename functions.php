@@ -624,109 +624,108 @@ function course_navigation() {
     echo '<a href="' . esc_url($overview_url) . '" class="b-c-dtl__btm--top">コース全景へ</a>';
     echo '<a href="' . esc_url($next_url) . '" class="b-c-dtl__btn nxt">Next</a>';
 }
-
 /* ======================================================
- * トップページKV（ACF 3枚）だけ「アップロード時の 1000px 縮小を回避」
+ * トップ KV 画像だけアップロード時の1000px縮小を回避する
  * ====================================================== */
 
- function cg_is_kv_acf_upload() {
-
-    // ACF フォームからの投稿でなければ false
-    if (empty($_REQUEST['acf'])) return false;
-
-    // 対象KVフィールドキー
-    $kv_fields = [
+/* KV の ACF フィールドキー */
+function cg_kv_field_keys() {
+    return [
         'field_678f48c48831d', // top_image_1
         'field_678f48ff8831e', // top_image_2
         'field_678f49128831f', // top_image_3
     ];
+}
 
-    // ACF POST データ
-    $acf_post = $_REQUEST['acf'];
+/* KV 判定：アップロードされた画像が KV にセットされたか？ */
+function cg_is_kv_attachment( $attachment_id ) {
 
-    // ACFのPOSTデータの中に KV のフィールドが含まれていたら true
-    foreach ($kv_fields as $key) {
-        if (array_key_exists($key, $acf_post)) {
-            return true;
+    if ( empty( $_REQUEST['acf'] ) ) {
+        return false;
+    }
+
+    $acf = $_REQUEST['acf'];
+    $kv_keys = cg_kv_field_keys();
+
+    foreach ( $kv_keys as $key ) {
+
+        if ( empty( $acf[$key] ) ) continue;
+
+        // ACF は返却形式によって値が変わる
+        $val = $acf[$key];
+
+        // 画像配列形式
+        if ( is_array( $val ) && !empty($val['ID']) ) {
+            if ( intval($val['ID']) === intval($attachment_id) ) {
+                return true;
+            }
+        }
+
+        // 単純な ID 形式
+        if ( is_numeric( $val ) ) {
+            if ( intval($val) === intval($attachment_id) ) {
+                return true;
+            }
         }
     }
+
     return false;
 }
 
-
 /* ======================================================
- * アップロード時の 1000pxリサイズ処理を「KVだけ除外」
+ * メイン：アップロード後にサイズを決定
  * ====================================================== */
-add_filter('wp_handle_upload', function($fileinfo) {
+add_filter('wp_generate_attachment_metadata', function( $meta, $attachment_id ) {
 
-    // ▼ トップページKVならリサイズ回避
-    if (cg_is_kv_acf_upload()) {
-        return $fileinfo; // ← 元画像のまま保存
+    $file = get_attached_file( $attachment_id );
+    $type = get_post_mime_type( $attachment_id );
+
+    // 画像以外は処理しない
+    if ( strpos($type, 'image/') !== 0 ) {
+        return $meta;
     }
 
-    // ▼ 通常処理（既存コード）
-    if (strpos($fileinfo['type'], 'image/') !== 0) {
-        return $fileinfo;
+    // KV 例外：絶対にリサイズしない
+    if ( cg_is_kv_attachment( $attachment_id ) ) {
+        return $meta; // ← 完全にオリジナルのまま
     }
 
-    $path   = $fileinfo['file'];
-    $editor = wp_get_image_editor($path);
-    if (is_wp_error($editor)) {
-        return $fileinfo;
-    }
+    // ▼ 通常画像 → 1000pxに縮小（あなたの処理を維持）
+    $editor = wp_get_image_editor( $file );
+    if ( is_wp_error( $editor ) ) return $meta;
 
     $size = $editor->get_size();
-    if ($size['width'] <= 1000) {
-        return $fileinfo;
+    if ( $size['width'] > 1000 ) {
+
+        $editor->resize( 1000, null, false );
+        $editor->set_quality(70);
+        $editor->save( $file );
     }
 
-    $editor->resize(1000, null, false);
-    $editor->set_quality(70);
-    $editor->save($path);
+    return $meta;
 
-    return $fileinfo;
-
-}, 8); // ★ 既存の1000pxリサイズより前に実行
+}, 10, 2);
 
 
-/* 画質を 70 % に統一*/
+
+/* ------------------------------------------------------
+ * 画質を 70% に統一（既存機能を維持）
+ * ------------------------------------------------------ */
 add_filter('wp_editor_set_quality', fn() => 70);
-add_filter('jpeg_quality',          fn() => 70);   //旧WP互換5.8以下
+add_filter('jpeg_quality',          fn() => 70);   // 古いWP用
 
-// /* 横幅 1000pxに上書きリサイズ”*/
-add_filter( 'big_image_size_threshold', '__return_false' );
-add_filter( 'wp_handle_upload', function ( $fileinfo ) {
 
-	// 画像imageファイル以外はそのまま処理する
-	if ( strpos( $fileinfo['type'], 'image/' ) !== 0 ) {
-		return $fileinfo;
-	}
+/* ------------------------------------------------------
+ * big image 自動縮小を無効化（既存機能維持）
+ * ------------------------------------------------------ */
+add_filter('big_image_size_threshold', '__return_false');
 
-    // 画像リサイズにエラーが出た場合は元画像をそのまま処理する
-	$path   = $fileinfo['file'];
-	$editor = wp_get_image_editor( $path );
-	if ( is_wp_error( $editor ) ) {
-		return $fileinfo;                    
-	}
 
-    // 幅1000以上ならリサイズ、以下ならそのまま処理
-	$size = $editor->get_size();
-	if ( $size['width'] <= 1000 ) {
-		return $fileinfo;                    
-	}
-
-	/* 縮小してリサイズ、同じファイル名で上書き保存 */
-	$editor->resize( 1000, null, false );   // 横は1000　高さは指定なし
-	$editor->set_quality( 70 );             // 画像サイズ再指定
-	$editor->save( $path );                 // ファイル名はそのままになるように上書き保存
-
-	return $fileinfo;
-}, 20 );
-
-/*  中間サイズの自動トリミングを完全停止 */
+/* ------------------------------------------------------
+ * 中間サイズ生成を停止（既存機能維持）
+ * ------------------------------------------------------ */
 add_filter('intermediate_image_sizes_advanced', '__return_empty_array');
 
-/* 生成されたサイズ情報も空にする */
 add_filter('wp_generate_attachment_metadata', function ($meta) {
     $meta['sizes'] = [];
     return $meta;
