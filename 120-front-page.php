@@ -9,37 +9,67 @@ Template Name: トップページ
 <!--  header -->
 
 
-<main class="c-main">
+    <main class="c-main">
 
-  <div class="top_mv">
+    <div class="top_mv">
     <?php
-    // ACFで設定した画像をそれぞれ取得
+    // ACFで設定した画像を取得
     $image_1 = get_field('top_image_1');
     $image_2 = get_field('top_image_2');
     $image_3 = get_field('top_image_3');
+
+    // ACF返却値（配列/ID/URLすべて対応）→ URL(custom_2600) に変換
+    function kv_get_url_2600($img) {
+
+        // ACF画像配列
+        if (is_array($img) && isset($img['ID'])) {
+            return wp_get_attachment_image_url($img['ID'], 'custom_2600');
+        }
+
+        // ID
+        if (is_numeric($img)) {
+            return wp_get_attachment_image_url((int)$img, 'custom_2600');
+        }
+
+        // URL
+        if (is_string($img)) {
+            $id = attachment_url_to_postid($img);
+            if ($id) {
+                return wp_get_attachment_image_url($id, 'custom_2600');
+            }
+            return $img;
+        }
+
+        return '';
+    }
+
+    $url_1 = kv_get_url_2600($image_1);
+    $url_2 = kv_get_url_2600($image_2);
+    $url_3 = kv_get_url_2600($image_3);
     ?>
 
     <div>
       <!-- 1つ目の画像 -->
-      <?php if ($image_1): ?>
-        <div class="kv-img" style="background-image: url('<?php echo esc_url($image_1['url']); ?>');"></div>
+      <?php if ($url_1): ?>
+        <div class="kv-img" style="background-image: url('<?php echo esc_url($url_1); ?>');"></div>
       <?php endif; ?>
 
       <!-- 2つ目の画像 -->
-      <?php if ($image_2): ?>
-        <div class="kv-img" style="background-image: url('<?php echo esc_url($image_2['url']); ?>');"></div>
+      <?php if ($url_2): ?>
+        <div class="kv-img" style="background-image: url('<?php echo esc_url($url_2); ?>');"></div>
       <?php endif; ?>
 
       <!-- 3つ目の画像 -->
-      <?php if ($image_3): ?>
-        <div class="kv-img" style="background-image: url('<?php echo esc_url($image_3['url']); ?>');"></div>
+      <?php if ($url_3): ?>
+        <div class="kv-img" style="background-image: url('<?php echo esc_url($url_3); ?>');"></div>
       <?php endif; ?>
     </div>
+
     <div class="top-mtxt">
       <h1>心をほどく、<br class="">美しさと味わいの時間を。</h1>
       <p>緑が彩るコース、旬を味わう料理、<br class="c-brsp">心を尽くした接遇。<br>訪れるたび、ここを選んでよかったと思える。<br class="c-brpc">気持ちを込めて、上質なおもてなしをお届けします。</p>
     </div>
-  </div>
+</div>
 
   <!-- 共通パーツ -->
   <?php include get_template_directory() . '/include-120-reservation-start.php'; ?>

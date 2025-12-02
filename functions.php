@@ -542,17 +542,6 @@ function enqueue_page_specific_scripts()
 }
 add_action('wp_enqueue_scripts', 'enqueue_page_specific_scripts');
 
-// ＝＝＝＝不要＝＝＝＝
-// かわら版用のショートコード
-function my_upload_uri_shortcode()
-{
-    $u = wp_get_upload_dir();
-    return esc_url($u['baseurl']);
-}
-add_shortcode('upload_uri', 'my_upload_uri_shortcode');
-// ＝＝＝＝不要＝＝＝＝
-
-
 // ACF オプションページ「ご予約方法」追加
 if ( function_exists('acf_add_options_page') ) {
 
@@ -690,9 +679,6 @@ function custom_pagination($query = null)
     }
 }
 
-
-
-
 // コースサブナビ
 function course_navigation() {
     // 現在のホール番号を取得
@@ -716,53 +702,38 @@ function course_navigation() {
     echo '<a href="' . esc_url($overview_url) . '" class="b-c-dtl__btm--top">コース全景へ</a>';
     echo '<a href="' . esc_url($next_url) . '" class="b-c-dtl__btn nxt">Next</a>';
 }
-/* ======================================================
- * トップ KV 画像だけアップロード時の1000px縮小を回避する
- * ====================================================== */
 
-/* KV の ACF フィールドキー */
-function cg_kv_field_keys() {
-    return [
-        'field_678f48c48831d', // top_image_1
-        'field_678f48ff8831e', // top_image_2
-        'field_678f49128831f', // top_image_3
-    ];
-}
 
-/* KV 判定：アップロードされた画像が KV にセットされたか？ */
-function cg_is_kv_attachment( $attachment_id ) {
+/**
+ * トップ画像3枚だけは「常に custom_2600 の URL を返す」
+ */
+add_filter('acf/format_value/key=field_678f48c48831d', 'cg_force_kv_2600', 10, 3);
+add_filter('acf/format_value/key=field_678f48ff8831e', 'cg_force_kv_2600', 10, 3);
+add_filter('acf/format_value/key=field_678f49128831f', 'cg_force_kv_2600', 10, 3);
 
-    if ( empty( $_REQUEST['acf'] ) ) {
-        return false;
+function cg_force_kv_2600($value, $post_id, $field) {
+
+    // ACF画像配列 → URL
+    if (is_array($value) && isset($value['ID'])) {
+        return wp_get_attachment_image_url($value['ID'], 'custom_2600');
     }
 
-    $acf = $_REQUEST['acf'];
-    $kv_keys = cg_kv_field_keys();
+    // ID → URL
+    if (is_numeric($value)) {
+        return wp_get_attachment_image_url((int)$value, 'custom_2600');
+    }
 
-    foreach ( $kv_keys as $key ) {
-
-        if ( empty( $acf[$key] ) ) continue;
-
-        // ACF は返却形式によって値が変わる
-        $val = $acf[$key];
-
-        // 画像配列形式
-        if ( is_array( $val ) && !empty($val['ID']) ) {
-            if ( intval($val['ID']) === intval($attachment_id) ) {
-                return true;
-            }
-        }
-
-        // 単純な ID 形式
-        if ( is_numeric( $val ) ) {
-            if ( intval($val) === intval($attachment_id) ) {
-                return true;
-            }
+    // URL → ID → URL（custom_2600）
+    if (is_string($value)) {
+        $id = attachment_url_to_postid($value);
+        if ($id) {
+            return wp_get_attachment_image_url($id, 'custom_2600');
         }
     }
 
-    return false;
+    return $value;
 }
+
 
 /* ======================================================
  * メイン：アップロード後にサイズを決定
@@ -798,30 +769,50 @@ add_filter('wp_generate_attachment_metadata', function( $meta, $attachment_id ) 
 
 }, 10, 2);
 
-
-
-/* ------------------------------------------------------
- * 画質を 70% に統一（既存機能を維持）
- * ------------------------------------------------------ */
-add_filter('wp_editor_set_quality', fn() => 70);
-add_filter('jpeg_quality',          fn() => 70);   // 古いWP用
-
-
 /* ------------------------------------------------------
  * big image 自動縮小を無効化（既存機能維持）
  * ------------------------------------------------------ */
 add_filter('big_image_size_threshold', '__return_false');
 
+/* ================================
+ * KV 画像だけ custom_2600 を生成
+ * ================================ */
+add_filter('intermediate_image_sizes_advanced', function($sizes) {
 
-/* ------------------------------------------------------
- * 中間サイズ生成を停止（既存機能維持）
- * ------------------------------------------------------ */
-add_filter('intermediate_image_sizes_advanced', '__return_empty_array');
+    // 通常はサイズ生成なし
+    $allow_sizes = [];
 
-add_filter('wp_generate_attachment_metadata', function ($meta) {
-    $meta['sizes'] = [];
-    return $meta;
-}, 20);
+    // ACF からアップロードされた画像を確認
+    if (!empty($_REQUEST['acf'])) {
+
+        $acf = $_REQUEST['acf'];
+        $kv_fields = [
+            'field_678f48c48831d',
+            'field_678f48ff8831e',
+            'field_678f49128831f',
+        ];
+
+        foreach ($kv_fields as $key) {
+            if (!empty($acf[$key])) {
+                // KV画像 → custom_2600を生成
+                return [
+                    'custom_2600' => [
+                        'width'  => 2600,
+                        'height' => 9999,
+                        'crop'   => false,
+                    ]
+                ];
+            }
+        }
+    }
+
+    // それ以外は中間サイズなし
+    return [];
+}, 10, 1);
+
+add_action( 'after_setup_theme', function() {
+    add_image_size( 'custom_2600', 2600, 9999, false );
+} );
 
 
 /**
