@@ -6,6 +6,23 @@
 
 <?php get_header('120'); ?>
 
+<?php
+
+$login_error = '';
+if (isset($_GET['login']) && $_GET['login'] === 'failed') {
+    $login_error = 'ログインID または パスワードが正しくありません。';
+}
+
+/*----------------------------------------
+ * ▼ 2. redirect_to の初期設定
+ ----------------------------------------*/
+if (!empty($_GET['redirect_to'])) {
+    $redirect_to = esc_url_raw($_GET['redirect_to']);
+} else {
+    $redirect_to = home_url('/member/');
+}
+?>
+
 <main class="c-member">
 
   <div class="for_deco">
@@ -26,33 +43,19 @@
     <h2 class="c-head6 m_head">会員ログイン<span>Member Login</span></h2>
     <p>会員専用ページにアクセスするにはログインしてください。</p>
 
-    <?php
-    // ◆ ログイン失敗時のメッセージ
-    if (isset($_GET['login']) && $_GET['login'] === 'failed'): ?>
-      <p style="color:red; font-weight:bold;">ログインID または パスワードが正しくありません。</p>
+    <?php if ($login_error): ?>
+        <p style="color:red; font-weight:bold;"><?php echo esc_html($login_error); ?></p>
     <?php endif; ?>
-
-    <?php
-    // ◆ redirect_to の取得
-    //   空のままだと WordPress が TOP に飛ばすため必ず補完する
-    if (!empty($_GET['redirect_to'])) {
-        // 外部URL判定を消すため raw を使用
-        $redirect_to = esc_url_raw($_GET['redirect_to']);
-    } else {
-        // 直接ログインの場合は /member/
-        $redirect_to = home_url('/member/');
-    }
-
-    // HTML の value に安全に入れる
-    $redirect_to_attr = htmlspecialchars($redirect_to, ENT_QUOTES, 'UTF-8');
-    ?>
 
     <div class="c-form box-pat">
 
-        <form method="post" action="<?php echo esc_url( site_url('wp-login.php', 'login_post') ); ?>">
+      <form method="post">
 
-        <!-- redirect_to（必須） -->
-        <input type="hidden" name="redirect_to" value="<?php echo $redirect_to_attr; ?>">
+        <!-- ▼ 独自ログイン処理フラグ -->
+        <input type="hidden" name="member_login" value="1">
+
+        <!-- ▼ ログイン後の遷移先 -->
+        <input type="hidden" name="redirect_to" value="<?php echo esc_attr($redirect_to); ?>">
 
         <ul>
           <li>
@@ -67,8 +70,8 @@
         </ul>
 
         <p><button type="submit">ログイン</button></p>
-
       </form>
+
     </div>
 
     <!-- パンくず -->
