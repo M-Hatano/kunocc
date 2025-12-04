@@ -72,6 +72,7 @@
 @media screen and (max-width: 767px) {
   #single-page .news-box__left{
     padding: 30px 20px;
+    width: 100%;
   }
 }
 
