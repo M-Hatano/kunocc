@@ -861,14 +861,14 @@ table {
 
 @media screen and (max-width: 767px) {
   .c-header {
-    padding: 10px 5px;
+    padding: 4px 5px;
     height: inherit;
     background: #132133;
   }
 
   .c-header__logo {
     width: 50px;
-    margin: 0 auto 0 20px;
+    margin: 0 auto 0 10px;
   }
 }
 
@@ -1708,7 +1708,7 @@ table {
 # ================================================================= */
 .c-page-header {
   position: relative;
-  margin-bottom: 120px;
+  margin-bottom: 150px;
   height: 343px;
   background-position: center;
   background-size: cover;
@@ -1732,7 +1732,7 @@ table {
   .c-page-header {
     height: 140px;
     margin-bottom: 60px;
-    margin-top: 60px;
+    margin-top: 48px;
   }
 
 }
@@ -2456,19 +2456,24 @@ table {
 .c-head4+p {
   position: relative;
   z-index: 2;
-  margin: 30px 0 0 0;
+  margin: 23px 0 0 0;
   color: #fff;
 }
 
 @media screen and (max-width: 767px) {
   .c-head4 {
-    font-size: 2rem;
+    font-size: 2.4rem;
     padding: 0 0 15px;
+  }
+
+  .c-head4+p{
+    font-size: 14px;
+    margin-top: 21px 0 0 0;
   }
 
   .c-head4 span {
     font-size: 3.6rem;
-    transform: translateY(0px);
+    transform: translateY(15px);
   }
 }
 
@@ -2541,7 +2546,7 @@ table {
   color: #324A5B;
   font-weight: 300;
   line-height: 100%;
-  margin-top: -80px;
+  margin-top: -35px;
   opacity: 0.2;
 }
 
@@ -3121,16 +3126,16 @@ table {
 .c-rease {
   background: #324A5B url(../img/common/bg_ashi_04.png);
   color: #fff;
-  padding: 70px 15px;
+  padding: 72px 15px;
 }
 
 .c-rease>div {
   background: #989E74;
-  width: 47.22%;
+  width: 48.22%;
   margin: 0 auto;
   text-align: center;
   border-radius: 18px;
-  padding: 30px 0px 50px;
+  padding: 40px 0px 50px;
 }
 
 .c-rease>div p {
@@ -3145,7 +3150,7 @@ table {
   background: #fff;
   width: fit-content;
   border-radius: 20px;
-  padding: 20px 70px;
+  padding: 28px 70px;
   margin: auto;
   font-family: 'Shippori Mincho';
   font-weight: 700;
@@ -3155,23 +3160,23 @@ table {
 
 @media screen and (max-width: 767px) {
   .c-rease {
-    padding: 30px 15px 48px;
+    padding: 43px 15px;
   }
 
   .c-rease>div {
     width: 100%;
-    padding: 35px 0px 30px;
+    padding: 18px 0px 25px;
     border-radius: 10px;
   }
 
   .c-rease>div p {
     font-size: 13px;
-    margin-bottom: 15px;
+    margin-bottom: 9px;
   }
 
   .c-rease>div a {
     font-size: 17px;
-    padding: 10px 17px;
+    padding: 7px 40px;
     border-radius: 10px;
   }
 }
