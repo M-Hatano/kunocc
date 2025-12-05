@@ -50,8 +50,26 @@
   padding-top: 180px;
 }
 
+._scr01:first-of-type {
+  padding-top: 198px;
+}
+
+@media screen and (max-width: 767px){
+  ._scr01:first-of-type{
+    padding-top: 80px;
+  }
+}
+
+._scr01:nth-of-type(2) {
+  padding-top: 123px;
+}
+
 #link02 {
-  padding-bottom: 210px;
+  padding-bottom: 216px;
+}
+
+#facility .c-btn {
+  padding: 5px 0;
 }
 
 @media screen and (max-width: 767px) {
@@ -78,7 +96,7 @@
 }
 
 .facility__flex:first-of-type {
-  margin-top: 80px;
+  margin-top: 35px;
 }
 
 .facility__flex--img {
@@ -93,7 +111,7 @@
 }
 
 .facility__flex+.facility__flex {
-  margin-top: 75px;
+  margin-top: 120px;
 }
 
 .facility__flex._w100 .facility__info {
@@ -166,7 +184,7 @@
   }
 
   .facility__flex:nth-of-type(2n+2) .facility__info>div {
-    padding: 50px 20px 20px;
+    padding: 50px 10px 10px;
   }
 
   .facility__flex:nth-of-type(2n+2) .facility__flex--img {
@@ -270,7 +288,7 @@
 /* プライベートルーム */
 .bgchen {
   background: #324A5B;
-  padding: 177px 0 197px;
+  padding: 213px 0 191px;
   position: relative;
 }
 
@@ -327,7 +345,7 @@
 .proom {
   display: flex;
   gap: 57px;
-  margin-top: 74px;
+  margin-top: 37px;
 }
 
 .proom__tb {
@@ -407,6 +425,35 @@
     left: 0;
   }
 }
+
+#link03._scr01 {
+  padding-top: 212px;
+}
+
+@media screen and (max-width: 767px) {
+  #link03._scr01 {
+    padding-top: 70px;
+  }
+}
+
+.bgchen .facility__info>div {
+  padding: 45px 30px;
+}
+
+.bgchen .facility__flex--img {
+  margin-bottom: 35px;
+}
+
+@media screen and (max-width: 767px) {
+  .bgchen .facility__flex--img {
+    margin-bottom: -25px;
+  }
+}
+
+.bgchen .facility__flex:nth-of-type(2n+2) {
+  margin-top: 40px;
+}
+
 
 /* あしらい */
 .deco {

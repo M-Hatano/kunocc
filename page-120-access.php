@@ -60,9 +60,9 @@
           <h2 class="ahead">お車をご利用の方</h2>
           <div class="abox">
             <p>東関東自動車道路&nbsp;富里ICより&nbsp;<br class="c-brsp">約3.4Km（車で5分）</p>
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_01.jpg" alt="" class="for-pc abox__mod">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_02.jpg" alt="" class="for-pc">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_04.jpg" alt="" class="for-sp">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_01.jpg" alt="車使用時" class="for-pc abox__mod">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_02.jpg" alt="アクセスマップ" class="for-pc">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_04.jpg" alt="車使用時" class="for-sp">
             <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/kunomap.pdf" class="c-btn" target="_blank">印刷用PDFダウンロード</a>
           </div>
         </section>
@@ -71,13 +71,13 @@
           <h2 class="ahead">電車をご利用の方</h2>
           <div class="abox for-pc">
             <p>JR成田駅／京成成田駅より&nbsp;約4.0Km（車で10分）</p>
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_03.jpg" alt="" class="for-pc">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_03.jpg" alt="電車をご利用の方" class="for-pc">
           </div>
           <div class="abox for-sp">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_05.jpg" alt="" class="for-sp">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_05.jpg" alt="電車をご利用の方" class="for-sp">
           </div>
           <div class="abox for-sp">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_06.jpg" alt="" class="for-sp">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_06.jpg" alt="電車をご利用の方" class="for-sp">
           </div>
         </section>
 
@@ -111,22 +111,22 @@
             <tbody>
               <tr>
                 <td>センターホテル成田</td>
-                <td><a href="http://www.c-hotel.jp/">http://www.c-hotel.jp/</a></td>
+                <td><a href="http://www.c-hotel.jp/" target="_blank">http://www.c-hotel.jp/</a></td>
                 <td>TEL&period;<a href="tel:0476-23-1133">0476-23-1133</a></td>
               </tr>
               <tr>
                 <td>センターホテル成田2&nbsp;R51</td>
-                <td><a href="https://www.c-hotel.jp/r51/">https://www.c-hotel.jp/r51/</a></td>
+                <td><a href="https://www.c-hotel.jp/r51/" target="_blank">https://www.c-hotel.jp/r51/</a></td>
                 <td>TEL&period;<a href="tel:0476-23-1133">0476-23-1112</a></td>
               </tr>
               <tr>
                 <td>リッチモンドホテル成田</td>
-                <td><a href="http://www.richmondhotel.jp/narita/">http://www.richmondhotel.jp/narita/</a></td>
+                <td><a href="http://www.richmondhotel.jp/narita/" target="_blank">http://www.richmondhotel.jp/narita/</a></td>
                 <td>TEL&period;<a href="tel:0476-24-6660">0476-24-6660</a></td>
               </tr>
               <tr>
                 <td>ホテルウェルコ成田</td>
-                <td><a href="https://www.hotelwelconarita.com/">https://www.hotelwelconarita.com/</a></td>
+                <td><a href="https://www.hotelwelconarita.com/" target="_blank">https://www.hotelwelconarita.com/</a></td>
                 <td>TEL&period;<a href="tel:0476-23-7000">0476-23-7000</a></td>
               </tr>
             </tbody>
@@ -137,7 +137,7 @@
             <tbody>
               <tr>
                 <td>ラディソン成田</td>
-                <td><a href="http://www.c-hotel.jp/">http://www.c-hotel.jp/</a></td>
+                <td><a href="http://www.c-hotel.jp/" target="_blank">http://www.c-hotel.jp/</a></td>
                 <td>TEL&period;<a href="tel:0476-93-1234">0476-93-1234</a></td>
               </tr>
             </tbody>
@@ -148,27 +148,27 @@
             <tbody>
               <tr>
                 <td>ヒルトン成田</td>
-                <td><a href="http://www.ishinhotels.com/">http://www.ishinhotels.com/</a></td>
+                <td><a href="http://www.ishinhotels.com/" target="_blank">http://www.ishinhotels.com/</a></td>
                 <td>TEL&period;<a href="tel:0476-33-1121">0476-33-1121</a></td>
               </tr>
               <tr>
                 <td>ANAクラウンプラザホテル成田</td>
-                <td><a href="http://www.anahotel-narita.com/">http://www.anahotel-narita.com/</a></td>
+                <td><a href="http://www.anahotel-narita.com/" target="_blank">http://www.anahotel-narita.com/</a></td>
                 <td>TEL&period;<a href="tel:0476-33-1311">0476-33-1311</a></td>
               </tr>
               <tr>
                 <td>ホテル日航成田</td>
-                <td><a href="http://www.nikko-narita.com/">http://www.nikko-narita.com/</a></td>
+                <td><a href="http://www.nikko-narita.com/" target="_blank">http://www.nikko-narita.com/</a></td>
                 <td>TEL&period;<a href="tel:0476-32-0032">0476-32-0032</a></td>
               </tr>
               <tr>
                 <td>アートホテル成田</td>
-                <td><a href="https://art-narita.com/">https://art-narita.com/</a></td>
+                <td><a href="https://art-narita.com/" target="_blank">https://art-narita.com/</a></td>
                 <td>TEL&period;<a href="tel:0476-32-1111">0476-32-1111</a></td>
               </tr>
               <tr>
                 <td>ホテルマイステイズプレミア成田</td>
-                <td><a href="https://www.mystays.com/narita/ja/">https://www.mystays.com/narita/ja/</a></td>
+                <td><a href="https://www.mystays.com/narita/ja/" target="_blank">https://www.mystays.com/narita/ja/</a></td>
                 <td>TEL&period;<a href="tel:03-3434-3939">03-3434-3939</a></td>
               </tr>
             </tbody>

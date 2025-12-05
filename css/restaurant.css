@@ -431,7 +431,7 @@
     font-size: 14px;
   }
 
-  .l-card__menu.l-card__menu--al01 > div{
+  .l-card__menu.l-card__menu--al01>div {
     margin-top: 30px;
   }
 }
@@ -771,6 +771,18 @@
     line-height: 18px;
     padding-right: 20px;
   }
+}
+
+#restaurant .c-list li {
+  position: relative;
+  padding-left: 1em;
+}
+
+#restaurant .c-list li::before {
+  content: "・";
+  display: inline-block;
+  position: absolute;
+  left: 0;
 }
 
 .u-standard {
