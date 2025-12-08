@@ -184,13 +184,8 @@ function get_dynamic_meta_description(){
     }
 
 
-    /* ----------------------------------------------------
-     * ▼ member-date.php（会員ニュース年別ページ）
-     * ---------------------------------------------------- */
-    if (
-        is_date() &&
-        strpos($current_path, 'member') === 0
-    ) {
+    // 会員ニュース年別ページ
+    if (is_post_type_archive('member_post') || (is_date() && strpos($current_path, 'member') === 0)) {
         return '久能カントリー倶楽部 公式サイト 会員お知らせ年別ページです。各年ごとの記事を掲載しております。';
     }
 
@@ -209,74 +204,73 @@ function get_dynamic_meta_description(){
     return $meta_descriptions[$current_path] ?? '久能カントリー倶楽部 公式サイト';
 }
 
-add_filter('post_type_link', function($url, $post){
 
-    if ($post->post_type !== 'member_post') return $url;
+/**
+ * カテゴリーによって single テンプレートを切り替え
+ */
+add_filter('single_template', function ($template) {
 
-    $year  = get_the_date('Y', $post);
-    $month = get_the_date('m', $post);
-    $slug  = $post->post_name;
-
-    $terms = get_the_terms($post->ID, 'member_category');
-    $cat = $terms ? $terms[0]->slug : 'member';
-
-    if ($cat === 'member') {
-        return home_url("/member/{$year}/{$month}/{$slug}/");
+    // 投稿が member（会員ニュース）カテゴリーなら専用テンプレートを使用
+    if (has_category('member')) {
+        $member_template = locate_template('single-member.php');
+        if ($member_template) {
+            return $member_template;
+        }
     }
 
-    return home_url("/member/{$cat}/{$year}/{$month}/{$slug}/");
+    // それ以外は通常の single.php を使う
+    return $template;
+});
 
-}, 10, 2);
 
 // bodyIDを取得する関数
 function my_custom_body_id()
 {
-    // URI 正規化（/kunocc/cms/ を除去）
+    // /kunocc/cms/ を除去
     $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-    $uri = preg_replace('#^([^/]+)/([^/]+)/#', '', $uri);
+    $uri = preg_replace('#^[^/]+/[^/]+/#', '', $uri);
 
-    /* ==================================================
-     * /member/ → ID = m-news（強制）
-     * ================================================== */
+    /* -------------------------------
+     * /member/（会員トップ）
+     * ------------------------------- */
     if ($uri === 'member' || $uri === 'member/') {
-        return 'm-news';
+        return 'member';
     }
 
-    /* ==================================================
-     * 会員個別記事
-     * ================================================== */
+    /* -------------------------------
+     * /member/information/
+     * ------------------------------- */
+    if ($uri === 'member/information' || $uri === 'member/information/') {
+        return 'information';
+    }
+
+    /* -------------------------------
+     * /member/kusunoki/
+     * ------------------------------- */
+    if ($uri === 'member/kusunoki' || $uri === 'member/kusunoki/') {
+        return 'kusunoki';
+    }
+
+    /* -------------------------------
+     * 個別記事
+     * ------------------------------- */
     if (preg_match('#^member(?:/(information|kusunoki))?/[0-9]{4}/[0-9]{2}/[^/]+/?$#', $uri)) {
         return 'member-single-page';
     }
 
-    /* ==================================================
-     * 年別一覧
-     * ================================================== */
+    /* -------------------------------
+     * 年別
+     * ------------------------------- */
     if (preg_match('#^member(?:/(information|kusunoki))?/([0-9]{4})/?$#', $uri)) {
         return 'member-date';
     }
 
-    /* ==================================================
-     * single-member_post
-     * ================================================== */
-    if (is_singular('member_post')) {
+    /* WordPress fallback */
+    if (is_singular('member_post')) return 'member-single-page';
+
+    if (is_single() && has_category(['member','kusunoki','information']))
         return 'member-single-page';
-    }
 
-    /* ==================================================
-     * 固定ページ情報
-     * ================================================== */
-    if (is_single() && has_category(['member','kusunoki','information'])) {
-        return 'member-single-page';
-    }
-
-    if (is_page(['member','kusunoki','information'])) {
-        return 'm-news';
-    }
-
-    /* ==================================================
-     * 通常
-     * ================================================== */
     if (is_front_page()) return 'top';
     if (is_404()) return 'errorpage';
 
@@ -290,18 +284,7 @@ function my_custom_body_id()
     return '';
 }
 
-/*----------------------------------------
- * 会員向け記事の single テンプレート強制適用
- ----------------------------------------*/
- add_filter('single_template', function ($template) {
 
-    if (is_singular('member_post')) {
-        $t = locate_template('single-member_post.php');
-        if ($t) return $t;
-    }
-
-    return $template;
-});
 
 
 // body_classにカスタムクラス（ルート親のスラッグ）を追加する関数
@@ -310,38 +293,43 @@ function my_custom_body_class()
     $uri = trim($_SERVER['REQUEST_URI'] ?? '', '/');
     $uri = preg_replace('#^[^/]+/[^/]+/#', '', $uri);
 
-    /* ==================================================
-     * /member/ → class = m-news（強制）
-     * ================================================== */
+    /* -------------------------------
+     * /member/ → class は m-news
+     * ------------------------------- */
     if ($uri === 'member' || preg_match('#^member/page/[0-9]+/?$#', $uri)) {
         return 'm-news';
     }
 
-    /* ==================================================
-     * 会員個別記事
-     * ================================================== */
+    /* -------------------------------
+     * /member/information/
+     * ------------------------------- */
+    if ($uri === 'member/information' || $uri === 'member/information/') {
+        return 'm-news';
+    }
+
+    /* -------------------------------
+     * /member/kusunoki/
+     * ------------------------------- */
+    if ($uri === 'member/kusunoki' || $uri === 'member/kusunoki/') {
+        return 'm-news';
+    }
+
+    /* -------------------------------
+     * 個別記事
+     * ------------------------------- */
     if (is_singular('member_post')) {
         return 'm-news';
     }
 
-    /* ==================================================
-     * 会員固定ページ（information / kusunoki）
-     * ================================================== */
-    if ($uri === 'member/information' || $uri === 'member/kusunoki') {
-        return 'm-news';
-    }
-
-    /* ==================================================
+    /* -------------------------------
      * 年別ページ
-     * ================================================== */
+     * ------------------------------- */
     if (is_date() && strpos($uri, 'member/') === 0) {
         return 'm-news';
     }
 
-    /* ==================================================
-     * 通常（既存）
-     * ================================================== */
-    if (is_date() && strpos($uri, 'news/') !== false) {
+    /* 既存処理 */
+    if (is_date() && strpos($uri, 'news/') === 0) {
         return 'news';
     }
 
@@ -364,6 +352,7 @@ function my_custom_body_class()
 }
 
 
+
 // body_class フィルターでカスタムクラスを追加
 function my_custom_body_classes($classes)
 {
@@ -380,104 +369,107 @@ add_filter('body_class', 'my_custom_body_classes');
 function enqueue_page_specific_styles()
 {
     $dir = get_template_directory_uri();
-
-    // ★ /kunocc/cms/ を除去して判定を統一
-    $uri = trim($_SERVER['REQUEST_URI'] ?? '', '/');
-    $uri = preg_replace('#^[^/]+/[^/]+/#', '', $uri);
-    // 例: /kunocc2/cms/member/ → member/
+    $uri = $_SERVER['REQUEST_URI'] ?? '';
 
     /* -----------------------------------
      * ▼ 共通CSS（全ページ）
      * ----------------------------------- */
-    wp_enqueue_style('common-style', $dir . '/css/common.css', [], null);
+    wp_enqueue_style(
+        'common-style',
+        $dir . '/css/common.css',
+        [],
+        null
+    );
 
     /* -----------------------------------
-     * ★★★ /member/（トップ）を強制適用
-     * ----------------------------------- */
-    if ($uri === 'member' || $uri === 'member/') {
-        wp_enqueue_style('m-news-style', $dir . '/css/m-news.css', [], null);
-        return;
-    }
-
-    // ▼ 個別記事
-    if (is_singular('member_post')) {
-        wp_enqueue_style('m-news', $dir . '/css/m-news.css');
-        return;
-    }
-
-    // ▼ 年別アーカイブ
-    if (is_post_type_archive('member_post') || is_tax('member_category')) {
-        wp_enqueue_style('m-news', $dir . '/css/m-news.css');
-        return;
-    }
-
-    // ▼ member 以下固定ページ
-    if (is_page(['member', 'information', 'kusunoki'])) {
-        wp_enqueue_style('m-news', $dir . '/css/m-news.css');
-        return;
-    }
-
-    /* -----------------------------------
-     * ▼ 会員ニュース（member / information / kusunoki）
-     * ----------------------------------- */
+    * ▼ 会員ニュース（member / information / kusunoki）
+    *    single / 固定ページ / ページネーション / 年別
+    * ----------------------------------- */
     if (
-        // single（post の古いカテゴリー系）
+
+        // single
         (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information')))
 
         // 固定ページ
-        || is_page(['member', 'kusunoki', 'information', 'partnership', 'm-calendar', 'registration', 'member-login'])
+        || is_page(array('member', 'kusunoki', 'information', 'partnership', 'm-calendar', 'registration', 'member-login'))
 
-        // 年別ページ
-        || (is_date() && strpos($uri, 'member/') !== false)
+        // 年別
+        || (is_date() && strpos($uri, '/member/') !== false)
 
-        // ページネーション
-        || preg_match('#^member/(information|kusunoki)/page/[0-9]+/?$#', $uri)
-        || preg_match('#^member/page/[0-9]+/?$#', $uri)
+        // ★ ページネーション
+        || preg_match('#/member/information/page/[0-9]+/?$#', $uri)
+        || preg_match('#/member/kusunoki/page/[0-9]+/?$#', $uri)
+        || preg_match('#/member/page/[0-9]+/?$#', $uri)
 
-        // その他
-        || strpos($uri, 'member/partnership') !== false
-        || strpos($uri, 'member/calendar') !== false
+        // ★★★ partnership を強制的に適用 ★★★
+        || strpos($uri, '/member/partnership') !== false
+        || strpos($uri, '/member/calendar') !== false
     ) {
-        wp_enqueue_style('m-news-style', $dir . '/css/m-news.css', [], null);
+
+        wp_enqueue_style(
+            'm-news-style',
+            $dir . '/css/m-news.css',
+            [],
+            null
+        );
         return;
     }
 
-    /* -----------------------------------
-     * ▼ news年別
-     * ----------------------------------- */
-    if (is_date() && strpos($uri, 'news/') !== false) {
-        wp_enqueue_style('news-style', $dir . '/css/news.css', [], null);
+    /* 以下はそのまま */
+    if (is_date() && strpos($uri, '/news/') !== false) {
+        wp_enqueue_style(
+            'news-style',
+            $dir . '/css/news.css',
+            [],
+            null
+        );
         return;
     }
 
-    /* -----------------------------------
-     * ▼ single(news)
-     * ----------------------------------- */
+    if (is_front_page()) {
+        wp_enqueue_style(
+            'top-style',
+            $dir . '/css/top.css',
+            [],
+            null
+        );
+        return;
+    }
+
     if (is_single()) {
-        wp_enqueue_style('news-style', $dir . '/css/news.css', [], null);
+        wp_enqueue_style(
+            'news-style',
+            $dir . '/css/news.css',
+            [],
+            null
+        );
         return;
     }
 
-    /* -----------------------------------
-     * ▼ 固定ページのCSS
-     * ----------------------------------- */
     if (is_page()) {
         global $post;
         $slug = $post->post_name;
-
-        $anc = get_post_ancestors($post->ID);
+        $anc  = get_post_ancestors($post->ID);
         if (!empty($anc)) {
-            $slug = get_post_field('post_name', end($anc));
+            $top  = end($anc);
+            $slug = get_post_field('post_name', $top);
         }
 
-        $css_path = get_template_directory() . '/css/' . $slug . '.css';
-        if (file_exists($css_path)) {
-            wp_enqueue_style($slug . '-style', $dir . '/css/' . $slug . '.css', [], null);
+        $css_filename  = $slug . '.css';
+        $css_file_uri  = $dir . '/css/' . $css_filename;
+        $css_file_path = get_template_directory() . '/css/' . $css_filename;
+
+        if (file_exists($css_file_path)) {
+            wp_enqueue_style(
+                $slug . '-style',
+                $css_file_uri,
+                [],
+                null
+            );
         }
     }
 }
 add_action('wp_enqueue_scripts', 'enqueue_page_specific_styles');
-
 
 
 // スクリプトタグから id 属性を削除するフィルター
@@ -976,28 +968,23 @@ add_filter('wp_terms_checklist_args', function ($args, $post_id) {
  *
  * @return int[] 年度の配列（例: [2025,2024,2023…]）
  */
-function fhg_get_all_years()
+function member_get_all_years()
 {
     global $wpdb;
-    $years = $wpdb->get_col(
-        "SELECT DISTINCT YEAR(post_date) AS y
-            FROM {$wpdb->posts}
-            WHERE post_type = 'post'
-                AND post_status = 'publish'
-            ORDER BY y DESC"
-    );
-    return array_map('intval', $years);
+
+    return $wpdb->get_col("
+        SELECT DISTINCT YEAR(post_date)
+        FROM {$wpdb->posts}
+        WHERE post_type='member_post'
+          AND post_status='publish'
+        ORDER BY YEAR(post_date) DESC
+    ");
 }
 
 
-
-/**
- * ① query_vars に subcat と year を登録
- * （ニュース・会員ニュースのURL制御に必要）
- */
 add_filter('query_vars', function ($vars) {
-    $vars[] = 'subcat';
     $vars[] = 'year';
+    $vars[] = 'member_category';
     return $vars;
 });
 
@@ -1007,19 +994,26 @@ add_filter('query_vars', function ($vars) {
 /**
  * カテゴリ別にパーマリンクの表示URLを変更
  */
-add_filter('post_link', 'custom_post_permalink_by_category', 10, 3);
-function custom_post_permalink_by_category($permalink, $post, $leavename) {
+add_filter('post_type_link', function ($permalink, $post) {
+
+    if ($post->post_type !== 'member_post') return $permalink;
 
     $year  = get_the_date('Y', $post);
     $month = get_the_date('m', $post);
     $slug  = $post->post_name;
 
-    if (in_category('news', $post)) {
-        return home_url("/news/{$year}/{$month}/{$slug}/");
+    if (has_term('information', 'member_category', $post)) {
+        return home_url("/member/information/{$year}/{$month}/{$slug}/");
+    }
+    if (has_term('kusunoki', 'member_category', $post)) {
+        return home_url("/member/kusunoki/{$year}/{$month}/{$slug}/");
     }
 
-    return $permalink;
-}
+    // デフォルト（member）
+    return home_url("/member/{$year}/{$month}/{$slug}/");
+
+}, 10, 2);
+
 
 
 /**
@@ -1107,7 +1101,6 @@ function fhg_add_noindex_meta()
 }
 add_action('wp_head', 'fhg_add_noindex_meta', 1);
 
-
 add_action('init', function () {
 
     /* -----------------------
@@ -1138,38 +1131,57 @@ add_action('init', function () {
         'top'
     );
 
-});
+    /* -----------------------
+     * ① 個別記事（member_post）
+     * ----------------------- */
+    add_rewrite_rule(
+        '^member/information/([0-9]{4})/([0-9]{2})/([^/]+)/?$',
+        'index.php?post_type=member_post&name=$matches[3]',
+        'top'
+    );
 
-/*----------------------------------------
- * 会員向け記事（member_post）URLルール
- * 例：/member/2025/12/slug/
- *     /member/kusunoki/2025/12/slug/
- *     /member/information/2025/12/slug/
- ----------------------------------------*/
- add_action('init', function () {
+    add_rewrite_rule(
+        '^member/kusunoki/([0-9]{4})/([0-9]{2})/([^/]+)/?$',
+        'index.php?post_type=member_post&name=$matches[3]',
+        'top'
+    );
 
-    // 親カテゴリなし
     add_rewrite_rule(
         '^member/([0-9]{4})/([0-9]{2})/([^/]+)/?$',
         'index.php?post_type=member_post&name=$matches[3]',
         'top'
     );
 
-    // kusunoki
+
+    /* -----------------------
+     * ② 年別（member / kusunoki / information）
+     * ----------------------- */
     add_rewrite_rule(
-        '^member/kusunoki/([0-9]{4})/([0-9]{2})/([^/]+)/?$',
-        'index.php?post_type=member_post&member_category=kusunoki&name=$matches[3]',
+        '^member/information/([0-9]{4})/?$',
+        'index.php?post_type=member_post&member_category=information&year=$matches[1]',
         'top'
     );
 
-    // information
     add_rewrite_rule(
-        '^member/information/([0-9]{4})/([0-9]{2})/([^/]+)/?$',
-        'index.php?post_type=member_post&member_category=information&name=$matches[3]',
+        '^member/information/([0-9]{4})/page/([0-9]+)/?$',
+        'index.php?post_type=member_post&member_category=information&year=$matches[1]&paged=$matches[2]',
         'top'
     );
 
-    // 年別アーカイブ
+
+    add_rewrite_rule(
+        '^member/kusunoki/([0-9]{4})/?$',
+        'index.php?post_type=member_post&member_category=kusunoki&year=$matches[1]',
+        'top'
+    );
+
+    add_rewrite_rule(
+        '^member/kusunoki/([0-9]{4})/page/([0-9]+)/?$',
+        'index.php?post_type=member_post&member_category=kusunoki&year=$matches[1]&paged=$matches[2]',
+        'top'
+    );
+
+
     add_rewrite_rule(
         '^member/([0-9]{4})/?$',
         'index.php?post_type=member_post&year=$matches[1]',
@@ -1181,121 +1193,91 @@ add_action('init', function () {
         'index.php?post_type=member_post&year=$matches[1]&paged=$matches[2]',
         'top'
     );
-
-    // 年別（subcategory）
-    add_rewrite_rule(
-        '^member/(information|kusunoki)/([0-9]{4})/?$',
-        'index.php?post_type=member_post&member_category=$matches[1]&year=$matches[2]',
-        'top'
-    );
-
-    add_rewrite_rule(
-        '^member/(information|kusunoki)/([0-9]{4})/page/([0-9]+)/?$',
-        'index.php?post_type=member_post&member_category=$matches[1]&year=$matches[2]&paged=$matches[3]',
-        'top'
-    );
 });
 
+/* ---------------------------------------------------------
+ * ★★★ 完全修正版 template_include（衝突をすべて除去） ★★★
+ * --------------------------------------------------------- */
+add_filter('template_include', 'knc_template_router_fixed', 20);
+function knc_template_router_fixed($template) {
 
-/* ------------------------------------------------------------
- *  会員向けページ専用 template_include（information / kusunoki 対応）
- * ------------------------------------------------------------ */
-add_filter('template_include', function ($template) {
+    /* ---------------------------------------------------------
+     * ① URI 正規化
+     * --------------------------------------------------------- */
+    $uri_raw = $_SERVER['REQUEST_URI'] ?? '';
+    $path = parse_url($uri_raw, PHP_URL_PATH);
 
-    // 現在の URI を必ず最初に定義
-    $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    // /kunocc/cms/ を除去
+    $path = preg_replace('#^/[^/]+/[^/]+/#', '/', $path);
+    $path = trim($path, '/');
 
-    // /kunocc2/cms/ を除去して判定を統一
-    $uri = preg_replace('#^[^/]+/[^/]+/#', '', $uri);
 
-    // デバッグログ
-    error_log("TEMPLATE URI = " . $uri);
+    /* ---------------------------------------------------------
+     * ② 固定ページ（member 直下）
+     * --------------------------------------------------------- */
+    if ($path === 'member') {
+        return locate_template('page-120-member.php');
+    }
+    if ($path === 'member/information') {
+        return locate_template('page-120-information.php');
+    }
+    if ($path === 'member/kusunoki') {
+        return locate_template('page-120-kusunoki.php');
+    }
+    if ($path === 'member/calendar') {
+        return locate_template('page-120-calendar.php');
+    }
 
-    /* ----------------------------------------
-     * 個別記事（single-member_post）
-     * ---------------------------------------- */
+
+    /* ---------------------------------------------------------
+     * ③ ページネーション（固定ページ扱い）
+     * --------------------------------------------------------- */
+    if (preg_match('#^member/page/[0-9]+/?$#', $path)) {
+        return locate_template('page-120-member.php');
+    }
+    if (preg_match('#^member/information/page/[0-9]+/?$#', $path)) {
+        return locate_template('page-120-information.php');
+    }
+    if (preg_match('#^member/kusunoki/page/[0-9]+/?$#', $path)) {
+        return locate_template('page-120-kusunoki.php');
+    }
+
+
+    /* ---------------------------------------------------------
+     * ④ 年別アーカイブ（date-member.php）
+     * 
+     * 例：
+     *   /member/2025/
+     *   /member/information/2025/
+     *   /member/kusunoki/2025/
+     * --------------------------------------------------------- */
+    if (preg_match('#^member/[0-9]{4}(/page/[0-9]+)?/?$#', $path)) {
+        return locate_template('date-member.php');
+    }
+    if (preg_match('#^member/(information|kusunoki)/[0-9]{4}(/page/[0-9]+)?/?$#', $path)) {
+        return locate_template('date-member.php');
+    }
+
+
+    /* ---------------------------------------------------------
+     * ⑤ 個別記事（IMPORTANT!）
+     *
+     * ★ ここでテンプレートを返さない
+     * ★ WP に委譲 → single-member_post.php が自動選択される
+     * --------------------------------------------------------- */
     if (is_singular('member_post')) {
-        if ($single = locate_template('single-member_post.php')) {
-            return $single;
-        }
-        return $template;
+        return $template; // WP 標準に任せる
     }
 
-    /* ----------------------------------------
-     * 営業案内トップ（固定ページ）
-     * /member/information/
-     * ---------------------------------------- */
-    if ($uri === 'member/information' || $uri === 'member/information/') {
+    // 手動の正規表現も入れない（壊れるため）
+    // /member/.../slug/ のような URL は rewrite + post_type_link に任せる
 
-        error_log("MATCH: information TOP");
 
-        if ($info_tpl = locate_template('page-120-information.php')) {
-            return $info_tpl;
-        }
-        return $template;
-    }
-
-    /* ----------------------------------------
-     * くすのき会トップ
-     * /member/kusunoki/
-     * ---------------------------------------- */
-    if ($uri === 'member/kusunoki' || $uri === 'member/kusunoki/') {
-
-        error_log("MATCH: kusunoki TOP");
-
-        if ($kus_tpl = locate_template('page-120-kusunoki.php')) {
-            return $kus_tpl;
-        }
-        return $template;
-    }
-
-    /* ----------------------------------------
-     * 営業案内 年別
-     * /member/information/2025/
-     * ---------------------------------------- */
-    if (preg_match('#^member/information/[0-9]{4}/?$#', $uri)) {
-
-        error_log("MATCH: information YEAR");
-
-        if ($year_tpl = locate_template('member-date.php')) {
-            return $year_tpl;
-        }
-        return $template;
-    }
-
-    /* ----------------------------------------
-     * くすのき会 年別
-     * /member/kusunoki/2025/
-     * ---------------------------------------- */
-    if (preg_match('#^member/kusunoki/[0-9]{4}/?$#', $uri)) {
-
-        error_log("MATCH: kusunoki YEAR");
-
-        if ($year_tpl = locate_template('member-date.php')) {
-            return $year_tpl;
-        }
-        return $template;
-    }
-
-    /* ----------------------------------------
-     * 会員一覧 /member/ , /member/page/2/
-     * ---------------------------------------- */
-    if ($uri === 'member' || preg_match('#^member/page/[0-9]+/?$#', $uri)) {
-
-        error_log("MATCH: member LIST");
-
-        if ($list_tpl = locate_template('archive-member.php')) {
-            return $list_tpl;
-        }
-        if ($list_tpl = locate_template('page-120-member.php')) {
-            return $list_tpl;
-        }
-        return $template;
-    }
-
+    /* ---------------------------------------------------------
+     * ⑥ デフォルト
+     * --------------------------------------------------------- */
     return $template;
-
-}, 20);
+}
 
 
 
@@ -1349,33 +1331,38 @@ add_action('template_redirect', function () {
  *   個別   : /member/news/スラッグ/
  --------------------------------*/
  add_action( 'init', 'my_register_member_post_type' );
-function my_register_member_post_type() {
-
-    $labels = array(
-        'name'          => '会員向け記事',
-        'singular_name' => '会員向け記事',
-        'add_new'       => '新規追加',
-        'add_new_item'  => '会員向け記事を追加',
-        'edit_item'     => '会員向け記事を編集',
-        'new_item'      => '新しい会員向け記事',
-        'view_item'     => '会員向け記事を表示',
-        'search_items'  => '会員向け記事を検索',
-        'not_found'     => '会員向け記事はありません。',
-    );
-
-    register_post_type('member_post', [
-        'label' => '会員向け記事',
-        'public' => true,
-        'has_archive' => 'member',
-        'rewrite' => [
-            'slug' => 'member',
-            'with_front' => false,
-        ],
-        'supports' => ['title', 'editor', 'thumbnail'],
-        'taxonomies' => ['member_category'],
-    ]);
-    
-}
+ function my_register_member_post_type() {
+ 
+     $labels = array(
+         'name'          => '会員向け記事',
+         'singular_name' => '会員向け記事',
+         'add_new'       => '新規追加',
+         'add_new_item'  => '会員向け記事を追加',
+         'edit_item'     => '会員向け記事を編集',
+         'new_item'      => '新しい会員向け記事',
+         'view_item'     => '会員向け記事を表示',
+         'search_items'  => '会員向け記事を検索',
+         'not_found'     => '会員向け記事はありません。',
+     );
+ 
+     register_post_type( 'member_post', array(
+         'labels'             => $labels,
+         'public'             => true,
+         'show_ui'            => true,
+         'show_in_menu'       => true,
+         'menu_position'      => 5,
+         'menu_icon'          => 'dashicons-lock',
+         'has_archive'        => 'member/news',
+         'rewrite'            => array(
+             'slug'       => 'member/news',
+             'with_front' => false,
+         ),
+         'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+         'exclude_from_search'=> true,
+         'publicly_queryable' => true,
+         'show_in_rest'       => true,
+     ) );
+ }
 
  /*--------------------------------
  * STEP2：会員向けカテゴリ（タクソノミー）
@@ -1396,18 +1383,18 @@ function my_register_member_taxonomy() {
     );
 
     register_taxonomy(
-        'member_category',
-        'member_post',
+        'member_category',      // タクソノミー名
+        'member_post',          // 紐づける投稿タイプ
         array(
-            'hierarchical'      => true,
+            'hierarchical'      => true, // カテゴリ型（階層あり）
             'labels'            => $labels,
             'show_ui'           => true,
             'show_admin_column' => true,
-            'show_in_rest'      => true,
-            'rewrite'           => [
-                'slug' => 'member',
+            'show_in_rest'      => true, // ブロックエディタ対応
+            'rewrite'           => array(
+                'slug'       => 'member/news/category',
                 'with_front' => false,
-            ],
+            ),
         )
     );
 }

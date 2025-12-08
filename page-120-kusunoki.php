@@ -1,48 +1,56 @@
-    <?php
-    /*
-      Template Name: くすのき会お知らせ
-      */
-    ?>
+<?php
+/*
+  Template Name: くすのき会お知らせ
+*/
+?>
 
-    <!--  header -->
-    <?php get_header('120'); ?>
-    <!--  header -->
+<?php get_header('120'); ?>
 
-    <main class="c-member">
-      <span class="deco _01"><span></span></span>
-      <div class="c-page-header lazyload">
-        <div class="c-column c-page-header__inner">
-          <h1 class="c-page-header__title">Member
-            <span>くすのき会</span>
-          </h1>
-        </div>
-      </div>
-      
-      <!-- 共通メニュー -->
-      <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
-      <!-- 共通メニュー -->
-      
-      <div class="c-column">
-        <div class="news-box">
-          <div class="news-box__left">
-            <h2 class="c-head6">くすのき会お知らせ<span>News</span></h2>
-            <ul class="news-box__list">
+<main class="c-member">
+  <span class="deco _01"><span></span></span>
+
+  <div class="c-page-header lazyload">
+    <div class="c-column c-page-header__inner">
+      <h1 class="c-page-header__title">Member
+        <span>くすのき会</span>
+      </h1>
+    </div>
+  </div>
+
+  <!-- 共通メニュー -->
+  <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
+  <!-- 共通メニュー -->
+
+  <div class="c-column">
+    <div class="news-box">
+
+      <!-- ======================
+           左カラム：一覧
+      ====================== -->
+      <div class="news-box__left">
+        <h2 class="c-head6">くすのき会お知らせ<span>News</span></h2>
+        <ul class="news-box__list">
+
         <?php
-        /*
-         * 基本設定
-         */
         $paged = max(1, get_query_var('paged'));
         $year  = intval(get_query_var('year'));
         $ppp   = 10;
 
         /*
-         * くすのき会一覧 → カテゴリ kusunoki のみ取得
+         * ▼ カスタム投稿タイプ member_post を使用
+         * ▼ カスタムタクソノミー member_category = kusunoki 指定
          */
         $kusunoki_q = new WP_Query([
-          'post_type'           => 'post',
-          'posts_per_page'      => $ppp,
-          'paged'               => $paged,
-          'category_name'       => 'kusunoki',
+          'post_type'      => 'member_post',
+          'posts_per_page' => $ppp,
+          'paged'          => $paged,
+          'tax_query'      => [
+            [
+              'taxonomy' => 'member_category',
+              'field'    => 'slug',
+              'terms'    => 'kusunoki',
+            ]
+          ],
           'year'                => $year,
           'ignore_sticky_posts' => true,
         ]);
@@ -51,21 +59,21 @@
           while ($kusunoki_q->have_posts()):
             $kusunoki_q->the_post();
         ?>
-          <li>
-            <a href="<?php
-              $file = get_field('news_file');
-              if (get_field('link_url')) {
-                echo esc_url(get_field('link_url'));
-              } elseif ($file && get_field('direct_link')) {
-                echo esc_url($file);
-              } else {
-                the_permalink();
-              }
-            ?>">
-              <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
-              <?php the_title(); ?>
-            </a>
-          </li>
+            <li>
+              <a href="<?php
+                $file = get_field('news_file');
+                if (get_field('link_url')) {
+                  echo esc_url(get_field('link_url'));
+                } elseif ($file && get_field('direct_link')) {
+                  echo esc_url($file);
+                } else {
+                  the_permalink();
+                }
+              ?>">
+                <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
+                <?php the_title(); ?>
+              </a>
+            </li>
         <?php
           endwhile;
         else:
@@ -79,88 +87,122 @@
 
         <!-- ページネーション -->
         <ul class="c-pagenation">
-                <?php custom_pagination($kusunoki_q); ?>
-            </ul>
+          <?php custom_pagination($kusunoki_q); ?>
+        </ul>
+
       </div>
 
-          <!-- ======================
-           サイドバー（くすのき会）
-          ====================== -->
-          <div class="news-box__right">
-            <h3 class="c-head5">Archive</h3>
 
-            <div class="news-box__right--box">
+      <!-- ======================
+           右カラム：サイドバー
+      ====================== -->
+      <div class="news-box__right">
+        <h3 class="c-head5">Archive</h3>
 
-              <!-- 新着5件（kusunoki限定） -->
-              <div class="recent-posts-box">
-                <h3>新着記事</h3>
-                <ul>
-                  <?php
-                  $recent_q = new WP_Query([
-                    'posts_per_page'      => 5,
-                    'category_name'       => 'kusunoki',
-                    'ignore_sticky_posts' => true,
-                  ]);
+        <div class="news-box__right--box">
 
-                  while ($recent_q->have_posts()): $recent_q->the_post(); ?>
-                    <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-                  <?php endwhile;
+          <!-- 新着5件 -->
+          <div class="recent-posts-box">
+            <h3>新着記事</h3>
+            <ul>
+              <?php
+              $recent_q = new WP_Query([
+                'post_type' => 'member_post',
+                'posts_per_page' => 5,
+                'tax_query' => [
+                  [
+                    'taxonomy' => 'member_category',
+                    'field'    => 'slug',
+                    'terms'    => 'kusunoki',
+                  ]
+                ]
+              ]);
 
-                  wp_reset_postdata(); ?>
-                </ul>
-              </div>
+              while ($recent_q->have_posts()): $recent_q->the_post(); ?>
+                <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+              <?php endwhile;
 
-              <!-- 年別アーカイブ（kusunoki） -->
-              <div>
-                <h3>年度別</h3>
-                <ul class="news-box__right--list">
-                  <?php
-                  $all_years = fhg_get_all_years();
+              wp_reset_postdata(); ?>
+            </ul>
+          </div>
 
-                  foreach ($all_years as $y):
-                    $count = count(get_posts([
-                      'post_type'      => 'post',
-                      'posts_per_page' => -1,
-                      'fields'         => 'ids',
-                      'category_name'  => 'kusunoki',
-                      'year'           => $y,
-                    ]));
 
-                    if ($count <= 0) continue;
-                  ?>
+          <!-- 年度別アーカイブ（kusunoki） -->
+          <div>
+            <h3>年度別</h3>
+            <ul class="news-box__right--list">
 
-                    <li>
-                      <a href="<?php echo esc_url(home_url("/member/kusunoki/{$y}/")); ?>">
-                        <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
-                      </a>
-                    </li>
+            <?php
+              // ==============================
+              // 年度別アーカイブ（member_post × kusunoki）
+              // ==============================
 
-                  <?php endforeach; ?>
+              // データベースから年度一覧を取得
+              global $wpdb;
 
-                </ul>
-              </div>
+              $years = $wpdb->get_col("
+                  SELECT DISTINCT YEAR(p.post_date)
+                  FROM $wpdb->posts p
+                  INNER JOIN $wpdb->term_relationships tr ON p.ID = tr.object_id
+                  INNER JOIN $wpdb->term_taxonomy tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+                  INNER JOIN $wpdb->terms t ON t.term_id = tt.term_id
+                  WHERE p.post_type = 'member_post'
+                    AND p.post_status = 'publish'
+                    AND tt.taxonomy = 'member_category'
+                    AND t.slug = 'kusunoki'
+                  ORDER BY YEAR(p.post_date) DESC
+              ");
 
-            </div>
+              if (!empty($years)) :
+                  foreach ($years as $y) :
+
+                      // 年度ごとの投稿数
+                      $count = $wpdb->get_var($wpdb->prepare("
+                          SELECT COUNT(*)
+                          FROM $wpdb->posts p
+                          INNER JOIN $wpdb->term_relationships tr ON p.ID = tr.object_id
+                          INNER JOIN $wpdb->term_taxonomy tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+                          INNER JOIN $wpdb->terms t ON t.term_id = tt.term_id
+                          WHERE p.post_type = 'member_post'
+                            AND p.post_status = 'publish'
+                            AND YEAR(p.post_date) = %d
+                            AND tt.taxonomy = 'member_category'
+                            AND t.slug = 'kusunoki'
+                      ", $y));
+
+                      if ($count > 0):
+                          $url = home_url("/member/kusunoki/{$y}/");
+              ?>
+              <li>
+              <a href="<?php echo esc_url(site_url("/member/kusunoki/{$y}/")); ?>">
+                  <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
+                </a>
+              </li>
+              <?php
+                      endif;
+
+                  endforeach;
+              endif;
+              ?>
+            </ul>
           </div>
 
         </div>
-
-        <!-- パンくずリスト -->
-        <ul class="c-brd">
-          <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-          <li><a href="<?php echo esc_url(home_url('')); ?>/member/">会員サイト</a></li>
-          <li><a href="">くすのき会お知らせ</a></li>
-        </ul>
       </div>
 
-    </main>
+    </div>
 
-    <!--  フッタ読込 -->
-    <?php get_footer('120'); ?>
-    <!--  フッタ読込 -->
+    <!-- パンくず -->
+    <ul class="c-brd">
+      <li><a href="<?php echo home_url(); ?>">TOP</a></li>
+      <li><a href="<?php echo home_url('/member/'); ?>">会員サイト</a></li>
+      <li><a>くすのき会お知らせ</a></li>
+    </ul>
+  </div>
 
-    <?php wp_footer(); ?>
+</main>
 
-    </body>
-
-    </html>
+<?php get_footer('120'); ?>
+<?php wp_footer(); ?>
+</body>
+</html>

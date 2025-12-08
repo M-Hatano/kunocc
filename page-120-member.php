@@ -120,29 +120,42 @@ wp_reset_postdata();
           </div>
 
           <!-- ▼ 年別アーカイブ -->
-          <div>
-            <h3>年度別</h3>
-            <ul class="news-box__right--list">
+<div>
+  <h3>年度別</h3>
+  <ul class="news-box__right--list">
+
 <?php
-// member_post の公開年を取得
 global $wpdb;
-$years = $wpdb->get_col("
-    SELECT DISTINCT YEAR(post_date)
+
+/*
+ * ▼ member_post 全体（member/information/kusunoki すべて）
+ *    の年別一覧を取得（件数付き）
+ */
+$years = $wpdb->get_results("
+    SELECT YEAR(post_date) AS y, COUNT(*) AS cnt
     FROM {$wpdb->posts}
     WHERE post_type = 'member_post'
       AND post_status = 'publish'
-    ORDER BY YEAR(post_date) DESC
+    GROUP BY YEAR(post_date)
+    HAVING y IS NOT NULL
+    ORDER BY y DESC
 ");
 
-foreach ($years as $y) : ?>
+if (!empty($years)) :
+    foreach ($years as $row) :
+?>
     <li>
-      <a href="<?php echo esc_url(home_url("/member/{$y}/")); ?>">
-        <?php echo esc_html($y); ?>年
+        <a href="<?php echo esc_url(site_url("/member/{$y}/")); ?>">
+        <?php echo esc_html($row->y); ?>年（<?php echo esc_html($row->cnt); ?>）
       </a>
     </li>
-<?php endforeach; ?>
-            </ul>
-          </div>
+<?php
+    endforeach;
+endif;
+?>
+
+  </ul>
+</div>
 
         </div>
       </div><!-- /.right -->
