@@ -199,154 +199,91 @@
             </ul>
           </div>
 
-          
-          <?php
-          // サイドバー：Archive リンク
-          $all_years = fhg_get_all_years();  // 全年取得
-          ?>
-            <div class="news-box__right">
-            <h3 class="c-head5">Archive</h3>
-            <div class="news-box__right--box">
+    <div class="news-box__right">
+    <h3 class="c-head5">Archive</h3>
+    <div class="news-box__right--box">
 
-              <!-- 新着5件 -->
-              <div class="recent-posts-box">
-                <h3>新着記事</h3>
-                <ul>
-                  
-                <?php
-                /* ----------------------------
-                * 新着記事（5件）
-                * スラッグが news なら news のみ
-                * スラッグが member なら member/kusunoki/information のみ
-                * ----------------------------*/
-                $recent_tax_query = [];
+    <!-- 新着5件 -->
+    <div class="recent-posts-box">
+    <h3>新着記事</h3>
+    <ul>
+    <?php
+    /* ----------------------------
+    * 新着記事（5件）
+    * ----------------------------*/
+    $recent_q = new WP_Query([
+        'posts_per_page'      => 5,
+        'post_type'           => 'post',
+        'ignore_sticky_posts' => true,
+        'tax_query'           => [
+            [
+                'taxonomy' => 'category',
+                'field'    => 'slug',
+                'terms'    => ['news'],
+            ],
+        ],
+    ]);
 
-                if ($mode === 'news') {
-                    // newsページ → news のみ
-                    $recent_tax_query = [
-                        [
-                            'taxonomy' => 'category',
-                            'field'    => 'slug',
-                            'terms'    => ['news'],
-                            'operator' => 'IN'
-                        ],
-                        [
-                            'taxonomy' => 'category',
-                            'field'    => 'slug',
-                            'terms'    => ['member', 'kusunoki', 'information'],
-                            'operator' => 'NOT IN'
-                        ],
-                    ];
-                } else {
-                    // memberページ → member/kusunoki/information のみ
-                    $recent_tax_query = [
-                        [
-                            'taxonomy' => 'category',
-                            'field'    => 'slug',
-                            'terms'    => ['member', 'kusunoki', 'information'],
-                            'operator' => 'IN'
-                        ],
-                        [
-                            'taxonomy' => 'category',
-                            'field'    => 'slug',
-                            'terms'    => ['news'],
-                            'operator' => 'NOT IN'
-                        ],
-                    ];
-                }
+    while ($recent_q->have_posts()) : $recent_q->the_post();
 
-                $recent_q = new WP_Query([
-                    'posts_per_page'      => 5,
-                    'post_type'           => 'post',
-                    'ignore_sticky_posts' => true,
-                    'tax_query'           => $recent_tax_query
-                ]);
-                ?>
-                <ul>
-                <?php while ($recent_q->have_posts()): $recent_q->the_post(); ?>
-                    <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-                <?php endwhile; wp_reset_postdata(); ?>
-                </ul>
-              </div>
+        // ★ ACF 直リンク処理（本文リストと統一）
+        $news_file = get_field('news_file');
+        if (get_field('link_url')) {
+            $href = esc_url(get_field('link_url'));
+        } elseif ($news_file && get_field('direct_link')) {
+            $href = esc_url($news_file);
+        } else {
+            $href = get_permalink();
+        }
+    ?>
+        <li>
+            <a href="<?php echo $href; ?>">
+            <?php the_title(); ?>
+            </a>
+        </li>
+    <?php endwhile; wp_reset_postdata(); ?>
+    </ul>
+    </div>
 
-              <!-- 年度別 -->
-              <div>
-                <h3>年度別</h3>
-                <ul class="news-box__right--list">
-                
-                  <?php
-                  $all_years = fhg_get_all_years();
-                  $years = [];
+    <!-- 年度別 -->
+    <div>
+      <h3>年度別</h3>
+      <ul class="news-box__right--list">
 
-                  foreach ($all_years as $y):
+      <?php
+      /* --------------------------------------
+       * 年別一覧（post × category=news）
+       * --------------------------------------*/
+      global $wpdb;
 
-                      if ($mode === 'news') {
-                          // NEWS のみカウント（member / kusunoki / information は除外）
-                          $count_posts = get_posts([
-                              'post_type'      => 'post',
-                              'posts_per_page' => -1,
-                              'fields'         => 'ids',
-                              'year'           => $y,
-                              'tax_query'      => [
-                                  'relation' => 'AND',
-                                  [
-                                      'taxonomy' => 'category',
-                                      'field'    => 'slug',
-                                      'terms'    => ['news'],
-                                      'operator' => 'IN',
-                                  ],
-                                  [
-                                      'taxonomy' => 'category',
-                                      'field'    => 'slug',
-                                      'terms'    => ['member', 'kusunoki', 'information'],
-                                      'operator' => 'NOT IN',
-                                  ],
-                              ],
-                          ]);
-                      } else {
-                          // MEMBER 系のみカウント（news は除外）
-                          $count_posts = get_posts([
-                              'post_type'      => 'post',
-                              'posts_per_page' => -1,
-                              'fields'         => 'ids',
-                              'year'           => $y,
-                              'tax_query'      => [
-                                  'relation' => 'AND',
-                                  [
-                                      'taxonomy' => 'category',
-                                      'field'    => 'slug',
-                                      'terms'    => ['member', 'kusunoki', 'information'],
-                                      'operator' => 'IN',
-                                  ],
-                                  [
-                                      'taxonomy' => 'category',
-                                      'field'    => 'slug',
-                                      'terms'    => ['news'],
-                                      'operator' => 'NOT IN',
-                                  ],
-                              ],
-                          ]);
-                      }
+      $years = $wpdb->get_results("
+          SELECT YEAR(post_date) AS y, COUNT(*) AS cnt
+          FROM {$wpdb->posts} AS p
+          INNER JOIN {$wpdb->term_relationships} AS tr ON p.ID = tr.object_id
+          INNER JOIN {$wpdb->term_taxonomy} AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+          INNER JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id
+          WHERE p.post_type = 'post'
+            AND p.post_status = 'publish'
+            AND t.slug = 'news'
+          GROUP BY YEAR(post_date)
+          HAVING y IS NOT NULL
+          ORDER BY y DESC
+      ");
 
-                      if (count($count_posts) > 0):
-                          $years[$y] = count($count_posts);
-                      endif;
+      foreach ($years as $row): ?>
+          <li>
+            <a href="<?php echo esc_url(home_url("/news/{$row->y}/")); ?>">
+              <?php echo esc_html($row->y); ?>年（<?php echo esc_html($row->cnt); ?>）
+            </a>
+          </li>
+      <?php endforeach; ?>
 
-                  endforeach;
+      </ul>
+    </div>
 
-                  foreach ($years as $y => $count): ?>
-                    <li>
-                    <a href="<?php echo esc_url( home_url( "/{$mode}/{$y}/" ) ); ?>">
-                        <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
-                    </a>
-                    </li>
-                  <?php endforeach; ?>
+  </div>
+</div>
 
-                </ul>
-              </div>
-
-            </div>
-          </div>
 
 
         <!-- パンくずリスト -->
