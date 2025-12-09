@@ -1297,13 +1297,22 @@ add_action('template_redirect', function () {
 });
 
 /*--------------------------------
- * STEP3：/member/ 以下をログイン必須（環境自動対応版）
+ * STEP3：/member/ 以下をログイン必須（環境自動対応版・クエリ保持版）
  --------------------------------*/
  add_action('template_redirect', function () {
 
+    // すでにログイン済みなら何もしない
     if (is_user_logged_in()) return;
 
-    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+
+    // パスとクエリを分解
+    $path  = parse_url($request_uri, PHP_URL_PATH) ?? '';
+    $query = $_SERVER['QUERY_STRING'] ?? '';
+
+    // /kunocc2/cms/ など環境パスを除去して正規化
+    // 例）/kunocc2/cms/member/member-file/ → /member/member-file/
+    $path = preg_replace('#^/[^/]+/[^/]+/#', '/', $path);
 
     // /member-login/ はログイン画面なので除外
     if (strpos($path, '/member-login') !== false) {
@@ -1311,10 +1320,13 @@ add_action('template_redirect', function () {
     }
 
     // Member 以下すべてログイン必須
-    if (strpos($path, '/member/') !== false) {
+    if (strpos($path, '/member/') === 0) {
 
-        // そのまま redirect_to に引き継ぐ
+        // 正規化済みパスから redirect_to を組み立て（クエリも保持）
         $redirect_to = home_url($path);
+        if ($query !== '') {
+            $redirect_to .= '?' . $query;   // ?id=9110 をつけ直す
+        }
 
         wp_redirect(
             home_url('/member-login/') . '?redirect_to=' . rawurlencode($redirect_to)
@@ -1323,6 +1335,7 @@ add_action('template_redirect', function () {
     }
 
 });
+
 
 /*--------------------------------
  * 会員向け記事用カスタム投稿タイプ
@@ -1474,6 +1487,83 @@ function my_member_protect_member_only_files( $content ) {
 
     return $content;
 }
+
+/**
+ * ACFで挿入された画像・ファイルのURLも
+ * 「会員専用ファイル」チェックがある場合は保護URLへ変換する
+ */
+add_filter('acf/format_value', 'my_member_protect_acf_files', 20, 3);
+function my_member_protect_acf_files($value, $post_id, $field) {
+
+    // 画像フィールド（url / id）やファイルフィールド
+    if ($field['type'] === 'image' || $field['type'] === 'file') {
+
+        // URL の場合
+        if (is_string($value)) {
+            return my_member_convert_url($value);
+        }
+
+        // 配列（url / id が入っている）
+        if (is_array($value)) {
+            // URLがあるなら差し替え
+            if (!empty($value['url'])) {
+                $value['url'] = my_member_convert_url($value['url']);
+            }
+            // sizes に入っているサムネイルも置換
+            if (!empty($value['sizes']) && is_array($value['sizes'])) {
+                foreach ($value['sizes'] as $k => $src) {
+                    $value['sizes'][$k] = my_member_convert_url($src);
+                }
+            }
+            return $value;
+        }
+    }
+
+    // WYSIWYG（画像・PDF 埋め込みを含む）
+    if ($field['type'] === 'wysiwyg') {
+        if (is_string($value)) {
+            return my_member_protect_member_only_files($value);
+        }
+    }
+
+    return $value;
+}
+
+
+/**
+ * URL→会員専用保護URLへ変換する関数（共通処理）
+ */
+function my_member_convert_url($url) {
+
+    // アップロードベースURL
+    $upload_dir = wp_get_upload_dir();
+    $baseurl    = $upload_dir['baseurl'];
+    if (!$baseurl) return $url;
+
+    // アップロード先以外（外部URLなど）は対象外
+    if (strpos($url, $baseurl) !== 0) {
+        return $url;
+    }
+
+    // 添付IDを取得
+    $attachment_id = attachment_url_to_postid($url);
+    if (!$attachment_id) return $url;
+
+    // 会員専用フラグ確認
+    $is_member_only = get_post_meta($attachment_id, '_member_only', true);
+    if ($is_member_only !== '1') {
+        return $url; // 通常ファイルはそのまま
+    }
+
+    // 会員専用ファイルURLへ変換
+    $protected_url = add_query_arg(
+        array('id' => $attachment_id),
+        home_url('/member/member-file/')
+    );
+
+    return $protected_url;
+}
+
 
 add_action('wp_loaded', function () {
     global $wp_rewrite;
