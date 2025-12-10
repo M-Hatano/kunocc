@@ -1339,9 +1339,6 @@ add_action('template_redirect', function () {
 
 /*--------------------------------
  * 会員向け記事用カスタム投稿タイプ
- * URL例：
- *   一覧   : /member/news/
- *   個別   : /member/news/スラッグ/
  --------------------------------*/
  add_action( 'init', 'my_register_member_post_type' );
  function my_register_member_post_type() {
@@ -1365,17 +1362,196 @@ add_action('template_redirect', function () {
          'show_in_menu'       => true,
          'menu_position'      => 5,
          'menu_icon'          => 'dashicons-lock',
-         'has_archive'        => 'member/news',
-         'rewrite'            => array(
-             'slug'       => 'member/news',
-             'with_front' => false,
-         ),
+         'has_archive'        => false,    // 一覧は rewrite ルールで作るため false
+         'rewrite'            => false,    // ★ rewrite は自前で管理するため無効
          'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
          'exclude_from_search'=> true,
          'publicly_queryable' => true,
          'show_in_rest'       => true,
      ) );
  }
+ 
+ 
+ /* ---------------------------------------------------------
+  * 公開ボックスに Sticky チェックを追加（UI を投稿に近づけた版）
+  * --------------------------------------------------------- */
+ add_action('post_submitbox_misc_actions', function () {
+     global $post;
+     if ($post->post_type !== 'member_post') return;
+ 
+     $is_sticky = get_post_meta($post->ID, '_member_sticky', true) === '1';
+     ?>
+ 
+     <div class="misc-pub-section misc-pub-misc">
+         <label>
+             <input type="checkbox" name="member_sticky" value="1"
+                 <?php checked($is_sticky, true); ?>>
+             この投稿を先頭に固定表示
+         </label>
+     </div>
+ 
+     <?php
+ });
+ 
+ 
+ /* ---------------------------------------------------------
+  * Sticky 保存処理
+  * --------------------------------------------------------- */
+ add_action('save_post_member_post', function ($post_id) {
+ 
+     if (wp_is_post_autosave($post_id) || wp_is_post_revision($post_id)) return;
+ 
+     $is_sticky = isset($_POST['member_sticky']) ? '1' : '0';
+     update_post_meta($post_id, '_member_sticky', $is_sticky);
+ });
+ 
+ 
+ /* ---------------------------------------------------------
+  * Sticky（先頭固定）member_post ID を取得（最大3件）
+  * --------------------------------------------------------- */
+ function get_member_sticky_ids() {
+ 
+     $ids = get_posts([
+         'post_type'      => 'member_post',
+         'posts_per_page' => -1,
+         'fields'         => 'ids',
+         'meta_key'       => '_member_sticky',
+         'meta_value'     => '1',
+         'orderby'        => 'date',
+         'order'          => 'DESC',
+     ]);
+ 
+     return array_slice($ids, 0, 3);
+ }
+
+ /* ============================================================
+ * 会員向けカテゴリー自動付与（Gutenberg 完全保証版）
+ * ============================================================ */
+add_action('save_post_member_post', function ($post_id) {
+
+    if (wp_is_post_autosave($post_id) || wp_is_post_revision($post_id)) return;
+
+    // 投稿タイプ確認
+    if (get_post_type($post_id) !== 'member_post') return;
+
+    /* ----------------------------------------
+     * ① タクソノミータームの ID を準備
+     * ---------------------------------------- */
+    $terms = get_terms([
+        'taxonomy'   => 'member_category',
+        'hide_empty' => false,
+    ]);
+
+    if (is_wp_error($terms)) return;
+
+    $slug_to_id = [];
+    foreach ($terms as $t) {
+        $slug_to_id[$t->slug] = (int)$t->term_id;
+    }
+
+    $member_id   = $slug_to_id['member']      ?? 0;
+    $kusunoki_id = $slug_to_id['kusunoki']    ?? 0;
+    $info_id     = $slug_to_id['information'] ?? 0;
+
+    if (!$member_id) return; // member が無い場合は終了
+
+
+    /* ----------------------------------------
+     * ② 現在保存されているタームを取得（これが最も確実）
+     * ---------------------------------------- */
+    $current_terms = wp_get_post_terms($post_id, 'member_category', ['fields' => 'ids']);
+    $current_terms = array_map('intval', $current_terms);
+
+
+    /* ----------------------------------------
+     * ③ カテゴリー未選択 → 自動で member を付与
+     * ---------------------------------------- */
+    if (empty($current_terms)) {
+        wp_set_post_terms($post_id, [$member_id], 'member_category', false);
+        return;
+    }
+
+
+    /* ----------------------------------------
+     * ④ サブカテゴリのみの場合 → member を追加
+     * ---------------------------------------- */
+    $final_terms = $current_terms;
+
+    $has_sub = (
+        in_array($kusunoki_id, $current_terms) ||
+        in_array($info_id, $current_terms)
+    );
+
+    if ($has_sub && !in_array($member_id, $current_terms)) {
+        $final_terms[] = $member_id;
+    }
+
+
+    /* ----------------------------------------
+     * ⑤ 最終的なタームを保存
+     * ---------------------------------------- */
+    wp_set_post_terms($post_id, array_unique($final_terms), 'member_category', false);
+});
+
+add_action('template_redirect', function () {
+
+    // リクエスト URI（例：/kunocc2/cms/wp-content/uploads/2025/12/testPDF.pdf）
+    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+
+    // パス部分だけを取り出す（クエリは除外）
+    $path = parse_url($request_uri, PHP_URL_PATH) ?? '';
+
+    // アップロードフォルダ URL を取得
+    $upload_dir  = wp_get_upload_dir();
+    $upload_base = parse_url($upload_dir['baseurl'], PHP_URL_PATH) ?: '';
+
+    // uploads 配下のファイルにアクセスしたか？
+    // 例）$upload_base = /kunocc2/cms/wp-content/uploads
+    if (strpos($path, $upload_base . '/') !== 0) {
+        // uploads 直下ではない → 何もしない
+        return;
+    }
+
+    // 添付ファイル URL を「DB に登録されている形」で生成する
+    // 例）/kunocc2/cms/wp-content/uploads + /2025/12/testPDF.pdf
+    $relative = substr($path, strlen($upload_base));            // 例）/2025/12/testPDF.pdf
+    $full_url = trailingslashit($upload_dir['baseurl']) . ltrim($relative, '/');
+
+    // 添付ファイル ID を取得
+    $attachment_id = attachment_url_to_postid($full_url);
+    if (!$attachment_id) {
+        // WordPress 管理外のファイル（手動アップロード等）はスルー
+        return;
+    }
+
+    // 会員専用フラグ確認
+    $is_member_only = get_post_meta($attachment_id, '_member_only', true);
+    if ($is_member_only !== '1') {
+        // 通常ファイルはそのまま表示
+        return;
+    }
+
+    // ---- ここから会員専用制御 ----
+
+    // 未ログイン → 会員ログイン画面へ飛ばしてから、member-file に戻す
+    if (!is_user_logged_in()) {
+
+        $login_url   = home_url('/member-login/');
+        $protected   = add_query_arg(['id' => $attachment_id], home_url('/member/member-file/'));
+
+        wp_redirect(
+            $login_url . '?redirect_to=' . rawurlencode($protected)
+        );
+        exit;
+    }
+
+    // ログイン済み → 正規の member-file handler へ強制転送
+    $protected_url = add_query_arg(['id' => $attachment_id], home_url('/member/member-file/'));
+    wp_redirect($protected_url);
+    exit;
+});
+
+
 
  /*--------------------------------
  * STEP2：会員向けカテゴリ（タクソノミー）
@@ -1531,38 +1707,129 @@ function my_member_protect_acf_files($value, $post_id, $field) {
 
 
 /**
- * URL→会員専用保護URLへ変換する関数（共通処理）
+ * 会員専用ファイルのURLを保護URLへ強制変換する完全版
  */
 function my_member_convert_url($url) {
 
-    // アップロードベースURL
-    $upload_dir = wp_get_upload_dir();
-    $baseurl    = $upload_dir['baseurl'];
-    if (!$baseurl) return $url;
+    if (!$url) return $url;
 
-    // アップロード先以外（外部URLなど）は対象外
-    if (strpos($url, $baseurl) !== 0) {
+    $upload = wp_get_upload_dir();
+    $base   = $upload['baseurl'];
+
+    // uploads 以外は対象外
+    if (strpos($url, $base) !== 0) {
         return $url;
     }
 
-    // 添付IDを取得
-    $attachment_id = attachment_url_to_postid($url);
-    if (!$attachment_id) return $url;
 
-    // 会員専用フラグ確認
-    $is_member_only = get_post_meta($attachment_id, '_member_only', true);
-    if ($is_member_only !== '1') {
-        return $url; // 通常ファイルはそのまま
+    /* -------------------------------------------------------
+     * ① 一般的な方法（失敗することが多い）
+     * ------------------------------------------------------- */
+    $attachment_id = attachment_url_to_postid($url);
+
+
+    /* -------------------------------------------------------
+     * ② GUID 一致検索（Sakura の場合こちらが効く）
+     * ------------------------------------------------------- */
+    if (!$attachment_id) {
+        global $wpdb;
+        $attachment_id = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT ID FROM {$wpdb->posts} WHERE guid = %s LIMIT 1",
+                $url
+            )
+        );
     }
 
-    // 会員専用ファイルURLへ変換
-    $protected_url = add_query_arg(
-        array('id' => $attachment_id),
+
+    /* -------------------------------------------------------
+     * ③ ファイル名一致検索（2025/test.pdf → test）
+     * ------------------------------------------------------- */
+    if (!$attachment_id) {
+
+        global $wpdb;
+        $filename = basename($url);                 // testPDF.pdf
+        $title    = pathinfo($filename, PATHINFO_FILENAME); // testPDF
+
+        $attachment_id = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT ID 
+                 FROM {$wpdb->posts}
+                 WHERE post_type='attachment'
+                 AND post_title = %s
+                 LIMIT 1",
+                $title
+            )
+        );
+    }
+
+
+    /* -------------------------------------------------------
+     * ④ それでも見つからない → 保護不能 → そのまま返す
+     * ------------------------------------------------------- */
+    if (!$attachment_id) {
+        return $url;
+    }
+
+
+    /* -------------------------------------------------------
+     * ⑤ 会員専用フラグチェック
+     * ------------------------------------------------------- */
+    $is_member_only = get_post_meta($attachment_id, '_member_only', true);
+
+    if ($is_member_only !== '1') {
+        return $url; // 通常ファイル
+    }
+
+
+    /* -------------------------------------------------------
+     * ⑥ 会員専用 → 強制的に member-file に振り替え
+     * ------------------------------------------------------- */
+    return add_query_arg(
+        ['id' => $attachment_id],
         home_url('/member/member-file/')
     );
-
-    return $protected_url;
 }
+
+/**
+ * ACF ボタンリンク（URL / File / Link フィールド）も
+ * 会員専用PDFなら自動的に保護URLへ変換する
+ */
+add_filter('acf/format_value/type=url', 'knc_protect_acf_button_url', 20, 3);
+add_filter('acf/format_value/type=link', 'knc_protect_acf_button_url', 20, 3);
+add_filter('acf/format_value/type=file', 'knc_protect_acf_button_url', 20, 3);
+
+function knc_protect_acf_button_url($value, $post_id, $field) {
+
+    if (empty($value)) return $value;
+
+    /* -------------------------------
+     * link フィールド（配列）
+     * ------------------------------- */
+    if (is_array($value) && !empty($value['url'])) {
+        $value['url'] = my_member_convert_url($value['url']);
+        return $value;
+    }
+
+    /* -------------------------------
+     * file フィールド（配列）
+     * ------------------------------- */
+    if (is_array($value) && !empty($value['ID'])) {
+        $file_url = wp_get_attachment_url($value['ID']);
+        $value['url'] = my_member_convert_url($file_url);
+        return $value;
+    }
+
+    /* -------------------------------
+     * URL（文字列）タイプ
+     * ------------------------------- */
+    if (is_string($value)) {
+        return my_member_convert_url($value);
+    }
+
+    return $value;
+}
+
 
 
 add_action('wp_loaded', function () {
