@@ -861,6 +861,27 @@ function cg_strip_img_attributes($html, $id, $caption, $title, $align, $url, $si
 }
 add_filter('image_send_to_editor', 'cg_strip_img_attributes', 10, 8);
 
+/**
+ * 「メディアを追加」で画像を本文に挿入するとき、
+ * 必ず attachment ID から URL を生成して出力する
+ */
+add_filter('image_send_to_editor', function($html, $id, $caption, $title, $align, $url, $size, $alt) {
+
+    // 添付IDが取れない場合はそのまま
+    if (!$id) return $html;
+
+    // IDから正規のURL（保護処理付き）を取得
+    $new_url = wp_get_attachment_url($id);
+
+    // HTML内の src を強制的に置換
+    $html = preg_replace(
+        '/src=["\'][^"\']+["\']/',
+        'src="' . esc_url($new_url) . '"',
+        $html
+    );
+
+    return $html;
+}, 20, 8);
 
 
 // <img> タグに loading="lazy" 等を追加（post_type が 'post' の場合のみ）
@@ -1673,6 +1694,48 @@ function my_member_protect_acf_files($value, $post_id, $field) {
 
     return $value;
 }
+
+add_filter('image_downsize', function($out, $post_id, $size) {
+
+    // メタ情報が存在しない → 通常処理
+    if (!$post_id) return false;
+
+    $is_member_only = get_post_meta($post_id, '_member_only', true);
+
+    if ($is_member_only === '1') {
+
+        // 保護された画像URLを返す
+        $url = home_url('/member/member-file/?id=' . $post_id);
+
+        return [
+            $url,   // src
+            null,   // width
+            null,   // height
+            false   // is intermediate
+        ];
+    }
+
+    return false; // WP標準処理へ
+
+}, 10, 3);
+
+
+add_filter('wp_get_attachment_url', function($url, $post_id) {
+
+    if (!$post_id) return $url;
+
+    // メディアの会員専用フラグ
+    $is_member_only = get_post_meta($post_id, '_member_only', true);
+
+    // 会員専用 → ID付きURL
+    if ($is_member_only === '1') {
+        return home_url('/member/member-file/?id=' . $post_id);
+    }
+
+    return $url;
+
+}, 10, 2);
+
 
 /**
  * 会員専用ファイルのURLを保護URLへ強制変換する完全版
