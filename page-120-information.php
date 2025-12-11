@@ -17,79 +17,92 @@
     </div>
   </div>
 
-  <!-- 共通メニュー -->
   <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
-  <!-- 共通メニュー -->
 
   <div class="c-column">
     <div class="news-box">
 
       <!-- ======================
-           左カラム：一覧
+           左カラム
       ====================== -->
       <div class="news-box__left">
-        <h2 class="c-head6">営業案内<span>News</span></h2>
+        <h2 class="c-head6">営業案内<span>Information</span></h2>
+
         <ul class="news-box__list">
 
-        <?php
-        $paged = max(1, get_query_var('paged'));
-        $year  = intval(get_query_var('year'));
-        $ppp   = 10;
+<?php
+$paged = max(1, get_query_var('paged'));
+$year  = intval(get_query_var('year'));
+$per   = 10;
 
-        /*
-         * ▼ カスタム投稿仕様（member_post）
-         * ▼ カテゴリ → member_category: information
-         */
-        $info_q = new WP_Query([
-          'post_type'      => 'member_post',
-          'posts_per_page' => $ppp,
-          'paged'          => $paged,
-          'year'           => $year,
-          'tax_query'      => [
-            [
-              'taxonomy' => 'member_category',
-              'field'    => 'slug',
-              'terms'    => 'information',
-            ]
-          ],
-          'ignore_sticky_posts' => true,
-        ]);
+/* -----------------------------
+ * 営業案内（member_category = information）
+ * ---------------------------- */
+$args = [
+    'post_type'      => 'member_post',
+    'posts_per_page' => $per,
+    'paged'          => $paged,
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+    'tax_query'      => [
+        [
+            'taxonomy' => 'member_category',
+            'field'    => 'slug',
+            'terms'    => 'information',
+        ]
+    ]
+];
 
-        if ($info_q->have_posts()):
-          while ($info_q->have_posts()):
-            $info_q->the_post();
-        ?>
-          <li>
-            <a href="<?php
-              $file = get_field('news_file');
-              if (get_field('link_url')) {
-                echo esc_url(get_field('link_url'));
-              } elseif ($file && get_field('direct_link')) {
-                echo esc_url($file);
-              } else {
-                the_permalink();
-              }
-            ?>">
-              <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
-              <?php the_title(); ?>
-            </a>
-          </li>
-        <?php
-          endwhile;
-        else:
-          echo '<li>現在お知らせはありません。</li>';
-        endif;
+if ($year) {
+    $args['year'] = $year;
+}
 
-        wp_reset_postdata();
-        ?>
+$q = new WP_Query($args);
+
+if ($q->have_posts()):
+    while ($q->have_posts()):
+        $q->the_post();
+
+        $news_file = get_field('news_file');
+        $direct    = get_field('direct_link');
+        $link_url  = get_field('link_url');
+
+        /* ------------------------------
+         * URL 優先順位（保護付き）
+         * ------------------------------*/
+        if ($link_url) {
+            $href = my_member_convert_url($link_url);
+
+        } elseif ($news_file && $direct) {
+            $href = knc_get_protected_acf_file_url($news_file);
+
+        } else {
+            $href = get_permalink();
+        }
+?>
+        <li>
+          <a href="<?php echo esc_url($href); ?>">
+            <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
+            <?php the_title(); ?>
+          </a>
+        </li>
+
+<?php
+    endwhile;
+else:
+    echo '<li>現在お知らせはありません。</li>';
+endif;
+
+wp_reset_postdata();
+?>
 
         </ul>
 
-        <!-- ページネーション -->
         <ul class="c-pagenation">
-          <?php custom_pagination($info_q); ?>
+          <?php custom_pagination($q); ?>
         </ul>
-      </div>
+
+      </div><!-- /.left -->
 
 
       <!-- ======================
@@ -97,32 +110,48 @@
       ====================== -->
       <div class="news-box__right">
         <h3 class="c-head5">Archive</h3>
-
         <div class="news-box__right--box">
 
-          <!-- 新着5件 -->
+
+          <!-- 新着記事5件 -->
           <div class="recent-posts-box">
             <h3>新着記事</h3>
             <ul>
-            <?php
-            $recent_q = new WP_Query([
-              'post_type'      => 'member_post',
-              'posts_per_page' => 5,
-              'tax_query'      => [
-                [
-                  'taxonomy' => 'member_category',
-                  'field'    => 'slug',
-                  'terms'    => 'information',
-                ]
-              ],
-              'ignore_sticky_posts' => true,
-            ]);
+<?php
+$recent_q = new WP_Query([
+    'post_type'      => 'member_post',
+    'posts_per_page' => 5,
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+    'tax_query'      => [
+        [
+            'taxonomy' => 'member_category',
+            'field'    => 'slug',
+            'terms'    => 'information',
+        ]
+    ]
+]);
 
-            while ($recent_q->have_posts()): $recent_q->the_post(); ?>
-              <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-            <?php endwhile;
+while ($recent_q->have_posts()):
+    $recent_q->the_post();
 
-            wp_reset_postdata(); ?>
+    $news_file = get_field('news_file');
+    $direct    = get_field('direct_link');
+    $link_url  = get_field('link_url');
+
+    if ($link_url) {
+        $href = my_member_convert_url($link_url);
+
+    } elseif ($news_file && $direct) {
+        $href = knc_get_protected_acf_file_url($news_file);
+
+    } else {
+        $href = get_permalink();
+    }
+?>
+      <li><a href="<?php echo esc_url($href); ?>"><?php the_title(); ?></a></li>
+<?php endwhile;
+wp_reset_postdata(); ?>
             </ul>
           </div>
 
@@ -132,76 +161,65 @@
             <h3>年度別</h3>
             <ul class="news-box__right--list">
 
-            <?php
-                // ==============================
-                // 年度別アーカイブ（member_post × information）
-                // ==============================
+<?php
+global $wpdb;
 
-                global $wpdb;
+$years = $wpdb->get_col("
+    SELECT DISTINCT YEAR(p.post_date)
+    FROM {$wpdb->posts} p
+    JOIN {$wpdb->term_relationships} tr ON p.ID = tr.object_id
+    JOIN {$wpdb->term_taxonomy} tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+    JOIN {$wpdb->terms} t ON t.term_id = tt.term_id
+    WHERE p.post_type = 'member_post'
+      AND p.post_status = 'publish'
+      AND tt.taxonomy = 'member_category'
+      AND t.slug = 'information'
+    ORDER BY YEAR(p.post_date) DESC
+");
 
-                // 年度一覧を取得
-                $years = $wpdb->get_col("
-                    SELECT DISTINCT YEAR(p.post_date)
-                    FROM $wpdb->posts p
-                    INNER JOIN $wpdb->term_relationships tr ON p.ID = tr.object_id
-                    INNER JOIN $wpdb->term_taxonomy tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
-                    INNER JOIN $wpdb->terms t ON t.term_id = tt.term_id
-                    WHERE p.post_type = 'member_post'
-                      AND p.post_status = 'publish'
-                      AND tt.taxonomy = 'member_category'
-                      AND t.slug = 'information'
-                    ORDER BY YEAR(p.post_date) DESC
-                ");
+foreach ($years as $y):
 
-                if (!empty($years)) :
-                    foreach ($years as $y) :
+    $count = $wpdb->get_var($wpdb->prepare("
+        SELECT COUNT(*)
+        FROM {$wpdb->posts} p
+        JOIN {$wpdb->term_relationships} tr ON p.ID = tr.object_id
+        JOIN {$wpdb->term_taxonomy} tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+        JOIN {$wpdb->terms} t ON t.term_id = tt.term_id
+        WHERE p.post_type = 'member_post'
+          AND p.post_status = 'publish'
+          AND YEAR(p.post_date) = %d
+          AND tt.taxonomy = 'member_category'
+          AND t.slug = 'information'
+    ", $y));
 
-                        // 年ごとの投稿数
-                        $count = $wpdb->get_var($wpdb->prepare("
-                            SELECT COUNT(*)
-                            FROM $wpdb->posts p
-                            INNER JOIN $wpdb->term_relationships tr ON p.ID = tr.object_id
-                            INNER JOIN $wpdb->term_taxonomy tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
-                            INNER JOIN $wpdb->terms t ON t.term_id = tt.term_id
-                            WHERE p.post_type = 'member_post'
-                              AND p.post_status = 'publish'
-                              AND YEAR(p.post_date) = %d
-                              AND tt.taxonomy = 'member_category'
-                              AND t.slug = 'information'
-                        ", $y));
+    if ($count > 0):
+?>
+  <li>
+    <a href="<?php echo esc_url(home_url("/member/information/{$y}/")); ?>">
+      <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
+    </a>
+  </li>
+<?php
+    endif;
 
-                        if ($count > 0):
-                            $url = home_url("/member/information/{$y}/");
-                ?>
-                <li>
-                <a href="<?php echo esc_url(site_url("/member/information/{$y}/")); ?>">
-                    <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
-                  </a>
-                </li>
-                <?php
-                        endif;
-
-                    endforeach;
-                endif;
-                ?>
-
-
+endforeach;
+?>
             </ul>
           </div>
 
         </div>
-      </div>
+      </div><!-- /.right -->
 
-    </div>
+    </div><!-- /.news-box -->
 
     <!-- パンくず -->
     <ul class="c-brd">
-      <li><a href="<?php echo home_url(); ?>">TOP</a></li>
+      <li><a href="<?php echo home_url('/'); ?>">TOP</a></li>
       <li><a href="<?php echo home_url('/member/'); ?>">会員サイト</a></li>
-      <li><a>営業案内</a></li>
+      <li>営業案内</li>
     </ul>
-  </div>
 
+  </div><!-- /.c-column -->
 </main>
 
 <?php get_footer('120'); ?>

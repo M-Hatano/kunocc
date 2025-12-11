@@ -918,6 +918,27 @@ add_filter('the_content', 'add_lazy_attributes_to_images');
 // ACFのWYSIWYGフィールドにも適用（全フィールドに対応する場合）
 add_filter('acf/format_value/type=wysiwyg', 'add_lazy_attributes_to_images', 10, 3);
 
+/**
+ * 「メディアを追加」で挿入される <img> に
+ * loading="lazy" を強制付加する
+ */
+add_filter('image_send_to_editor', function($html, $id) {
+
+    // loading が既にある場合は何もしない
+    if (strpos($html, 'loading=') !== false) {
+        return $html;
+    }
+
+    // src と alt を保持したまま loading="lazy" を追加
+    $html = preg_replace(
+        '/<img(.*?)>/i',
+        '<img loading="lazy"$1>',
+        $html
+    );
+
+    return $html;
+
+}, 30, 2);
 
 //画像トリミングサイズ
 //アップロード以降にあげた画像から適用、以前は適用されないので注意

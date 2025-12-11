@@ -54,9 +54,7 @@ if ($subcat === 'kusunoki')     $label = 'くすのき会';
     </div>
   </div>
 
-  <!-- 共通メニュー -->
   <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
-  <!-- 共通メニュー -->
 
   <div class="c-column">
     <div class="news-box">
@@ -70,7 +68,6 @@ if ($subcat === 'kusunoki')     $label = 'くすのき会';
 
         <ul class="news-box__list">
 <?php
-/* ▼ WP_Query */
 $paged = max(1, get_query_var('paged'));
 
 $args = [
@@ -92,13 +89,30 @@ if ($subcat !== 'member') {
 
 $q = new WP_Query($args);
 
-/* ▼ リスト表示 */
+/* ▼ 一覧ループ */
 if ($q->have_posts()):
   while ($q->have_posts()):
     $q->the_post();
+
+    /* ------------------------------
+     * URL決定（保護リンク仕様）
+     * ------------------------------*/
+    $news_file = get_field('news_file');
+    $direct    = get_field('direct_link');
+    $link_url  = get_field('link_url');
+
+    if ($link_url) {
+        $href = my_member_convert_url($link_url);
+
+    } elseif ($news_file && $direct) {
+        $href = knc_get_protected_acf_file_url($news_file);
+
+    } else {
+        $href = get_permalink();
+    }
 ?>
           <li>
-            <a href="<?php the_permalink(); ?>">
+            <a href="<?php echo esc_url($href); ?>">
               <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
               <?php the_title(); ?>
             </a>
@@ -119,6 +133,7 @@ wp_reset_postdata();
       </div>
 
 
+
       <!-- ============================= -->
       <!-- 右：アーカイブエリア -->
       <!-- ============================= -->
@@ -127,7 +142,7 @@ wp_reset_postdata();
 
         <div class="news-box__right--box">
 
-          <!-- ▼ 最近5件 -->
+          <!-- ▼ 最近5件（保護リンク対応） -->
           <div class="recent-posts-box">
             <h3>新着記事</h3>
             <ul>
@@ -150,21 +165,34 @@ $recent_q = new WP_Query($recent_args);
 
 while ($recent_q->have_posts()):
     $recent_q->the_post();
+
+    $news_file = get_field('news_file');
+    $direct    = get_field('direct_link');
+    $link_url  = get_field('link_url');
+
+    if ($link_url) {
+        $href = my_member_convert_url($link_url);
+
+    } elseif ($news_file && $direct) {
+        $href = knc_get_protected_acf_file_url($news_file);
+
+    } else {
+        $href = get_permalink();
+    }
 ?>
-              <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+              <li><a href="<?php echo esc_url($href); ?>"><?php the_title(); ?></a></li>
 <?php endwhile; wp_reset_postdata(); ?>
             </ul>
           </div>
 
-
-          <!-- ▼ 年別一覧（件数付き） -->
-<div>
-  <h3>年度別</h3>
-  <ul class="news-box__right--list">
+          <!-- ▼ 年別一覧 -->
+          <div>
+            <h3>年度別</h3>
+            <ul class="news-box__right--list">
 
 <?php
-// member_post の公開年一覧を取得
 global $wpdb;
+
 $years = $wpdb->get_col("
     SELECT DISTINCT YEAR(post_date)
     FROM {$wpdb->posts}
@@ -173,17 +201,12 @@ $years = $wpdb->get_col("
     ORDER BY YEAR(post_date) DESC
 ");
 
-// ベースURL
 $base = '/member';
-if ($subcat === 'information') {
-    $base = '/member/information';
-} elseif ($subcat === 'kusunoki') {
-    $base = '/member/kusunoki';
-}
+if ($subcat === 'information') $base = '/member/information';
+if ($subcat === 'kusunoki')     $base = '/member/kusunoki';
 
 foreach ($years as $y):
 
-    // 年度ごとの件数を取得
     $count_args = [
         'post_type'      => 'member_post',
         'fields'         => 'ids',
@@ -191,7 +214,6 @@ foreach ($years as $y):
         'year'           => $y,
     ];
 
-    // カテゴリ指定（member の場合は tax_query を付けない）
     if ($subcat !== 'member') {
         $count_args['tax_query'] = [[
             'taxonomy' => 'member_category',
@@ -201,32 +223,30 @@ foreach ($years as $y):
     }
 
     $count = count(get_posts($count_args));
-
     if ($count <= 0) continue;
 ?>
     <li>
-        <a href="<?php echo esc_url( site_url("{$base}/{$y}/") ); ?>">
+        <a href="<?php echo esc_url(site_url("{$base}/{$y}/")); ?>">
             <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
         </a>
     </li>
 <?php endforeach; ?>
 
-  </ul>
-</div>
+            </ul>
+          </div>
 
         </div>
       </div>
 
     </div>
+
+    <!-- パンくず -->
+    <ul class="c-brd">
+      <li><a href="<?php echo home_url(); ?>">TOP</a></li>
+      <li><a href="<?php echo home_url('/member/'); ?>">会員サイト</a></li>
+      <li><?php echo $year; ?>年</li>
+    </ul>
   </div>
-
-  <!-- パンくず -->
-  <ul class="c-brd">
-    <li><a href="<?php echo home_url(); ?>">TOP</a></li>
-    <li><a href="<?php echo home_url('/member/'); ?>">会員サイト</a></li>
-    <li><?php echo $year; ?>年</li>
-  </ul>
-
 </main>
 
 <?php get_footer('120'); ?>
