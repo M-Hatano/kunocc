@@ -732,71 +732,50 @@ function course_navigation() {
     echo '<a href="' . esc_url($next_url) . '" class="b-c-dtl__btn nxt">Next</a>';
 }
 
-
 /**
- * トップ画像3枚だけは「常に custom_2600 の URL を返す」
+ * トップページ ACF（KV画像）のアップロード時だけリサイズしない
  */
-add_filter('acf/format_value/key=field_678f48c48831d', 'cg_force_kv_2600', 10, 3);
-add_filter('acf/format_value/key=field_678f48ff8831e', 'cg_force_kv_2600', 10, 3);
-add_filter('acf/format_value/key=field_678f49128831f', 'cg_force_kv_2600', 10, 3);
-
-function cg_force_kv_2600($value, $post_id, $field) {
-
-    // ACF画像配列 → URL
-    if (is_array($value) && isset($value['ID'])) {
-        return wp_get_attachment_image_url($value['ID'], 'custom_2600');
-    }
-
-    // ID → URL
-    if (is_numeric($value)) {
-        return wp_get_attachment_image_url((int)$value, 'custom_2600');
-    }
-
-    // URL → ID → URL（custom_2600）
-    if (is_string($value)) {
-        $id = attachment_url_to_postid($value);
-        if ($id) {
-            return wp_get_attachment_image_url($id, 'custom_2600');
-        }
-    }
-
-    return $value;
-}
-
-
-/* ======================================================
- * メイン：アップロード後にサイズを決定
- * ====================================================== */
 add_filter('wp_generate_attachment_metadata', function( $meta, $attachment_id ) {
 
-    $file = get_attached_file( $attachment_id );
-    $type = get_post_mime_type( $attachment_id );
-
-    // 画像以外は処理しない
-    if ( strpos($type, 'image/') !== 0 ) {
+    // 画像ではない → 無視
+    $file = get_attached_file($attachment_id);
+    $mime = get_post_mime_type($attachment_id);
+    if (!$file || strpos($mime, 'image/') !== 0) {
         return $meta;
     }
 
-    // KV 例外：絶対にリサイズしない
-    if ( cg_is_kv_attachment( $attachment_id ) ) {
-        return $meta; // ← 完全にオリジナルのまま
-    }
+    // このアップロードが ACF 経由か？
+    if (empty($_REQUEST['acf'])) return $meta;
 
-    // ▼ 通常画像 → 1000pxに縮小（あなたの処理を維持）
-    $editor = wp_get_image_editor( $file );
-    if ( is_wp_error( $editor ) ) return $meta;
+    $acf = $_REQUEST['acf'];
 
-    $size = $editor->get_size();
-    if ( $size['width'] > 1000 ) {
+    // トップページの post_id を取得
+    $front_id = get_option('page_on_front');
 
-        $editor->resize( 1000, null, false );
-        $editor->set_quality(70);
-        $editor->save( $file );
+    // トップページ ACF の KV フィールドキー
+    $kv_keys = [
+        'field_678f48c48831d', // 画像1
+        'field_678f48ff8831e', // 画像2
+        'field_678f49128831f', // 画像3
+    ];
+
+    // ACF のフィールドにこの画像IDが設定されているかチェック
+    foreach ($kv_keys as $key) {
+
+        if (!empty($acf[$key]) && intval($acf[$key]) === $attachment_id) {
+
+            // さらに、この ACF がトップページに保存されているか？
+            if (!empty($_REQUEST['post_ID']) && intval($_REQUEST['post_ID']) === intval($front_id)) {
+
+                // ★★ 完全に KV 画像と判定 → リサイズ処理を無効化 ★★
+                return $meta; // オリジナルのまま保存
+            }
+        }
     }
 
     return $meta;
+}, 5, 2);
 
-}, 10, 2);
 
 /* ------------------------------------------------------
  * big image 自動縮小を無効化（既存機能維持）
@@ -804,45 +783,81 @@ add_filter('wp_generate_attachment_metadata', function( $meta, $attachment_id ) 
 add_filter('big_image_size_threshold', '__return_false');
 
 /* ================================
- * KV 画像だけ custom_2600 を生成
+ * KV 画像だけ custom_2600 を生成（安全版）
  * ================================ */
-add_filter('intermediate_image_sizes_advanced', function($sizes) {
+add_filter('intermediate_image_sizes_advanced', function($sizes, $metadata = []) {
 
-    // 通常はサイズ生成なし
-    $allow_sizes = [];
+    // ACF からのアップロード情報が無ければそのまま（通常サイズ生成）
+    if (empty($_REQUEST['acf'])) {
+        return $sizes;
+    }
 
-    // ACF からアップロードされた画像を確認
-    if (!empty($_REQUEST['acf'])) {
+    $acf = $_REQUEST['acf'] ?? [];
 
-        $acf = $_REQUEST['acf'];
-        $kv_fields = [
-            'field_678f48c48831d',
-            'field_678f48ff8831e',
-            'field_678f49128831f',
-        ];
+    $kv_fields = [
+        'field_678f48c48831d',
+        'field_678f48ff8831e',
+        'field_678f49128831f',
+    ];
 
-        foreach ($kv_fields as $key) {
-            if (!empty($acf[$key])) {
-                // KV画像 → custom_2600を生成
-                return [
-                    'custom_2600' => [
-                        'width'  => 2600,
-                        'height' => 9999,
-                        'crop'   => false,
-                    ]
-                ];
-            }
+    foreach ($kv_fields as $key) {
+        if (!empty($acf[$key])) {
+            // このアップロードは KV 用 → custom_2600 だけ生成
+            return [
+                'custom_2600' => [
+                    'width'  => 2600,
+                    'height' => 9999,
+                    'crop'   => false,
+                ]
+            ];
         }
     }
 
-    // それ以外は中間サイズなし
-    return [];
-}, 10, 1);
+    // KV 以外 → もともとのサイズ定義をそのまま（サムネ等は従来どおり）
+    return $sizes;
+
+}, 10, 2);
+
 
 add_action( 'after_setup_theme', function() {
     add_image_size( 'custom_2600', 2600, 9999, false );
 } );
 
+/**
+ * この添付画像IDが「トップページのキービジュアル画像」かどうか判定
+ * ACF フィールドキーと比較して判断する
+ */
+function cg_is_kv_attachment($attachment_id) {
+
+    if (!$attachment_id) return false;
+
+    // トップKV画像の ACF フィールドキー
+    $kv_fields = [
+        'field_678f48c48831d', // kv1
+        'field_678f48ff8831e', // kv2
+        'field_678f49128831f', // kv3
+    ];
+
+    foreach ($kv_fields as $field_key) {
+
+        $value = get_field($field_key, 'option');  
+        // もしトップ画像が固定ページにあるなら → get_field($field_key, $post_id)
+
+        if (!$value) continue;
+
+        // ACF が返す形が array の場合
+        if (is_array($value) && isset($value['ID']) && intval($value['ID']) === intval($attachment_id)) {
+            return true;
+        }
+
+        // ACF が返す形が ID の場合
+        if (is_numeric($value) && intval($value) === intval($attachment_id)) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 /**
  * 「メディアを追加」で挿入される <img> タグから
@@ -1803,40 +1818,43 @@ function knc_protect_image_url($attachment_id) {
     return wp_get_attachment_url($attachment_id);
 }
 
-/**
- * ACF ボタンリンク（URL / File / Link フィールド）も
- * 会員専用PDFなら自動的に保護URLへ変換する
- */
-add_filter('acf/format_value/type=url', 'knc_protect_acf_button_url', 20, 3);
-add_filter('acf/format_value/type=link', 'knc_protect_acf_button_url', 20, 3);
-add_filter('acf/format_value/type=file', 'knc_protect_acf_button_url', 20, 3);
+// トップページのトップ画像3枚だけ、必ず custom_2600 を返す
+add_filter( 'acf/format_value/key=field_678f48c48831d', 'kunocc_force_custom_kv', 10, 3 ); // top_image_1
+add_filter( 'acf/format_value/key=field_678f48ff8831e', 'kunocc_force_custom_kv', 10, 3 ); // top_image_2
+add_filter( 'acf/format_value/key=field_678f49128831f', 'kunocc_force_custom_kv', 10, 3 ); // top_image_3
 
-function knc_protect_acf_button_url($value, $post_id, $field) {
+function kunocc_force_custom_kv( $value, $post_id, $field ) {
 
-    if (empty($value)) return $value;
+    // return_format = array
+    if ( is_array( $value ) && isset( $value['ID'] ) ) {
 
-    /* -------------------------------
-     * link フィールド（配列）
-     * ------------------------------- */
-    if (is_array($value) && !empty($value['url'])) {
-        $value['url'] = my_member_convert_url($value['url']);
+        $id = (int) $value['ID'];
+
+        // custom_2600 があればそちら、なければ full
+        $url_2600 = wp_get_attachment_image_url( $id, 'custom_2600' );
+        $value['url'] = $url_2600 ?: wp_get_attachment_image_url( $id, 'full' );
+
         return $value;
     }
 
-    /* -------------------------------
-     * file フィールド（配列）
-     * ------------------------------- */
-    if (is_array($value) && !empty($value['ID'])) {
-        $file_url = wp_get_attachment_url($value['ID']);
-        $value['url'] = my_member_convert_url($file_url);
-        return $value;
+    // return_format = ID
+    if ( is_numeric( $value ) ) {
+
+        $id = (int) $value;
+
+        $url_2600 = wp_get_attachment_image_url( $id, 'custom_2600' );
+        return $url_2600 ?: wp_get_attachment_image_url( $id, 'full' );
     }
 
-    /* -------------------------------
-     * URL（文字列）タイプ
-     * ------------------------------- */
-    if (is_string($value)) {
-        return my_member_convert_url($value);
+    // return_format = URL
+    if ( is_string( $value ) ) {
+
+        $id = attachment_url_to_postid( $value );
+        if ( $id ) {
+            $url_2600 = wp_get_attachment_image_url( $id, 'custom_2600' );
+            return $url_2600 ?: wp_get_attachment_image_url( $id, 'full' );
+        }
+        return $value;
     }
 
     return $value;
