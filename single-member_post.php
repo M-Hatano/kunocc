@@ -32,7 +32,7 @@
                     <?php the_content(); ?>
                 </div>
 
-                <!-- 上部テキスト（ACF） -->
+                <!-- 上部テキスト -->
                 <?php if (get_field('news_txt')): ?>
                     <p class="c-txt"><?php echo wp_kses_post(get_field('news_txt')); ?></p>
                 <?php endif; ?>
@@ -44,39 +44,64 @@
                     get_field('news_image2'),
                     get_field('news_image3')
                 ];
+
+                foreach ($imgs as $img):
+
+                    if ($img):
+
+                        // ACF画像フィールドは配列のことがある → ID を取得
+                        $attachment_id = is_array($img) ? $img['ID'] : $img;
+
+                        // 保護URLに変換（会員チェックONのときのみ ID付き URL になる）
+                        $protected_url = knc_protect_image_url($attachment_id);
+
+                        // alt
+                        $alt = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
+                ?>
+                        <div class="img-area">
+                            <img 
+                                src="<?php echo esc_url($protected_url); ?>" 
+                                alt="<?php echo esc_attr($alt); ?>" 
+                                loading="lazy"
+                            >
+                        </div>
+
+                <?php
+                    endif;
+                endforeach;
                 ?>
 
-                <?php foreach ($imgs as $img): ?>
-                    <?php if ($img): ?>
-                        <div class="img-area">
-                            <?php echo wp_get_attachment_image($img, 'large', false, ['loading' => 'lazy']); ?>
-                        </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-
-                <!-- PDFリンク -->
+                <!-- PDF / ファイル ボタン -->
                 <?php
                 $files = [
-                    ['url' => get_field('news_file'),  'txt' => get_field('txt_btn')  ?: "詳しくはこちら"],
-                    ['url' => get_field('news_file2'), 'txt' => get_field('txt_btn2') ?: "詳しくはこちら"],
-                    ['url' => get_field('news_file3'), 'txt' => get_field('txt_btn3') ?: "詳しくはこちら"],
-                    ['url' => get_field('news_file4'), 'txt' => get_field('txt_btn4') ?: "詳しくはこちら"],
-                    ['url' => get_field('news_file5'), 'txt' => get_field('txt_btn5') ?: "詳しくはこちら"],
+                    ['file' => get_field('news_file'),  'txt' => get_field('txt_btn')  ?: "詳しくはこちら"],
+                    ['file' => get_field('news_file2'), 'txt' => get_field('txt_btn2') ?: "詳しくはこちら"],
+                    ['file' => get_field('news_file3'), 'txt' => get_field('txt_btn3') ?: "詳しくはこちら"],
+                    ['file' => get_field('news_file4'), 'txt' => get_field('txt_btn4') ?: "詳しくはこちら"],
+                    ['file' => get_field('news_file5'), 'txt' => get_field('txt_btn5') ?: "詳しくはこちら"],
                 ];
 
+                // いずれか1つでもあればボタン表示
                 $has_file = false;
                 foreach ($files as $f) {
-                    if (!empty($f['url'])) $has_file = true;
+                    if (!empty($f['file'])) $has_file = true;
                 }
                 ?>
 
                 <?php if ($has_file): ?>
                     <div class="btn-area">
                         <?php foreach ($files as $f): ?>
-                            <?php if (!empty($f['url'])): ?>
-                                <a href="<?php echo esc_url($f['url']); ?>" target="_blank" class="c-link-pdf">
+                            <?php if (!empty($f['file'])): ?>
+
+                                <?php
+                                // ここが重要 → 保護 URL に変換
+                                $href = knc_get_protected_acf_file_url($f['file']);
+                                ?>
+
+                                <a href="<?php echo esc_url($href); ?>" target="_blank" class="c-link-pdf">
                                     <?php echo esc_html($f['txt']); ?>
                                 </a>
+
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
@@ -101,7 +126,7 @@
                     <?php
                     // 現在記事のカテゴリ取得
                     $terms = get_the_terms(get_the_ID(), 'member_category');
-                    $subcat = 'member'; // default
+                    $subcat = 'member';
 
                     if ($terms && !is_wp_error($terms)) {
                         foreach ($terms as $term) {
@@ -111,7 +136,6 @@
                         }
                     }
 
-                    // 現在の年
                     $year = get_the_date('Y');
                     ?>
 
@@ -150,24 +174,6 @@
                         <?php
                         global $wpdb;
 
-                        // 現在記事のカテゴリ取得
-                        $terms = get_the_terms(get_the_ID(), 'member_category');
-                        $subcat = 'member';
-
-                        if ($terms && !is_wp_error($terms)) {
-                            foreach ($terms as $term) {
-                                if (in_array($term->slug, ['information', 'kusunoki'])) {
-                                    $subcat = $term->slug;
-                                }
-                            }
-                        }
-
-                        // ベースURL
-                        $base = '/member';
-                        if ($subcat === 'information') $base = '/member/information';
-                        if ($subcat === 'kusunoki')     $base = '/member/kusunoki';
-
-                        // すべての年度取得
                         $years = $wpdb->get_col("
                             SELECT DISTINCT YEAR(post_date)
                             FROM {$wpdb->posts}
@@ -178,7 +184,6 @@
 
                         foreach ($years as $y):
 
-                            // 年度ごとの記事数取得
                             $count_args = [
                                 'post_type'      => 'member_post',
                                 'fields'         => 'ids',
@@ -186,7 +191,6 @@
                                 'year'           => $y,
                             ];
 
-                            // カテゴリ別
                             if ($subcat !== 'member') {
                                 $count_args['tax_query'] = [[
                                     'taxonomy' => 'member_category',
@@ -196,12 +200,11 @@
                             }
 
                             $count = count(get_posts($count_args));
-
                             if ($count <= 0) continue;
                         ?>
 
                             <li>
-                                <a href="<?php echo esc_url( site_url("{$base}/{$y}/") ); ?>">
+                                <a href="<?php echo esc_url( site_url("/member/{$y}/") ); ?>">
                                     <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
                                 </a>
                             </li>

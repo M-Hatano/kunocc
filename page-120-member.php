@@ -6,40 +6,6 @@
 
 <?php get_header('120'); ?>
 
-<?php
-/**
- * ACFファイルフィールドから安全な会員専用URLを取得
- */
-function knc_get_protected_acf_file_url($acf_file) {
-
-    if (!$acf_file) return '';
-
-    // URLのみの場合
-    if (is_string($acf_file)) {
-        return my_member_convert_url($acf_file);
-    }
-
-    // ACF 配列
-    if (is_array($acf_file)) {
-        if (!empty($acf_file['url'])) {
-            return my_member_convert_url($acf_file['url']);
-        }
-        if (!empty($acf_file['ID'])) {
-            $url = wp_get_attachment_url($acf_file['ID']);
-            return my_member_convert_url($url);
-        }
-    }
-
-    // ID のみ
-    if (is_numeric($acf_file)) {
-        $url = wp_get_attachment_url($acf_file);
-        return my_member_convert_url($url);
-    }
-
-    return '';
-}
-?>
-
 <main class="c-member">
   <span class="deco _01"><span></span></span>
 
@@ -62,16 +28,13 @@ function knc_get_protected_acf_file_url($acf_file) {
         <ul class="news-box__list">
 
 <?php
-/* ======================================================
- * 基本設定
- * ======================================================*/
 $year   = get_query_var('year');
 $paged  = max(1, get_query_var('paged'));
 $per    = 10;
 
-/* ======================================================
+/* ---------------------------------
  * Sticky（最大3件）
- * ======================================================*/
+ * --------------------------------*/
 $sticky_ids = [];
 $shown_ids  = [];
 
@@ -91,13 +54,13 @@ if ($paged === 1) {
 
             $shown_ids[] = get_the_ID();
 
-            /* ACFファイルを保護URL化 */
             $news_file = get_field('news_file');
             $direct    = get_field('direct_link');
             $link_url  = get_field('link_url');
 
+            // ▼ 修正：直リンクも必ず my_member_convert_url() を通す
             if ($link_url) {
-                $href = $link_url;
+                $href = my_member_convert_url($link_url);
 
             } elseif ($news_file && $direct) {
                 $href = knc_get_protected_acf_file_url($news_file);
@@ -118,9 +81,9 @@ if ($paged === 1) {
     }
 }
 
-/* ======================================================
+/* ---------------------------------
  * 通常記事（Sticky を除外）
- * ======================================================*/
+ * --------------------------------*/
 $remain = $paged === 1 ? $per - count($shown_ids) : $per;
 $remain = max(0, $remain);
 
@@ -142,13 +105,13 @@ $normal_q = new WP_Query($normal_args);
 if ($normal_q->have_posts()) :
     while ($normal_q->have_posts()) : $normal_q->the_post();
 
-        /* ACFファイルを保護URL化 */
         $news_file = get_field('news_file');
         $direct    = get_field('direct_link');
         $link_url  = get_field('link_url');
 
+        // ▼ 修正：直リンク → 常に my_member_convert_url() 経由
         if ($link_url) {
-            $href = $link_url;
+            $href = my_member_convert_url($link_url);
 
         } elseif ($news_file && $direct) {
             $href = knc_get_protected_acf_file_url($news_file);
@@ -206,8 +169,9 @@ while ($recent->have_posts()) : $recent->the_post();
     $direct    = get_field('direct_link');
     $link_url  = get_field('link_url');
 
+    // ▼ 修正：直リンクも常に my_member_convert_url()
     if ($link_url) {
-        $href = $link_url;
+        $href = my_member_convert_url($link_url);
 
     } elseif ($news_file && $direct) {
         $href = knc_get_protected_acf_file_url($news_file);
@@ -230,7 +194,6 @@ wp_reset_postdata(); ?>
 
 <?php
 global $wpdb;
-
 $years = $wpdb->get_results("
     SELECT YEAR(post_date) AS y, COUNT(*) AS cnt
     FROM {$wpdb->posts}

@@ -588,10 +588,6 @@ if ( function_exists('acf_add_options_page') ) {
 
 }
 
-add_filter('query_vars', function($vars){
-    $vars[] = 'year';
-    return $vars;
-});
 
 //ニュースページネーション（NEWS / MEMBER 自動判定：query 内容を優先）
 function custom_pagination($query = null)
@@ -1524,28 +1520,23 @@ add_action('template_redirect', function () {
         return;
     }
 
-    // 会員専用フラグ確認
-    $is_member_only = get_post_meta($attachment_id, '_member_only', true);
-    if ($is_member_only !== '1') {
-        // 通常ファイルはそのまま表示
-        return;
-    }
 
     // ---- ここから会員専用制御 ----
 
-    // 未ログイン → 会員ログイン画面へ飛ばしてから、member-file に戻す
+    // 会員専用ファイルであってもなくても、uploads直アクセスは禁止し
+    // 必ず ID 付きの member-file へ誘導する
+
+    // 未ログイン → ログイン画面へ
     if (!is_user_logged_in()) {
 
         $login_url   = home_url('/member-login/');
         $protected   = add_query_arg(['id' => $attachment_id], home_url('/member/member-file/'));
 
-        wp_redirect(
-            $login_url . '?redirect_to=' . rawurlencode($protected)
-        );
+        wp_redirect($login_url . '?redirect_to=' . rawurlencode($protected));
         exit;
     }
 
-    // ログイン済み → 正規の member-file handler へ強制転送
+    // ログイン済み → 正規の member-file handler へ
     $protected_url = add_query_arg(['id' => $attachment_id], home_url('/member/member-file/'));
     wp_redirect($protected_url);
     exit;
@@ -1671,124 +1662,61 @@ function my_member_protect_member_only_files( $content ) {
 add_filter('acf/format_value', 'my_member_protect_acf_files', 20, 3);
 function my_member_protect_acf_files($value, $post_id, $field) {
 
-    // 画像フィールド（url / id）やファイルフィールド
-    if ($field['type'] === 'image' || $field['type'] === 'file') {
-
-        // URL の場合
-        if (is_string($value)) {
-            return my_member_convert_url($value);
-        }
-
-        // 配列（url / id が入っている）
-        if (is_array($value)) {
-            // URLがあるなら差し替え
-            if (!empty($value['url'])) {
-                $value['url'] = my_member_convert_url($value['url']);
-            }
-            // sizes に入っているサムネイルも置換
-            if (!empty($value['sizes']) && is_array($value['sizes'])) {
-                foreach ($value['sizes'] as $k => $src) {
-                    $value['sizes'][$k] = my_member_convert_url($src);
-                }
-            }
-            return $value;
-        }
-    }
-
-    // WYSIWYG（画像・PDF 埋め込みを含む）
-    if ($field['type'] === 'wysiwyg') {
-        if (is_string($value)) {
-            return my_member_protect_member_only_files($value);
+    // file / image / url / link のとき
+    if (in_array($field['type'], ['file', 'image', 'url', 'link'])) {
+        if (is_array($value) && isset($value['url'])) {
+            $value['url'] = my_member_convert_url($value['url']);
+        } elseif (is_string($value)) {
+            $value = my_member_convert_url($value);
         }
     }
 
     return $value;
 }
 
-
 /**
  * 会員専用ファイルのURLを保護URLへ強制変換する完全版
  */
 function my_member_convert_url($url) {
 
-    if (!$url) return $url;
+    if (!$url) return '';
 
-    $upload = wp_get_upload_dir();
-    $base   = $upload['baseurl'];
-
-    // uploads 以外は対象外
-    if (strpos($url, $base) !== 0) {
+    // WordPress メディア以外（外部リンク）は除外
+    $upload_dir = wp_get_upload_dir();
+    if (strpos($url, $upload_dir['baseurl']) === false) {
         return $url;
     }
 
-
-    /* -------------------------------------------------------
-     * ① 一般的な方法（失敗することが多い）
-     * ------------------------------------------------------- */
+    // URL → attachment ID
     $attachment_id = attachment_url_to_postid($url);
-
-
-    /* -------------------------------------------------------
-     * ② GUID 一致検索（Sakura の場合こちらが効く）
-     * ------------------------------------------------------- */
-    if (!$attachment_id) {
-        global $wpdb;
-        $attachment_id = $wpdb->get_var(
-            $wpdb->prepare(
-                "SELECT ID FROM {$wpdb->posts} WHERE guid = %s LIMIT 1",
-                $url
-            )
-        );
-    }
-
-
-    /* -------------------------------------------------------
-     * ③ ファイル名一致検索（2025/test.pdf → test）
-     * ------------------------------------------------------- */
-    if (!$attachment_id) {
-
-        global $wpdb;
-        $filename = basename($url);                 // testPDF.pdf
-        $title    = pathinfo($filename, PATHINFO_FILENAME); // testPDF
-
-        $attachment_id = $wpdb->get_var(
-            $wpdb->prepare(
-                "SELECT ID 
-                 FROM {$wpdb->posts}
-                 WHERE post_type='attachment'
-                 AND post_title = %s
-                 LIMIT 1",
-                $title
-            )
-        );
-    }
-
-
-    /* -------------------------------------------------------
-     * ④ それでも見つからない → 保護不能 → そのまま返す
-     * ------------------------------------------------------- */
     if (!$attachment_id) {
         return $url;
     }
 
-
-    /* -------------------------------------------------------
-     * ⑤ 会員専用フラグチェック
-     * ------------------------------------------------------- */
+    // ★ メディアに「会員専用ファイル」がついているか確認
     $is_member_only = get_post_meta($attachment_id, '_member_only', true);
 
+    // チェックなし → 変換しない
     if ($is_member_only !== '1') {
-        return $url; // 通常ファイル
+        return $url;
     }
 
+    // ★ チェックあり → ID付き保護URLへ変換
+    return home_url("/member/member-file/?id={$attachment_id}");
+}
 
-    /* -------------------------------------------------------
-     * ⑥ 会員専用 → 強制的に member-file に振り替え
-     * ------------------------------------------------------- */
-    return add_query_arg(
-        ['id' => $attachment_id],
-        home_url('/member/member-file/')
-    );
+function knc_protect_image_url($attachment_id) {
+
+    if (!$attachment_id) return '';
+
+    // 正しいメタキーでチェック
+    $is_member_only = get_post_meta($attachment_id, '_member_only', true);
+
+    if ($is_member_only === '1') {
+        return home_url('/member/member-file/?id=' . $attachment_id);
+    }
+
+    return wp_get_attachment_url($attachment_id);
 }
 
 /**
@@ -1829,6 +1757,38 @@ function knc_protect_acf_button_url($value, $post_id, $field) {
 
     return $value;
 }
+
+function knc_get_protected_acf_file_url($acf_file) {
+
+    if (!$acf_file) return '';
+
+    // URL文字列のみ
+    if (is_string($acf_file)) {
+        return my_member_convert_url($acf_file);
+    }
+
+    // ACF 配列
+    if (is_array($acf_file)) {
+
+        // ID がある → 無条件で ID 付き URL へ
+        if (!empty($acf_file['ID'])) {
+            return home_url("/member/member-file/?id={$acf_file['ID']}");
+        }
+
+        // URL がある → URL → ID 変換
+        if (!empty($acf_file['url'])) {
+            return my_member_convert_url($acf_file['url']);
+        }
+    }
+
+    // ID のみ
+    if (is_numeric($acf_file)) {
+        return home_url("/member/member-file/?id={$acf_file}");
+    }
+
+    return '';
+}
+
 
 
 
