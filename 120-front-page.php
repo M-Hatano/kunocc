@@ -19,38 +19,41 @@ $image_2 = get_field('top_image_2');
 $image_3 = get_field('top_image_3');
 
 /**
- * トップKV画像を「オリジナル画質のフルサイズ(full)」で返す
+ * KV画像専用：custom_2500 があれば優先、それ以外は full を返す
  */
-function kv_force_original_full($acf_value) {
+function kv_force_2500_or_full($acf_value) {
 
     if (empty($acf_value)) return null;
 
-    $attachment_id = null;
+    $id = 0;
 
-    // ACF 配列形式
+    // array形式（ACFの返り値）
     if (is_array($acf_value) && !empty($acf_value['ID'])) {
-        $attachment_id = (int) $acf_value['ID'];
-    }
-    // URL形式
-    elseif (is_string($acf_value) && filter_var($acf_value, FILTER_VALIDATE_URL)) {
-        $attachment_id = attachment_url_to_postid($acf_value);
+        $id = intval($acf_value['ID']);
     }
     // ID形式
     elseif (is_numeric($acf_value)) {
-        $attachment_id = (int) $acf_value;
+        $id = intval($acf_value);
+    }
+    // URL形式
+    elseif (is_string($acf_value)) {
+        $id = attachment_url_to_postid($acf_value);
     }
 
-    // ID が取れない場合は無効
-    if (!$attachment_id) return null;
+    if (!$id) return null;
 
-    // ★ オリジナルのフルサイズのみ返す（縮小画像は一切使わない）
-    return wp_get_attachment_image_url($attachment_id, 'full');
+    // custom_2500 があれば優先
+    $url_2500 = wp_get_attachment_image_url($id, 'custom_2500');
+    if ($url_2500) return $url_2500;
+
+    // なければ full
+    return wp_get_attachment_image_url($id, 'full');
 }
 
-// 画像URL取得（必ずオリジナル画質）
-$url_1 = kv_force_original_full($image_1);
-$url_2 = kv_force_original_full($image_2);
-$url_3 = kv_force_original_full($image_3);
+// 画像URL取得
+$url_1 = kv_force_2500_or_full($image_1);
+$url_2 = kv_force_2500_or_full($image_2);
+$url_3 = kv_force_2500_or_full($image_3);
 ?>
 
 <div>
