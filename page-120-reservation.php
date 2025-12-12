@@ -77,9 +77,14 @@
                             <p>
                                 WEB上でご入力をされないお客様は、以下にご予約連絡フォーム（エクセル形式・PDF形式）をそれぞれご用意しております。
                             </p>
+
+                            <?php
+                            $excel = get_field('reservation_form_excel', 'option');
+                            $pdf   = get_field('reservation_form_pdf', 'option');
+                            ?>
                             <div class="rbox__btnbox">
-                                <a href="" class="c-btn">ご予約連絡フォーム（エクセル）</a>
-                                <a href="" class="c-btn">ご予約連絡フォーム（PDF）</a>
+                                <a href="<?php echo $excel ? esc_url($excel['url']) : '#'; ?>" class="c-btn">ご予約連絡フォーム（エクセル）</a>
+                                <a href="<?php echo $pdf ? esc_url($pdf['url']) : '#'; ?>" class="c-btn">ご予約連絡フォーム（PDF）</a>
                                 <span class="deco _04"><span></span></span>
                             </div>
                             <p class="regi_send">ご入力後のファイルは以下アドレスに送信をお願いいたします。<br class="c-brsp">（手書きで持参いただくことも可能です。）</p>

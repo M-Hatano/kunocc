@@ -83,7 +83,7 @@
 
               <ul class="c-nav__list">
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>">ご予約方法について</a>
+                  <a href="<?php echo esc_url(home_url('')); ?>/reservation/">ご予約方法について</a>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/restaurant/">レストラン</a>
