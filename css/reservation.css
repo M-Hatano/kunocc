@@ -217,7 +217,7 @@
 .rtel + a::before {
   content: "";
   display: inline-block;
-  background: url(/img/reservation/icn_01.svg) left top/100% 100% no-repeat;
+  background: url("../img/reservation/icn_01.svg") left top/100% 100% no-repeat;
   width: 35px;
   height: 66px;
   position: absolute;
@@ -576,7 +576,7 @@
 .tabContent {
   display: none;
   border-top: none;
-  background: #FFFDF2 url(/img/reservation/bg_flow_01.png) bottom/100% 485px no-repeat;
+  background: #FFFDF2 url("../img/reservation/bg_flow_01.png") bottom/100% 485px no-repeat;
   -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
           box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
   padding: 216px 50px 270px;
@@ -584,17 +584,17 @@
 }
 @media screen and (max-width: 767px) {
   .tabContent {
-    background: #FFFDF2 url(/img/reservation/bg_flow_03.png) bottom/100% 340px no-repeat;
+    background: #FFFDF2 url("../img/reservation/bg_flow_03.png") bottom/100% 340px no-repeat;
     padding: 87.5px 0 232px;
   }
 }
 
 .tabContent.ignore {
-  background: #F2F5F8 url(/img/reservation/bg_flow_01.png) bottom/100% 485px no-repeat;
+  background: #F2F5F8 url("../img/reservation/bg_flow_01.png") bottom/100% 485px no-repeat;
 }
 @media screen and (max-width: 767px) {
   .tabContent.ignore {
-    background: #F2F5F8 url(/img/reservation/bg_flow_03.png) bottom/100% 340px no-repeat;
+    background: #F2F5F8 url("../img/reservation/bg_flow_03.png") bottom/100% 340px no-repeat;
     padding-top: 140px;
   }
 }
@@ -613,7 +613,7 @@
           flex-wrap: wrap;
   gap: 0 145px;
   padding-bottom: 97px;
-  background: url(/img/reservation/bg_flow_02.jpg) center/30px repeat-y;
+  background: url("../img/reservation/bg_flow_02.jpg") center/30px repeat-y;
 }
 @media screen and (max-width: 767px) {
   .pflow {
@@ -1063,7 +1063,7 @@
 }
 .deco._01 span {
   padding-top: 64.49%;
-  background: url(/img/reservation/img_ashi_01.png) left top/100% 100% no-repeat;
+  background: url("../img/reservation/img_ashi_01.png") left top/100% 100% no-repeat;
 }
 @media screen and (max-width: 767px) {
   .deco._01 {
@@ -1077,7 +1077,7 @@
 }
 .deco._02 span {
   padding-top: 79.72%;
-  background: url(/img/reservation/img_ashi_02.png) left top/100% 100% no-repeat;
+  background: url("../img/reservation/img_ashi_02.png") left top/100% 100% no-repeat;
 }
 @media screen and (max-width: 767px) {
   .deco._02 {
@@ -1092,7 +1092,7 @@
 .deco._03 span {
   padding-top: 102.91%;
   display: block;
-  background: url(/img/reservation/img_ashi_03.png) left top/100% 100% no-repeat;
+  background: url("../img/reservation/img_ashi_03.png") left top/100% 100% no-repeat;
 }
 @media screen and (max-width: 767px) {
   .deco._03 {
@@ -1108,7 +1108,7 @@
 }
 .deco._04 span {
   padding-top: 100%;
-  background: url(/img/reservation/img_ashi_04.png) left top/100% 100% no-repeat;
+  background: url("../img/reservation/img_ashi_04.png") left top/100% 100% no-repeat;
 }
 .deco._05 {
   top: 50%;
@@ -1119,7 +1119,7 @@
 }
 .deco._05 span {
   padding-top: 71.25%;
-  background: url(/img/reservation/img_ashi_05.png) left top/100% 100% no-repeat;
+  background: url("../img/reservation/img_ashi_05.png") left top/100% 100% no-repeat;
   opacity: 0.3;
 }
 @media screen and (max-width: 767px) {
@@ -1143,57 +1143,57 @@
     padding-top: 45.41%;
   }
   .deco._deb._b01 span {
-    background: url(/img/reservation/img_ballsp_01.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_01.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b02 span {
-    background: url(/img/reservation/img_ballsp_02.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_02.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b03 span {
-    background: url(/img/reservation/img_ballsp_03.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_03.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b04 span {
-    background: url(/img/reservation/img_ballsp_04.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_04.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b05 span {
-    background: url(/img/reservation/img_ballsp_05.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_05.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b06 span {
-    background: url(/img/reservation/img_ballsp_06.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_06.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b07 span {
-    background: url(/img/reservation/img_ballsp_08.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_08.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b08 span {
-    background: url(/img/reservation/img_ballsp_09.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_09.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b09 span {
-    background: url(/img/reservation/img_ballsp_10.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_10.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b10 span {
-    background: url(/img/reservation/img_ballsp_11.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_11.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b11 span {
-    background: url(/img/reservation/img_ballsp_12.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_12.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b12 span {
-    background: url(/img/reservation/img_ballsp_13.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_13.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b13 span {
-    background: url(/img/reservation/img_ballsp_01.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_01.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b14 span {
-    background: url(/img/reservation/img_ballsp_14.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_14.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b15 span {
-    background: url(/img/reservation/img_ballsp_15.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_15.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b16 span {
-    background: url(/img/reservation/img_ballsp_16.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_16.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b17 span {
-    background: url(/img/reservation/img_ballsp_17.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_17.png") left top/100% 100% no-repeat;
   }
   .deco._deb._b18 span {
-    background: url(/img/reservation/img_ballsp_18.png) left top/100% 100% no-repeat;
+    background: url("../img/reservation/img_ballsp_18.png") left top/100% 100% no-repeat;
   }
 }

@@ -1276,7 +1276,7 @@ table {
 #	フッター
 # ================================================================= */
 .c-footer {
-  background: #324A5B url(../img/common/bg_ashi_04.png);
+  background: #324A5B url("../img/common/bg_ashi_04.png");
   color: #fff;
 }
 
@@ -3030,7 +3030,7 @@ table {
 }
 
 .c-box {
-  background: #fff url(../img/common/bg_ashi_02.png) center bottom / 100% no-repeat;
+  background: #fff url("../img/common/bg_ashi_02.png") center bottom / 100% no-repeat;
   padding: 60px 150px 268px;
   border: solid 1px #989E74;
   border-radius: 20px;
@@ -3125,7 +3125,7 @@ table {
 # ご予約方法について
 # ================================================================= */
 .c-rease {
-  background: #324A5B url(../img/common/bg_ashi_04.png);
+  background: #324A5B url("../img/common/bg_ashi_04.png");
   color: #fff;
   padding: 72px 15px;
 }

@@ -473,12 +473,18 @@ add_action('wp_enqueue_scripts', 'enqueue_page_specific_styles');
 
 
 // スクリプトタグから id 属性を削除するフィルター
-function remove_script_id_attribute($tag, $handle, $src)
-{
-    // id 属性を削除したスクリプトタグを返す
+add_filter('script_loader_tag', function ($tag, $handle, $src) {
+
+    // media-views は絶対に触らない
+    if ($handle === 'media-views') {
+        return $tag;
+    }
+
     return '<script type="text/javascript" src="' . esc_url($src) . '"></script>';
-}
-add_filter('script_loader_tag', 'remove_script_id_attribute', 10, 3);
+
+}, 10, 3);
+
+
 
 // ページごとのJSを読み込む関数
 function enqueue_page_specific_scripts()
@@ -587,6 +593,15 @@ if ( function_exists('acf_add_options_page') ) {
     ));
 
 }
+
+add_filter('attachment_fields_to_save', function ($post, $attachment) {
+
+    $is_member_only = isset($attachment['member_only']) ? '1' : '0';
+    update_post_meta($post['ID'], '_member_only', $is_member_only);
+
+    return $post;
+
+}, 10, 2);
 
 
 //ニュースページネーション（NEWS / MEMBER 自動判定：query 内容を優先）
@@ -869,46 +884,6 @@ function cg_is_kv_attachment($attachment_id) {
 }
 
 
-/**
- * 「メディアを追加」で挿入される <img> タグから
- * width / height / class など不要な属性を取り除く
- * 例）<img src="..." alt=""> だけにする
- */
-function cg_strip_img_attributes($html, $id, $caption, $title, $align, $url, $size, $alt)
-{
-    // width / height を削除
-    $html = preg_replace('/\s*(width|height)="\d*"\s*/i', '', $html);
-    // class を削除（alignnone size-medium wp-image-XXXX など）
-    $html = preg_replace('/\s*class="[^"]*"\s*/i', '', $html);
-    // 連続した空白を整理
-    $html = preg_replace('/\s+/', ' ', $html);
-    return trim($html);
-}
-add_filter('image_send_to_editor', 'cg_strip_img_attributes', 10, 8);
-
-/**
- * 「メディアを追加」で画像を本文に挿入するとき、
- * 必ず attachment ID から URL を生成して出力する
- */
-add_filter('image_send_to_editor', function($html, $id, $caption, $title, $align, $url, $size, $alt) {
-
-    // 添付IDが取れない場合はそのまま
-    if (!$id) return $html;
-
-    // IDから正規のURL（保護処理付き）を取得
-    $new_url = wp_get_attachment_url($id);
-
-    // HTML内の src を強制的に置換
-    $html = preg_replace(
-        '/src=["\'][^"\']+["\']/',
-        'src="' . esc_url($new_url) . '"',
-        $html
-    );
-
-    return $html;
-}, 20, 8);
-
-
 // <img> タグに loading="lazy" 等を追加（post_type が 'post' の場合のみ）
 function add_lazy_attributes_to_images($content_or_value, $post_id = null, $field = null)
 {
@@ -943,27 +918,6 @@ add_filter('the_content', 'add_lazy_attributes_to_images');
 // ACFのWYSIWYGフィールドにも適用（全フィールドに対応する場合）
 add_filter('acf/format_value/type=wysiwyg', 'add_lazy_attributes_to_images', 10, 3);
 
-/**
- * 「メディアを追加」で挿入される <img> に
- * loading="lazy" を強制付加する
- */
-add_filter('image_send_to_editor', function($html, $id) {
-
-    // loading が既にある場合は何もしない
-    if (strpos($html, 'loading=') !== false) {
-        return $html;
-    }
-
-    // src と alt を保持したまま loading="lazy" を追加
-    $html = preg_replace(
-        '/<img(.*?)>/i',
-        '<img loading="lazy"$1>',
-        $html
-    );
-
-    return $html;
-
-}, 30, 2);
 
 //画像トリミングサイズ
 //アップロード以降にあげた画像から適用、以前は適用されないので注意
@@ -971,6 +925,35 @@ if (function_exists('add_theme_support')) {
     add_image_size('defaultsize', '', '', true); // デフォルト
 }
 
+add_filter('image_send_to_editor', function($html, $id, $caption, $title, $align, $url, $size, $alt){
+
+    // IDが取れない場合はそのまま
+    if (!$id) return $html;
+
+    // 正規URLに統一
+    $new_url = wp_get_attachment_url($id);
+
+    // src を置換
+    $html = preg_replace(
+        '/src=["\'][^"\']+["\']/',
+        'src="' . esc_url($new_url) . '"',
+        $html
+    );
+
+    // width / height 削除
+    $html = preg_replace('/\s*(width|height)="\d*"\s*/i', '', $html);
+
+    // class 削除
+    $html = preg_replace('/\s*class="[^"]*"\s*/i', '', $html);
+
+    // loading 追加
+    if (strpos($html, 'loading=') === false) {
+        $html = preg_replace('/<img(.*?)>/i', '<img loading="lazy" decoding="async"$1>', $html);
+    }
+
+    return trim($html);
+
+}, 10, 8);
 
 
 /**
@@ -1573,33 +1556,6 @@ function my_register_member_taxonomy() {
     );
 }
 
-/*--------------------------------
- * STEP4-1：メディアに「会員専用ファイル」チェック追加
- --------------------------------*/
- add_filter( 'attachment_fields_to_edit', 'my_member_flag_field', 10, 2 );
- function my_member_flag_field( $form_fields, $post ) {
- 
-     $is_member_only = get_post_meta( $post->ID, '_member_only', true );
- 
-     $form_fields['member_only'] = array(
-         'label' => '会員専用ファイル',
-         'input' => 'html',
-         'html'  => '<label><input type="checkbox" name="attachments[' . $post->ID . '][member_only]" value="1" ' . checked( $is_member_only, '1', false ) . '> このファイルを会員専用にする</label>',
-         'helps' => 'チェックすると、このファイルは会員限定でのみアクセスできます。',
-     );
- 
-     return $form_fields;
- }
- 
- add_filter( 'attachment_fields_to_save', 'my_member_flag_field_save', 10, 2 );
- function my_member_flag_field_save( $post, $attachment ) {
- 
-     $is_member_only = isset( $attachment['member_only'] ) ? '1' : '0';
-     update_post_meta( $post['ID'], '_member_only', $is_member_only );
- 
-     return $post;
- }
-
  /*--------------------------------
  * STEP4-2：本文内の会員専用ファイルURLを保護URLに自動変換
  --------------------------------*/
@@ -1823,7 +1779,77 @@ add_action('save_post_page', function($post_id){
 
 });
 
+/**
+ * メディアモーダル：アップロード直後は compat が無いので
+ * attachment を自動 fetch して「会員専用ファイル」チェックを即表示させる
+ */
+add_action('admin_enqueue_scripts', function ($hook) {
 
+    if (!in_array($hook, ['post.php', 'post-new.php', 'upload.php'], true)) return;
+
+    wp_add_inline_script('media-views', <<<JS
+(function($){
+  if (!wp || !wp.media) return;
+
+  // アップロード完了時に attachment を強制 fetch
+  wp.media.on('attachment:added', function(attachment){
+
+    if (!attachment || !attachment.fetch) return;
+
+    // compat を必ず取得
+    attachment.fetch({
+      success: function() {
+
+        // いま選択されている attachment を強制的に再セット
+        var frame = wp.media.frame;
+        if (frame && frame.state) {
+          var selection = frame.state().get('selection');
+          if (selection) {
+            selection.reset([attachment]);
+          }
+        }
+      }
+    });
+  });
+
+})(jQuery);
+JS
+    , 'after');
+});
+
+/**
+ * メディアアップロード後に1回だけ管理画面をリロードする
+ * （attachment_fields_to_edit を確実に反映させる最終手段）
+ */
+add_action('admin_enqueue_scripts', function ($hook) {
+
+    if (!in_array($hook, ['post.php', 'post-new.php', 'upload.php'], true)) return;
+
+    wp_add_inline_script('media-views', <<<JS
+(function($){
+  if (!wp || !wp.media) return;
+
+  // すでにリロード済みなら何もしない
+  if (sessionStorage.getItem('member_file_reloaded') === '1') {
+    return;
+  }
+
+  wp.media.on('attachment:added', function() {
+
+    // 無限リロード防止フラグ
+    sessionStorage.setItem('member_file_reloaded', '1');
+
+    // 少し待ってからリロード（アップロード完了待ち）
+    setTimeout(function(){
+      location.reload();
+    }, 800);
+
+  });
+
+})(jQuery);
+JS
+    , 'after');
+});
 
 
 add_action('wp_loaded', function () {
@@ -1837,5 +1863,28 @@ add_action('wp_loaded', function () {
     error_log("----- REWRITE RULES END -----");
 });
 
+add_filter('attachment_fields_to_edit', function ($form_fields, $post) {
 
+    $is_member_only = get_post_meta($post->ID, '_member_only', true);
+
+    // ★ 末尾に強制追加
+    $form_fields['member_only'] = [
+        'label' => '会員専用ファイル',
+        'input' => 'html',
+        'html'  => '
+            <label style="display:block; margin-top:12px;">
+                <input type="checkbox"
+                    name="attachments[' . $post->ID . '][member_only]"
+                    value="1" ' . checked($is_member_only, '1', false) . '>
+                このファイルを会員専用にする
+            </label>
+            <p class="description">
+                チェックすると、このファイルは会員限定でのみアクセスできます。
+            </p>
+        ',
+    ];
+
+    return $form_fields;
+
+}, 9999, 2); // ← ★ 9999 が重要
 

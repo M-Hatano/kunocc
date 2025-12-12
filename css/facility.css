@@ -292,7 +292,7 @@
 }
 
 .bgchen .facility__info {
-  background: #fff url(../img/member/bg_member_01.png);
+  background: #fff url("../img/member/bg_member_01.png");
 }
 
 .bgchen .facility__info>div {
