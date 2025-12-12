@@ -732,89 +732,85 @@ function course_navigation() {
     echo '<a href="' . esc_url($next_url) . '" class="b-c-dtl__btn nxt">Next</a>';
 }
 
+/*---------------------------------------
+  画質を 70 % に統一
+----------------------------------------*/
+add_filter('wp_editor_set_quality', fn() => 70);
+add_filter('jpeg_quality', fn() => 70);
+
+
+/*---------------------------------------
+  アップロード画像のリサイズ処理（トップページ判定）
+----------------------------------------*/
+add_filter('wp_handle_upload', function ($fileinfo) {
+
+    // 画像以外は処理しない
+    if (strpos($fileinfo['type'], 'image/') !== 0) {
+        return $fileinfo;
+    }
+
+    // アップロード元の post_id を取得
+    $post_id = intval($_POST['post_id'] ?? 0);
+
+    // 画像エディター準備
+    $path   = $fileinfo['file'];
+    $editor = wp_get_image_editor($path);
+
+    if (is_wp_error($editor)) {
+        return $fileinfo;
+    }
+
+    $size = $editor->get_size();
+    $width = $size['width'];
+
+    /*--------------------------------------------
+     * ★ トップページ（固定ページ ID = 151）
+     *--------------------------------------------*/
+    if ($post_id === 151) {
+
+        // 1600px を超えていたら 1600px に縮小（画質は変更しない）
+        if ($width > 1600) {
+            $editor->resize(1600, null, false);
+            $editor->save($path);
+        }
+
+        // 1600px 以下なら何もしない（オリジナルのまま保存）
+        return $fileinfo;
+    }
+
+    /*--------------------------------------------
+     * ★ その他の投稿・ページ（通常画像）
+     *--------------------------------------------*/
+    if ($width > 1000) {
+        $editor->resize(1000, null, false);
+        $editor->set_quality(70);
+        $editor->save($path);
+    }
+
+    return $fileinfo;
+
+}, 20);
+
+
+
+/*---------------------------------------
+  中間サイズの自動生成を停止
+----------------------------------------*/
+add_filter('intermediate_image_sizes_advanced', '__return_empty_array');
+
+add_filter('wp_generate_attachment_metadata', function($meta) {
+    $meta['sizes'] = [];
+    return $meta;
+}, 20);
+
+
 /**
  * トップページ ACF の KV 画像だけ
- * 2500px へリサイズした画像 custom_2500 を必ず生成する
+ * 1600px へリサイズした画像 custom_1600 を必ず生成する
  */
 add_action('after_setup_theme', function () {
-    add_image_size('custom_2500', 2500, 9999, false);
+    add_image_size('custom_1600', 1600, 9999, false);
 });
-
-
-/**
- * ACF フィールド top_image_1〜3 のアップロード時だけ
- * custom_2500 を生成し、通常サムネイルは生成しない
- */
-add_filter('intermediate_image_sizes_advanced', function ($sizes, $metadata) {
-
-    // 現在アップロード中の attachment ID を取得
-    $attachment_id = isset($metadata['attachment_id']) ? $metadata['attachment_id'] : null;
-
-    if (!$attachment_id) return $sizes;
-
-    // トップページ ACF フィールドに設定されている画像 ID を取得
-    $kv_ids = [];
-    $fields = ['top_image_1', 'top_image_2', 'top_image_3'];
-
-    foreach ($fields as $f) {
-        $v = get_field($f, get_option('page_on_front'));
-        if (is_array($v) && !empty($v['ID'])) {
-            $kv_ids[] = intval($v['ID']);
-        } elseif (is_numeric($v)) {
-            $kv_ids[] = intval($v);
-        }
-    }
-
-    // アップロードした画像が KV の画像なら custom_2500 のみ生成
-    if (in_array($attachment_id, $kv_ids, true)) {
-        return [
-            'custom_2500' => [
-                'width'  => 2500,
-                'height' => 9999,
-                'crop'   => false,
-            ],
-        ];
-    }
-
-    // それ以外は通常サイズそのまま
-    return $sizes;
-
-}, 10, 2);
-
-
-
-/**
- * ACF で表示する KV 画像を常に custom_2500 に強制
- */
-function knc_force_kv_custom2500($value) {
-
-    if (empty($value)) return $value;
-
-    // array format
-    if (is_array($value) && !empty($value['ID'])) {
-        $id = $value['ID'];
-        $url = wp_get_attachment_image_url($id, 'custom_2500');
-        if ($url) $value['url'] = $url;
-        return $value;
-    }
-
-    // ID format
-    if (is_numeric($value)) {
-        return wp_get_attachment_image_url($value, 'custom_2500');
-    }
-
-    // URL format
-    if (is_string($value)) {
-        $id = attachment_url_to_postid($value);
-        return wp_get_attachment_image_url($id, 'custom_2500');
-    }
-
-    return $value;
-}
-
-add_filter('acf/format_value/key=field_678f48c48831d', 'knc_force_kv_custom2500');
-add_filter('acf/format_value/key=field_678f48ff8831e', 'knc_force_kv_custom2500');
-add_filter('acf/format_value/key=field_678f49128831f', 'knc_force_kv_custom2500');
 
 
 /* ------------------------------------------------------
@@ -831,26 +827,26 @@ function cg_is_kv_attachment($attachment_id) {
 
     if (!$attachment_id) return false;
 
+    // トップページのID
+    $top_id = get_option('page_on_front');
+
     // トップKV画像の ACF フィールドキー
     $kv_fields = [
-        'field_678f48c48831d', // kv1
-        'field_678f48ff8831e', // kv2
-        'field_678f49128831f', // kv3
+        'field_678f48c48831d',
+        'field_678f48ff8831e',
+        'field_678f49128831f',
     ];
 
     foreach ($kv_fields as $field_key) {
 
-        $value = get_field($field_key, 'option');  
-        // もしトップ画像が固定ページにあるなら → get_field($field_key, $post_id)
+        // ★ オプションではなく固定ページを参照する
+        $value = get_field($field_key, $top_id);
 
         if (!$value) continue;
 
-        // ACF が返す形が array の場合
         if (is_array($value) && isset($value['ID']) && intval($value['ID']) === intval($attachment_id)) {
             return true;
         }
-
-        // ACF が返す形が ID の場合
         if (is_numeric($value) && intval($value) === intval($attachment_id)) {
             return true;
         }
@@ -858,6 +854,7 @@ function cg_is_kv_attachment($attachment_id) {
 
     return false;
 }
+
 
 /**
  * 「メディアを追加」で挿入される <img> タグから
@@ -1848,6 +1845,43 @@ function knc_get_protected_acf_file_url($acf_file) {
 
     return '';
 }
+
+/**
+ * トップページ保存時：KV画像を1600pxに強制リサイズ
+ */
+add_action('save_post_page', function($post_id){
+
+    // トップページ以外は無視
+    if ($post_id != get_option('page_on_front')) return;
+
+    $kv_fields = [
+        'top_image_1',
+        'top_image_2',
+        'top_image_3',
+    ];
+
+    foreach ($kv_fields as $field_name) {
+
+        $image = get_field($field_name, $post_id);
+
+        if (!$image || empty($image['ID'])) continue;
+
+        $id   = $image['ID'];
+        $file = get_attached_file($id);
+
+        $editor = wp_get_image_editor($file);
+        if (is_wp_error($editor)) continue;
+
+        $size = $editor->get_size();
+        if ($size['width'] > 1600) {
+
+            // 画質は変更しない（オリジナル維持）
+            $editor->resize(1600, null, false);
+            $editor->save($file);
+        }
+    }
+
+});
 
 
 
