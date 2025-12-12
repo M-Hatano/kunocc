@@ -44,10 +44,17 @@ if ($paged === 1) {
 
     if (!empty($sticky_ids)) {
 
-        $sticky_q = new WP_Query([
+          $sticky_q = new WP_Query([
             'post_type' => 'member_post',
             'post__in'  => $sticky_ids,
             'orderby'   => 'post__in',
+            'tax_query' => [
+                [
+                    'taxonomy' => 'member_category',
+                    'field'    => 'slug',
+                    'terms'    => ['member'],
+                ]
+            ],
         ]);
 
         while ($sticky_q->have_posts()) : $sticky_q->the_post();
@@ -88,12 +95,19 @@ $remain = $paged === 1 ? $per - count($shown_ids) : $per;
 $remain = max(0, $remain);
 
 $normal_args = [
-    'post_type'      => 'member_post',
-    'posts_per_page' => $remain,
-    'paged'          => $paged,
-    'post__not_in'   => $shown_ids,
-    'orderby'        => 'date',
-    'order'          => 'DESC',
+  'post_type'      => 'member_post',
+  'posts_per_page' => $remain,
+  'paged'          => $paged,
+  'post__not_in'   => $shown_ids,
+  'orderby'        => 'date',
+  'order'          => 'DESC',
+  'tax_query'      => [
+      [
+          'taxonomy' => 'member_category',
+          'field'    => 'slug',
+          'terms'    => ['member'],
+      ]
+  ],
 ];
 
 if ($year) {
@@ -157,10 +171,17 @@ wp_reset_postdata();
             <ul>
 <?php
 $recent = new WP_Query([
-    'post_type'      => 'member_post',
-    'posts_per_page' => 5,
-    'orderby'        => 'date',
-    'order'          => 'DESC',
+  'post_type'      => 'member_post',
+  'posts_per_page' => 5,
+  'orderby'        => 'date',
+  'order'          => 'DESC',
+  'tax_query'      => [
+      [
+          'taxonomy' => 'member_category',
+          'field'    => 'slug',
+          'terms'    => ['member'],
+      ]
+  ],
 ]);
 
 while ($recent->have_posts()) : $recent->the_post();
@@ -195,11 +216,16 @@ wp_reset_postdata(); ?>
 <?php
 global $wpdb;
 $years = $wpdb->get_results("
-    SELECT YEAR(post_date) AS y, COUNT(*) AS cnt
-    FROM {$wpdb->posts}
-    WHERE post_type='member_post'
-      AND post_status='publish'
-    GROUP BY YEAR(post_date)
+    SELECT YEAR(p.post_date) AS y, COUNT(*) AS cnt
+    FROM {$wpdb->posts} p
+    INNER JOIN {$wpdb->term_relationships} tr ON p.ID = tr.object_id
+    INNER JOIN {$wpdb->term_taxonomy} tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+    INNER JOIN {$wpdb->terms} t ON tt.term_id = t.term_id
+    WHERE p.post_type = 'member_post'
+      AND p.post_status = 'publish'
+      AND tt.taxonomy = 'member_category'
+      AND t.slug = 'member'
+    GROUP BY YEAR(p.post_date)
     ORDER BY y DESC
 ");
 
