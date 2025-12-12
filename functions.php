@@ -972,47 +972,6 @@ if (function_exists('add_theme_support')) {
 }
 
 
-/**
- * 管理画面：カテゴリー選択メタボックスの
- * ・インデントを復活
- * ・子カテゴリチェック時に親カテゴリも自動チェック
- * ・子カテゴリが残っているときは親のチェック解除をキャンセル
- */
-function fhg_admin_category_meta_fix()
-{
-    $screen = get_current_screen();
-    // 投稿編集画面のみ
-    if ($screen->base === 'post') {
-        // CSS：インデントを確保
-        echo '<style>
-                /* 子カテゴリのリストにマージンを戻す */
-                #categorychecklist .children {
-                    margin-left: 20px !important;
-                }
-            </style>';
-
-        // JS：チェック時に親も、解除時に子が残っていればキャンセル
-        echo '<script>
-            jQuery(function($){
-                $("#categorydiv").on("change", "input[type=checkbox]", function(){
-                    var $li = $(this).closest("li");
-                    if ( this.checked ) {
-                        // チェック時：全ての親 li > label > input をチェック
-                        $li.parents("li").find("> label > input[type=checkbox]").prop("checked", true);
-                    } else {
-                        // 解除時：自分の下にチェック済みの子があれば解除を取り消す
-                        if ( $li.find("input[type=checkbox]:checked").length ) {
-                            $(this).prop("checked", true);
-                        }
-                    }
-                });
-            });
-            </script>';
-    }
-}
-add_action('admin_head',   'fhg_admin_category_meta_fix');
-add_action('admin_footer', 'fhg_admin_category_meta_fix');
-
 
 /**
  * 投稿画面のカテゴリー選択で
@@ -1342,6 +1301,42 @@ function knc_template_router_fixed($template) {
     return $template;
 }
 
+/**
+ * member_post：カテゴリー未選択で「公開」された場合のみ
+ * member カテゴリーを自動付与する
+ */
+add_action('save_post_member_post', function ($post_id, $post, $update) {
+
+    // autosave / revision / 権限チェック
+    if (wp_is_post_autosave($post_id) || wp_is_post_revision($post_id)) return;
+    if (!current_user_can('edit_post', $post_id)) return;
+
+    // 公開時のみ対象（下書き・非公開では何もしない）
+    if ($post->post_status !== 'publish') return;
+
+    // 現在選択されているカテゴリを取得
+    $current_terms = wp_get_post_terms(
+        $post_id,
+        'member_category',
+        ['fields' => 'ids']
+    );
+
+    // すでに何か選ばれている場合は何もしない
+    if (!empty($current_terms)) return;
+
+    // member カテゴリーを取得
+    $member_term = get_term_by('slug', 'member', 'member_category');
+    if (!$member_term) return;
+
+    // member を付与
+    wp_set_post_terms(
+        $post_id,
+        [(int)$member_term->term_id],
+        'member_category',
+        false
+    );
+
+}, 10, 3);
 
 
 add_action('template_redirect', function () {
@@ -1487,74 +1482,6 @@ add_action('template_redirect', function () {
      return array_slice($ids, 0, 3);
  }
 
- /* ============================================================
- * 会員向けカテゴリー自動付与（Gutenberg 完全保証版）
- * ============================================================ */
-add_action('save_post_member_post', function ($post_id) {
-
-    if (wp_is_post_autosave($post_id) || wp_is_post_revision($post_id)) return;
-
-    // 投稿タイプ確認
-    if (get_post_type($post_id) !== 'member_post') return;
-
-    /* ----------------------------------------
-     * ① タクソノミータームの ID を準備
-     * ---------------------------------------- */
-    $terms = get_terms([
-        'taxonomy'   => 'member_category',
-        'hide_empty' => false,
-    ]);
-
-    if (is_wp_error($terms)) return;
-
-    $slug_to_id = [];
-    foreach ($terms as $t) {
-        $slug_to_id[$t->slug] = (int)$t->term_id;
-    }
-
-    $member_id   = $slug_to_id['member']      ?? 0;
-    $kusunoki_id = $slug_to_id['kusunoki']    ?? 0;
-    $info_id     = $slug_to_id['information'] ?? 0;
-
-    if (!$member_id) return; // member が無い場合は終了
-
-
-    /* ----------------------------------------
-     * ② 現在保存されているタームを取得（これが最も確実）
-     * ---------------------------------------- */
-    $current_terms = wp_get_post_terms($post_id, 'member_category', ['fields' => 'ids']);
-    $current_terms = array_map('intval', $current_terms);
-
-
-    /* ----------------------------------------
-     * ③ カテゴリー未選択 → 自動で member を付与
-     * ---------------------------------------- */
-    if (empty($current_terms)) {
-        wp_set_post_terms($post_id, [$member_id], 'member_category', false);
-        return;
-    }
-
-
-    /* ----------------------------------------
-     * ④ サブカテゴリのみの場合 → member を追加
-     * ---------------------------------------- */
-    $final_terms = $current_terms;
-
-    $has_sub = (
-        in_array($kusunoki_id, $current_terms) ||
-        in_array($info_id, $current_terms)
-    );
-
-    if ($has_sub && !in_array($member_id, $current_terms)) {
-        $final_terms[] = $member_id;
-    }
-
-
-    /* ----------------------------------------
-     * ⑤ 最終的なタームを保存
-     * ---------------------------------------- */
-    wp_set_post_terms($post_id, array_unique($final_terms), 'member_category', false);
-});
 
 add_action('template_redirect', function () {
 
