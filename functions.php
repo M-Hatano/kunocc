@@ -733,10 +733,23 @@ function course_navigation() {
 }
 
 /*---------------------------------------
-  画質を 70 % に統一
+  条件付き：画質 70%（ただしトップページID=151は除外）
 ----------------------------------------*/
-add_filter('wp_editor_set_quality', fn() => 70);
-add_filter('jpeg_quality', fn() => 70);
+add_filter('wp_editor_set_quality', function($quality){
+    // トップページ（固定ページ ID=151）からのアップロードは除外
+    if (!empty($_POST['post_id']) && intval($_POST['post_id']) === 151) {
+        return 100; // 画質そのまま
+    }
+    return 70;
+});
+
+add_filter('jpeg_quality', function($quality){
+    // 同じくトップページのアップロードなら画質そのまま
+    if (!empty($_POST['post_id']) && intval($_POST['post_id']) === 151) {
+        return 100;
+    }
+    return 70;
+});
 
 
 /*---------------------------------------
