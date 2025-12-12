@@ -30,7 +30,7 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  padding: 1em 0 1em 0;
+  padding: 16px 0 16px 0;
 }
 
 .post-index ul a {
@@ -53,15 +53,16 @@
 
 @media screen and (max-width: 767px) {
   .c-sec-headline {
-    font-size: 2.4rem;
+    font-size: 3.2rem;
   }
 
   .post-index ul span {
     padding-right: 20px;
+    font-size: 14px;
   }
 
   .post-index ul div {
-    padding: 7px 0;
+    padding: 8px 0;
     font-size: 1.5rem;
   }
 }
@@ -75,6 +76,7 @@
     max-width: 90vw;
     font-size: 3.75vw;
     margin: 15px auto 0;
+    padding: 0 15px;
   }
 }
 
@@ -82,7 +84,7 @@
   width: 300px;
   color: #fff;
   background: #243749;
-  padding: 10px 0;
+  padding: 20px 0;
   margin: 40px auto 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -119,7 +121,9 @@
   }
 
   .top-news__more {
-    margin-top: 20px;
+    margin-top: 45px;
+    width: 230px;
+    padding: 13px 0;
   }
 }
 
@@ -143,26 +147,26 @@
 .top_mv {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 82vh;
   overflow: hidden;
 }
 
 @media screen and (max-width: 767px) {
   .top_mv {
     width: 100%;
-    height: 635px;
+    height: 100vh;
   }
 }
 
 .top-mtxt {
   position: absolute;
-  right: 11%;
   width: 41.27%;
-  top: 376px;
+  top: 380px;
   color: #fff;
   font-family: 'Shippori Mincho';
   font-weight: 500;
-  transform: translateX(11%);
+  right: 6%;
+  transform: translateX(9%);
 }
 
 .top-mtxt h1 {
@@ -173,14 +177,14 @@
 .top-mtxt p {
   font-size: 18px;
   line-height: 160%;
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
 @media screen and (max-width: 767px) {
   .top-mtxt {
     width: 100%;
-    padding: 0 15px;
-    top: 246px;
+    padding: 0 11px 0 5px;
+    top: 240px;
   }
 
   .top-mtxt h1 {
@@ -188,7 +192,7 @@
   }
 
   .top-mtxt p {
-    margin-top: 30px;
+    margin-top: 37px;
   }
 }
 
@@ -290,7 +294,7 @@
 @media screen and (max-width: 767px) {
   .bg-news {
     width: 100%;
-    padding: 30px 0 40px;
+    padding: 50px 0 65px;
   }
 }
 
@@ -300,7 +304,7 @@
     margin: 0 auto;
     margin-top: 20px;
     width: 100%;
-    max-width: 800px;
+    max-width: 620px;
   }
 }
 
@@ -331,7 +335,7 @@
   background: url("../img/top/bg_btn_01.png") left center no-repeat,
     url("../img/top/bg_btn_02.png") right center no-repeat,
     linear-gradient(90deg, #939971 0%, #AEB390 50%, #939971 100%);
-  padding: 58px 0;
+  padding: 60px 0;
 }
 
 .btnarea ul {
@@ -355,7 +359,7 @@
   line-height: 100%;
   height: 100%;
   display: inline-block;
-  padding: 30px 15px;
+  padding: 35px 15px;
   width: 100%;
   position: relative;
 }
@@ -374,7 +378,7 @@
 
 @media screen and (max-width: 767px) {
   .btnarea {
-    padding: 40px 0;
+    padding: 40px 0 52px;
   }
 
   .btnarea ul {
@@ -386,7 +390,7 @@
   }
 
   .btnarea ul li a {
-    padding: 15px 15px;
+    padding: 20px 15px;
     font-size: 14px;
   }
 
@@ -439,13 +443,13 @@
     position: unset;
     transform: unset;
     width: calc(100% - 30px);
-    margin: 0 auto -30px;
+    margin: 0 auto -35px;
   }
 }
 
 .top__flex--btn {
-  width: 180px;
-  margin-top: 60px;
+  width: 215px;
+  margin-top: 55px;
 }
 
 .top__flex--btn a {
@@ -466,18 +470,19 @@
   border: solid 1px #fff;
   color: #fff;
   border-radius: 50px;
-  padding: 5px 0;
+  padding: 9px 0;
   width: 100%;
 }
 
 @media screen and (max-width: 767px) {
   .top__flex--btn {
-    margin-top: 15px;
+    margin-top: 7px;
+    width: 200px;
   }
 }
 
 .top__flex+.top__flex {
-  margin-top: 80px;
+  margin-top: 132px;
 }
 
 @media screen and (max-width: 767px) {
@@ -517,7 +522,7 @@
 }
 
 .top__flex:nth-of-type(2n+1) .top__info {
-  padding: 90px 80px 70px 538px;
+  padding: 100px 80px 70px 538px;
 }
 
 @media screen and (max-width: 767px) {
@@ -530,7 +535,7 @@
   }
 
   .top__flex:nth-of-type(2n+1) .top__info {
-    padding: 50px 35px 55px;
+    padding: 66px 35px 54px;
   }
 
   /* 
@@ -542,7 +547,7 @@
 
 .top__info {
   background: url("../img/top/bg_top_01.jpg") center / 100% 100% no-repeat;
-  padding: 90px 511px 70px 40px;
+  padding: 90px 500px 70px 40px;
   width: calc(100% - 80px);
 }
 

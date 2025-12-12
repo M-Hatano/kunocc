@@ -122,6 +122,7 @@ section h2 {
 }
 .dbox__exam > li img {
   padding-bottom: 1em;
+  width: 100%;
 }
 .dbox__atn {
   font-weight: 500;
