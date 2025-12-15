@@ -50,8 +50,9 @@
     padding: 50px 10px;
   }
   .r-lead__texbox h2 {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 30px;
+    margin-bottom: 25px;
   }
   .r-lead__texbox p {
     font-size: 14px;
@@ -424,10 +425,6 @@
   .rlistbox__item--gd {
     padding: 18px 0;
     font-size: 16px;
-    background: -webkit-gradient(linear, left top, right top, from(#C3C88E), to(#FCFEF0));
-    background: -webkit-linear-gradient(left, #C3C88E 0%, #FCFEF0 100%);
-    background: linear-gradient(90deg, #C3C88E 0%, #FCFEF0 100%);
-    color: #243749;
   }
 }
 
@@ -534,12 +531,15 @@
   font-weight: 700;
   font-size: 24px;
   text-align: center;
+  background: #F2F5F8;
   color: #fff;
-  background: #8F8F8F;
   padding: 30px 0;
   border-left: #8F8F8F 2px solid;
   cursor: pointer;
   width: 433px;
+}
+.tabMenu li.active{
+  background: #FFFDF2;
 }
 @media screen and (max-width: 767px) {
   .tabMenu li {
@@ -555,7 +555,7 @@
   font-size: 24px;
   text-align: center;
   color: #324A5B;
-  background: #FFFDF2;
+  background: #F2F5F8;
 }
 @media screen and (max-width: 767px) {
   .tabMenu li {
@@ -590,11 +590,11 @@
 }
 
 .tabContent.ignore {
-  background: #F2F5F8 url("../img/reservation/bg_flow_01.png") bottom/100% 485px no-repeat;
+  background: #FFFDF2 url("../img/reservation/bg_flow_01.png") bottom/100% 485px no-repeat;
 }
 @media screen and (max-width: 767px) {
   .tabContent.ignore {
-    background: #F2F5F8 url("../img/reservation/bg_flow_03.png") bottom/100% 340px no-repeat;
+    background: #FFFDF2 url("../img/reservation/bg_flow_03.png") bottom/100% 340px no-repeat;
     padding-top: 140px;
   }
 }
@@ -624,7 +624,7 @@
 .pflow__arrow_box {
   position: relative;
   width: calc(50% - 72.5px);
-  background: #F2F5F8;
+  background: #fff;
   color: #333333;
   font-weight: 400;
   line-height: 160%;
@@ -700,7 +700,7 @@
 }
 .pflow__arrow_box:nth-of-type(2n+2)::after {
   border-color: rgba(242, 245, 248, 0);
-  border-right-color: #F2F5F8;
+  border-right-color: #fff;
   right: 100%;
   left: unset;
   top: 40%;
@@ -723,7 +723,7 @@
   border-bottom-width: 20px;
   border-left-width: 21px;
   border-right-width: 21px;
-  border-left-color: #F2F5F8;
+  border-left-color: #fff;
   left: 100%;
   top: 15%;
 }
@@ -737,7 +737,8 @@
 }
 .pflow__tex > h3 {
   font-size: 20px;
-  line-height: 100%;
+  line-height: 1.2;
+  margin: 0 0 5px;
 }
 @media screen and (max-width: 767px) {
   .pflow__tex > h3 {
@@ -824,15 +825,15 @@
 }
 
 .ignore .pflow__arrow_box {
-  background: #FFFAE8;
+  background: #fff;
 }
 
 .ignore .pflow__arrow_box:nth-of-type(2n+2)::after {
-  border-right-color: #FFFAE8;
+  border-right-color: #fff;
 }
 
 .ignore .pflow__arrow_box::after {
-  border-left-color: #FFFAE8;
+  border-left-color: #fff;
 }
 
 .pflow__arrow_box._03::after {
@@ -968,7 +969,7 @@
   .pflow__arrow_box._12,
   .pflow__arrow_box._13,
   .pflow__arrow_box._14 {
-    margin-top: 117px;
+    margin-top: 70px;
   }
 }
 @media screen and (max-width: 767px) {

@@ -220,7 +220,7 @@ $url_3 = kv_force_1600_or_full($image_3);
         <div class="top__info">
           <h2 class="c-head4">ご予約方法について<span>Reservation</span></h2>
           <p>ご予約方法についてテキストが入ります。ご予約方法についてテキストが入ります。ご予約方法についてテキストが入ります。</p>
-          <p class="top__flex--btn"><a href="<?php echo esc_url(home_url('')); ?>/guide/">more</a></p>
+          <p class="top__flex--btn"><a href="<?php echo esc_url(home_url('')); ?>/reservation/">more</a></p>
         </div>
         <span class="top__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/img_01.jpg" alt="" loading="lazy"></span>
       </div>

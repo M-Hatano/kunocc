@@ -44,7 +44,7 @@ if (!empty($_GET['redirect_to'])) {
     <p>会員専用ページにアクセスするにはログインしてください。</p>
 
     <?php if ($login_error): ?>
-        <p style="color:red; font-weight:bold;"><?php echo esc_html($login_error); ?></p>
+        <p style="color:red; font-weight:bold;text-align:center;margin:0 0 15px;"><?php echo esc_html($login_error); ?></p>
     <?php endif; ?>
 
     <div class="c-form box-pat">

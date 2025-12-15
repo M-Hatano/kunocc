@@ -630,10 +630,18 @@
     font-size: 20px;
     line-height: 1.4;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .custom-content .price-group {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
 }
 
 /* .custom-content .price-group .member {
@@ -644,12 +652,16 @@
 .custom-content .price-group .visitor {
     font-weight: 500;
 } */
-
+.custom-content a.event-name {
+    text-decoration: underline;
+}
 .custom-content .event-name {
     margin: 0;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 700;
     color: #243749;
+    line-height: 1.2;
+    display: inline-block;
 }
 
 #calendar {
@@ -671,10 +683,11 @@
     .custom-content {
         font-size: 18px;
         margin: unset;
+        align-items: flex-start;
     }
 
     .custom-content .event-name {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     #calendar {
@@ -682,7 +695,8 @@
     }
 
     .custom-content .price-group {
-        margin-top: 20px;
+        margin-top: 0;
+        padding-top: 10px;
     }
 }
 

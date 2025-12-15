@@ -17,14 +17,10 @@
           </h1>
         </div>
       </div>
-      <ul class="m-list">
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員様お知らせ</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-sales/">営業案内</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-kusunoki/">くすのき会</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-partner/">提携コース</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-calendar/">ビジター様料金</a></li>
-        <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/m-registration/">コンペ申込</a></li>
-      </ul>
+
+      <!-- 共通メニュー -->
+      <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
+      <!-- 共通メニュー -->
 
       <div class="c-column">
         <h2 class="c-head6 m_head">コンペ申し込み<span>Registration</span></h2>
@@ -37,21 +33,32 @@
           <p>WEB上でご入力をされないお客様は、以下にご予約連絡フォーム（エクセル形式・PDF形式）をそれぞれご用意しております。</p>
           <?php if (have_rows('event_list')): ?>
             <ul>
-              <?php while (have_rows('event_list')): the_row();
-                $date_raw = get_sub_field('event_date');  // 例: 2025-09-19
-                $title = get_sub_field('event_title');
-                $link = get_sub_field('event_link');
+            <?php while (have_rows('event_list')): the_row();
+              $date_raw = get_sub_field('event_date');
+              $title    = get_sub_field('event_title');
 
-                // カレンダー形式に変換（例：2025年 9月19日(金)）
-                $date_formatted = date_i18n('Y年 n月 j日(D)', strtotime($date_raw));
-              ?>
+              // ファイル（ACF ファイルフィールド）
+              $file = get_sub_field('event_link');
+
+              // 返り値が「配列」でも「URL」でも対応
+              $url = '';
+              if (is_array($file) && !empty($file['url'])) {
+                $url = $file['url'];
+              } elseif (is_string($file) && $file !== '') {
+                $url = $file;
+              }
+
+              $date_formatted = date_i18n('Y年 n月 j日(D)', strtotime($date_raw));
+            ?>
+              <?php if ($url): ?>
                 <li>
-                  <a href="<?php echo esc_url($link); ?>" target="_blank">
+                  <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener">
                     <span><?php echo esc_html($date_formatted); ?></span>
                     <?php echo esc_html($title); ?>
                   </a>
                 </li>
-              <?php endwhile; ?>
+              <?php endif; ?>
+            <?php endwhile; ?>
             </ul>
           <?php endif; ?>
 

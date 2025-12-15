@@ -585,7 +585,7 @@ table {
 }
 
 .c-nav__logo {
-  width: 100%;
+  width: 200px;
   line-height: 0;
 }
 
@@ -867,7 +867,7 @@ table {
   }
 
   .c-header__logo {
-    width: 50px;
+    width: 45px;
     margin: 0 auto 0 10px;
   }
 }
@@ -1533,16 +1533,14 @@ table {
 }
 
 #c-float {
-  width: 100px;
   position: fixed;
-  bottom: 50%;
+  bottom: 0;
   /* 画面下からの距離 */
   right: 0;
   /* 画面右からの距離 */
   display: none;
   /* 初期状態では非表示 */
   z-index: 800;
-  transform: translateY(50%);
 }
 
 @media screen and (max-width: 767px) {
@@ -1555,8 +1553,8 @@ table {
 .c-pagetop a {
   background: linear-gradient(90deg, rgba(36, 55, 73, 0.75) 30.29%, rgba(54, 87, 118, 0.75) 100%);
   border: 3px solid #8F8F8F;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2691,12 +2689,11 @@ table {
 }
 
 .reseinf {
-  font-size: 24px;
-  border: solid 3px #fff;
+  font-size: 25px;
+  font-weight: bold;
   border-radius: 20px;
   padding: 20px 0;
-  margin-bottom: 45px;
-  background: #324A5B;
+  margin-bottom: 5px;
   text-align: center;
   /* width: 480px; */
 }
@@ -2721,12 +2718,14 @@ table {
 
   .c-btbnr .c-footer__flex div:nth-child(2) ul li a {
     padding: 17px 0;
+    font-weight: 500;
+    line-height: 1.2;
   }
 
   .reseinf {
     padding: 12px 0;
     font-size: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     border-radius: 10px;
     width: 100%;
   }
@@ -2744,8 +2743,8 @@ table {
 }
 
 ._line::after {
-  height: 490px;
-  width: 3px;
+  height: 400px;
+  width: 1px;
 }
 
 /* # =================================================================
@@ -3362,4 +3361,22 @@ table {
 
 .fancybox-title-float #fancybox-title{
   display: none !important;
+}
+
+#member-login input#user_login,
+#member-login input#user_pass{
+  border: 1px solid #132133;
+    border-radius: 5px;
+    background: #edf5ff;
+}
+
+#member-login button[type="submit"]{
+  text-align: center;
+    width: 206px;
+    height: 40px;
+    color: #fff;
+    background: #243749;
+    border-radius: 50px;
+    margin: 70px auto 0;
+    display: block;
 }

@@ -28,7 +28,7 @@
   }
   .c-scroll > li a {
     font-size: 13px;
-    line-height: unset;
+    line-height: 1.2;
     text-align: center;
   }
   .c-scroll > li a::after {
@@ -44,6 +44,7 @@ iframe {
 @media screen and (max-width: 767px) {
   iframe {
     margin-top: 60px;
+    height: 35vh;
     margin-bottom: 50px;
   }
 }

@@ -69,17 +69,17 @@
                                 <!-- イベント 処理 -->
                                 <?php if ($link_type === 'url' && $link_url): ?>
                                     <a href="<?php echo esc_url($link_url); ?>" class="event-name" target="_blank" rel="noopener">
-                                        <?php echo esc_html($event); ?><span>（外部Link）</span>
+                                        <?php echo esc_html($event); ?>
                                     </a>
 
                                 <?php elseif ($link_type === 'pdf' && $link_url): ?>
                                     <a href="<?php echo esc_url($link_url); ?>" class="event-name" download>
-                                        <?php echo esc_html($event); ?><span>（PDF）</span>
+                                        <?php echo esc_html($event); ?>
                                     </a>
 
                                 <?php elseif ($link_type === 'image' && $link_url): ?>
                                     <a href="<?php echo esc_url($link_url); ?>" class="event-name popup-link">
-                                        <?php echo esc_html($event); ?><span>（画像）</span>
+                                        <?php echo esc_html($event); ?>
                                     </a>
 
                                 <?php else: ?>

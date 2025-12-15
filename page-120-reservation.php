@@ -318,7 +318,7 @@
                             <li class="pflow__arrow_box _05">
                                 <div class="pflow__tex">
                                     <h3><span class="cno">5</span>練習&middot;ウォーミングアップ</h3>
-                                    <p>ゴルフスタート前にウォーミングアップ、<a href="">練習場やパッティンググリーン</a>にて練習をされます。</p>
+                                    <p>ゴルフスタート前にウォーミングアップ、<a href="<?php echo esc_url(home_url('')); ?>/d-range/">練習場やパッティンググリーン</a>にて練習をされます。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_05.jpg" alt="練習">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_05.png" alt="bo-ru" class="ball">
@@ -453,7 +453,7 @@
                             <li class="pflow__arrow_box _05">
                                 <div class="pflow__tex">
                                     <h3><span class="cno">5</span>練習&middot;ウォーミングアップ</h3>
-                                    <p>ゴルフスタート前にウォーミングアップ、<a href="">練習場やパッティンググリーン</a>にて練習をされます。</p>
+                                    <p>ゴルフスタート前にウォーミングアップ、<a href="<?php echo esc_url(home_url('')); ?>/d-range/">練習場やパッティンググリーン</a>にて練習をされます。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_05.png" alt="bo-ru" class="ball">
