@@ -1,5 +1,5 @@
 .c-page-header {
-  background: url("../img/restaurant/page-header.jpg") center / 100% 100% no-repeat;
+  background: url("../img/restaurant/page-header.jpg") center / cover no-repeat;
   margin-bottom: 0;
 }
 
@@ -61,7 +61,7 @@
 .lead__text {
   color: #fff;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 32px;
   line-height: 24px;
   text-align: center;
   margin-bottom: 60px;
@@ -403,6 +403,8 @@
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+    width: 100%;
+    padding: 0 15px;
   }
 
   .l-card__menu div {
@@ -425,7 +427,7 @@
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    width: 66.71%;
+    width: 100%;
     margin: 0 auto 15px;
     line-height: 12px;
     font-size: 14px;
@@ -455,12 +457,10 @@
 @media screen and (max-width: 896px) {
   ._bgchange .l-card__inner {
     border: unset;
-    padding: 42px 25px 65px;
   }
 
   ._bgchange .l-card__menu {
     margin-top: 20px;
-    width: 80%;
   }
 
   ._bgchange .l-card__menu li {
@@ -830,6 +830,7 @@
   padding: 96px 0 100px;
   margin-top: 20px;
   position: relative;
+  z-index: 0;
 }
 
 .dwrap__pic {
@@ -1041,9 +1042,9 @@
   opacity: 0.5;
   position: absolute;
   top: 6.4%;
-  left: 37%;
-  -webkit-transform: translateX(-37%);
-  transform: translateX(-37%);
+  left: 50%;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 ._02 span {
@@ -1056,22 +1057,12 @@
   ._02 {
     width: 165px;
     top: 2%;
-    left: 10%;
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
   }
 }
 
 .reverse {
-  -webkit-transform: scale(-1, 1) translateX(0%);
-  transform: scale(-1, 1) translateX(0%);
-  left: 48%;
-}
-
-@media screen and (max-width: 896px) {
-  .reverse {
-    left: 45%;
-  }
+  -webkit-transform: scale(-1, 1);
+  transform: scale(-1, 1);
 }
 
 ._03 {
@@ -1133,6 +1124,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  z-index: -1;
 }
 
 ._06 span {

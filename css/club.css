@@ -1,10 +1,10 @@
 .c-page-header {
-  background: url("../img/common/page-header.png") left / 874px 100% no-repeat, url("../img/club/page-header.jpg") center / 100% 100% no-repeat;
+  background: url("../img/common/page-header.png") left / 874px 100% no-repeat, url("../img/club/page-header.jpg") center / cover no-repeat;
 }
 
 @media screen and (max-width: 896px) {
   .c-page-header {
-    background: url("../img/common/page-header_sp.png") left / 60% 100% no-repeat, url("../img/club/page-header_sp.jpg") center / 100% 100% no-repeat;
+    background: url("../img/common/page-header_sp.png") left / 60% 100% no-repeat, url("../img/club/page-header_sp.jpg") center / cover no-repeat;
   }
 }
 
@@ -52,12 +52,21 @@
     margin-top: 35px;
   }
 
+  .tbox>div{
+    text-align: start;
+  }
+
   #club ._mtl {
     margin-top: 60px;
   }
 
   #club .tb-01 th:first-of-type {
     width: 100%;
+  }
+
+    .tb-01 td{
+    border-top: unset;
+    border-bottom: unset;
   }
 
   .tb-01._board td {
@@ -77,9 +86,10 @@
     border-bottom: unset;
   }
 
-  .tb-01._board tr:nth-of-type(4) td:first-of-type {
-    border-top: solid 1px #989E74;
-  }
+  #club .tb-01 th,
+.tb-01 td {
+  padding: 0 15px;
+}
 }
 
 /* あしらい */

@@ -170,13 +170,14 @@
 }
 
 .top-mtxt h1 {
-  font-size: 40px;
-  line-height: 130%;
+  font-size: 50px;
+  line-height: 160%;
+  font-weight: 450;
 }
 
 .top-mtxt p {
-  font-size: 18px;
-  line-height: 160%;
+  font-size: 22px;
+  line-height: 200%;
   margin-top: 1.5em;
 }
 
@@ -188,7 +189,7 @@
   }
 
   .top-mtxt h1 {
-    font-size: 7vw;
+    font-size: 32px;
   }
 
   .top-mtxt p {
@@ -433,6 +434,7 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  box-shadow: 4px 4px 11px 0px #00000073;
 }
 
 /* .top__flex--img img {

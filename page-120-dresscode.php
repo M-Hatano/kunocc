@@ -19,18 +19,22 @@
 
             <div class="d-column">
                 <p class="d-lead">
-                    当倶楽部では、ご来場いただきましたすべてのお客様に、「不快感を与えない服装」を基準としてご来場時、プレー時、館内において下記のドレスコードを定めております。<br>ご来場の皆様全員のご協力をお願い致します。
+                    当倶楽部では、ご来場いただきましたすべてのお客様に、「不快感を与えない服装」を基準としてご来場時、プレー時、館内において下記のドレスコードを定めております。<br>ご来場の皆様全員のご協力をお願いいたします。
                 </p>
                 <section>
                     <h2>プレー時以外の服装</h2>
                     <div class="dbox">
                         <span class="deco _01"><span></span></span>
                         <div class="dbox__flex">
-                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img01.jpg" alt="">
-                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img02.jpg" alt="">
+                            <div>
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img01.jpg" alt="">
+                            </div>
+                            <div>
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img02.jpg" alt="">
+                            </div>
                         </div>
                     </div>
-                    <p>ご来場に際しては、上着（ジャケットやブレザー）等を着用してください。<br>但し、6〜9月は除きます。</p>
+                    <p>ご来場に際しては、上着（ジャケットやブレザー）等を着用してください。<br class="c-brpc">但し、6〜9月は除きます。</p>
                 </section>
 
                 <section>
@@ -38,8 +42,12 @@
                     <div class="dbox">
                         <span class="deco _01"><span></span></span>
                         <div class="dbox__flex">
-                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img03.jpg" alt="">
-                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img04.jpg" alt="">
+                            <div>
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img03.jpg" alt="">
+                            </div>
+                            <div>
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img04.jpg" alt="">
+                            </div>
                         </div>
                     </div>
                     <p>襟付きのシャツ・スラックス、またはゴルフウェアの着用をお願いいたします。</p>
@@ -61,7 +69,7 @@
                                 </li>
                                 <li>
                                     <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img06.jpg" alt="">
-                                    <p>シャツ</p>
+                                    <p>Tシャツ</p>
                                 </li>
                                 <li>
                                     <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img07.jpg" alt="">
@@ -74,16 +82,22 @@
                                 </li>
                             </ul>
                             <div class="dbox__atn">
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img09.jpg" alt="">
-                                <p>プレー中及びクラブハウス内において、タオルを首に下げたり<br>首、肩に巻いたりすることはご遠慮願います。</p>
+                                <div>
+                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img09.jpg" alt="">
+                                </div>
+                                <p>プレー中及びクラブハウス内において、タオルを首に下げたり<br class="c-brpc">首、肩に巻いたりすることはご遠慮いただいております。</p>
                             </div>
                         </div>
 
                         <div class="okbat">
                             <div>
                                 <div class="okbat__imbox">
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img10.jpg" alt="">
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img11.jpg" alt="">
+                                    <div>
+                                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img10.jpg" alt="">
+                                    </div>
+                                    <div>
+                                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img11.jpg" alt="">
+                                    </div>
                                 </div>
                                 <p>シャツの裾は必ずズボンの中に入れてください。</p>
                                 <span class="okbat__ok"></span>
@@ -94,11 +108,15 @@
                             </div>
                             <div>
                                 <div class="okbat__imbox">
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img12.jpg" alt="">
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img13.jpg" alt="">
+                                    <div>
+                                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img12.jpg" alt="">
+                                    </div>
+                                    <div>
+                                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img13.jpg" alt="">
+                                    </div>
                                 </div>
                                 <p>
-                                    ショートパンツは、<br>ゴルフ用で膝まであるものをご使用ください。<br>ハイソックスではなくてもOKですが、<br>アンクルソックス（くるぶしまでのもの）<br>はご遠慮いただいております。
+                                    ショートパンツは、<br class="c-brpc">ゴルフ用で膝まであるものをご使用ください。<br>ハイソックスではなくてもOKですが、<br class="c-brpc">アンクルソックス（くるぶしまでのもの）<br class="c-brpc">はご遠慮いただいております。
                                 </p>
                                 <span class="okbat__ok"></span>
                                 <div class="dbox__ban _bat">

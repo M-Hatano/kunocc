@@ -45,7 +45,7 @@
         <p class="c-footer__name">久能カントリー俱楽部</p>
         <p><span>〒286-0203</span>千葉県富里市久能722</p>
       </div>
-      <div>
+      <div class="c-footer__nebox">
         <p class="c-footer__num"><span>TEL&period;</span><a href="tel:0476-93-9000">0476-93-9000</a></p>
         <p class="c-footer__emal"><span>E-mail&colon;</span><a href="mailto:info@kunocc.co.jp">info@kunocc.co.jp</a></p>
       </div>

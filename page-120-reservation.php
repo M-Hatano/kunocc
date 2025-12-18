@@ -1,8 +1,8 @@
         <?php
-            /*
+        /*
             Template Name: ご予約方法について
             */
-            ?>
+        ?>
 
         <!--  header -->
         <?php get_header('120'); ?>
@@ -22,7 +22,7 @@
                     <div class="r-lead__texbox">
                         <h2>品格と静謐に包まれた、<br class="c-brsp">接待のためのひととき。</h2>
                         <p>
-                            当クラブでは、法人会員様による大切なお客様のお迎えにふさわしい環境と、<br class="c-brpc">
+                            当倶楽部では、法人会員様による大切なお客様のお迎えにふさわしい環境と、<br class="c-brpc">
                             細やかな配慮を行き届かせたサービスをご提供しております。<br>
                             ゆったりとした時間の流れのなかで、<br class="c-brsp">信頼を深める場としてご利用いただけるよう、<br>
                             接待時のご案内からご予約方法までを、こちらのページにてご紹介いたします。
@@ -60,7 +60,7 @@
                                 仮予約が完了いたしましたら、<br class="c-brsp">以下の「<span class="cno">①</span>コンペ承りフォーム」<br
                                     class="c-brsp">
                                 「<span class="cno">②</span>組み合わせ送信フォーム」の順で、<br>
-                                それぞれご予約の詳細情報を<br class="c-brsp">一括送信いただけます<br>
+                                それぞれご予約の詳細情報を<br class="c-brsp">一括送信いただけます。<br>
                                 ご入力の際には、「プレー日」と「受付番号」をそれぞれご入力ください。
                             </p>
                             <div class="rbox__btnbox">
@@ -152,7 +152,7 @@
                                             メンバーの組み合わせのご連絡については<br>
                                             <a
                                                 href="">WEB入力用の組み合わせ送信フォーム</a>をご利用ください。キャディバッグ配送の有無、カートの詰め込み順もご指定いただけます。<br>
-                                            また、<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>もご利用ください
+                                            また、<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>もご利用ください。
                                         </p>
                                     </div>
                                 </li>
@@ -227,7 +227,7 @@
                     <div class="rcol">
                         <p class="rpoit _chen _caut">注意事項</p>
                         <p class="dot">プレー日の１か月前までにプレーヤー名のご連絡をお願いいたします。</p>
-                        <p class="dot">皆様に当クラブでのゴルフを楽しんでいただくために、同時期での予約は土日祝については最大2日、平日については最大3日までを原則とさせていただきます。</p>
+                        <p class="dot">皆様に当倶楽部でのゴルフを楽しんでいただくために、同時期での予約は土日祝については最大2日、平日については最大3日までを原則とさせていただきます。</p>
                         <p class="dot">キャンセルや組数変更の場合はお早めにご連絡ください。</p>
                         <p class="dot">直前キャンセル（雨天理由を除いた、当日までに1か月を切ったキャンセル）が多いお客様におかれましては、次回予約を制限させていただく場合がございます。</p>
                         <p class="dot">
@@ -240,7 +240,8 @@
                 <div class="rhead rele01">
                     <div class="c-column border _wh">
                         <div class="rcol">
-                            <h3 class="rpoit"><span class="rpoit__days">1か月前</span><span class="rpoit__text02">リリース日程がございましたら、お早めにキャンセルの連絡をお願いいたします。</spanclass=></h3>
+                            <h3 class="rpoit"><span class="rpoit__days">1か月前</span><span class="rpoit__text02">リリース日程がございましたら、お早めにキャンセルの連絡をお願いいたします。</spanclass=>
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -256,7 +257,9 @@
                 <div class="rhead rele03">
                     <div class="c-column border _wh _las">
                         <div class="rcol">
-                            <h3 class="rpoit"><spanvz class="rpoit__days">当日</spanvz><span class="rpoit__text02">当倶楽部でのプレーをお楽しみください。<br>プレー当日のイメージは以下よりご確認いただけます。</span></h3>
+                            <h3 class="rpoit">
+                                <spanvz class="rpoit__days">当日</spanvz><span class="rpoit__text02">当倶楽部でのプレーをお楽しみください。<br>プレー当日のイメージは以下よりご確認いただけます。</span>
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -515,7 +518,6 @@
                     </div>
                 </div>
             </section>
-
 
         </main>
 

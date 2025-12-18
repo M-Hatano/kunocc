@@ -1,10 +1,10 @@
 .c-page-header {
-  background: url("../img/common/page-header.png") left/874px 100% no-repeat, url("../img/dresscode/page-header.jpg") center/100% 100% no-repeat;
+  background: url("../img/common/page-header.png") left/874px 100% no-repeat, url("../img/dresscode/page-header.jpg") center/ cover no-repeat;
 }
 
 @media screen and (max-width: 896px) {
   .c-page-header {
-    background: url("../img/common/page-header_sp.png") left/60% 100% no-repeat, url("../img/dresscode/page-header_sp.jpg") center/100% 100% no-repeat;
+    background: url("../img/common/page-header_sp.png") left/60% 100% no-repeat, url("../img/dresscode/page-header_sp.jpg") center/ cover no-repeat;
   }
 }
 .d-column {
@@ -67,11 +67,14 @@ section h2 {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.dbox__flex img {
+.dbox__flex div {
   width: 250px;
+  text-align: center;
 }
-.dbox__atn img{
+.dbox__atn div{
   width: 140px;
+  margin-bottom: 30px;
+  margin-inline: auto;
 }
 .dbox + p {
   margin-top: 25px;
@@ -128,25 +131,22 @@ section h2 {
 }
 .dbox__exam > li img {
   padding-bottom: 1em;
-  width: 100%;
+  /* width: 100%; */
 }
 .dbox__atn {
   font-weight: 500;
   font-size: 16px;
   text-align: center;
 }
-.dbox__atn img {
-  margin-bottom: 30px;
-}
 
 @media screen and (max-width: 896px) {
   .dbox {
-    padding: 47px 10px 42.5px;
+    padding: 47px 15px 42.5px;
   }
   .dbox__flex {
     gap: 25px;
   }
-  .dbox__flex img {
+  .dbox__flex div {
     width: calc(50% - (25px / 2));
     margin: 0 auto;
   }
@@ -157,6 +157,7 @@ section h2 {
   }
   .dbox + p {
     margin-top: 15px;
+    text-align: start;
   }
   .dbox__ban {
     top: 54px;
@@ -181,8 +182,12 @@ section h2 {
     font-size: 14px;
     line-height: 18px;
   }
-  .dbox__atn {
+  .dbox__atn div{
+    width: 50%;
+  }
+  .dbox__atn>p {
     font-size: 14px;
+    text-align: start;
   }
 }
 .okbat {
@@ -191,9 +196,6 @@ section h2 {
   display: -ms-flexbox;
   display: flex;
   gap: 64px;
-}
-.okbat img{
-  width: 140px;
 }
 .okbat > div {
   width: 46%;
@@ -219,9 +221,15 @@ section h2 {
 .okbat > div:nth-child(2) p {
   text-align: center;
 }
-.okbat img:nth-child(2) {
-  padding-left: 51px;
+.okbat__imbox {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
 }
+.okbat__imbox div:nth-child(2) {
+    padding-left: 51px;
+  }
 .okbat__ok {
   display: inline-block;
   width: 39px;
@@ -249,21 +257,21 @@ section h2 {
     width: 100%;
   }
   .okbat__imbox {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
     gap: 15px;
   }
-  .okbat__imbox img {
+  .okbat__imbox div {
     width: calc(50% - 7.5px);
+    text-align: center;
   }
-  .okbat__imbox img:nth-child(2) {
+  .okbat__imbox div:nth-child(2) {
     padding-left: 0;
   }
   .okbat > div p {
     font-size: 14px;
     text-align: center;
+  }
+  .okbat > div:nth-child(2) p {
+  text-align: start;
   }
   .okbat__ok {
     left: 25%;

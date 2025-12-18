@@ -1,10 +1,10 @@
 .c-page-header {
-  background: url("../img/common/page-header.png") left / 874px 100% no-repeat, url("../img/facility/page-header.jpg") center / 100% 100% no-repeat;
+  background: url("../img/common/page-header.png") left / 874px 100% no-repeat, url("../img/facility/page-header.jpg") center / cover no-repeat;
 }
 
 @media screen and (max-width: 896px) {
   .c-page-header {
-    background: url("../img/common/page-header_sp.png") left / 60% 100% no-repeat, url("../img/facility/page-header_sp.jpg") center / 100% 100% no-repeat;
+    background: url("../img/common/page-header_sp.png") left / 60% 100% no-repeat, url("../img/facility/page-header_sp.jpg") center / cover no-repeat;
   }
 }
 
@@ -103,6 +103,7 @@
   width: 450px;
   margin-left: -210px;
   z-index: 0;
+  background-color: #fff;
 }
 
 .facility__flex--img img {
@@ -381,6 +382,7 @@
 
 .proom__tb--imgbox {
   width: 61.09%;
+  background-color: #fff;
 }
 
 @media screen and (max-width: 896px) {
@@ -433,10 +435,6 @@
   #link03._scr01 {
     padding-top: 70px;
   }
-}
-
-.bgchen .facility__info>div {
-  padding: 45px 30px;
 }
 
 .bgchen .facility__flex--img {

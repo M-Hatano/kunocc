@@ -877,7 +877,6 @@ table {
 }
 
 .c-header__member a {
-  border: 1px solid #132133;
   border-radius: 45px;
   background-color: #fff;
   color: #fff;
@@ -931,7 +930,6 @@ table {
   transition: 0.3s;
   font-family: "Shippori Mincho";
   font-weight: 700;
-  border: 1px solid #132133;
 }
 
 .c-header__menu>div {
@@ -1375,6 +1373,10 @@ table {
   }
 }
 
+.c-footer__nebox{
+  padding-left: 150px !important;
+}
+
 .c-footer__num {
   font-size: 2.8rem;
   font-weight: 500;
@@ -1421,6 +1423,10 @@ table {
 }
 
 @media screen and (max-width: 896px) {
+  .c-footer__nebox{
+    padding-left: 0 !important;
+  }
+
   .c-footer__num {
     font-size: 18px;
   }
@@ -2603,7 +2609,7 @@ table {
 
 .c-tal {
   text-align: left;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .c-tar {
@@ -3334,18 +3340,15 @@ table {
 
   .mailbox {
     width: 100%;
-    padding: 10px 10px 10px 30px;
+    padding: 10px;
     font-size: 18px;
+    justify-content: center;
   }
 
   .mailbox::before {
     width: 30px;
     height: 24px;
     margin-right: 25px;
-  }
-
-  .mailbox span {
-    padding-right: 20px
   }
 }
 

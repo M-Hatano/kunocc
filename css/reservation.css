@@ -1,11 +1,11 @@
 @charset "UTF-8";
 .c-page-header {
-  background: url("../img/common/page-header.png") left/874px 100% no-repeat, url("../img/reservation/page-header.jpg") center/100% 100% no-repeat;
+  background: url("../img/common/page-header.png") left/874px 100% no-repeat, url("../img/reservation/page-header.jpg") center/ cover no-repeat;
 }
 
 @media screen and (max-width: 896px) {
   .c-page-header {
-    background: url("../img/common/page-header_sp.png") left/60% 100% no-repeat, url("../img/reservation/page-header_sp.jpg") center/100% 100% no-repeat;
+    background: url("../img/common/page-header_sp.png") left/60% 100% no-repeat, url("../img/reservation/page-header_sp.jpg") center/ cover no-repeat;
   }
 }
 .c-head6 {
@@ -137,6 +137,7 @@
   .rpoit {
     font-size: 16px;
     padding: 24px 0;
+    padding-left: 5px;
   }
   .rpoit__text01 {
     font-size: 16px;
@@ -211,9 +212,10 @@
   border: solid 1px #8F8F8F;
   font-size: 35px;
   line-height: 100%;
-  padding: 35px 0 35px 100px;
+  padding: 35px 0 35px 1em;
   position: relative;
   margin: 0 auto;
+  text-align: center;
 }
 .rtel + a::before {
   content: "";
@@ -344,7 +346,7 @@
 @media screen and (max-width: 896px) {
   .rpoit._chen {
     padding-top: 63px;
-    padding-bottom: 0;
+    padding-bottom: 20px;
     font-size: 16px;
     padding-left: 1em;
   }
@@ -465,6 +467,7 @@
 @media screen and (max-width: 896px) {
   .rele02 .rpoit {
     padding: 50px 0;
+    padding-left: 5px;
   }
 }
 
@@ -647,6 +650,7 @@
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+          justify-content: flex-end;
 }
 .pflow__arrow_box .ball {
   position: absolute;
@@ -763,16 +767,10 @@
     width: 37.38%;
   }
 }
-.pflow__tex .cno {
-  margin-left: 0;
-  width: 28px;
-  height: 28px;
-  padding-top: 3px;
-}
 @media screen and (max-width: 896px) {
   .pflow__tex .cno {
-    width: 22px;
-    height: 22px;
+    height: 1lh;
+    margin-right: 5px;
   }
 }
 @media screen and (max-width: 896px) {

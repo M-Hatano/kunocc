@@ -83,17 +83,25 @@
 
         <section id="link03">
           <h2 class="ahead">クラブバスをご利用の方</h2>
-          <p>
-            土日祝日:&nbsp;<span>往路のみ運行&nbsp;ＪＲ成田駅東口より&nbsp;<br class="c-brsp">AM7:30（定期便）</span>
-          </p>
-          <p>往路のみ運行&nbsp;ＪＲ成田駅東口より&nbsp;<br class="c-brsp">AM8:40（予約制）</p>
+          <table>
+            <tbody>
+              <tr>
+                <th>土日祝日:&nbsp;</th>
+                <td>往路のみ運行&nbsp;ＪＲ成田駅東口より&nbsp;<br class="c-brsp">AM7:30（定期便）</td>
+              </tr>
+              <tr>
+                <th></th>
+                <td>往路のみ運行&nbsp;ＪＲ成田駅東口より&nbsp;<br class="c-brsp">AM8:40（予約制）</td>
+              </tr>
+            </tbody>
+          </table>
           <p>
             平日:<span>&nbsp;3名&#12316;12名様の場合は運行致します。（予約制）</span>
           </p>
           <p>
             所要時間&nbsp;10分
           </p>
-          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/bus161102-1.pdf" class="c-btn" target="_blank">クラブバス乗り場案内図はこちら（PDF）</a>
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/bus161102-1.pdf" class="c-btn _cbus" target="_blank">クラブバス乗り場案内図はこちら（PDF）</a>
         </section>
 
         <section id="link04">
