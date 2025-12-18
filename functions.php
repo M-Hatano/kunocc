@@ -5,6 +5,20 @@
  * 会員ログインには一切干渉しない安全版
  * --------------------------------------------------------- */
 
+// ==============================
+// 会員ログイン：セッション開始
+// ==============================
+add_action('init', function () {
+    if (!session_id()) {
+        session_start();
+    }
+}, 1);
+
+// 会員ログイン判定
+function knc_member_is_logged_in(): bool {
+    return !empty($_SESSION['knc_member_login']) && $_SESSION['knc_member_login'] === true;
+}
+
 // 管理ログインURL
 define('LOGIN_CHANGE_PAGE', 'knc-120.php');
 
@@ -88,28 +102,44 @@ function disable_author_archive() {
 add_action('init', 'disable_author_archive');
 
 
+// ==============================
+// 会員ログイン（WPと別ID/PW）
+// ==============================
+function knc_member_authenticate(string $login, string $password): bool {
 
-/**
- * 会員ログイン処理（wp_signon）
- * ※ login-template 内では処理しない
- */
-add_action('init', function() {
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
-    if (!isset($_POST['member_login'])) return;
-
-    $creds = [
-        'user_login'    => sanitize_text_field($_POST['log']),
-        'user_password' => $_POST['pwd'],
-        'remember'      => true,
+    // ▼ ここを「会員サイトのID/PW」に合わせてください
+    // 例：会員ID => パスワード（まずは平文の簡易版）
+    $members = [
+        'member01' => 'pass01',
+        'member02' => 'pass02',
+        // 'xxxx' => 'yyyy',
     ];
 
-    $user = wp_signon($creds, false);
+    if (!isset($members[$login])) return false;
+    return hash_equals($members[$login], $password);
+}
 
-    if (is_wp_error($user)) {
+/**
+ * 会員ログイン処理（独自）
+ * POST member_login が来た時だけ動作
+ */
+add_action('init', function () {
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
+    if (empty($_POST['member_login'])) return;
+
+    $login = sanitize_text_field($_POST['log'] ?? '');
+    $pwd   = (string)($_POST['pwd'] ?? '');
+
+    if (!knc_member_authenticate($login, $pwd)) {
         wp_redirect(home_url('/member-login/?login=failed'));
         exit;
     }
 
+    // ログイン成功：会員セッションON
+    $_SESSION['knc_member_login'] = true;
+    $_SESSION['knc_member_id']    = $login;
+
+    // リダイレクト先
     $redirect = !empty($_POST['redirect_to'])
         ? esc_url_raw($_POST['redirect_to'])
         : home_url('/member/');
@@ -117,6 +147,7 @@ add_action('init', function() {
     wp_redirect($redirect);
     exit;
 });
+
 
 // 動的にメタタグのdescriptionを取得する関数
 function get_dynamic_meta_description(){
@@ -1338,12 +1369,12 @@ add_action('template_redirect', function () {
 });
 
 /*--------------------------------
- * STEP3：/member/ 以下をログイン必須（環境自動対応版・クエリ保持版）
+ * STEP3：/member 以下をログイン必須（環境自動対応版・クエリ保持版）
  --------------------------------*/
  add_action('template_redirect', function () {
 
-    // すでにログイン済みなら何もしない
-    if (is_user_logged_in()) return;
+    // WPログイン または 会員ログイン済みなら何もしない
+    if (is_user_logged_in() || knc_member_is_logged_in()) return;
 
     $request_uri = $_SERVER['REQUEST_URI'] ?? '';
 
@@ -1352,21 +1383,19 @@ add_action('template_redirect', function () {
     $query = $_SERVER['QUERY_STRING'] ?? '';
 
     // /kunocc2/cms/ など環境パスを除去して正規化
-    // 例）/kunocc2/cms/member/member-file/ → /member/member-file/
     $path = preg_replace('#^/[^/]+/[^/]+/#', '/', $path);
 
-    // /member-login/ はログイン画面なので除外
-    if (strpos($path, '/member-login') !== false) {
-        return;
-    }
+    // ログイン画面／ログアウト画面は除外（無限リダイレクト防止）
+    if (strpos($path, '/member-login') !== false) return;
+    if (strpos($path, '/member-logout') !== false) return;
 
-    // Member 以下すべてログイン必須
-    if (strpos($path, '/member/') === 0) {
+    // /member と /member/ 配下を対象にする
+    if ($path === '/member' || strpos($path, '/member/') === 0) {
 
-        // 正規化済みパスから redirect_to を組み立て（クエリも保持）
+        // redirect_to を組み立て（クエリも保持）
         $redirect_to = home_url($path);
         if ($query !== '') {
-            $redirect_to .= '?' . $query;   // ?id=9110 をつけ直す
+            $redirect_to .= '?' . $query;
         }
 
         wp_redirect(
@@ -1374,7 +1403,6 @@ add_action('template_redirect', function () {
         );
         exit;
     }
-
 });
 
 
@@ -1500,11 +1528,14 @@ add_action('template_redirect', function () {
 
     // ---- ここから会員専用制御 ----
 
-    // 会員専用ファイルであってもなくても、uploads直アクセスは禁止し
-    // 必ず ID 付きの member-file へ誘導する
+    // ★ 会員専用でないなら何もしない（通常ページの画像・PDFを壊さない）
+    $is_member_only = get_post_meta($attachment_id, '_member_only', true);
+    if ($is_member_only !== '1') {
+        return;
+    }
 
     // 未ログイン → ログイン画面へ
-    if (!is_user_logged_in()) {
+    if (!is_user_logged_in() && !knc_member_is_logged_in()) {
 
         $login_url   = home_url('/member-login/');
         $protected   = add_query_arg(['id' => $attachment_id], home_url('/member/member-file/'));
@@ -1649,21 +1680,21 @@ add_filter('image_downsize', function($out, $post_id, $size) {
 }, 10, 3);
 
 
-add_filter('wp_get_attachment_url', function($url, $post_id) {
+// add_filter('wp_get_attachment_url', function($url, $post_id) {
 
-    if (!$post_id) return $url;
+//     if (!$post_id) return $url;
 
-    // メディアの会員専用フラグ
-    $is_member_only = get_post_meta($post_id, '_member_only', true);
+//     // メディアの会員専用フラグ
+//     $is_member_only = get_post_meta($post_id, '_member_only', true);
 
-    // 会員専用 → ID付きURL
-    if ($is_member_only === '1') {
-        return home_url('/member/member-file/?id=' . $post_id);
-    }
+//     // 会員専用 → ID付きURL
+//     if ($is_member_only === '1') {
+//         return home_url('/member/member-file/?id=' . $post_id);
+//     }
 
-    return $url;
+//     return $url;
 
-}, 10, 2);
+// }, 10, 2);
 
 
 /**
@@ -1851,17 +1882,6 @@ JS
     , 'after');
 });
 
-
-add_action('wp_loaded', function () {
-    global $wp_rewrite;
-    $wp_rewrite->wp_rewrite_rules(); // 確実に生成させる
-
-    error_log("----- REWRITE RULES START -----");
-    foreach ($wp_rewrite->rules as $rule => $query) {
-        error_log("$rule => $query");
-    }
-    error_log("----- REWRITE RULES END -----");
-});
 
 add_filter('attachment_fields_to_edit', function ($form_fields, $post) {
 

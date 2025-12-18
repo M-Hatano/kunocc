@@ -26,8 +26,8 @@
                     <div class="dbox">
                         <span class="deco _01"><span></span></span>
                         <div class="dbox__flex">
-                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy01.jpg" alt="">
-                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy01.jpg" alt="">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img01.jpg" alt="">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img02.jpg" alt="">
                         </div>
                     </div>
                     <p>ご来場に際しては、上着（ジャケットやブレザー）等を着用してください。<br>但し、6〜9月は除きます。</p>
@@ -38,8 +38,8 @@
                     <div class="dbox">
                         <span class="deco _01"><span></span></span>
                         <div class="dbox__flex">
-                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy01.jpg" alt="">
-                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy01.jpg" alt="">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img03.jpg" alt="">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img04.jpg" alt="">
                         </div>
                     </div>
                     <p>襟付きのシャツ・スラックス、またはゴルフウェアの着用をお願いいたします。</p>
@@ -56,25 +56,25 @@
                             <p>以下の服装はご遠慮ください</p>
                             <ul class="dbox__exam">
                                 <li>
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy02.jpg" alt="ダミー">
+                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img05.jpg" alt="">
                                     <p>ジーンズ</p>
                                 </li>
                                 <li>
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy02.jpg" alt="ダミー">
+                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img06.jpg" alt="">
                                     <p>シャツ</p>
                                 </li>
                                 <li>
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy02.jpg" alt="ダミー">
+                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img07.jpg" alt="">
                                     <p>トレーニング<br>ウェア</p>
                                 </li>
                                 <li>
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy02.jpg" alt="ダミー">
+                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img08.jpg" alt="">
                                     <p>サンダル</p>
                                     <p>クロックス</p>
                                 </li>
                             </ul>
                             <div class="dbox__atn">
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img_dress_01.jpg" alt="サンプル">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img09.jpg" alt="">
                                 <p>プレー中及びクラブハウス内において、タオルを首に下げたり<br>首、肩に巻いたりすることはご遠慮願います。</p>
                             </div>
                         </div>
@@ -82,8 +82,8 @@
                         <div class="okbat">
                             <div>
                                 <div class="okbat__imbox">
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy02.jpg" alt="ダミー">
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy02.jpg" alt="ダミー">
+                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img10.jpg" alt="">
+                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img11.jpg" alt="">
                                 </div>
                                 <p>シャツの裾は必ずズボンの中に入れてください。</p>
                                 <span class="okbat__ok"></span>
@@ -94,8 +94,8 @@
                             </div>
                             <div>
                                 <div class="okbat__imbox">
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy02.jpg" alt="ダミー">
-                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/dummy02.jpg" alt="ダミー">
+                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img12.jpg" alt="">
+                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/dresscode/img13.jpg" alt="">
                                 </div>
                                 <p>
                                     ショートパンツは、<br>ゴルフ用で膝まであるものをご使用ください。<br>ハイソックスではなくてもOKですが、<br>アンクルソックス（くるぶしまでのもの）<br>はご遠慮いただいております。

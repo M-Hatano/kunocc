@@ -2,7 +2,7 @@
   background: url("../img/common/page-header.png") left / 874px 100% no-repeat, url("../img/news/page-header.jpg") center / 100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-page-header {
     background: url("../img/common/page-header_sp.png") left / 60% 100% no-repeat, url("../img/news/page-header_sp.jpg") center / 100% 100% no-repeat;
   }
@@ -14,7 +14,7 @@
   font-size: 3.2rem;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-head2 {
     font-size: 2.4rem;
   }
@@ -38,7 +38,7 @@
   margin-bottom: 30px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .news-box {
     margin-top: 10px;
     margin-bottom: 60px;
@@ -58,7 +58,7 @@
   padding: 40px 40px 70px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .news-box__left {
     padding: 20px 20px 40px;
   }
@@ -69,7 +69,7 @@
   padding: 60px 40px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   #single-page .news-box__left{
     padding: 30px 20px;
     width: 100%;
@@ -125,7 +125,7 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .news-box__list li a {
     padding: 14px 0;
     font-size: 14px;
@@ -151,7 +151,7 @@
   color: #324A5B;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .news-box__time {
     font-size: 12px;
   }
@@ -186,7 +186,7 @@
   font-size: 16px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .news-dt__ttl {
     font-size: 1.8rem;
     border-bottom: 1px solid #ccc;
@@ -213,7 +213,7 @@
   margin: 80px auto 0;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .news__all {
     font-size: 1.4rem;
     margin: 60px auto 0;
@@ -241,7 +241,7 @@
   padding: 50px 30px 35px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .news-box__right {
     padding: 30px 20px 50px;
   }
@@ -258,7 +258,7 @@
   border-bottom: solid 2px #A3A786;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .news-box__right--box h3 {
     font-size: 18px;
   }
@@ -273,7 +273,7 @@
   margin-top: 50px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .btn-area .c-link-pdf {
     line-height: 1.6;
   }

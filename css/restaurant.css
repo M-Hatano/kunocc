@@ -13,14 +13,14 @@
   margin: 0 auto 50px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .lead .rs-title {
     margin: 0 auto 26px;
     width: 52%;
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .lead {
     padding: 20px 0 57px;
   }
@@ -43,7 +43,7 @@
   padding-left: unset;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .lead__recommend {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
@@ -74,7 +74,7 @@
   font-weight: 400;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .lead__text {
     margin-bottom: 40px;
   }
@@ -93,7 +93,7 @@
   width: 33.33%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .sc_01>li {
     width: 50%;
   }
@@ -103,7 +103,7 @@
   border-left: 1px solid #8F8F8F;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .sc_01>li:nth-of-type(4) {
     border-left: none;
   }
@@ -127,7 +127,7 @@
   opacity: 0.2;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .private {
     padding: 82px 0 75px;
   }
@@ -138,7 +138,7 @@
   margin: 0;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .r-btn {
     width: 80%;
   }
@@ -171,7 +171,7 @@
   margin-bottom: 35px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .feature {
     margin-top: 22px;
     -webkit-box-orient: vertical;
@@ -205,7 +205,7 @@
   padding: 153px 0 186px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .morning {
     padding: 90px 0 79px;
   }
@@ -273,7 +273,7 @@
   padding: 10px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .list01 {
     gap: 12.5px;
     margin: 55px 0 38px;
@@ -377,7 +377,7 @@
   margin-bottom: 12px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .l-card {
     padding: 5px;
   }
@@ -452,7 +452,7 @@
   color: #fff;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   ._bgchange .l-card__inner {
     border: unset;
     padding: 42px 25px 65px;
@@ -473,7 +473,7 @@
   margin-bottom: 25px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .l-card:first-of-type {
     margin-bottom: 9px;
   }
@@ -493,7 +493,7 @@
   color: #fff;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .lunch {
     padding: 48px 0 89px;
   }
@@ -552,7 +552,7 @@
   line-height: 24px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .lu-list {
     margin-top: 72.5px;
     margin-bottom: 45px;
@@ -600,7 +600,7 @@
   margin: 48px 0 80px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .other .list01 {
     margin: 35px 0 0;
   }
@@ -619,7 +619,7 @@
   padding: 140px 0 182px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .cafe {
     padding: 92px 0 41px;
   }
@@ -629,7 +629,7 @@
   margin-top: 55px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .cafe .l-card:first-of-type {
     margin-top: 60px;
   }
@@ -652,7 +652,7 @@
   margin-top: 95px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .party {
     padding: 30px 0 128px;
   }
@@ -735,7 +735,7 @@
   padding-right: 25px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .list02 {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -794,7 +794,7 @@
   width: 31.81%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .u-standard .list02__item {
     width: 100%;
   }
@@ -819,7 +819,7 @@
   color: #fff;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .bghd {
     padding-top: 38px;
   }
@@ -862,7 +862,7 @@
   padding-left: 30px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .dwrap {
     padding: 61.5px 0 60px;
     margin-top: 32px;
@@ -900,7 +900,7 @@
   padding: 80px 0 118px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .dbgmenu {
     padding: 40px 0 60px;
   }
@@ -956,7 +956,7 @@
   margin-top: 87px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .dwrap02 {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1026,7 +1026,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   ._01 {
     width: 61%;
     top: unset;
@@ -1052,7 +1052,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   ._02 {
     width: 165px;
     top: 2%;
@@ -1068,7 +1068,7 @@
   left: 48%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .reverse {
     left: 45%;
   }
@@ -1086,7 +1086,7 @@
   background: url("../img/restaurant/img_deco_03.png") left top/100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   ._03 {
     width: 129px;
     right: 0;
@@ -1103,7 +1103,7 @@
   background: url("../img/restaurant/img_deco_04.png") left top/100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   ._04 {
     width: 28.5px;
     margin: 0 auto 15px;
@@ -1122,7 +1122,7 @@
   background: url("../img/restaurant/img_deco_05.png") left top/100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   ._05 {
     width: 199px;
   }
@@ -1140,7 +1140,7 @@
   background: url("../img/restaurant/img_deco_06.png") left top/100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   ._06 {
     width: 292px;
   }
@@ -1158,7 +1158,7 @@
   background: url("../img/restaurant/img_deco_07.png") left top/100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   ._07 {
     width: 184.5px;
     left: 0px;
@@ -1208,7 +1208,7 @@
   transform: rotate(90deg);
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .d_deco span {
     width: 44px;
     height: 44px;

@@ -47,7 +47,7 @@
     display: none;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .m-news .c-head6 {
         font-size: 20px;
         padding: 0 0 40px;
@@ -91,7 +91,7 @@
     margin-bottom: 30px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .news-box {
         margin-top: 10px;
         margin-bottom: 60px;
@@ -111,7 +111,7 @@
     padding: 105px 40px 70px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .news-box__left {
         padding: 50px 20px 40px;
         width: 100%;
@@ -123,7 +123,7 @@
     padding: 60px 40px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     #single-page .news-box__left {
         padding: 30px 20px;
     }
@@ -159,7 +159,7 @@
     left: -40px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .news-box__list::before {
         width: calc(100% + 40px);
         left: -20px;
@@ -198,7 +198,7 @@
     opacity: 1;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .news-box__list li a {
         padding: 14px 0;
         font-size: 14px;
@@ -220,7 +220,7 @@
     color: #324A5B;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .news-box__time {
         font-size: 12px;
     }
@@ -255,7 +255,7 @@
     font-size: 16px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .news-dt__ttl {
         font-size: 1.8rem;
         border-bottom: 1px solid #ccc;
@@ -282,7 +282,7 @@
     margin: 80px auto 0;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .news__all {
         font-size: 1.4rem;
         margin: 60px auto 0;
@@ -312,7 +312,7 @@
     z-index: 1;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .news-box__right {
         padding: 30px 20px 50px;
     }
@@ -329,7 +329,7 @@
     border-bottom: solid 2px #A3A786;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .news-box__right--box h3 {
         font-size: 18px;
     }
@@ -344,7 +344,7 @@
     margin-top: 50px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .btn-area .c-link-pdf {
         line-height: 1.6;
     }
@@ -398,7 +398,7 @@
     margin-left: 1em;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .box-pat {
         padding: 80px 20px 85px;
     }
@@ -468,7 +468,7 @@
     left: 0;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     #m-registration .box-pat {
         padding: 70px 20px 40px;
     }
@@ -498,7 +498,7 @@
     margin-left: 0;
 }
 
-/* @media screen and (max-width: 767px) {
+/* @media screen and (max-width: 896px) {
     .regi_send {
         padding-top: 25px;
         margin-bottom: 25px;
@@ -542,7 +542,7 @@
     background: url("../img/member/bg_ashi_03.png") left top / 100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     ._01 {
         width: 118.5px;
         bottom: 75px;
@@ -612,7 +612,7 @@
     right: 0;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .calendar-container .calendar-head {
         font-size: 20px;
     }
@@ -675,7 +675,7 @@
     position: relative;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     .calendar-container {
         margin: 10px auto;
     }
@@ -737,7 +737,7 @@
     left: 10px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     #calendar .day {
         aspect-ratio: unset;
         padding: 10px;
@@ -796,7 +796,7 @@
     aspect-ratio: unset;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     #calendar .day.label {
         display: none;
     }
@@ -807,7 +807,7 @@
     border: 1px solid #8F8F8F;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
     #calendar .day.blank {
         display: none;
     }
@@ -818,7 +818,7 @@
     display: none;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
 
     .weekday {
         display: inline-block;

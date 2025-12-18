@@ -43,7 +43,7 @@
                 <div class="rhead">
                     <div class="c-column border _wh _sta">
                         <div class="rcol">
-                            <h3 class="rpoit">6ヶ月前<span class="rpoit__text01">予約開始</span></h3>
+                            <h3 class="rpoit">6か月前<span class="rpoit__text01">予約開始</span></h3>
                         </div>
                     </div>
                 </div>
@@ -57,26 +57,24 @@
                                 <p>ご予約方法A</p>
                             </div>
                             <p>
-                                仮予約が完了いたしましたら、<br class="c-brsp">以下の「<span class="cno">1</span>コンペ承りフォーム」<br
+                                仮予約が完了いたしましたら、<br class="c-brsp">以下の「<span class="cno">①</span>コンペ承りフォーム」<br
                                     class="c-brsp">
-                                「<span class="cno">2</span>組み合わせ送信フォーム」の順で、<br>
+                                「<span class="cno">②</span>組み合わせ送信フォーム」の順で、<br>
                                 それぞれご予約の詳細情報を<br class="c-brsp">一括送信いただけます<br>
                                 ご入力の際には、「プレー日」と「受付番号」をそれぞれご入力ください。
                             </p>
                             <div class="rbox__btnbox">
-                                <a href="" class="c-btn"><span class="cno">1</span>コンペ承りフォーム</a>
-                                <a href="" class="c-btn"><span class="cno">2</span>組み合わせ送信フォーム</a>
+                                <a href="" class="c-btn"><span class="cno">①</span>コンペ承りフォーム</a>
+                                <a href="" class="c-btn"><span class="cno">②</span>組み合わせ送信フォーム</a>
                             </div>
                             <span class="deco _03"><span></span></span>
                         </div>
 
-                        <div class="rbox">
+                        <div class="rbox" id="res_form">
                             <div class="rbox__method apply">
                                 <p>ご予約方法B</p>
                             </div>
-                            <p>
-                                WEB上でご入力をされないお客様は、以下にご予約連絡フォーム（エクセル形式・PDF形式）をそれぞれご用意しております。
-                            </p>
+                            <p>WEB上でご入力をされないお客様は、以下にご予約連絡フォーム（エクセル形式・PDF形式）をそれぞれご用意しております。</p>
 
                             <?php
                             $excel = get_field('reservation_form_excel', 'option');
@@ -111,10 +109,10 @@
                                             プレー料金やゲスト料金については<br>
                                             「会員専用ページ」よりご確認いただけます。その他料金に関しましては以下をご確認ください。
                                         </p>
-                                        <a href="">レンタル料金について ／ </a>
-                                        <a href="">個室の料金について ／ </a>
-                                        <a href="">練習場の料金について ／ </a>
-                                        <a href="">食事の料金について ／ </a>
+                                        <a href="<?php echo esc_url(home_url('')); ?>">レンタル料金について ／ </a>
+                                        <a href="<?php echo esc_url(home_url('')); ?>facility/#link03">個室の料金について ／ </a>
+                                        <a href="<?php echo esc_url(home_url('')); ?>/d-range/">練習場の料金について ／ </a>
+                                        <a href="<?php echo esc_url(home_url('')); ?>/restaurant/">食事の料金について ／ </a>
                                     </div>
                                 </li>
                                 <li class="rlistbox__item">
@@ -128,7 +126,7 @@
                                             アレルギーをお持ちの方、ハラル、ベジタリアンの方へのご対応も可能です。<br>
                                             パーティーの内容については以下をご確認ください。
                                         </p>
-                                        <a href="">パーティープランについて ／ </a>
+                                        <a href="<?php echo esc_url(home_url('')); ?>/restaurant/#party">パーティープランについて ／ </a>
                                     </div>
                                 </li>
                                 <li class="rlistbox__item">
@@ -141,7 +139,7 @@
                                             個室のご予約は必要ですか？<br>
                                             お部屋のレイアウトについては以下のリンクよりご確認いただけます。但し、お部屋の指定はできかねますのでご了承ください。
                                         </p>
-                                        <a href="">プライベートルームについて ／ </a>
+                                        <a href="<?php echo esc_url(home_url('')); ?>/facility/#link03">プライベートルームについて ／ </a>
                                     </div>
                                 </li>
                                 <li class="rlistbox__item">
@@ -154,7 +152,7 @@
                                             メンバーの組み合わせのご連絡については<br>
                                             <a
                                                 href="">WEB入力用の組み合わせ送信フォーム</a>をご利用ください。キャディバッグ配送の有無、カートの詰め込み順もご指定いただけます。<br>
-                                            また、<a href="">ご予約連絡フォーム（エクセル・PDF）</a>もご利用ください
+                                            また、<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>もご利用ください
                                         </p>
                                     </div>
                                 </li>
@@ -166,8 +164,7 @@
                                     <div class="rlistbox__item--wh">
                                         <p>
                                             スコアの集計はございますか？<br>
-                                            集計方法について（競技方法、ハンデ上限、打数制限、同順位決定）は、<a href="">コンペ承りフォーム（WEB）</a>または<a
-                                                href="">ご予約連絡フォーム（エクセル・PDF）</a>でご指定ください。
+                                            集計方法について（競技方法、ハンデ上限、打数制限、同順位決定）は、<a href="">コンペ承りフォーム（WEB）</a>または<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>でご指定ください。
                                         </p>
                                     </div>
                                 </li>
@@ -178,8 +175,7 @@
                                     </div>
                                     <div class="rlistbox__item--wh">
                                         <p>
-                                            精算方法の指定はございますか？指定がございます場合、<a href="">コンペ承りフォーム（WEB）</a>または<a
-                                                href="">ご予約連絡フォーム（エクセル・PDF）</a>をご利用ください。
+                                            精算方法の指定はございますか？指定がございます場合、<a href="">コンペ承りフォーム（WEB）</a>または<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>をご利用ください。
                                         </p>
                                     </div>
                                 </li>
@@ -192,7 +188,7 @@
                                         <p>
                                             ドレスコードについては、以下リンクよりご確認いただけます。
                                         </p>
-                                        <a href="">ドレスコードについて ／ </a>
+                                        <a href="<?php echo esc_url(home_url('')); ?>/dresscode/">ドレスコードについて ／ </a>
                                     </div>
                                 </li>
                                 <li class="rlistbox__item">
@@ -205,8 +201,8 @@
                                             交通手段ごとのアクセス、近隣ホテルの情報を掲載しております。<br>
                                             以下のリンクよりご確認ください。
                                         </p>
-                                        <a href="">アクセスについて ／ </a>
-                                        <a href=""> 近隣ホテルについて</a>
+                                        <a href="<?php echo esc_url(home_url('')); ?>/access/">アクセスについて ／ </a>
+                                        <a href="<?php echo esc_url(home_url('')); ?>/access/#link05"> 近隣ホテルについて</a>
                                     </div>
                                 </li>
                                 <li class="rlistbox__item">
@@ -218,7 +214,7 @@
                                         <p>
                                             手土産等の事前送付はございますか？<br>
                                             ございます場合、<a href="">コンペ承りフォーム（WEB）</a><br>
-                                            または<a href="">ご予約連絡フォーム（エクセル・PDF）</a>をご利用ください。
+                                            または<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a></a>をご利用ください。
                                         </p>
                                     </div>
                                 </li>
@@ -244,7 +240,7 @@
                 <div class="rhead rele01">
                     <div class="c-column border _wh">
                         <div class="rcol">
-                            <h3 class="rpoit"><span class="rpoit__days">1ヶ月前</span><span class="rpoit__text02">リリース日程がございましたら、お早めにキャンセルの連絡をお願いいたします。</spanclass=></h3>
+                            <h3 class="rpoit"><span class="rpoit__days">1か月前</span><span class="rpoit__text02">リリース日程がございましたら、お早めにキャンセルの連絡をお願いいたします。</spanclass=></h3>
                         </div>
                     </div>
                 </div>
@@ -281,7 +277,7 @@
                         <ul class="pflow">
                             <li class="pflow__arrow_box _01">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">1</span>ご来場&middot;お出迎え</h3>
+                                    <h3><span class="cno">①</span>ご来場&middot;お出迎え</h3>
                                     <p>クラブハウスにて、主催者様がゲストの皆様をお迎えいたします。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_01.jpg" alt="ご来場">
@@ -290,7 +286,7 @@
                             </li>
                             <li class="pflow__arrow_box _02">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">2</span>チェックイン手続き</h3>
+                                    <h3><span class="cno">②</span>チェックイン手続き</h3>
                                     <p>会員様は専用カウンター、ゲスト様はビジターカウンターにてチェックインをお願いいたします。ご記入内容にはお名前・ご住所・ご連絡先などが含まれます。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_02.jpg" alt="チェックイン手続き">
@@ -299,7 +295,7 @@
                             </li>
                             <li class="pflow__arrow_box _03">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">3</span>お着替え</h3>
+                                    <h3><span class="cno">③</span>お着替え</h3>
                                     <p>ロッカールームにて、ゴルフウェアにお着替えいただきます。<br>ロッカーはランダムでのご案内となり、専用ロッカーのご用意はございませんのでご了承ください。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_03.jpg" alt="お着替え">
@@ -308,8 +304,8 @@
                             </li>
                             <li class="pflow__arrow_box _04">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">4</span>ご集合&middot;朝食のお時間</h3>
-                                    <p>会員様は専用カウンター、ゲスト様はビジターカウンターにてチェックインをお願いいたします。ご記入内容にはお名前・ご住所・ご連絡先などが含まれます。</p>
+                                    <h3><span class="cno">④</span>ご集合&middot;朝食のお時間</h3>
+                                    <p>個室をご用意している場合はお部屋へ、ない場合はレストランホールにご集合いただき、モーニングコーヒーや軽食をお楽しみいただけます。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_04.jpg" alt="ご集合">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_04.png" alt="bo-ru" class="ball">
@@ -317,7 +313,7 @@
                             </li>
                             <li class="pflow__arrow_box _05">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">5</span>練習&middot;ウォーミングアップ</h3>
+                                    <h3><span class="cno">⑤</span>練習&middot;ウォーミングアップ</h3>
                                     <p>ゴルフスタート前にウォーミングアップ、<a href="<?php echo esc_url(home_url('')); ?>/d-range/">練習場やパッティンググリーン</a>にて練習をされます。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_05.jpg" alt="練習">
@@ -326,7 +322,7 @@
                             </li>
                             <li class="pflow__arrow_box _06">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">6</span>キャディご挨拶&middot;クラブ確認</h3>
+                                    <h3><span class="cno">⑥</span>キャディご挨拶&middot;クラブ確認</h3>
                                     <p>担当キャディよりご挨拶の後、クラブの本数や内容を確認させていただきます。<br>キャディのご指名は承っておりませんので、予めご了承ください。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_06.jpg" alt="キャディご挨拶">
@@ -335,7 +331,7 @@
                             </li>
                             <li class="pflow__arrow_box _07">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">7</span>ラウンドスタート（前半）</h3>
+                                    <h3><span class="cno">⑦</span>ラウンドスタート（前半）</h3>
                                     <p>いよいよゴルフスタートです。OUTスタート、INスタートいずれかよりプレーを開始いただきます。全組キャディ・乗用カート付きでのご案内です。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_07.jpg" alt="ラウンドスタート（前半）">
@@ -344,7 +340,7 @@
                             </li>
                             <li class="pflow__arrow_box _08">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">8</span>前半終了&middot;クラブハウスへ</h3>
+                                    <h3><span class="cno">⑧</span>前半終了&middot;クラブハウスへ</h3>
                                     <p>9ホール終了後はクラブハウスにお戻りいただきます。<br>スムーズな進行のため、プレー時間は2時間10分を目安としております。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="前半終了">
@@ -353,8 +349,8 @@
                             </li>
                             <li class="pflow__arrow_box _09">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">9</span>昼食タイム</h3>
-                                    <p>会員様は専用カウンター、ゲスト様はビジターカウンターにてチェックインをお願いいたします。ご記入内容にはお名前・ご住所・ご連絡先などが含まれます。</p>
+                                    <h3><span class="cno">⑨</span>昼食タイム</h3>
+                                    <p>後半開始までの約50分間、レストランまたはご予約のお部屋にて昼食をお楽しみください。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_09.png" alt="bo-ru" class="ball">
@@ -362,7 +358,7 @@
                             </li>
                             <li class="pflow__arrow_box _10">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">10</span>後半ラウンドへ</h3>
+                                    <h3><span class="cno">⑩</span>後半ラウンドへ</h3>
                                     <p>昼食後、後半のラウンドへ。<br>OUTスタートの場合は10～18番、INスタートの場合は1～9番ホールをプレーされます。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -371,7 +367,7 @@
                             </li>
                             <li class="pflow__arrow_box _11">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">11</span>プレー終了（ホールアウト）</h3>
+                                    <h3><span class="cno">⑪</span>プレー終了（ホールアウト）</h3>
                                     <p>後半のラウンドを終えられた後は、スコアの確認・クラブの点検を行い、プレー終了となります。<br>ご希望があればスコア集計表をマスター室よりお渡しします。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -380,7 +376,7 @@
                             </li>
                             <li class="pflow__arrow_box _12">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">12</span>ご入浴&middot;お着替え</h3>
+                                    <h3><span class="cno">⑫</span>ご入浴&middot;お着替え</h3>
                                     <p>プレーの疲れを癒すひととき。<br>大浴場で汗を流し、リフレッシュしてお着替えください。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -389,7 +385,7 @@
                             </li>
                             <li class="pflow__arrow_box _13">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">13</span>アフターゴルフ&middot;懇親会</h3>
+                                    <h3><span class="cno">⑬</span>アフターゴルフ&middot;懇親会</h3>
                                     <p>プライベートルームやレストランホールにて、懇親のお時間をお過ごしください。本日のプレーを振り返りながら、和やかな語らいのひとときをお楽しみいただけます。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -398,7 +394,7 @@
                             </li>
                             <li class="pflow__arrow_box _14">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">14</span>お見送り&middot;ご帰宅クイン手続き</h3>
+                                    <h3><span class="cno">⑭</span>お見送り&middot;ご帰宅</h3>
                                     <p>最後にお土産をお渡しし、ゲストの皆様をお見送りします。<br>※お土産を事前にお送りいただく場合は、当日午前中必着にてお送りください。スタッフにて開封し、お渡しの準備をいたします。
                                     </p>
                                 </div>
@@ -407,7 +403,7 @@
                                 <span class="deco _deb _b014"><span></span></span>
                             </li>
                         </ul>
-                        <p class="rnotice">&#8251;ハーフ終了後に45分間の食事休憩、プレー後の飲食等を60分とした場合のスケージュールになります。</p>
+                        <p class="rnotice">&#8251;ハーフ終了後に45分間の食事休憩、プレー後の飲食等を60分とした場合のスケジュールになります。</p>
                     </div>
 
                     <!-- スループレー -->
@@ -416,7 +412,7 @@
                         <ul class="pflow">
                             <li class="pflow__arrow_box _01">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">1</span>ご来場&middot;お出迎え</h3>
+                                    <h3><span class="cno">①</span>ご来場&middot;お出迎え</h3>
                                     <p>クラブハウスにて、主催者様がゲストの皆様をお迎えいたします。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -425,7 +421,7 @@
                             </li>
                             <li class="pflow__arrow_box _02">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">2</span>チェックイン手続き</h3>
+                                    <h3><span class="cno">②</span>チェックイン手続き</h3>
                                     <p>会員様は専用カウンター、ゲスト様はビジターカウンターにてチェックインをお願いいたします。ご記入内容にはお名前・ご住所・ご連絡先などが含まれます。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -434,7 +430,7 @@
                             </li>
                             <li class="pflow__arrow_box _03">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">3</span>お着替え</h3>
+                                    <h3><span class="cno">③</span>お着替え</h3>
                                     <p>ロッカールームにて、ゴルフウェアにお着替えいただきます。<br>ロッカーはランダムでのご案内となり、専用ロッカーのご用意はございませんのでご了承ください。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -443,7 +439,7 @@
                             </li>
                             <li class="pflow__arrow_box _04">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">4</span>ご集合&middot;朝食のお時間</h3>
+                                    <h3><span class="cno">④</span>ご集合&middot;朝食のお時間</h3>
                                     <p>個室をご用意している場合はお部屋へ、ない場合はレストランホールにご集合いただき、モーニングコーヒーや軽食をお楽しみいただけます。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -452,7 +448,7 @@
                             </li>
                             <li class="pflow__arrow_box _05">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">5</span>練習&middot;ウォーミングアップ</h3>
+                                    <h3><span class="cno">⑤</span>練習&middot;ウォーミングアップ</h3>
                                     <p>ゴルフスタート前にウォーミングアップ、<a href="<?php echo esc_url(home_url('')); ?>/d-range/">練習場やパッティンググリーン</a>にて練習をされます。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -461,7 +457,7 @@
                             </li>
                             <li class="pflow__arrow_box _06">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">6</span>キャディご挨拶&middot;クラブ確認</h3>
+                                    <h3><span class="cno">⑥</span>キャディご挨拶&middot;クラブ確認</h3>
                                     <p>担当キャディよりご挨拶の後、クラブの本数や内容を確認させていただきます。<br>キャディのご指名は承っておりませんので、予めご了承ください。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -470,7 +466,7 @@
                             </li>
                             <li class="pflow__arrow_box _07">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">7</span>ラウンドスタート（前半）</h3>
+                                    <h3><span class="cno">⑦</span>ラウンドスタート（前半）</h3>
                                     <p>いよいよゴルフスタートです。OUTスタート、INスタートいずれかよりプレーを開始いただきます。全組キャディ・乗用カート付きでのご案内です。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -479,7 +475,7 @@
                             </li>
                             <li class="pflow__arrow_box _08">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">8</span>プレー終了（ホールアウト）</h3>
+                                    <h3><span class="cno">⑧</span>プレー終了（ホールアウト）</h3>
                                     <p>スコアの確認&bull;クラブの点検を行い、プレー終了となります。<br>ご希望があればスコア集計表をマスター室よりお渡しします</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -488,7 +484,7 @@
                             </li>
                             <li class="pflow__arrow_box _09">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">9</span>ご入浴&bull;お着替え</h3>
+                                    <h3><span class="cno">⑨</span>ご入浴&bull;お着替え</h3>
                                     <p>プレーの疲れを癒すひととき。<br>大浴場で汗を流し、リフレッシュしてお着替えください。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -497,7 +493,7 @@
                             </li>
                             <li class="pflow__arrow_box _10">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">10</span>ランチ&bull;懇親会</h3>
+                                    <h3><span class="cno">⑩</span>ランチ&bull;懇親会</h3>
                                     <p>プライベートルームやレストランホールにて、お食事のお時間をお過ごしください。本日のプレーを振り返りながら、和やかな語らいのひとときをお楽しみいただけます。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -506,7 +502,7 @@
                             </li>
                             <li class="pflow__arrow_box _11">
                                 <div class="pflow__tex">
-                                    <h3><span class="cno">11</span>お見送り&bull;ご帰宅</h3>
+                                    <h3><span class="cno">⑪</span>お見送り&bull;ご帰宅</h3>
                                     <p>最後にお土産をお渡しし、ゲストの皆様をお見送りします。<br>&#8251;お土産を事前にお送りいただく場合は、当日午前中必着にてお送りください。スタッフにて開封し、お渡しの準備をいたします。</p>
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー">
@@ -515,7 +511,7 @@
                             </li>
                         </ul>
                         <p class="rnotice">
-                            &#8251;ハーフ終了後、茶屋にて15分の小休憩（稲荷寿司、サンドウィッチ等の軽食あり）<br>ランチ&middot;懇親会を90分とした場合のスケージュールになります。</p>
+                            &#8251;ハーフ終了後、茶屋にて15分の小休憩（稲荷寿司、サンドウィッチ等の軽食あり）<br>ランチ&middot;懇親会を90分とした場合のスケジュールになります。</p>
                     </div>
                 </div>
             </section>

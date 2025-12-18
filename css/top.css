@@ -4,7 +4,7 @@
   background: unset;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   #top .c-header {
     background: #132133;
   }
@@ -51,7 +51,7 @@
   line-height: 100%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-sec-headline {
     font-size: 3.2rem;
   }
@@ -67,7 +67,7 @@
   }
 }
 
-@media screen and (min-width: 0px) and (max-width: 767px) {
+@media screen and (min-width: 0px) and (max-width: 896px) {
   .post-index {
     position: relative;
     margin-right: auto;
@@ -113,7 +113,7 @@
   z-index: 1;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .top-logo {
     width: 65vw;
     -webkit-transform: translateY(-50%) translateX(-50%) translateY(3vh);
@@ -137,7 +137,7 @@
   line-height: 68.4px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .top-logo p {
     font-size: 16px;
     line-height: 30px;
@@ -151,7 +151,7 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .top_mv {
     width: 100%;
     height: 100vh;
@@ -180,7 +180,7 @@
   margin-top: 1.5em;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .top-mtxt {
     width: 100%;
     padding: 0 11px 0 5px;
@@ -210,7 +210,7 @@
   animation: slider-1 24s linear infinite;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .kv-img {
     background-position: center right -210px;
   }
@@ -291,7 +291,7 @@
   background: linear-gradient(270deg, #F8F7F2 49.04%, #FFFFFF 100%);
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .bg-news {
     width: 100%;
     padding: 50px 0 65px;
@@ -308,7 +308,7 @@
   }
 }
 
-@media screen and (min-width: 0px) and (max-width: 767px) {
+@media screen and (min-width: 0px) and (max-width: 896px) {
 
   .wp-pagenavi .nextpostslink,
   .wp-pagenavi .previouspostslink {
@@ -377,7 +377,7 @@
   transform: rotate(45deg) translateY(-50%);
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .btnarea {
     padding: 40px 0 52px;
   }
@@ -408,7 +408,7 @@
 
 /* image */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .top-box {
     padding: 86px 0;
   }
@@ -439,7 +439,7 @@
   height: 100%;
 } */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .top__flex--img {
     position: unset;
     transform: unset;
@@ -475,7 +475,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .top__flex--btn {
     margin-top: 12px;
     width: 200px;
@@ -486,7 +486,7 @@
   margin-top: 132px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .top__flex {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
@@ -526,7 +526,7 @@
   padding: 100px 80px 70px 538px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .top__flex:nth-of-type(2n+1) {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
@@ -572,7 +572,7 @@
   background: url("../img/top/bg_top_06.jpg") center / 100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .top__info {
     padding: 50px 35px 55px;
     width: calc(100% + 30px);
@@ -596,26 +596,10 @@
   width: 100%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .top__img._01 {
     width: 100%;
   }
-}
-
-.fade-in {
-  opacity: 0;
-  -webkit-transform: translateY(30px);
-  transform: translateY(30px);
-  -webkit-transition: opacity 1s ease-out, -webkit-transform 1s ease-out;
-  transition: opacity 1s ease-out, -webkit-transform 1s ease-out;
-  transition: opacity 1s ease-out, transform 1s ease-out;
-  transition: opacity 1s ease-out, transform 1s ease-out, -webkit-transform 1s ease-out;
-}
-
-.fade-in.show {
-  opacity: 1;
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
 }
 
 /* あしらい */
@@ -664,7 +648,7 @@
   background: url("../img/top/img_ashi_03.png") left top/100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .deco._01 span {
     width: 195px;
   }

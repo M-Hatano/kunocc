@@ -23,7 +23,7 @@
   margin-top: 60px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-form__lead {
     font-size: 1.4rem;
     text-align: left;
@@ -56,7 +56,7 @@
   width: calc(100% - 220px);
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-form__list {
     padding: 12px 0 20px;
   }
@@ -88,7 +88,7 @@
   background: #eee;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
 
   .c-form input[type=text],
   .c-form input[type=email],
@@ -154,7 +154,7 @@
   border-radius: 50px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-form .c-form__ckbtn {
     font-size: 1.4rem;
   }
@@ -189,7 +189,7 @@
   position: relative;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-form__bx {
     padding: 70px 20px 120px;
   }
@@ -207,7 +207,7 @@
   margin-top: 40px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-form__done {
     font-size: 1.8rem;
     text-align: left;
@@ -253,7 +253,7 @@
   background: url("../img/contact/img_deco_01.png") left top / 100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .deco._01 span {
     width: 180px;
   }

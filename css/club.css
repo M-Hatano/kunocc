@@ -2,7 +2,7 @@
   background: url("../img/common/page-header.png") left / 874px 100% no-repeat, url("../img/club/page-header.jpg") center / 100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-page-header {
     background: url("../img/common/page-header_sp.png") left / 60% 100% no-repeat, url("../img/club/page-header_sp.jpg") center / 100% 100% no-repeat;
   }
@@ -47,7 +47,7 @@
   padding: 13px 30px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .tbox {
     margin-top: 35px;
   }
@@ -102,7 +102,7 @@
   background: url("../img/contact/img_deco_01.png") left top / 100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .deco._01 span {
     width: 210px;
   }

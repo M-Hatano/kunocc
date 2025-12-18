@@ -23,7 +23,7 @@
   line-height: 100%;
 }
 
-@media screen and (min-width: 0px) and (max-width: 767px) {
+@media screen and (min-width: 0px) and (max-width: 896px) {
   .title-type-02 {
     font-size: 6vw;
     margin-top: 0;
@@ -73,7 +73,7 @@
   font-size: 24px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .partnership-golf {
     margin-top: 40px;
     margin-bottom: 7px;
@@ -86,7 +86,7 @@
   padding: 60px 50px 268px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   #links .c-box {
     padding: 30px 20px 80px;
   }

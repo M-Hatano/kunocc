@@ -47,7 +47,7 @@
 
     <section class="_scr01" id="link01">
       <h2 class="c-head6">エントランス<span>Entrance</span></h2>
-      <div class="facility__flex">
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
             <p>重厚感と洗練が調和したエントランスは、選ばれたゲストを迎えるための迎賓空間。<br>
@@ -63,8 +63,8 @@
     </section>
 
     <section class="_scr01" id="link02">
-      <h2 class="c-head6">レストラン<span>Reataurant</span></h2>
-      <div class="facility__flex">
+      <h2 class="c-head6">レストラン<span>Restaurant</span></h2>
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
             <p>コースの余韻をそのままに、心ほどける時間をお過ごしいただけるレストラン。<br>
@@ -88,7 +88,7 @@
     <div class="c-column">
       <h2 class="c-head6" id="link03">プライベートルーム<span>Privateroom</span></h2>
       <p>大切なお客様にゆっくりとご利用いただける個室を15室ご用意しております。</p>
-      <div class="facility__flex">
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
             <h3 class="c-head3">洋室</h3>
@@ -103,7 +103,7 @@
           </span>
       </div>
 
-      <div class="facility__flex">
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
             <h3 class="c-head3">和室</h3>
@@ -119,7 +119,7 @@
           </span>
       </div>
 
-      <div class="proom">
+      <div class="proom fade-in">
         <table class="proom__tb">
           <tr>
             <th>個室名</th>
@@ -197,10 +197,10 @@
   <div class="c-column">
     <section class="_scr01" id="link04">
       <h2 class="c-head6" id="link03">ロッカールーム<span>Locker&nbsp;room</span></h2>
-      <div class="facility__flex">
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
-            <p>気品と落ち着きを兼ね備えたロッカールーム。<br class="c-brpc">広々とした動線、美しい木製ロッカー、天窓から差し込む柔らかな自然光に包まれてゆったりとした時間をお過ごしください。<br class="c-brpc">プレー前の高揚感も、ラウンド後の余韻も、この空間が穏やかに包み込みます。</p>
+            <p>気品と落ち着きを兼ね備えたロッカールーム。<br class="c-brpc">広々とした動線、美しい木製ロッカー、天窓から差し込む柔らかな自然光に包まれてゆったりとした時間をお過ごしいただけます。</p>
           </div>
         </div>
         <span class="facility__flex--img">
@@ -214,11 +214,11 @@
 
     <section class="_scr01" id="link05">
       <h2 class="c-head6" id="link03">バスルーム<span>Largebathhouse</span></h2>
-      <div class="facility__flex">
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
             <h3 class="facility__info--sub">更衣室</h3>
-            <p>ゴルフを満喫したあとは、広々とした屋内浴場で心と体を癒してください。<br class="c-brpc">大きな窓越しに広がる緑豊かな景色が、まるで森の中にいるような非日常のひとときを演出します。<br class="c-brpc">やわらかな光と静けさに包まれながら、贅沢なリラックスタイムをお楽しみいただけます。</p>
+            <p>プレー前後のひとときを支える更衣室にも、当ゴルフ場ならではのゆとりと配慮を。<br>快適で清潔な空間をご用意しております。</p>
           </div>
         </div>
         <span class="facility__flex--img">
@@ -228,7 +228,7 @@
         </span>
       </div>
 
-      <div class="facility__flex">
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
             <h3 class="facility__info--sub">大浴場</h3>
@@ -242,7 +242,7 @@
         </span>
       </div>
 
-      <div class="facility__flex">
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
             <h3 class="facility__info--sub">サウナ</h3>
@@ -256,7 +256,7 @@
         </span>
       </div>
 
-      <div class="facility__flex">
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
             <h3 class="facility__info--sub">パウダールーム</h3>
@@ -273,7 +273,7 @@
 
     <section class="_scr01" id="link06">
       <h2 class="c-head6   _norev" id="link03">中庭<span>Atrium</span></h2>
-      <div class="facility__flex">
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
             <p>館内に足を踏み入れると、ガラス越しに現れるのは、静寂に包まれた美しい中庭。<br class="c-brpc">凛とした竹がすっと伸び、自然と建築が調和したこの庭は、訪れる方の心に静かな感動をもたらします。<br class="c-brpc">プレー前後のひとときに、ぜひその美しさをご鑑賞ください。</p>
@@ -289,7 +289,7 @@
 
     <section class="_scr01" id="link07">
       <h2 class="c-head6" id="link03">ゴルフ練習場<span>Driving&nbsp;range</span></h2>
-      <div class="facility__flex">
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
             <h3 class="facility__info--sub">ドライビングレンジ</h3>
@@ -303,7 +303,7 @@
         </span>
       </div>
 
-      <div class="facility__flex">
+      <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
             <h3 class="facility__info--sub">バンカー</h3>

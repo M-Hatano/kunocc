@@ -142,7 +142,7 @@
           <tr>
             <td>大橋&nbsp;洋治</td>
             <td>ANAホールディングス株式会社</td>
-            <td>相談役</td>
+            <td>名誉顧問</td>
           </tr>
           <tr>
             <td>岡田&nbsp;民雄</td>
@@ -157,7 +157,7 @@
           <tr>
             <td>熊谷&nbsp;俊行</td>
             <td>株式会社京葉銀行</td>
-            <td>取締役頭取</td>
+            <td>取締役会長</td>
           </tr>
           <tr>
             <td>小出&nbsp;伸一</td>

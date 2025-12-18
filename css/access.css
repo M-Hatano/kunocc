@@ -2,7 +2,7 @@
   background: url("../img/common/page-header.png") left/874px 100% no-repeat, url("../img/access/page-header.jpg") center/100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-page-header {
     background: url("../img/common/page-header_sp.png") left/60% 100% no-repeat, url("../img/access/page-header_sp.jpg") center/100% 100% no-repeat;
   }
@@ -16,7 +16,7 @@
   width: 50%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-scroll {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
@@ -41,7 +41,7 @@ iframe {
   width: 100%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   iframe {
     margin-top: 60px;
     height: 35vh;
@@ -52,7 +52,7 @@ iframe {
   margin-bottom: 80px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .tb-01 {
     margin-bottom: 40px;
   }
@@ -81,7 +81,7 @@ iframe {
   margin-bottom: 104px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .ahead {
     font-size: 25px;
     margin-bottom: 30px;
@@ -104,7 +104,7 @@ iframe {
   margin-bottom: 1em;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   #link03 p span {
     display: -webkit-box;
     display: -webkit-flex;
@@ -150,7 +150,7 @@ iframe {
   margin-bottom: unset;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .acctab {
     margin-bottom: 40px;
     display: block;
@@ -184,7 +184,7 @@ iframe {
   text-align: center;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   #link01,
   #link02 {
     padding-top: 50px;

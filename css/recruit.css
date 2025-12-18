@@ -2,7 +2,7 @@
   background: url("../img/common/page-header.png") left/874px 100% no-repeat, url("../img/recruit/page-header.jpg") center/100% 100% no-repeat;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .c-page-header {
     background: url("../img/common/page-header_sp.png") left/60% 100% no-repeat, url("../img/recruit/page-header_sp.jpg") center/100% 100% no-repeat;
   }
@@ -54,7 +54,7 @@
   margin-bottom: unset;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .rbox {
     margin-bottom: 100px;
   }
@@ -96,7 +96,7 @@
   line-height: 100%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   #recruit .c-rease>div p {
     font-size: 16px;
   }

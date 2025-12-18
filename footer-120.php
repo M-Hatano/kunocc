@@ -51,7 +51,7 @@
       </div>
     </div>
     <ul class="c-footer__links">
-      <li><a href="<?php echo esc_url(home_url('')); ?>/sitepolicy/">SIEPOLICY</a></li>
+      <li><a href="<?php echo esc_url(home_url('')); ?>/sitepolicy/">SITE POLICY</a></li>
       <li><a href="<?php echo esc_url(home_url('')); ?>/privacypolicy/">PRIVACY POLICY</a></li>
       <li><a href="<?php echo esc_url(home_url('')); ?>/links/">LINKS</a></li>
       <li><a href="<?php echo esc_url(home_url('')); ?>/sitemap/">SITEMAP</a></li>

@@ -110,7 +110,7 @@
           <table class="acctab">
             <tbody>
               <tr>
-                <td>センターホテル成田</td>
+                <td>センターホテル成田1</td>
                 <td><a href="http://www.c-hotel.jp/" target="_blank">http://www.c-hotel.jp/</a></td>
                 <td>TEL&period;<a href="tel:0476-23-1133">0476-23-1133</a></td>
               </tr>
@@ -136,8 +136,8 @@
           <table class="acctab">
             <tbody>
               <tr>
-                <td>ラディソン成田</td>
-                <td><a href="http://www.c-hotel.jp/" target="_blank">http://www.c-hotel.jp/</a></td>
+                <td>インターナショナルリゾートホテル 湯楽城</td>
+                <td><a href="https://chi-hotelsresorts.com/" target="_blank">https://chi-hotelsresorts.com/</a></td>
                 <td>TEL&period;<a href="tel:0476-93-1234">0476-93-1234</a></td>
               </tr>
             </tbody>
@@ -148,12 +148,12 @@
             <tbody>
               <tr>
                 <td>ヒルトン成田</td>
-                <td><a href="http://www.ishinhotels.com/" target="_blank">http://www.ishinhotels.com/</a></td>
+                <td><a href="https://www.hilton.com/ja/hotels/nrthihi-hilton-tokyo-narita-airport/" target="_blank">https://www.hilton.com/ja/hotels/nrthihi-hilton-tokyo-narita-airport/</a></td>
                 <td>TEL&period;<a href="tel:0476-33-1121">0476-33-1121</a></td>
               </tr>
               <tr>
                 <td>ANAクラウンプラザホテル成田</td>
-                <td><a href="http://www.anahotel-narita.com/" target="_blank">http://www.anahotel-narita.com/</a></td>
+                <td><a href="https://www.anacrowneplaza-narita.jp/" target="_blank">https://www.anacrowneplaza-narita.jp/</a></td>
                 <td>TEL&period;<a href="tel:0476-33-1311">0476-33-1311</a></td>
               </tr>
               <tr>
@@ -168,7 +168,7 @@
               </tr>
               <tr>
                 <td>ホテルマイステイズプレミア成田</td>
-                <td><a href="https://www.mystays.com/narita/ja/" target="_blank">https://www.mystays.com/narita/ja/</a></td>
+                <td><a href="https://www.mspnarita.com/" target="_blank">https://www.mspnarita.com/</a></td>
                 <td>TEL&period;<a href="tel:03-3434-3939">03-3434-3939</a></td>
               </tr>
             </tbody>
