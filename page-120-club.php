@@ -223,7 +223,6 @@
       </table>
     </section>
 
-
     <ul class="c-brd">
       <li><a href="<?php echo esc_url(home_url('')); ?>/">TOP</a></li>
       <li><a href="">倶楽部概要</a></li>
