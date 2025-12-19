@@ -110,9 +110,7 @@ function knc_member_authenticate(string $login, string $password): bool {
     // ▼ ここを「会員サイトのID/PW」に合わせてください
     // 例：会員ID => パスワード（まずは平文の簡易版）
     $members = [
-        'member01' => 'pass01',
-        'member02' => 'pass02',
-        // 'xxxx' => 'yyyy',
+        'kunocc' => '19891128',
     ];
 
     if (!isset($members[$login])) return false;
@@ -1550,6 +1548,36 @@ add_action('template_redirect', function () {
     exit;
 });
 
+/*--------------------------------
+ * 会員ログアウト → ログインページへ戻す
+ --------------------------------*/
+ add_action('template_redirect', function () {
+
+    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+    $path = parse_url($request_uri, PHP_URL_PATH) ?? '';
+
+    // 環境差分除去（/kunocc/cms/ など）
+    $path = preg_replace('#^/[^/]+/[^/]+/#', '/', $path);
+
+    // /member-logout/ のみ反応
+    if ($path !== '/member-logout' && $path !== '/member-logout/') {
+        return;
+    }
+
+    // 会員セッション破棄
+    unset($_SESSION['knc_member_login'], $_SESSION['knc_member_id']);
+
+    // セッション固定化対策
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        session_regenerate_id(true);
+    }
+
+    // ★ 必ずログインページへ
+    wp_redirect(home_url('/member-login/'));
+    exit;
+});
+
+
 
 
  /*--------------------------------
@@ -1907,4 +1935,9 @@ add_filter('attachment_fields_to_edit', function ($form_fields, $post) {
     return $form_fields;
 
 }, 9999, 2); // ← ★ 9999 が重要
+
+/**
+ * 全ユーザー共通：管理バー（ツールバー）を全画面で非表示
+ */
+add_filter('show_admin_bar', '__return_false');
 
