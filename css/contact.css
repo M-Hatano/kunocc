@@ -155,21 +155,25 @@
 }
 
 @media screen and (max-width: 896px) {
-  .c-form .c-form__ckbtn {
+  #confirm .c-form .c-form__ckbtn {
     font-size: 1.4rem;
+    flex-direction: column;
+    gap: 20px 0;
+    margin-top: 60px;
   }
 
   .c-form .c-form__ckbtn input {
     width: 100%;
     font-size: 1.4rem;
-    margin: 0 10px;
+    margin: 0;
     line-height: 45px;
   }
 
   .c-form .c-form__ckbtn--back {
     font-size: 1.4rem;
-    margin: 0 10px;
+    margin: 0;
     line-height: 45px;
+    width: 100%;
   }
 }
 
@@ -185,7 +189,7 @@
   background: #fff;
   border: 1px solid #989E74;
   border-radius: 18px;
-  padding: 120px 50px 280px;
+  padding: 160px 50px 280px;
   position: relative;
 }
 
@@ -204,7 +208,7 @@
 
 .c-form__done+p {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 75px;
 }
 
 @media screen and (max-width: 896px) {
@@ -225,7 +229,7 @@
 
 #confirm input[type=submit] {
   cursor: pointer;
-  background-color: #03045E;
+  background-color: #243749;
   color: #fff;
 }
 

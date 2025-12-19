@@ -30,40 +30,43 @@
   }
 }
 
-@media screen and (min-width: 768px) {
-  .links .link-lists {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    -ms-flex-wrap: wrap;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
 
+.links .link-lists {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  gap: 0 20px;
+}
+
+.links .link-lists li {
+  margin-bottom: 20px;
+  font-weight: 700;
+  width: calc(33.33333% - (40px / 3));
+}
+
+@media screen and (max-width: 896px) {
+  .links .link-lists{
+    flex-direction: column;
+  }
   .links .link-lists li {
-    margin-bottom: 20px;
-    font-weight: 700;
-    margin-right: 80px;
-    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
   }
 }
 
-@media screen and(max-width:767) {
-  .links .link-lists li {
-    line-height: 30px;
-  }
+.link-external a {
+  position: relative;
 }
-
-.link-external::after {
+.link-external a::after {
   content: url(../img/links/icn_link_01.svg);
-}
-
-.link-external::after {
+  position: absolute;
   padding-left: 3px;
-  vertical-align: middle;
 }
 
 .partnership-golf {
@@ -88,6 +91,6 @@
 
 @media screen and (max-width: 896px) {
   #links .c-box {
-    padding: 30px 20px 80px;
+    padding: 30px 20px 12%;
   }
 }

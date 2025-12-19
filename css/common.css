@@ -2849,7 +2849,7 @@ table {
 
 @media screen and (max-width: 896px) {
   .c-list li {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -3124,6 +3124,12 @@ table {
   padding: 100px 50px 155px;
   background: #fff;
   position: relative;
+}
+
+@media screen and (max-width: 896px){
+  .c-form{
+    padding: 70px 15px 80px;
+  }
 }
 
 /* # =================================================================

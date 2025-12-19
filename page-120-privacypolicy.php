@@ -31,7 +31,7 @@ Template Name: プライバシーポリシー
         <h2 class="c-head3 _mts c-tal">3.個人情報の取得方法</h2>
         <p>当社は、会員登録、問い合わせフォーム、予約フォーム、メール等を通じて個人情報を取得することがあります。</p>
 
-        <h2 class="c-head3 _mts c-tal">8.利用目的</h2>
+        <h2 class="c-head3 _mts c-tal">4.利用目的</h2>
         <ul class="c-list">
           <p>取得した個人情報は以下の目的で利用します。</p>
           <li>
