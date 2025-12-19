@@ -2695,13 +2695,14 @@ table {
 }
 
 .reseinf {
-  font-size: 25px;
-  font-weight: bold;
+  font-size: 24px;
+  border: solid 3px #fff;
   border-radius: 20px;
   padding: 20px 0;
-  margin-bottom: 5px;
+  margin-bottom: 45px;
   text-align: center;
-  /* width: 480px; */
+  background: #324A5B;
+  width: 480px;
 }
 
 @media screen and (max-width: 896px) {
