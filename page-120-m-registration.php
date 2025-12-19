@@ -8,8 +8,7 @@
     <?php get_header('120'); ?>
     <!--  header -->
 
-    <main class="c-member">
-      <span class="deco _01"><span></span></span>
+    <main>
       <div class="c-page-header lazyload">
         <div class="c-column c-page-header__inner">
           <h1 class="c-page-header__title">Member
@@ -22,6 +21,8 @@
       <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
       <!-- 共通メニュー -->
 
+      <section class="c-member">
+      <span class="deco _01"><span></span></span>
       <div class="c-column">
         <h2 class="c-head6 m_head">コンペ申し込み<span>Registration</span></h2>
         <p>コンペのご予約については<br class="c-brsp">以下よりお送りください。</p>
@@ -75,6 +76,7 @@
           <li><a href="">コンペ申し込み</a></li>
         </ul>
       </div>
+      </section>
 
     </main>
 

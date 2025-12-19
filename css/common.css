@@ -372,7 +372,7 @@ html {
 }
 
 body {
-  font-family: "Yu Gothic";
+  font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 24px;
@@ -2750,7 +2750,7 @@ table {
 
 ._line::after {
   height: 400px;
-  width: 1px;
+  width: 3px;
 }
 
 /* # =================================================================
@@ -3121,7 +3121,7 @@ table {
 .c-form {
   border: 1px solid #989E74;
   border-radius: 18px;
-  padding: 100px 50px 155px;
+  padding: 113px 50px 155px;
   background: #fff;
   position: relative;
 }
@@ -3203,9 +3203,10 @@ table {
     url("../img/member/bg_ashi_01.png"),
     url("../img/member/bg_ashi_02.png");
   background-repeat: repeat, no-repeat, no-repeat;
-  background-position: right bottom, left top 400px;
-  background-size: 611px 394px, 432px 373px;
+  background-position: right bottom, left top ;
+  background-size: 611px 495px, 432px 373px;
   position: relative;
+  padding: 116px 0 165px;
 }
 
 .m-list {
@@ -3217,7 +3218,6 @@ table {
   border-top: 0.5px solid #8F8F8F;
   border-bottom: solid 0.5px #8F8F8F;
   padding: 19px 0;
-  margin-bottom: 118px;
 }
 
 .m-list li {
@@ -3233,8 +3233,9 @@ table {
 
 @media screen and (max-width: 896px) {
   .c-member {
-    background-position: right bottom, left top 258px;
+    background-position: right bottom, left top;
     background-size: 305.5px 197px, 216px 186.5px;
+    padding: 70px 0 20px;
   }
 
   .m-list {
@@ -3242,7 +3243,6 @@ table {
     justify-content: flex-start;
     font-size: 16px;
     padding: 15px;
-    margin-bottom: 50px;
   }
 
   .m-list li {
@@ -3277,7 +3277,7 @@ table {
   text-align: center;
   width: 32.45%;
   position: absolute;
-  top: -28px;
+  top: -34px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -3316,7 +3316,7 @@ table {
   font-size: 35px;
   line-height: 100%;
   border: solid 1px #8F8F8F;
-  width: 43.5%;
+  width: 46%;
   margin: 0 auto;
   padding: 25px 20px 30px 35px;
   display: flex;
@@ -3334,7 +3334,7 @@ table {
 
 .regi_send {
   padding-top: 40px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   text-align: center;
 }
 

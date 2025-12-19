@@ -32,6 +32,14 @@
     margin-top: -75px;
 }
 
+#member-login .c-head6 span,
+#registration .c-head6 span,
+#partnership .c-head6 span,
+#m-calendar .c-head6 span {
+    margin-top: -60px;
+    font-size: 7.5rem;
+}
+
 .m-news .m_head {
     text-align: center;
     align-items: center;
@@ -48,6 +56,15 @@
 }
 
 @media screen and (max-width: 896px) {
+
+    #member-login .c-head6 span,
+    #registration .c-head6 span,
+    #partnership .c-head6 span,
+    #m-calendar .c-head6 span {
+        margin-top: -35px;
+        font-size: 3.5rem;
+    }
+
     .m-news .c-head6 {
         font-size: 20px;
         padding: 0 0 40px;
@@ -368,14 +385,16 @@
 .c-head6+p {
     font-size: 18px;
     text-align: center;
-    margin-top: 100px;
-    padding-bottom: 30px;
+    margin-top: 60px;
+    padding-bottom: 77px;
 }
 
 .box-pat ul li {
     text-align: center;
     font-weight: 700;
-    margin-bottom: 46px;
+    font-size: 18px;
+    line-height: 160%;
+    margin-bottom: 30px;
 }
 
 .box-pat ul li:last-of-type {
@@ -411,6 +430,7 @@
 
     .box-pat ul li {
         margin-bottom: 25px;
+        text-align: unset;
     }
 
     .box-pat ul li a::after {
@@ -424,44 +444,50 @@
 /* # =================================================================
 #	コンペ申し込み
 # ================================================================= */
-#m-registration .box-pat {
+#registration .box-pat {
     border-radius: 0;
     position: relative;
     padding: 120px 20px 65px;
 }
 
-#m-registration .c-head6+p {
-    padding-bottom: 70px;
+#registration .c-head6+p {
+    padding-bottom: 77px;
     letter-spacing: 0;
-    margin-top: 45px;
+    margin-top: 60px;
 }
 
-#m-registration .box-pat ul {
+#registration .box-pat.c-form {
+    padding: 113px 50px 65px;
+    border-radius: unset;
+}
+
+#registration .box-pat ul {
     background: #F1F1F1;
-    width: 74%;
-    margin: 0 auto;
-    padding: 65px 10px;
+    width: 77%;
+    margin-inline: auto;
+    padding: 60px 15px;
 }
 
-#m-registration .box-pat ul li {
+#registration .box-pat ul li {
     margin-bottom: 30px;
     font-size: 18px;
     letter-spacing: 0;
+    line-height: 160%;
 }
 
-#m-registration .box-pat ul li:last-of-type {
+#registration .box-pat ul li:last-of-type {
     margin-bottom: 0;
 }
 
-#m-registration .box-pat ul li a {
+#registration .box-pat ul li a {
     padding-left: 1em;
 }
 
-#m-registration .box-pat ul li a span {
+#registration .box-pat ul li a span {
     padding-right: 1em;
 }
 
-#m-registration .box-pat ul li a::before {
+#registration .box-pat ul li a::before {
     content: "・";
     display: inline-block;
     position: absolute;
@@ -469,32 +495,35 @@
 }
 
 @media screen and (max-width: 896px) {
-    #m-registration .box-pat {
+    #registration .box-pat {
         padding: 70px 20px 40px;
     }
 
-    #m-registration .c-head6+p {
+    #registration .c-head6+p {
         padding-bottom: 45px;
     }
 
-    #m-registration .c-head6+p {
+    #registration .c-head6+p {
         padding-bottom: 40px;
         margin-top: 0;
     }
 
-    #m-registration .box-pat ul {
-        width: 100%;
-        padding: 30px 10px;
+    #registration .box-pat.c-form {
+        padding: 45px 15px 65px;
     }
 
-    #m-registration .box-pat ul li {
+    #registration .box-pat ul {
+        width: 100%;
+        padding: 40px 10px;
+    }
+
+    #registration .box-pat ul li {
         text-align: unset;
         font-size: 16px;
     }
 }
 
-
-#m-registration .box-pat ul li a::after {
+#registration .box-pat ul li a::after {
     margin-left: 0;
 }
 
@@ -655,6 +684,7 @@
 .custom-content a.event-name {
     text-decoration: underline;
 }
+
 .custom-content .event-name {
     margin: 0;
     font-size: 15px;
