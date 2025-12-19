@@ -107,6 +107,11 @@
                   <a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部概要</a>
                 </li>
               </ul>
+              <?php if (knc_member_is_logged_in()): ?>
+                <div class="c-nav__bnr">
+                  <a href="<?php echo home_url(''); ?>/member-logout/" class="c-nav__bnr--mbr">ログアウト</a>
+                </div>
+              <?php endif; ?>
 
             </div>
             <div class="c-nav__box">
