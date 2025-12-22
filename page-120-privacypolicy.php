@@ -29,7 +29,12 @@ Template Name: プライバシーポリシー
         <p>「個人情報」とは、氏名・住所・電話番号・メールアドレスなど、特定の個人を識別できる情報を指します。</p>
 
         <h2 class="c-head3 _mts c-tal">3.個人情報の取得方法</h2>
-        <p>当社は、会員登録、問い合わせフォーム、予約フォーム、メール等を通じて個人情報を取得することがあります。</p>
+        <ul class="c-list">
+          <li>
+            <span>・</span>
+            当社は、会員登録、問い合わせフォーム、予約フォーム、メール等を通じて個人情報を取得することがあります。
+          </li>
+        </ul>
 
         <h2 class="c-head3 _mts c-tal">4.利用目的</h2>
         <ul class="c-list">
@@ -70,9 +75,20 @@ Template Name: プライバシーポリシー
 
         <h2 class="c-head3 _mts c-tal">6.個人情報の第三者提供</h2>
         <p>次の場合を除き、事前に本人の同意なく第三者に提供いたしません。</p>
-        <p>法令に基づく場合</p>
-        <p>人の生命・身体・財産の保護に必要な場合で、本人の同意が困難な場合</p>
-        <p>業務委託（例：配送業者・決済代行業者など）の場合</p>
+        <ul>
+          <li>
+            <span>・</span>
+            法令に基づく場合
+          </li>
+          <li>
+            <span>・</span>
+            人の生命・身体・財産の保護に必要な場合で、本人の同意が困難な場合
+          </li>
+          <li>
+            <span>・</span>
+            業務委託(例:配送業者・決済代行業者など)の場合
+          </li>
+        </ul>
 
 
         <h2 class="c-head3 _mts c-tal">7.委託先の監督</h2>
@@ -85,7 +101,7 @@ Template Name: プライバシーポリシー
         <ul class="c-list">
           <li>
             <span>・</span>
-            当サイトでは Google Analytics 等のアクセス解析ツールを利用する場合があります。
+            当サイトではGoogle Analytics等のアクセス解析ツールを利用する場合があります。
           </li>
           <li>
             <span>・</span>
@@ -101,24 +117,26 @@ Template Name: プライバシーポリシー
         <p>当社は、個人情報に関する法令・ガイドラインを遵守するとともに、本ポリシーを適宜見直し・改善します。</p>
 
         <h2 class="c-head3 _mts c-tal">11.お問い合わせ窓口</h2>
-        <ul class="c-list">
-          <li>
-            <span>[会社名]</span>
-            久能カントリー倶楽部
-          </li>
-          <li>
-            <span>[住所]</span>
-            千葉県富里市久能722 
-          </li>
-          <li>
-            <span>[TEL]</span>
-            0476-93-9000 
-          </li>
-          <li>
-            <span>[メールアドレス]</span>
-            info@kunocc.co.jp 
-          </li>
-        </ul>
+        <table>
+          <tbody>
+            <tr>
+              <th>[会社名]</th>
+              <td>久能カントリー倶楽部</td>
+            </tr>
+            <tr>
+              <th>[住所]</th>
+              <td>千葉県富里市久能722</td>
+            </tr>
+            <tr>
+              <th>[TEL]</th>
+              <td>0476-93-9000</td>
+            </tr>
+            <tr>
+              <th>[E-MAIL]</th>
+              <td>info@kunocc.co.jp</td>
+            </tr>
+          </tbody>
+        </table>
 
       </div>
     </div>

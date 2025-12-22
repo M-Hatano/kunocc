@@ -87,11 +87,11 @@
             <tbody>
               <tr>
                 <th>土日祝日:&nbsp;</th>
-                <td>往路のみ運行&nbsp;ＪＲ成田駅東口より&nbsp;<br class="c-brsp">AM7:30（定期便）</td>
+                <td>往路のみ運行&nbsp;ＪＲ成田駅東口より&nbsp;AM7:30（定期便）</td>
               </tr>
               <tr>
                 <th></th>
-                <td>往路のみ運行&nbsp;ＪＲ成田駅東口より&nbsp;<br class="c-brsp">AM8:40（予約制）</td>
+                <td>往路のみ運行&nbsp;ＪＲ成田駅東口より&nbsp;AM8:40（予約制）</td>
               </tr>
             </tbody>
           </table>
@@ -112,7 +112,7 @@
 
         <section id="link05">
           <h2 class="c-head6">近隣宿泊施設のご案内<span>Hotel</span></h2>
-          <p>ご予約・お問い合わせは直接ホテルまでお願いいたします。</p>
+          <p>ご予約・お問い合わせは直接ホテルにご連絡ください。</p>
 
           <h3 class="ahead02">成田駅周辺ホテル</h3>
           <table class="acctab">

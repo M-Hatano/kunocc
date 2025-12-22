@@ -519,6 +519,13 @@
                 </div>
             </section>
 
+            <div class="c-column">
+                <ul class="c-brd">
+                    <li><a href="<?php echo esc_url(home_url('')); ?>/">TOP</a></li>
+                    <li><a href="">ご予約方法について</a></li>
+                </ul>
+            </div>
+
         </main>
 
         <!--  フッタ読込 -->

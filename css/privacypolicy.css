@@ -12,3 +12,9 @@
         background: url("../img/privacypolicy/page-header_sp.jpg") center / cover no-repeat;
     }
 }
+
+#privacypolicy table th{
+    font-weight: 500;
+    text-align: start;
+    padding-right: 5px;
+}

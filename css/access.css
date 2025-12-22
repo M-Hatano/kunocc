@@ -121,6 +121,10 @@ iframe {
 }
 
 @media screen and (max-width: 896px) {
+  .ahead+table tr{
+    flex-direction: column;
+  }
+
   .ahead+table {
     margin-bottom: 25px;
   }
