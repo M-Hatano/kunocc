@@ -38,18 +38,10 @@
                      * 共通 tax_query（news のみ+会員カテゴリ除外）
                      * -------------------------------------------------*/
                     $tax_query_news = [
-                        'relation' => 'AND',
                         [
                             'taxonomy' => 'category',
                             'field'    => 'slug',
                             'terms'    => ['news'],
-                            'operator' => 'IN',
-                        ],
-                        [
-                            'taxonomy' => 'category',
-                            'field'    => 'slug',
-                            'terms'    => ['member', 'kusunoki', 'information'],
-                            'operator' => 'NOT IN',
                         ],
                     ];
 
@@ -98,6 +90,7 @@
                                 } else {
                                     $href = get_permalink();
                                 }
+                                
                     ?>
                                 <li>
                                     <a href="<?php echo $href; ?>">
@@ -140,7 +133,23 @@
                             } else {
                                 $href = get_permalink();
                             }
-                    ?>
+                            /* -------------------------------------------------
+                            * ページネーション専用クエリ（★追加）
+                            * -------------------------------------------------*/
+                            $paging_args = [
+                                'post_type'           => 'post',
+                                'posts_per_page'      => $posts_per_page, // ★ 常に10固定
+                                'paged'               => $paged,
+                                'ignore_sticky_posts' => true,
+                                'tax_query'           => $tax_query_news,
+                            ];
+
+                            if ($year) {
+                                $paging_args['year'] = $year;
+                            }
+
+                            $paging_q = new WP_Query($paging_args);
+                            ?>
                             <li>
                                 <a href="<?php echo $href; ?>">
                                     <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
@@ -163,8 +172,9 @@
 
                 <!-- ページネーション -->
                 <ul class="c-pagenation">
-                    <?php custom_pagination($normal_q); ?>
+                    <?php custom_pagination($paging_q); ?>
                 </ul>
+                <?php wp_reset_postdata(); ?>
 
             </div><!-- /.news-box__left -->
 

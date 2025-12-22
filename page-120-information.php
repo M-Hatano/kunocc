@@ -79,7 +79,30 @@ if ($q->have_posts()):
         } else {
             $href = get_permalink();
         }
-?>
+        /* ---------------------------------
+        * ページネーション専用クエリ（★追加）
+        * --------------------------------*/
+        $paging_args = [
+          'post_type'      => 'member_post',
+          'posts_per_page' => $per,   // ★ 常に10固定
+          'paged'          => $paged,
+          'orderby'        => 'date',
+          'order'          => 'DESC',
+          'tax_query'      => [
+              [
+                  'taxonomy' => 'member_category',
+                  'field'    => 'slug',
+                  'terms'    => 'information',
+              ]
+          ],
+        ];
+
+        if ($year) {
+          $paging_args['year'] = $year;
+        }
+
+        $paging_q = new WP_Query($paging_args);
+        ?>
         <li>
           <a href="<?php echo esc_url($href); ?>">
             <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
@@ -99,8 +122,9 @@ wp_reset_postdata();
         </ul>
 
         <ul class="c-pagenation">
-          <?php custom_pagination($q); ?>
+          <?php custom_pagination($paging_q); ?>
         </ul>
+        <?php wp_reset_postdata(); ?>
 
       </div><!-- /.left -->
 
