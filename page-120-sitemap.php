@@ -91,7 +91,7 @@
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/contact/">お問い合わせフォーム</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/contact/">お問い合わせ</a></h3>
                 </section>
 
               </div>
