@@ -83,8 +83,8 @@
 
   <!-- プライベートルーム -->
   <section class="_scr01 bgchen" id="link03">
-    <span class="deco _01"><span></span></span>
-    <span class="deco _02"><span></span></span>
+    <span class="deco _01 fade-in _fast"><span></span></span>
+    <span class="deco _02 fade-in _fast"><span></span></span>
     <div class="c-column">
       <h2 class="c-head6" id="link03">プライベートルーム<span>Privateroom</span></h2>
       <p>大切なお客様にゆっくりとご利用いただける個室を15室ご用意しております。</p>

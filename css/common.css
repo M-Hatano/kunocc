@@ -1711,7 +1711,7 @@ table {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  margin-top: 97px;
+  margin-top: 96px;
 }
 
 .c-page-header__inner {
@@ -3392,6 +3392,13 @@ table {
   transition: opacity 1s ease-out, -webkit-transform 1s ease-out;
   transition: opacity 1s ease-out, transform 1s ease-out;
   transition: opacity 1s ease-out, transform 1s ease-out, -webkit-transform 1s ease-out;
+}
+
+.fade-in._fast{
+  -webkit-transition: opacity .4s ease-out, -webkit-transform .4s ease-out;
+  transition: opacity .4s ease-out, -webkit-transform .4s ease-out;
+  transition: opacity .4s ease-out, transform .4s ease-out;
+  transition: opacity .4s ease-out, transform .4s ease-out, -webkit-transform .4s ease-out;
 }
 
 .fade-in.show {

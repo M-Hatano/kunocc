@@ -63,7 +63,7 @@
             <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_01.jpg" alt="車使用時" class="for-pc abox__mod">
             <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_02.jpg" alt="アクセスマップ" class="for-pc">
             <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_04.jpg" alt="車使用時" class="for-sp">
-            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/kunomap.pdf" class="c-btn" target="_blank">印刷用PDFダウンロード</a>
+            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/kunomap.pdf" class="c-btn" target="_blank" rel="noopener noreferrer">印刷用PDFダウンロード</a>
           </div>
         </section>
 
@@ -101,7 +101,7 @@
           <p>
             所要時間&nbsp;10分
           </p>
-          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/bus161102-1.pdf" class="c-btn _cbus" target="_blank">クラブバス乗り場案内図はこちら（PDF）</a>
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/bus161102-1.pdf" class="c-btn _cbus" target="_blank" rel="noopener noreferrer">クラブバス乗り場案内図はこちら（PDF）</a>
         </section>
 
         <section id="link04">
@@ -119,22 +119,22 @@
             <tbody>
               <tr>
                 <td>センターホテル成田1</td>
-                <td><a href="http://www.c-hotel.jp/" target="_blank">http://www.c-hotel.jp/</a></td>
+                <td><a href="http://www.c-hotel.jp/" target="_blank" rel="noopener noreferrer">http://www.c-hotel.jp/</a></td>
                 <td>TEL&period;<a href="tel:0476-23-1133">0476-23-1133</a></td>
               </tr>
               <tr>
                 <td>センターホテル成田2&nbsp;R51</td>
-                <td><a href="https://www.c-hotel.jp/r51/" target="_blank">https://www.c-hotel.jp/r51/</a></td>
+                <td><a href="https://www.c-hotel.jp/r51/" target="_blank" rel="noopener noreferrer">https://www.c-hotel.jp/r51/</a></td>
                 <td>TEL&period;<a href="tel:0476-23-1133">0476-23-1112</a></td>
               </tr>
               <tr>
                 <td>リッチモンドホテル成田</td>
-                <td><a href="http://www.richmondhotel.jp/narita/" target="_blank">http://www.richmondhotel.jp/narita/</a></td>
+                <td><a href="http://www.richmondhotel.jp/narita/" target="_blank" rel="noopener noreferrer">http://www.richmondhotel.jp/narita/</a></td>
                 <td>TEL&period;<a href="tel:0476-24-6660">0476-24-6660</a></td>
               </tr>
               <tr>
                 <td>ホテルウェルコ成田</td>
-                <td><a href="https://www.hotelwelconarita.com/" target="_blank">https://www.hotelwelconarita.com/</a></td>
+                <td><a href="https://www.hotelwelconarita.com/" target="_blank" rel="noopener noreferrer">https://www.hotelwelconarita.com/</a></td>
                 <td>TEL&period;<a href="tel:0476-23-7000">0476-23-7000</a></td>
               </tr>
             </tbody>
@@ -145,7 +145,7 @@
             <tbody>
               <tr>
                 <td>インターナショナルリゾートホテル 湯楽城</td>
-                <td><a href="https://chi-hotelsresorts.com/" target="_blank">https://chi-hotelsresorts.com/</a></td>
+                <td><a href="https://chi-hotelsresorts.com/" target="_blank" rel="noopener noreferrer">https://chi-hotelsresorts.com/</a></td>
                 <td>TEL&period;<a href="tel:0476-93-1234">0476-93-1234</a></td>
               </tr>
             </tbody>
@@ -156,27 +156,27 @@
             <tbody>
               <tr>
                 <td>ヒルトン成田</td>
-                <td><a href="https://www.hilton.com/ja/hotels/nrthihi-hilton-tokyo-narita-airport/" target="_blank">https://www.hilton.com/ja/hotels/nrthihi-hilton-tokyo-narita-airport/</a></td>
+                <td><a href="https://www.hilton.com/ja/hotels/nrthihi-hilton-tokyo-narita-airport/" target="_blank" rel="noopener noreferrer">https://www.hilton.com/ja/hotels/nrthihi-hilton-tokyo-narita-airport/</a></td>
                 <td>TEL&period;<a href="tel:0476-33-1121">0476-33-1121</a></td>
               </tr>
               <tr>
                 <td>ANAクラウンプラザホテル成田</td>
-                <td><a href="https://www.anacrowneplaza-narita.jp/" target="_blank">https://www.anacrowneplaza-narita.jp/</a></td>
+                <td><a href="https://www.anacrowneplaza-narita.jp/" target="_blank" rel="noopener noreferrer">https://www.anacrowneplaza-narita.jp/</a></td>
                 <td>TEL&period;<a href="tel:0476-33-1311">0476-33-1311</a></td>
               </tr>
               <tr>
                 <td>ホテル日航成田</td>
-                <td><a href="http://www.nikko-narita.com/" target="_blank">http://www.nikko-narita.com/</a></td>
+                <td><a href="http://www.nikko-narita.com/" target="_blank" rel="noopener noreferrer">http://www.nikko-narita.com/</a></td>
                 <td>TEL&period;<a href="tel:0476-32-0032">0476-32-0032</a></td>
               </tr>
               <tr>
                 <td>アートホテル成田</td>
-                <td><a href="https://art-narita.com/" target="_blank">https://art-narita.com/</a></td>
+                <td><a href="https://art-narita.com/" target="_blank" rel="noopener noreferrer">https://art-narita.com/</a></td>
                 <td>TEL&period;<a href="tel:0476-32-1111">0476-32-1111</a></td>
               </tr>
               <tr>
                 <td>ホテルマイステイズプレミア成田</td>
-                <td><a href="https://www.mspnarita.com/" target="_blank">https://www.mspnarita.com/</a></td>
+                <td><a href="https://www.mspnarita.com/" target="_blank" rel="noopener noreferrer">https://www.mspnarita.com/</a></td>
                 <td>TEL&period;<a href="tel:03-3434-3939">03-3434-3939</a></td>
               </tr>
             </tbody>

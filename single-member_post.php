@@ -98,7 +98,7 @@
                                 $href = knc_get_protected_acf_file_url($f['file']);
                                 ?>
 
-                                <a href="<?php echo esc_url($href); ?>" target="_blank" class="c-link-pdf">
+                                <a href="<?php echo esc_url($href); ?>" target="_blank" class="c-link-pdf" rel="noopener noreferrer">
                                     <?php echo esc_html($f['txt']); ?>
                                 </a>
 

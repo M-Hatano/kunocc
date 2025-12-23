@@ -56,7 +56,7 @@
                   <?php if (!empty($name)): ?>
                     <li>
                       <?php if ($pdf_url): ?>
-                        <a href="<?php echo esc_url($pdf_url); ?>" target="_blank" rel="noopener">
+                        <a href="<?php echo esc_url($pdf_url); ?>" target="_blank"  rel="noopener noreferrer">
                           <?php echo esc_html($name); ?>
                         </a>
                       <?php else: ?>

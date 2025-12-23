@@ -53,7 +53,7 @@
             ?>
               <?php if ($url): ?>
                 <li>
-                  <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener">
+                  <a href="<?php echo esc_url($url); ?>" target="_blank"  rel="noopener noreferrer">
                     <span><?php echo esc_html($date_formatted); ?></span>
                     <?php echo esc_html($title); ?>
                   </a>

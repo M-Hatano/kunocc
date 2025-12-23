@@ -10,8 +10,8 @@
         <div>
           <p class="reseinf">WEBからのご予約情報送信はこちら</p>
           <ul>
-            <li><a href="">ご予約連絡フォーム</a></li>
-            <li><a href="" target="_blank">組み合わせ送信フォーム</a></li>
+            <li><a href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_uke.asp" target="_blank" rel="noopener noreferrer">ご予約連絡フォーム</a></li>
+            <li><a href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_kumi.asp" target="_blank" rel="noopener noreferrer">組み合わせ送信フォーム</a></li>
           </ul>
         </div>
 
@@ -29,7 +29,7 @@
                   </a>
               </li>
               <li>
-                  <a href="<?php echo $pdf ? esc_url($pdf['url']) : '#'; ?>" target="_blank">
+                  <a href="<?php echo $pdf ? esc_url($pdf['url']) : '#'; ?>" target="_blank" rel="noopener noreferrer">
                       ご予約連絡フォーム<br class="c-brsp">(PDF)
                   </a>
               </li>

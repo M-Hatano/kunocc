@@ -129,7 +129,7 @@ if (get_field('link_url')) {
                             <div class="btn-area">
                                 <?php foreach ($files as $f) : ?>
                                     <?php if ($f['url']) : ?>
-                                        <a href="<?php echo esc_url($f['url']); ?>" target="_blank" class="c-link-pdf">
+                                        <a href="<?php echo esc_url($f['url']); ?>" target="_blank" class="c-link-pdf" rel="noopener noreferrer">
                                             <?php echo esc_html($f['txt']); ?>
                                         </a>
                                     <?php endif; ?>

@@ -192,7 +192,7 @@ function h($s)
 
       <div class="c-form__ckbox">
         <div class="checkbox-area">
-          <p><label><input type="checkbox" class="checkboxbtn"><a href="<?php echo esc_url(home_url('')); ?>/privacy/" target="_blank">プライバシーポリシー</a>に同意する</label></p>
+          <p><label><input type="checkbox" class="checkboxbtn"><a href="<?php echo esc_url(home_url('')); ?>/privacy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>に同意する</label></p>
           <input type="hidden" name="agreement" value="同意する">
         </div>
       </div>

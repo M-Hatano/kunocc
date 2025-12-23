@@ -57,13 +57,13 @@
                                 <p>ご予約方法A</p>
                             </div>
                             <p>
-                                仮予約が完了いたしましたら、以下の「<span class="cno">①</span>コンペ承りフォーム」「<span class="cno">②</span>組み合わせ送信フォーム」の順で、<br class="c-brpc">
+                                仮予約が完了いたしましたら、以下の「<span class="cno">①</span>ご予約連絡フォーム」「<span class="cno">②</span>組み合わせ送信フォーム」の順で、<br class="c-brpc">
                                 それぞれご予約の詳細情報を一括送信いただけます。<br>
                                 ご入力の際には、「プレー日」と「受付番号」をそれぞれご入力ください。
                             </p>
                             <div class="rbox__btnbox">
-                                <a href="" class="c-btn"><span class="cno">①</span>コンペ承りフォーム</a>
-                                <a href="" class="c-btn"><span class="cno">②</span>組み合わせ送信フォーム</a>
+                                <a href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_uke.asp" target="_blank" rel="noopener noreferrer" class="c-btn"><span class="cno">①</span>ご予約連絡フォーム</a>
+                                <a href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_kumi.asp" target="_blank" rel="noopener noreferrer" class="c-btn"><span class="cno">②</span>組み合わせ送信フォーム</a>
                             </div>
                             <span class="deco _03"><span></span></span>
                         </div>
@@ -150,7 +150,7 @@
                                             メンバーの組み合わせのご連絡については<br>
                                             <a
                                                 href="">WEB入力用の組み合わせ送信フォーム</a>をご利用ください。キャディバッグ配送の有無、カートの詰め込み順もご指定いただけます。<br>
-                                            また、<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>もご利用ください。
+                                            また、<a href="#res_form">組み合わせ送信フォーム（エクセル・PDF）</a>もご利用ください。
                                         </p>
                                     </div>
                                 </li>
@@ -162,7 +162,7 @@
                                     <div class="rlistbox__item--wh">
                                         <p>
                                             スコアの集計はございますか？<br>
-                                            集計方法について（競技方法、ハンデ上限、打数制限、同順位決定）は、<a href="">コンペ承りフォーム（WEB）</a>または<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>でご指定ください。
+                                            集計方法について（競技方法、ハンデ上限、打数制限、同順位決定）は、<a href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_uke.asp" target="_blank" rel="noopener noreferrer">ご予約連絡フォーム（WEB）</a>または<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>でご指定ください。
                                         </p>
                                     </div>
                                 </li>
@@ -173,7 +173,7 @@
                                     </div>
                                     <div class="rlistbox__item--wh">
                                         <p>
-                                            精算方法の指定はございますか？指定がございます場合、<a href="">コンペ承りフォーム（WEB）</a>または<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>をご利用ください。
+                                            精算方法の指定はございますか？指定がございます場合、<a href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_uke.asp" rel="noopener noreferrer" target="_blank">ご予約連絡フォーム（WEB）</a>または<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>をご利用ください。
                                         </p>
                                     </div>
                                 </li>
@@ -211,7 +211,7 @@
                                     <div class="rlistbox__item--wh">
                                         <p>
                                             手土産等の事前送付はございますか？<br>
-                                            ございます場合、<a href="">コンペ承りフォーム（WEB）</a><br>
+                                            ございます場合、<a href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_uke.asp" rel="noopener noreferrer" target="_blank">ご予約連絡フォーム（WEB）</a><br>
                                             または<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a></a>をご利用ください。
                                         </p>
                                     </div>

@@ -124,7 +124,7 @@
                   <a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a>
                 </li>
                 <li>
-                  <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf" target="_blank">会員募集について</a>
+                  <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf" target="_blank" rel="noopener noreferrer">会員募集について</a>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/dresscode/">ドレスコード</a>
@@ -144,7 +144,7 @@
               </ul>
 
               <div class="c-nav__bnr">
-                <a href="https://weathernews.jp/golf/kanto/chiba/724/" class="c-nav__bnr--mbr _weat" target="_blank">久能CCの天気</a>
+                <a href="https://weathernews.jp/golf/kanto/chiba/724/" class="c-nav__bnr--mbr _weat" target="_blank" rel="noopener noreferrer">久能CCの天気</a>
                 <a href="<?php echo esc_url(home_url('')); ?>/member/" class="c-nav__bnr--mbr">会員専用ページ</a>
               </div>
             </div>

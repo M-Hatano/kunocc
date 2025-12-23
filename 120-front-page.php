@@ -197,10 +197,10 @@ $url_3 = kv_force_1600_or_full($image_3);
           <a href="<?php echo esc_url(home_url('')); ?>/recruit/">キャディスタッフ<br class="c-brsp">募集中</a>
         </li>
         <li>
-          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/charity240619.pdf" target="_blank">チャリティ<br class="c-brsp">ゴルフフェスタ</a>
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/charity240619.pdf" target="_blank" rel="noopener noreferrer">チャリティ<br class="c-brsp">ゴルフフェスタ</a>
         </li>
         <li>
-          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf" target="_blank">会員募集について</a>
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf" target="_blank" rel="noopener noreferrer">会員募集について</a>
         </li>
         <li>
           <a href="<?php echo esc_url(home_url('')); ?>/dresscode/">ドレスコード</a>
@@ -211,9 +211,9 @@ $url_3 = kv_force_1600_or_full($image_3);
   <!-- ボタンエリア -->
 
   <section class="top-box">
-    <span class="deco _01"><span></span></span>
-    <span class="deco _02"><span></span></span>
-    <span class="deco _03"><span></span></span>
+    <span class="deco _01 fade-in _fast"><span></span></span>
+    <span class="deco _02 fade-in _fast"><span></span></span>
+    <span class="deco _03 fade-in _fast"><span></span></span>
     <div class="c-column">
 
       <div class="top__flex fade-in">
