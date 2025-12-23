@@ -130,9 +130,6 @@ iframe {
   }
 }
 
-._cbus{
-  width: 33%;
-}
 
 #link03 p:nth-of-type(3) {
   margin-bottom: 1em;
@@ -245,6 +242,6 @@ iframe {
 
   #link05 p {
     margin-bottom: 70px;
-    text-align: center;
+    text-align: start;
   }
 }

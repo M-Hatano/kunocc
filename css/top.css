@@ -184,8 +184,11 @@
 @media screen and (max-width: 896px) {
   .top-mtxt {
     width: 100%;
-    padding: 0 11px 0 5px;
+    padding: 0 11px 0 0;
     top: 240px;
+    right: 0;
+    transform: translateX(0);
+    left: 15px;
   }
 
   .top-mtxt h1 {
@@ -193,10 +196,24 @@
   }
 
   .top-mtxt p {
-    margin-top: 37px;
     line-height: 1.6;
     font-size: 4.5vw;
     margin-top: 4vw;
+  }
+}
+
+/* 画面の高さが 450px 以下の時の設定 スマホを横にした際のメディアクエリ */
+@media screen and (max-height: 450px) {
+  .top-mtxt {
+    top: 90px;
+  }
+
+  .top-mtxt h1 {
+    font-size: 33px;
+  }
+
+  .top-mtxt p {
+    font-size: 20px;
   }
 }
 

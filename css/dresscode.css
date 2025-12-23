@@ -23,10 +23,14 @@
 
 .d-lead {
   text-align: center;
+  font-size: 18px;
+  line-height: 36px;
 }
 @media screen and (max-width: 896px) {
   .d-lead {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: start;
   }
 }
 
@@ -125,13 +129,12 @@ section h2 {
   margin-bottom: 30px;
 }
 .dbox__exam > li {
-  width: calc(25% - 6.5px);
+  width: calc(25% - (78px / 4));
   text-align: center;
   line-height: 20px;
 }
-.dbox__exam > li img {
-  padding-bottom: 1em;
-  /* width: 100%; */
+.dbox__exam > li p:first-of-type {
+  padding-top: 1em;
 }
 .dbox__atn {
   font-weight: 500;
@@ -144,14 +147,14 @@ section h2 {
     padding: 47px 15px 42.5px;
   }
   .dbox__flex {
-    gap: 25px;
+    gap: 15px;
   }
   .dbox__flex div {
-    width: calc(50% - (25px / 2));
+    width: calc(50% - (15px / 2));
     margin: 0 auto;
   }
   .dbox__ngsty {
-    padding: 42.5px 10px 30px;
+    padding: 42.5px 15px 30px;
     border: 1px solid #8F8F8F;
     border-radius: 15px;
   }
@@ -178,7 +181,7 @@ section h2 {
     gap: 25px 15px;
   }
   .dbox__exam > li {
-    width: calc(50% - 7.5px);
+    width: calc(50% - (15px / 2));
     font-size: 14px;
     line-height: 18px;
   }

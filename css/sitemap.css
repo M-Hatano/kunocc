@@ -34,7 +34,6 @@
   }
 }
 
-
   .sitemap .title-sitemap {
     font-weight: 500;
     padding: 20px 0;
@@ -46,7 +45,7 @@
   margin-left: 1.5em;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 896px) {
   .sitemap .page-links {
     display: -webkit-box;
     display: -ms-flexbox;
