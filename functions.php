@@ -323,38 +323,38 @@ function my_custom_body_class()
     $uri = preg_replace('#^[^/]+/[^/]+/#', '', $uri);
 
     /* -------------------------------
-     * /member/ → class は m-news
+     * /member/ → class は member
      * ------------------------------- */
     if ($uri === 'member' || preg_match('#^member/page/[0-9]+/?$#', $uri)) {
-        return 'm-news';
+        return 'member';
     }
 
     /* -------------------------------
      * /member/information/
      * ------------------------------- */
     if ($uri === 'member/information' || $uri === 'member/information/') {
-        return 'm-news';
+        return 'member';
     }
 
     /* -------------------------------
      * /member/kusunoki/
      * ------------------------------- */
     if ($uri === 'member/kusunoki' || $uri === 'member/kusunoki/') {
-        return 'm-news';
+        return 'member';
     }
 
     /* -------------------------------
      * 個別記事
      * ------------------------------- */
     if (is_singular('member_post')) {
-        return 'm-news';
+        return 'member';
     }
 
     /* -------------------------------
      * 年別ページ
      * ------------------------------- */
     if (is_date() && strpos($uri, 'member/') === 0) {
-        return 'm-news';
+        return 'member';
     }
 
     /* 既存処理 */
@@ -436,8 +436,8 @@ function enqueue_page_specific_styles()
     ) {
 
         wp_enqueue_style(
-            'm-news-style',
-            $dir . '/css/m-news.css',
+            'member-style',
+            $dir . '/css/member.css',
             [],
             null
         );

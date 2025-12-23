@@ -73,7 +73,6 @@
     margin-right: auto;
     margin-left: auto;
     width: 100%;
-    max-width: 90vw;
     font-size: 3.75vw;
     margin: 15px auto 0;
     padding: 0 15px;
@@ -149,34 +148,35 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  transition: .3s;
 }
 
-@media screen and (max-width: 896px) {
+@media (max-width: 896px) {
+  /* まずは常に --vh（未設定時は 1vh） */
   .top_mv {
-    width: 100%;
-    height: 100vh;
+    height: calc(var(--vh-static, 1vh) * 100);
   }
 }
 
+
 .top-mtxt {
   position: absolute;
-  width: 41.27%;
-  top: 380px;
   color: #fff;
   font-family: 'Shippori Mincho';
   font-weight: 500;
-  right: 6%;
-  transform: translateX(9%);
+  top: 50%;
+  transform: translateY(-30%) translateX(-9%);
+  right: 0;
 }
 
 .top-mtxt h1 {
-  font-size: 50px;
-  line-height: 160%;
+  font-size: 3.4vw;
+  line-height: 1.6;
   font-weight: 450;
 }
 
 .top-mtxt p {
-  font-size: 22px;
+  font-size: 1.5vw;
   line-height: 200%;
   margin-top: 1.5em;
 }
@@ -184,8 +184,10 @@
 @media screen and (max-width: 896px) {
   .top-mtxt {
     width: 100%;
-    padding: 0 11px 0 5px;
-    top: 240px;
+    transform: translate(0% ,-15%);
+    right: inherit;
+    bottom: 0;
+    padding: 0 1em;
   }
 
   .top-mtxt h1 {
@@ -193,7 +195,6 @@
   }
 
   .top-mtxt p {
-    margin-top: 37px;
     line-height: 1.6;
     font-size: 4.5vw;
     margin-top: 4vw;

@@ -8,7 +8,7 @@
     color: #243749;
 }
 
-.m-news .c-head6 {
+.member .c-head6 {
     font-size: 32px;
     align-items: unset;
     color: #324A5B;
@@ -16,7 +16,7 @@
     padding: 0 0 45px;
 }
 
-.m-news .c-head6::after {
+.member .c-head6::after {
     border-bottom: solid 4px rgba(50, 74, 91, 0.3);
     display: inline-block;
     width: calc(100% + 80px);
@@ -40,18 +40,18 @@
     font-size: 7.5rem;
 }
 
-.m-news .m_head {
+.member .m_head {
     text-align: center;
     align-items: center;
     font-size: 45px;
 }
 
-.m-news .m_head span {
+.member .m_head span {
     margin-top: -60px;
     font-size: 75px;
 }
 
-.m-news .m_head::after {
+.member .m_head::after {
     display: none;
 }
 
@@ -65,7 +65,7 @@
         font-size: 3.5rem;
     }
 
-    .m-news .c-head6 {
+    .member .c-head6 {
         font-size: 20px;
         padding: 0 0 40px;
     }
@@ -75,16 +75,16 @@
         margin-top: -45px;
     }
 
-    .m-news .c-head6::after {
+    .member .c-head6::after {
         width: calc(100% + 40px);
         left: -20px;
     }
 
-    .m-news .m_head {
+    .member .m_head {
         font-size: 20px;
     }
 
-    .m-news .m_head span {
+    .member .m_head span {
         margin-top: -30px;
         font-size: 25px;
     }
@@ -708,10 +708,11 @@
 @media screen and (max-width: 896px) {
     .calendar-container {
         margin: 10px auto;
+        padding: 0 15px;
     }
 
     .custom-content {
-        font-size: 18px;
+        font-size: 16px;
         margin: unset;
         align-items: flex-start;
     }

@@ -72,7 +72,7 @@
         <!-- パンくずリスト -->
         <ul class="c-brd">
           <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>
-          <li><a href="<?php echo esc_url(home_url('')); ?>/m-news/">会員サイト</a></li>
+          <li><a href="<?php echo esc_url(home_url('')); ?>/member/">会員サイト</a></li>
           <li><a href="">コンペ申し込み</a></li>
         </ul>
       </div>

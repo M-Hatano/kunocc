@@ -39,6 +39,22 @@ $(function () {
   });
 });
 
+// キービジュアルheight
+function setRealVh() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+window.addEventListener('load', setRealVh);
+window.addEventListener('resize', setRealVh);
+window.addEventListener('orientationchange', setRealVh);
+    
+
+function setRealVhOnce() {
+const vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh-static', `${vh}px`);
+}
+window.addEventListener('load', setRealVhOnce);
+
 //**************************************
 // 4bnr
 //**************************************
