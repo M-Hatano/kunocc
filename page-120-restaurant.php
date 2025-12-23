@@ -57,7 +57,7 @@
                                 お食事の際、大切なお客様にゆっくりとご利用いただける個室を15室ご用意しております。<br>
                                 お部屋の詳細については施設紹介ページをご覧ください。
                             </p>
-                            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/private-room.pdf" target="_blank" class="c-btn r-btn">プライベートルーム詳細</a>
+                            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/facility/#link03" target="_blank" class="c-btn r-btn">プライベートルーム詳細</a>
                         </div>
                     </div>
                 </div>
