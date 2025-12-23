@@ -42,13 +42,13 @@
   padding-right: 40px;
   font-weight: 700;
   font-size: 16px;
-  line-height: 100%;
+  line-height: 1.2;
   color: #324A5B;
 }
 
 .post-index ul p {
   font-weight: 400;
-  line-height: 100%;
+  line-height: 1.2;
 }
 
 @media screen and (max-width: 896px) {
@@ -189,11 +189,14 @@
   }
 
   .top-mtxt h1 {
-    font-size: 32px;
+    font-size: 7vw;
   }
 
   .top-mtxt p {
     margin-top: 37px;
+    line-height: 1.6;
+    font-size: 4.5vw;
+    margin-top: 4vw;
   }
 }
 
