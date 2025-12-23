@@ -54,12 +54,12 @@
   padding-top: 198px;
 }
 
-@media screen and (max-width: 896px){
+@media screen and (max-width: 896px) {
   #facility .c-scroll {
     margin-bottom: 15px;
   }
 
-  ._scr01:first-of-type{
+  ._scr01:first-of-type {
     padding-top: 80px;
     margin-bottom: 15px;
   }
@@ -83,9 +83,9 @@
     padding-top: 80px;
   }
 
-._scr01:nth-of-type(2) {
-  padding-top: 80px;
-}
+  ._scr01:nth-of-type(2) {
+    padding-top: 80px;
+  }
 
   #link02 {
     padding-bottom: 100px;
@@ -176,7 +176,7 @@
 }
 
 .facility__flex:nth-of-type(2n+2) .facility__info>div {
-  padding: 48px 30px 48px 254px;
+  padding: 87px 30px 48px 254px;
 }
 
 
@@ -228,13 +228,8 @@
 .facility__info>div {
   border: solid 1px #989E74;
   min-height: 250px;
-  padding: 48px 275px 48px 30px;
+  padding: 87px 275px 48px 30px;
 }
-
-.facility__info>div p {
-  max-width: 500px;
-}
-
 
 @media screen and (max-width: 896px) {
   .facility__info {
@@ -250,7 +245,6 @@
   }
 
   .facility__info>div p {
-    max-width: 100%;
     font-size: 14px;
   }
 }
@@ -274,10 +268,6 @@
 
 .facility__flex:nth-of-type(2n+2) .facility__info--sub {
   right: 50px;
-}
-
-.facility__info--sub+p {
-  padding-top: 55px;
 }
 
 @media screen and (max-width: 896px) {
@@ -392,6 +382,9 @@
 .proom__tb--imgbox {
   width: 61.09%;
   background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 896px) {

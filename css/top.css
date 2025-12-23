@@ -201,6 +201,21 @@
   }
 }
 
+/* 画面の高さが 450px 以下の時の設定 スマホを横にした際のメディアクエリ */
+@media screen and (max-height: 450px) {
+  .top-mtxt {
+    top: 90px;
+  }
+
+  .top-mtxt h1 {
+    font-size: 33px;
+  }
+
+  .top-mtxt p {
+    font-size: 20px;
+  }
+}
+
 .kv-img {
   background-position: center;
   background-repeat: no-repeat;

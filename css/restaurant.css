@@ -36,11 +36,7 @@
 }
 
 .lead__recommend>img {
-  width: calc(33.33% - 21.8px);
-}
-
-.lead__recommend>img:first-of-type {
-  padding-left: unset;
+  width: calc(33.33% - (65.4px / 3));
 }
 
 @media screen and (max-width: 896px) {

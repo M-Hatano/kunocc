@@ -144,7 +144,7 @@
   .rpoit::before {
     width: 13px;
     height: 13px;
-    left: -20px;
+    left: -23px;
   }
   .rpoit__text02 {
     font-size: 14px;
@@ -162,9 +162,9 @@
 
 .c-column {
   position: relative;
-  width: 1200px;
+  max-width: 1200px;
   min-width: unset;
-  max-width: unset;
+  /* max-width: unset; */
 }
 @media screen and (max-width: 896px) {
   .c-column {
@@ -288,7 +288,7 @@
 }
 .rbox__btnbox .c-btn {
   line-height: unset;
-  padding: 15px 0;
+  padding: 15px 10px;
   margin: unset;
   font-weight: 500;
   font-size: 20px;
@@ -314,6 +314,9 @@
   }
   .rbox__method + p {
     margin-bottom: 22px;
+  }
+  .rbox__btnbox + p {
+  text-align: start;
   }
 }
 
