@@ -118,7 +118,7 @@
 
               <ul class="c-nav__list">
                 <li>
-                  <a href="<?php echo esc_url(home_url('')); ?>/d-range/">ゴルフ練習場概要</a>
+                  <a href="<?php echo esc_url(home_url('')); ?>/d-range/">ゴルフ練習場</a>
                 </li>
                 <li>
                   <a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a>

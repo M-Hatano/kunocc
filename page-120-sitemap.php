@@ -63,7 +63,7 @@
               <div class="page-links-half">
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/d-range/">ゴルフ練習場概要</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/d-range/">ゴルフ練習場</a></h3>
                 </section>
 
                 <section>

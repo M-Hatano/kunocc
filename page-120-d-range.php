@@ -18,7 +18,7 @@
       </div>
 
       <div class="c-column">
-        <h2 class="c-head6">ゴルフ練習場概要<span>Driving&nbsp;Range</span></h2>
+        <h2 class="c-head6">ゴルフ練習場<span>Driving&nbsp;Range</span></h2>
 
         <div class="picare">
           <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_01.jpg" class="fancybox" data-fancybox="range">
@@ -30,9 +30,9 @@
         </div>
 
         <p>
-          当倶楽部の練習場は、ゆとりある数多くの打席を備えたドライビングレンジを完備。<br>
+          当倶楽部の練習場は、230ヤードを超えるドライビングレンジを完備。（全14打席、左打席あり。）<br>
           <!-- 天候に左右されず快適にショット練習をお楽しみいただけます。<br> -->
-          さらに、実際のコースさながらのバンカー練習エリアも設置しており、<br class="c-brpc">
+          さらに、実際のコースさながらのアプローチやバンカー練習場も設置しており、<br class="c-brpc">
           ラウンド前の調整や実践的なショット練習に最適です。
         </p>
 
@@ -41,15 +41,7 @@
             <tr>
               <th>料金</th>
               <td>
-                ⚫︎⚫︎⚫︎円(税込)
-              </td>
-            </tr>
-            <tr>
-              <th>申込み方法</th>
-              <td>
-                <p class="tb-01__dtex">ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト</p>
-                <p>FAX&colon;<span>000-00-0000</span></p>
-                <p>メール&colon;info@kunocc.co.jp</p>
+                30球 550円（税込）
               </td>
             </tr>
           </tbody>
