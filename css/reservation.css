@@ -74,7 +74,7 @@
 }
 @media screen and (max-width: 896px) {
   .rcol {
-    padding-left: 0;
+    padding-left: 17.5px;
   }
 }
 
@@ -137,7 +137,6 @@
   .rpoit {
     font-size: 16px;
     padding: 24px 0;
-    padding-left: 5px;
   }
   .rpoit__text01 {
     font-size: 16px;
@@ -145,7 +144,7 @@
   .rpoit::before {
     width: 13px;
     height: 13px;
-    left: -15px;
+    left: -20px;
   }
   .rpoit__text02 {
     font-size: 14px;
@@ -182,7 +181,7 @@
 }
 @media screen and (max-width: 896px) {
   .c-column.border::before {
-    left: 5px;
+    left: 15px;
     width: 2.5px;
   }
 }
@@ -234,11 +233,12 @@
     font-size: 15px;
     margin-bottom: 15px;
     padding-top: 46px;
+    text-align: start;
   }
   .rtel + a {
     width: 100%;
     font-size: 26px;
-    padding: 20px 0 20px 90px;
+    padding: 20px 0 20px 20px;
   }
   .rtel + a::before {
     width: 20px;

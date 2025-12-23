@@ -57,10 +57,8 @@
                                 <p>ご予約方法A</p>
                             </div>
                             <p>
-                                仮予約が完了いたしましたら、<br class="c-brsp">以下の「<span class="cno">①</span>コンペ承りフォーム」<br
-                                    class="c-brsp">
-                                「<span class="cno">②</span>組み合わせ送信フォーム」の順で、<br>
-                                それぞれご予約の詳細情報を<br class="c-brsp">一括送信いただけます。<br>
+                                仮予約が完了いたしましたら、以下の「<span class="cno">①</span>コンペ承りフォーム」「<span class="cno">②</span>組み合わせ送信フォーム」の順で、<br class="c-brpc">
+                                それぞれご予約の詳細情報を一括送信いただけます。<br>
                                 ご入力の際には、「プレー日」と「受付番号」をそれぞれご入力ください。
                             </p>
                             <div class="rbox__btnbox">
