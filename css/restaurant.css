@@ -424,7 +424,7 @@
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    width: 100%;
+    width: 50%;
     margin: 0 auto 15px;
     line-height: 12px;
     font-size: 14px;
@@ -432,6 +432,12 @@
 
   .l-card__menu.l-card__menu--al01>div {
     margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 547px){
+  .l-card__menu li{
+    width: 85%;
   }
 }
 
@@ -462,7 +468,6 @@
 
   ._bgchange .l-card__menu li {
     margin: 0 auto 7.5px;
-    width: 100%;
   }
 }
 

@@ -214,6 +214,16 @@
 @media screen and (max-width: 896px) {
   .c-form__done {
     font-size: 1.8rem;
+  }
+
+  .c-form__done+p {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 432px) {
+  .c-form__done {
+    font-size: 1.8rem;
     text-align: left;
   }
 

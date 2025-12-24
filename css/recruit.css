@@ -78,6 +78,11 @@
   #recruit .tb-01 th {
     width: 100%;
     border-bottom: unset;
+    border-top: unset;
+  }
+
+  #recruit .tb-01 tr:first-of-type th{
+    border-top: solid 1px #989E74
   }
 }
 
