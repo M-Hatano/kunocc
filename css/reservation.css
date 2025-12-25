@@ -206,15 +206,18 @@
 }
 .rtel + a {
   display: block;
-  width: 352px;
+  max-width: 352px;
   background: #fff;
   border: solid 1px #8F8F8F;
   font-size: 35px;
   line-height: 100%;
-  padding: 35px 0 35px 1em;
-  position: relative;
+  padding: 35px 0 35px;
   margin: 0 auto;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 .rtel + a::before {
   content: "";
@@ -222,12 +225,12 @@
   background: url("../img/reservation/icn_01.svg") left top/100% 100% no-repeat;
   width: 35px;
   height: 66px;
-  position: absolute;
-  left: 35px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
 }
+
+#reservation .mailbox {
+  margin-inline: unset;
+}
+
 @media screen and (max-width: 896px) {
   .rtel {
     font-size: 15px;
@@ -236,14 +239,12 @@
     text-align: start;
   }
   .rtel + a {
-    width: 100%;
     font-size: 26px;
-    padding: 20px 0 20px 20px;
+    padding: 20px 0 20px;
   }
   .rtel + a::before {
     width: 20px;
     height: 35px;
-    left: 50px;
   }
 }
 

@@ -20,7 +20,12 @@
         <div class="c-column">
             <section class="rbox">
                 <h2 class="rbox__rechead">キャディスタッフ募集中<br class="c-brsp">（正社員・パート社員）</h2>
-                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/recruit/dummy_01.jpg" alt="ダミー">
+                <?php
+                $img01 = get_field('recruit_img_01');
+                if ($img01):
+                    echo wp_get_attachment_image($img01, 'full');
+                endif;
+                ?>
                 <!-- 表部分 -->
                 <?php if (have_rows('job_items')): ?>
                     <table class="tb-01">
@@ -52,7 +57,12 @@
 
             <section class="rbox">
                 <h2 class="rbox__rechead">レストランスタッフ（ホール）</h2>
-                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/recruit/dummy_02.jpg" alt="ダミー">
+                <?php
+                $img02 = get_field('recruit_img_02');
+                if ($img02):
+                    echo wp_get_attachment_image($img02, 'full');
+                endif;
+                ?>
                 <!-- 表部分 -->
                 <?php if (have_rows('job_items2')): ?>
                     <table class="tb-01">

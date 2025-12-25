@@ -151,7 +151,7 @@
             </tbody>
           </table>
 
-          <h3 class="ahead02">富里市内ホテル</h3>
+          <h3 class="ahead02">成田市内ホテル</h3>
           <table class="acctab">
             <tbody>
               <tr>

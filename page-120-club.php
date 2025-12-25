@@ -46,14 +46,7 @@
             <th>コース所在地</th>
             <td>
               <p>〒286-0203<span>千葉県富里市久能722</span></p>
-              <p>TEL&period;0476-22-2285&nbsp;FAX&period;0476-22-2286</p>
-            </td>
-          </tr>
-          <tr>
-            <th>本社所在地</th>
-            <td>
-              <p>〒286-0041<span>千葉県成田市飯田町27番地</span></p>
-              <p>TEL&period;0476-22-2285&nbsp;FAX&period;0476-22-2286</p>
+              <p>TEL&period;0476-93-9000&nbsp;FAX&period;0476-92-5063</p>
             </td>
           </tr>
           <tr>
