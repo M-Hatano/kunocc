@@ -73,7 +73,7 @@
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 896px) {
   .crs-ytb {
     font-size: 16px;
     text-align: start;
@@ -92,7 +92,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 896px) {
   .course .hole-flex {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -105,7 +105,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 896px) {
   .course .hole-flex .hole-flex-text {
     width: 47.5%;
   }
@@ -124,7 +124,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 896px) {
   .course .hole-flex .hole-flex-text .hole-title-01 {
     font-size: 4.8rem;
   }
@@ -136,7 +136,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 896px) {
   .course .hole-flex .hole-flex-text .hole-title-01 .hole-title-number {
     font-size: 10rem;
   }
@@ -177,7 +177,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 896px) {
   .course .hole-flex .hole-flex-image {
     width: 47.5%;
   }
@@ -211,7 +211,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 896px) {
   .course .hole-flex .hole-flex-image .hole-title-02 {
     font-size: 1.8rem;
   }
@@ -225,7 +225,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 896px) {
   .course .pager-area {
     padding-top: 4em;
     padding-bottom: 6em;

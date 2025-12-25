@@ -15,6 +15,17 @@
   margin-top: 85px;
 }
 
+.fimg div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fimg div:first-child {
+  justify-content: flex-start;
+}
+
 .fimg__flo {
   display: flex;
   align-items: center;
