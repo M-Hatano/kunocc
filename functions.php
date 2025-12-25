@@ -480,8 +480,7 @@ function enqueue_page_specific_styles()
 {
     $dir = get_template_directory_uri();
 
-    // ★ 環境差分を吸収した相対パス
-    // 例: member/page/2
+    // 環境差分を吸収した相対パス（例: member/page/2）
     $uri = knc_get_site_relative_path();
 
     /* -----------------------------------
@@ -499,29 +498,28 @@ function enqueue_page_specific_styles()
      *    single / 固定ページ / ページネーション / 年別
      * ----------------------------------- */
     if (
-
         // single（会員系カテゴリ）
         (is_single() && (has_category('member') || has_category('kusunoki') || has_category('information')))
 
         // 固定ページ
         || is_page(['member', 'kusunoki', 'information', 'partnership', 'm-calendar', 'registration', 'member-login'])
 
-        // 年別（member 以下）※固定ページ member + year でも拾う
+        // 年別（member 以下）
         || (strpos($uri, 'member/') === 0)
 
-        // ★ ページネーション（先頭基準）
+        // ページネーション
         || preg_match('#^member/page/[0-9]+$#', $uri)
         || preg_match('#^member/information/page/[0-9]+$#', $uri)
         || preg_match('#^member/kusunoki/page/[0-9]+$#', $uri)
 
-        // ★ partnership / calendar
+        // partnership / calendar
         || strpos($uri, 'member/partnership') === 0
         || strpos($uri, 'member/calendar') === 0
     ) {
-
+        // member.css に変更
         wp_enqueue_style(
-            'm-news-style',
-            $dir . '/css/m-news.css',
+            'member-style',
+            $dir . '/css/member.css',
             [],
             null
         );
@@ -529,12 +527,8 @@ function enqueue_page_specific_styles()
     }
 
     /* -----------------------------------
-    * ▼ ニュース（news）
-    *  - /news
-    *  - /news/page/2
-    *  - /news/2024
-    *  - /news/2024/page/2
-    * ----------------------------------- */
+     * ▼ ニュース（news）
+     * ----------------------------------- */
     if (
         $uri === 'news'
         || preg_match('#^news/page/[0-9]+$#', $uri)
@@ -581,7 +575,6 @@ function enqueue_page_specific_styles()
     if (is_page()) {
         global $post;
 
-        // 自身 or 親ページのスラッグ
         $slug = $post->post_name;
         $anc  = get_post_ancestors($post->ID);
         if (!empty($anc)) {
@@ -603,7 +596,6 @@ function enqueue_page_specific_styles()
     }
 }
 add_action('wp_enqueue_scripts', 'enqueue_page_specific_styles');
-
 
 
 // スクリプトタグから id 属性を削除するフィルター
