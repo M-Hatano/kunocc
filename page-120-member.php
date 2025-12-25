@@ -28,70 +28,88 @@
         <ul class="news-box__list">
 
 <?php
-$year   = get_query_var('year');
-$paged  = max(1, get_query_var('paged'));
-$per    = 10;
+$year  = (int) get_query_var('year');
+$paged = max(1, (int) get_query_var('paged'));
+$per   = 10;
+
+$tax_query_member = [
+  [
+    'taxonomy' => 'member_category',
+    'field'    => 'slug',
+    'terms'    => ['member'],
+  ]
+];
 
 /* ---------------------------------
- * Sticky（最大3件）
+ * ページネーション専用クエリ（★ここで1回だけ作る）
+ * --------------------------------*/
+$paging_args = [
+  'post_type'           => 'member_post',
+  'posts_per_page'      => $per,
+  'paged'               => $paged,
+  'orderby'             => 'date',
+  'order'               => 'DESC',
+  'ignore_sticky_posts' => true,
+  'tax_query'           => $tax_query_member,
+];
+
+if ($year) {
+  $paging_args['year'] = $year;
+}
+
+$paging_q = new WP_Query($paging_args);
+
+/* ---------------------------------
+ * Sticky（最大3件 / 1ページ目だけ）
  * --------------------------------*/
 $sticky_ids = [];
 $shown_ids  = [];
 
 if ($paged === 1) {
 
-    $sticky_ids = get_member_sticky_ids();
+  $sticky_ids = function_exists('get_member_sticky_ids') ? get_member_sticky_ids() : [];
 
-    if (!empty($sticky_ids)) {
+  if (!empty($sticky_ids)) {
 
-          $sticky_q = new WP_Query([
-            'post_type' => 'member_post',
-            'post__in'  => $sticky_ids,
-            'orderby'   => 'post__in',
-            'tax_query' => [
-                [
-                    'taxonomy' => 'member_category',
-                    'field'    => 'slug',
-                    'terms'    => ['member'],
-                ]
-            ],
-        ]);
+    $sticky_q = new WP_Query([
+      'post_type' => 'member_post',
+      'post__in'  => $sticky_ids,
+      'orderby'   => 'post__in',
+      'tax_query' => $tax_query_member,
+    ]);
 
-        while ($sticky_q->have_posts()) : $sticky_q->the_post();
+    while ($sticky_q->have_posts()) : $sticky_q->the_post();
 
-            $shown_ids[] = get_the_ID();
+      $shown_ids[] = get_the_ID();
 
-            $news_file = get_field('news_file');
-            $direct    = get_field('direct_link');
-            $link_url  = get_field('link_url');
+      $news_file = get_field('news_file');
+      $direct    = get_field('direct_link');
+      $link_url  = get_field('link_url');
 
-            // ▼ 修正：直リンクも必ず my_member_convert_url() を通す
-            if ($link_url) {
-                $href = my_member_convert_url($link_url);
-
-            } elseif ($news_file && $direct) {
-                $href = knc_get_protected_acf_file_url($news_file);
-
-            } else {
-                $href = get_permalink();
-            }
+      if ($link_url) {
+        $href = my_member_convert_url($link_url);
+      } elseif ($news_file && $direct) {
+        $href = knc_get_protected_acf_file_url($news_file);
+      } else {
+        $href = get_permalink();
+      }
 ?>
-          <li class="is-sticky">
-            <a href="<?php echo esc_url($href); ?>">
-              <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
-              <?php the_title(); ?>
-            </a>
-          </li>
+      <li class="is-sticky">
+        <a href="<?php echo esc_url($href); ?>">
+          <span class="news-box__time"><?php echo esc_html(get_the_date('Y.m.d')); ?></span>
+          <?php the_title(); ?>
+        </a>
+      </li>
 <?php
-        endwhile;
-        wp_reset_postdata();
-    }
+    endwhile;
+    wp_reset_postdata();
+  }
 }
 
 /* ---------------------------------
- * 通常記事（Sticky を除外）
+ * 通常記事（Sticky除外）
  * --------------------------------*/
-$remain = $paged === 1 ? $per - count($shown_ids) : $per;
+$remain = ($paged === 1) ? $per - count($shown_ids) : $per;
 $remain = max(0, $remain);
 
 $normal_args = [
@@ -101,75 +119,41 @@ $normal_args = [
   'post__not_in'   => $shown_ids,
   'orderby'        => 'date',
   'order'          => 'DESC',
-  'tax_query'      => [
-      [
-          'taxonomy' => 'member_category',
-          'field'    => 'slug',
-          'terms'    => ['member'],
-      ]
-  ],
+  'tax_query'      => $tax_query_member,
 ];
 
 if ($year) {
-    $normal_args['year'] = $year;
+  $normal_args['year'] = $year;
 }
 
 $normal_q = new WP_Query($normal_args);
 
 if ($normal_q->have_posts()) :
-    while ($normal_q->have_posts()) : $normal_q->the_post();
+  while ($normal_q->have_posts()) : $normal_q->the_post();
 
-        $news_file = get_field('news_file');
-        $direct    = get_field('direct_link');
-        $link_url  = get_field('link_url');
+    $news_file = get_field('news_file');
+    $direct    = get_field('direct_link');
+    $link_url  = get_field('link_url');
 
-        // ▼ 修正：直リンク → 常に my_member_convert_url() 経由
-        if ($link_url) {
-            $href = my_member_convert_url($link_url);
-
-        } elseif ($news_file && $direct) {
-            $href = knc_get_protected_acf_file_url($news_file);
-
-        } else {
-            $href = get_permalink();
-        }
-        /* ---------------------------------
-        * ページネーション専用クエリ（★追加）
-        * --------------------------------*/
-        $paging_args = [
-          'post_type'           => 'member_post',
-          'posts_per_page'      => $per, // ★ 常に10固定
-          'paged'               => $paged,
-          'orderby'             => 'date',
-          'order'               => 'DESC',
-          'ignore_sticky_posts' => true,
-          'tax_query'           => [
-              [
-                  'taxonomy' => 'member_category',
-                  'field'    => 'slug',
-                  'terms'    => ['member'],
-              ]
-          ],
-        ];
-
-        if ($year) {
-          $paging_args['year'] = $year;
-        }
-
-        $paging_q = new WP_Query($paging_args);
-
+    if ($link_url) {
+      $href = my_member_convert_url($link_url);
+    } elseif ($news_file && $direct) {
+      $href = knc_get_protected_acf_file_url($news_file);
+    } else {
+      $href = get_permalink();
+    }
 ?>
-        <li>
-          <a href="<?php echo esc_url($href); ?>">
-            <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
-            <?php the_title(); ?>
-          </a>
-        </li>
+    <li>
+      <a href="<?php echo esc_url($href); ?>">
+        <span class="news-box__time"><?php echo esc_html(get_the_date('Y.m.d')); ?></span>
+        <?php the_title(); ?>
+      </a>
+    </li>
 <?php
-    endwhile;
+  endwhile;
 
 elseif (empty($shown_ids)) :
-    echo '<li>現在お知らせはありません。</li>';
+  echo '<li>現在お知らせはありません。</li>';
 endif;
 
 wp_reset_postdata();
@@ -178,7 +162,7 @@ wp_reset_postdata();
         </ul>
 
         <ul class="c-pagenation">
-          <?php custom_pagination($paging_q); ?>
+          <?php if (!empty($paging_q)) custom_pagination($paging_q); ?>
         </ul>
         <?php wp_reset_postdata(); ?>
 
@@ -201,58 +185,46 @@ $recent = new WP_Query([
   'posts_per_page' => 5,
   'orderby'        => 'date',
   'order'          => 'DESC',
-  'tax_query'      => [
-      [
-          'taxonomy' => 'member_category',
-          'field'    => 'slug',
-          'terms'    => ['member'],
-      ]
-  ],
+  'tax_query'      => $tax_query_member,
 ]);
 
 while ($recent->have_posts()) : $recent->the_post();
 
-    $news_file = get_field('news_file');
-    $direct    = get_field('direct_link');
-    $link_url  = get_field('link_url');
+  $news_file = get_field('news_file');
+  $direct    = get_field('direct_link');
+  $link_url  = get_field('link_url');
 
-    // ▼ 修正：直リンクも常に my_member_convert_url()
-    if ($link_url) {
-        $href = my_member_convert_url($link_url);
-
-    } elseif ($news_file && $direct) {
-        $href = knc_get_protected_acf_file_url($news_file);
-
-    } else {
-        $href = get_permalink();
-    }
+  if ($link_url) {
+    $href = my_member_convert_url($link_url);
+  } elseif ($news_file && $direct) {
+    $href = knc_get_protected_acf_file_url($news_file);
+  } else {
+    $href = get_permalink();
+  }
 ?>
     <li><a href="<?php echo esc_url($href); ?>"><?php the_title(); ?></a></li>
-<?php endwhile;
-wp_reset_postdata(); ?>
+<?php endwhile; wp_reset_postdata(); ?>
             </ul>
           </div>
-
 
           <!-- 年別 -->
           <div>
             <h3>年度別</h3>
             <ul class="news-box__right--list">
-
 <?php
 global $wpdb;
 $years = $wpdb->get_results("
-    SELECT YEAR(p.post_date) AS y, COUNT(*) AS cnt
-    FROM {$wpdb->posts} p
-    INNER JOIN {$wpdb->term_relationships} tr ON p.ID = tr.object_id
-    INNER JOIN {$wpdb->term_taxonomy} tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
-    INNER JOIN {$wpdb->terms} t ON tt.term_id = t.term_id
-    WHERE p.post_type = 'member_post'
-      AND p.post_status = 'publish'
-      AND tt.taxonomy = 'member_category'
-      AND t.slug = 'member'
-    GROUP BY YEAR(p.post_date)
-    ORDER BY y DESC
+  SELECT YEAR(p.post_date) AS y, COUNT(*) AS cnt
+  FROM {$wpdb->posts} p
+  INNER JOIN {$wpdb->term_relationships} tr ON p.ID = tr.object_id
+  INNER JOIN {$wpdb->term_taxonomy} tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+  INNER JOIN {$wpdb->terms} t ON tt.term_id = t.term_id
+  WHERE p.post_type = 'member_post'
+    AND p.post_status = 'publish'
+    AND tt.taxonomy = 'member_category'
+    AND t.slug = 'member'
+  GROUP BY YEAR(p.post_date)
+  ORDER BY y DESC
 ");
 
 foreach ($years as $row) :
@@ -263,7 +235,6 @@ foreach ($years as $row) :
     </a>
   </li>
 <?php endforeach; ?>
-
             </ul>
           </div>
 
@@ -273,7 +244,7 @@ foreach ($years as $row) :
     </div><!-- /.news-box -->
 
     <ul class="c-brd">
-      <li><a href="<?php echo home_url('/'); ?>">TOP</a></li>
+      <li><a href="<?php echo esc_url(home_url('/')); ?>">TOP</a></li>
       <li>会員様お知らせ</li>
     </ul>
 

@@ -123,95 +123,105 @@
                 <h3 class="c-head5">Archive</h3>
                 <div class="news-box__right--box">
 
-                    <?php
-                    // 現在記事のカテゴリ取得
-                    $terms = get_the_terms(get_the_ID(), 'member_category');
-                    $subcat = 'member';
+                <?php
+// 現在記事のカテゴリ（member_category）取得
+$terms  = get_the_terms(get_the_ID(), 'member_category');
+$subcat = 'member';
 
-                    if ($terms && !is_wp_error($terms)) {
-                        foreach ($terms as $term) {
-                            if (in_array($term->slug, ['information', 'kusunoki'])) {
-                                $subcat = $term->slug;
-                            }
-                        }
-                    }
+if ($terms && !is_wp_error($terms)) {
+    foreach ($terms as $term) {
+        if (in_array($term->slug, ['member', 'information', 'kusunoki'], true)) {
+            $subcat = $term->slug;
+            break;
+        }
+    }
+}
 
-                    $year = get_the_date('Y');
-                    ?>
+// サブカテゴリごとの年別リンクのベースパス
+$base = '/member';
+if ($subcat === 'information') $base = '/member/information';
+if ($subcat === 'kusunoki')     $base = '/member/kusunoki';
 
-                    <!-- 新着5件 -->
-                    <div class="recent-posts-box">
-                        <h3>新着記事</h3>
-                        <ul>
-                        <?php
-                        $recent_args = [
-                            'post_type'      => 'member_post',
-                            'posts_per_page' => 5,
-                            'orderby'        => 'date',
-                            'order'          => 'DESC',
-                        ];
+// 共通 tax_query（必ず subcat で絞る）
+$tax_query_member = [[
+    'taxonomy' => 'member_category',
+    'field'    => 'slug',
+    'terms'    => [$subcat],
+]];
+?>
 
-                        if ($subcat !== 'member') {
-                            $recent_args['tax_query'] = [[
-                                'taxonomy' => 'member_category',
-                                'field'    => 'slug',
-                                'terms'    => $subcat,
-                            ]];
-                        }
+<!-- 新着5件 -->
+<div class="recent-posts-box">
+    <h3>新着記事</h3>
+    <ul>
+        <?php
+        $recent_q = new WP_Query([
+            'post_type'      => 'member_post',
+            'posts_per_page' => 5,
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+            'post__not_in'   => [get_the_ID()], // 自分自身は除外（任意）
+            'tax_query'      => $tax_query_member,
+        ]);
 
-                        $recent_q = new WP_Query($recent_args);
+        while ($recent_q->have_posts()) :
+            $recent_q->the_post();
 
-                        while ($recent_q->have_posts()): $recent_q->the_post(); ?>
-                            <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-                        <?php endwhile; wp_reset_postdata(); ?>
-                        </ul>
-                    </div>
+            // ACF 直リンク処理（一覧と同じルールに統一）
+            $news_file = get_field('news_file');
+            $direct    = get_field('direct_link');
+            $link_url  = get_field('link_url');
 
-                    <!-- 年度別 -->
-                    <div>
-                        <h3>年度別</h3>
-                        <ul class="news-box__right--list">
-                        <?php
-                        global $wpdb;
+            if ($link_url) {
+                $href = my_member_convert_url($link_url);
+            } elseif ($news_file && $direct) {
+                $href = knc_get_protected_acf_file_url($news_file);
+            } else {
+                $href = get_permalink();
+            }
+        ?>
+            <li><a href="<?php echo esc_url($href); ?>"><?php the_title(); ?></a></li>
+        <?php endwhile; wp_reset_postdata(); ?>
+    </ul>
+</div>
 
-                        $years = $wpdb->get_col("
-                            SELECT DISTINCT YEAR(post_date)
-                            FROM {$wpdb->posts}
-                            WHERE post_type = 'member_post'
-                            AND post_status = 'publish'
-                            ORDER BY YEAR(post_date) DESC
-                        ");
+<!-- 年度別 -->
+<div>
+    <h3>年度別</h3>
+    <ul class="news-box__right--list">
+        <?php
+        global $wpdb;
 
-                        foreach ($years as $y):
+        // subcat（member/information/kusunoki）ごとに「年 + 件数」をSQLで取得（高速＆正確）
+        $sql = $wpdb->prepare("
+            SELECT YEAR(p.post_date) AS y, COUNT(*) AS cnt
+            FROM {$wpdb->posts} AS p
+            INNER JOIN {$wpdb->term_relationships} AS tr ON p.ID = tr.object_id
+            INNER JOIN {$wpdb->term_taxonomy} AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+            INNER JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id
+            WHERE p.post_type = 'member_post'
+              AND p.post_status = 'publish'
+              AND tt.taxonomy = 'member_category'
+              AND t.slug = %s
+            GROUP BY YEAR(p.post_date)
+            HAVING y IS NOT NULL
+            ORDER BY y DESC
+        ", $subcat);
 
-                            $count_args = [
-                                'post_type'      => 'member_post',
-                                'fields'         => 'ids',
-                                'posts_per_page' => -1,
-                                'year'           => $y,
-                            ];
+        $years = $wpdb->get_results($sql);
 
-                            if ($subcat !== 'member') {
-                                $count_args['tax_query'] = [[
-                                    'taxonomy' => 'member_category',
-                                    'field'    => 'slug',
-                                    'terms'    => $subcat,
-                                ]];
-                            }
-
-                            $count = count(get_posts($count_args));
-                            if ($count <= 0) continue;
-                        ?>
-
-                            <li>
-                                <a href="<?php echo esc_url( site_url("/member/{$y}/") ); ?>">
-                                    <?php echo esc_html($y); ?>年（<?php echo esc_html($count); ?>）
-                                </a>
-                            </li>
-
-                        <?php endforeach; ?>
-                        </ul>
-                    </div>
+        foreach ($years as $row) :
+            // /member/{year}/  or /member/information/{year}/ etc
+            $year_url = home_url("{$base}/{$row->y}/");
+        ?>
+            <li>
+                <a href="<?php echo esc_url($year_url); ?>">
+                    <?php echo esc_html($row->y); ?>年（<?php echo esc_html($row->cnt); ?>）
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
 
                 </div>
             </div>
