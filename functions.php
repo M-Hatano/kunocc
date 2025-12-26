@@ -1184,34 +1184,6 @@ function fhg_get_news_years()
 }
 
 
-
-// 検索結果から特定カテゴリ・特定固定ページを除外
-function fhg_exclude_from_search($query)
-{
-    if (! is_admin() && $query->is_main_query() && $query->is_search()) {
-
-        // ① 除外したいカテゴリスラッグ → term_id に変換
-        $exclude_slugs = array('news', 'mevent', 'mnews', 'mcompe', 'mmanage');
-        $exclude_term_ids = array();
-        foreach ($exclude_slugs as $slug) {
-            if ($term = get_category_by_slug($slug)) {
-                $exclude_term_ids[] = $term->term_id;
-            }
-        }
-        if (! empty($exclude_term_ids)) {
-            $query->set('category__not_in', $exclude_term_ids);  // カテゴリ除外
-        }
-
-        // ② 除外したい固定ページのID（かわら版一覧ページなど）
-        $exclude_page_id = 6429;
-        $post__not_in = (array) $query->get('post__not_in');
-        $post__not_in[] = $exclude_page_id;
-        $query->set('post__not_in', $post__not_in);            // 固定ページ除外
-    }
-}
-add_action('pre_get_posts', 'fhg_exclude_from_search');
-
-
 // ─────────────────────────────────────────────────
 // 特定カテゴリ・特定固定ページを noindex にする
 // ─────────────────────────────────────────────────
