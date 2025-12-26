@@ -20,7 +20,7 @@
   <div class="c-column">
 
     <h2 class="c-head6">フロア図<span>Floor&nbsp;Map</span></h2>
-    <div class="fimg">
+    <div class="fimg fade-in">
       <div>
         <p class="fimg__flo">1F</p>
         <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_01.jpg" class="fancybox" data-fancybox="floor-map">

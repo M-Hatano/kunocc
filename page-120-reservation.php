@@ -18,7 +18,7 @@
             </div>
 
             <div class="c-column">
-                <div class="r-lead">
+                <div class="r-lead fade-in">
                     <div class="r-lead__texbox">
                         <h2>品格と静謐に包まれた、<br class="c-brsp">接待のためのひととき。</h2>
                         <p>
@@ -52,7 +52,7 @@
                         <p class="rtel">ご予約のスタートはお電話にて受付けております。以下の電話番号よりご連絡をお願いいたします。</p>
                         <a href="tel:0476-93-9000">0476-93-9000</a>
 
-                        <div class="rbox">
+                        <div class="rbox fade-in">
                             <div class="rbox__method apply">
                                 <p>ご予約方法A</p>
                             </div>
@@ -68,7 +68,7 @@
                             <span class="deco _03"><span></span></span>
                         </div>
 
-                        <div class="rbox" id="res_form">
+                        <div class="rbox fade-in" id="res_form">
                             <div class="rbox__method apply">
                                 <p>ご予約方法B</p>
                             </div>
@@ -99,7 +99,7 @@
                         <div class="rcol">
                             <p class="rpoit _chen">ご確認事項</p>
 
-                            <ul class="rlistbox">
+                            <ul class="rlistbox fade-in">
                                 <li class="rlistbox__item">
                                     <div class="rlistbox__item--gd">
                                         プレー料金のご確認

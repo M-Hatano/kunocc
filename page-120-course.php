@@ -22,7 +22,7 @@
           <section class="_mtl">
             <h2 class="c-head6">コースマップ<span>Course&nbsp;Map</span></h2>
             </h2>
-            <div class="map">
+            <div class="map fade-in">
               <figure><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/course/img_course_01.jpg" alt="コース全景" usemap="#ImageMap"></figure>
             </div>
 
@@ -272,7 +272,7 @@
                 中盤以降から狙い目が難しいホールが続くので最後まで気が抜けない。
               </p>
 
-              <div class="cslist">
+              <div class="cslist fade-in">
                 <?php while (have_rows('hi_out_holes')) : the_row(); ?>
                   <?php
                   $hole_no = get_sub_field('hi_hole_no');        // ホール番号（1〜9）

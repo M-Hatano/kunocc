@@ -23,7 +23,7 @@
             </p>
             <section>
                 <h2>プレー時以外の服装</h2>
-                <div class="dbox">
+                <div class="dbox fade-in">
                     <span class="deco _01"><span></span></span>
                     <div class="dbox__flex">
                         <div>
@@ -39,7 +39,7 @@
 
             <section>
                 <h2>プレー時の服装</h2>
-                <div class="dbox">
+                <div class="dbox fade-in">
                     <span class="deco _01"><span></span></span>
                     <div class="dbox__flex">
                         <div>
@@ -54,7 +54,7 @@
             </section>
 
             <section>
-                <div class="dbox colchen">
+                <div class="dbox colchen fade-in">
                     <span class="deco _01"><span></span></span>
                     <div class="dbox__ngsty">
                         <div class="dbox__ban">

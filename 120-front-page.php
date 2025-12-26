@@ -218,6 +218,73 @@ Template Name: トップページ
     </div>
   </div>
 
+  <!-- ボタンエリア -->
+
+  <section class="top-box">
+    <span class="deco _01 fade-in _fast"><span></span></span>
+    <span class="deco _02 fade-in _fast"><span></span></span>
+    <span class="deco _03 fade-in _fast"><span></span></span>
+    <div class="c-column">
+
+      <div class="top__flex fade-in">
+        <div class="top__info">
+          <h2 class="c-head4">ご予約方法について<span>Reservation</span></h2>
+          <p>当倶楽部でのご予約方法については、まずこちらのページをご覧ください。<br>ご予約に必要な手順や、プレー当日のイメージを詳しく記載しております。</p>
+          <p class="top__flex--btn"><a href="<?php echo esc_url(home_url('')); ?>/reservation/">more</a></p>
+        </div>
+        <span class="top__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/img_01.jpg" alt="" loading="lazy"></span>
+      </div>
+
+      <div class="top__flex fade-in">
+        <div class="top__info">
+          <h2 class="c-head4">レストラン<span>Restaurant</span></h2>
+          <p>コースの余韻をそのままに、心ほどける時間をお過ごしいただけるレストラン。<br>
+            当倶楽部の自慢であるシェフが腕を振るう料理と、ゆったりとした空間をお楽しみください。</p>
+          <p class="top__flex--btn"><a href="<?php echo esc_url(home_url('')); ?>/restaurant/">more</a></p>
+        </div>
+        <span class="top__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/img_02.jpg" alt="" loading="lazy"></span>
+      </div>
+
+      <div class="top__flex fade-in">
+        <div class="top__info">
+          <h2 class="c-head4">プライベートルーム<span>PrivateRoom</span></h2>
+          <p>大切なお客様にゆっくりとご利用いただける個室を15室ご用意しております。<br>フロア図、並びに各部屋の容量の詳細も掲載しております。</p>
+          <p class="top__flex--btn"><a href="<?php echo esc_url(home_url('')); ?>/facility/#link03">more</a></p>
+        </div>
+        <span class="top__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/img_03.jpg" alt="" loading="lazy"></span>
+      </div>
+
+      <div class="top__flex fade-in">
+        <div class="top__info">
+          <h2 class="c-head4">施設案内<span>Facility</span></h2>
+          <p>お迎えの空間からお食事、ご会食のお部屋に至るまで、大切な一日を支える施設をご用意しております。<br>
+          各施設の詳細は、以下よりご覧ください。</p>
+          <p class="top__flex--btn"><a href="<?php echo esc_url(home_url('')); ?>/facility/">more</a></p>
+        </div>
+        <span class="top__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/img_04.jpg" alt="" loading="lazy"></span>
+      </div>
+
+      <div class="top__flex fade-in">
+        <div class="top__info">
+          <h2 class="c-head4">コース案内<span>Courrse</span></h2>
+          <p>緑豊かな景観と丁寧に整えられたフェアウェイが魅力のコース。季節の移ろいを感じながら、静かな環境の中で上質なゴルフ時間をお過ごしいただけます。</p>
+          <p class="top__flex--btn"><a href="<?php echo esc_url(home_url('')); ?>/course/">more</a></p>
+        </div>
+        <span class="top__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/img_05.jpg" alt="" loading="lazy"></span>
+      </div>
+
+      <div class="top__flex fade-in">
+        <div class="top__info">
+          <h2 class="c-head4">アクセス&bull;近隣ホテル情報<span>Access</span></h2>
+          <p>交通手段ごとのアクセス、近隣ホテルの情報を掲載しております。</p>
+          <p class="top__flex--btn"><a href="<?php echo esc_url(home_url('')); ?>/access/">more</a></p>
+        </div>
+        <span class="top__flex--img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/img_06.jpg" alt="" loading="lazy"></span>
+      </div>
+
+    </div>
+</section>
+
 </main>
 
 <?php get_footer('120'); ?>
