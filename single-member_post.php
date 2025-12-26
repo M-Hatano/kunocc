@@ -1,8 +1,6 @@
 <?php get_header('120'); ?>
 
-<main class="c-member">
-    <span class="deco _01"><span></span></span>
-
+<main>
     <div class="c-page-header lazyload">
         <div class="c-column c-page-header__inner">
             <h1 class="c-page-header__title">Member
@@ -15,6 +13,8 @@
     <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
     <!-- 共通メニュー -->
 
+    <section class="c-member">
+    <span class="deco _01"><span></span></span>
     <div class="c-column">
         <div class="news-box">
             <div class="news-box__left">
@@ -235,6 +235,7 @@ $tax_query_member = [[
         </ul>
 
     </div>
+    </section>
 </main>
 
 <?php get_footer('120'); ?>

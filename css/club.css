@@ -8,6 +8,11 @@
   }
 }
 
+#club .c-main {
+  background-color: #ffffff33;
+  background-blend-mode: lighten;
+}
+
 .tbox {
   position: relative;
   margin-top: 60px;
@@ -52,7 +57,7 @@
     margin-top: 35px;
   }
 
-  .tbox>div{
+  .tbox>div {
     text-align: start;
   }
 
@@ -64,7 +69,7 @@
     width: 100%;
   }
 
-    .tb-01 td{
+  .tb-01 td {
     border-top: unset;
     border-bottom: unset;
   }
@@ -78,7 +83,7 @@
   }
 
   .tb-01._board tr:nth-of-type(n+4) td:first-of-type {
-    background: #FCFEF0;
+    background: #efefefee;
   }
 
   .tb-01._board tr:nth-of-type(n+4) td {
@@ -87,9 +92,9 @@
   }
 
   #club .tb-01 th,
-.tb-01 td {
-  padding: 0 15px;
-}
+  .tb-01 td {
+    padding: 0 15px;
+  }
 }
 
 /* あしらい */

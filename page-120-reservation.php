@@ -83,8 +83,11 @@
                                 <a href="<?php echo $pdf ? esc_url($pdf['url']) : '#'; ?>" class="c-btn">ご予約連絡フォーム（PDF）</a>
                                 <span class="deco _04"><span></span></span>
                             </div>
-                            <p class="regi_send">ご入力後のファイルは以下アドレスに送信をお願いいたします。<br class="c-brsp">（手書きで持参いただくことも可能です。）</p>
-                            <a href="mailto:info@kunocc.co.jp" class="mailbox"><span></span>info@kunocc.co.jp</a>
+                            <p class="regi_send">ご入力後のファイルは以下アドレスまたはFAXにて送信をお願いいたします。<br class="c-brsp">（手書きで持参いただくことも可能です。）</p>
+                            <div class="regi_send--box">
+                                <a href="mailto:info@kunocc.co.jp" class="mailbox"><span></span>info@kunocc.co.jp</a>
+                                <a href="tel:0476-92-5063" class="mailbox _tell"><span></span>FAX 0476(92)5063</a>
+                            </div>
                         </div>
                     </div>
                 </div>
