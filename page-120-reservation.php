@@ -274,7 +274,7 @@
                 <!-- タブエリア -->
                 <ul class="tabMenu">
                     <li class="active">通常プレーの場合</li>
-                    <li class="ignore">スループレーの場合</li>
+                    <li>スループレーの場合<span>（※会員様のみ・土日祝限定）</span></li>
                 </ul>
                 <div class="tabbox">
                     <div class="tabContent active">
@@ -412,7 +412,6 @@
 
                     <!-- スループレー -->
                     <div class="tabContent ignore">
-                        <p class="rnotice _thr">&#8251;スループレーは<span>土日祝日</span>のみになります。</p>
                         <ul class="pflow">
                             <li class="pflow__arrow_box _01">
                                 <div class="pflow__tex">
