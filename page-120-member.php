@@ -157,12 +157,14 @@ elseif (empty($shown_ids)) :
   echo '<li>現在お知らせはありません。</li>';
 endif;
 
+wp_reset_postdata();
+?>
         </ul>
         <ul class="c-pagenation">
           <?php if (!empty($paging_q)) custom_pagination($paging_q); ?>
         </ul>
         <?php wp_reset_postdata(); ?>
-
+        
       </div><!-- /.left -->
 
       <!-- =============================
