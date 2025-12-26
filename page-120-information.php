@@ -22,10 +22,6 @@
     <span class="deco _01"><span></span></span>
     <div class="c-column">
       <div class="news-box">
-
-        <!-- ======================
-           左カラム
-      ====================== -->
         <div class="news-box__left">
           <h2 class="c-head6">営業案内<span>Information</span></h2>
 
@@ -180,6 +176,8 @@ if ($normal_q->have_posts()) :
 elseif ($paged === 1 && empty($sticky_ids)) :
   echo '<li>現在お知らせはありません。</li>';
 endif;
+wp_reset_postdata();
+?>
 
         </ul>
 

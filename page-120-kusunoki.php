@@ -18,7 +18,8 @@
 
   <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
 
-
+  <section class="c-member">
+  <span class="deco _01"><span></span></span>
   <div class="c-column">
     <div class="news-box">
       <div class="news-box__left">
@@ -178,6 +179,8 @@ if ($normal_q->have_posts()) :
 elseif ($paged === 1 && empty($sticky_ids)) :
   echo '<li>現在お知らせはありません。</li>';
 endif;
+wp_reset_postdata();
+?>
           </ul>
 
         <ul class="c-pagenation">
