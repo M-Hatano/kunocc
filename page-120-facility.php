@@ -217,13 +217,13 @@
       <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
-            <h3 class="facility__info--sub">更衣室</h3>
-            <p>プレー前後のひとときを支える更衣室にも、当倶楽部ならではのゆとりと配慮を。<br>快適で清潔な空間をご用意しております。</p>
+            <h3 class="facility__info--sub">脱衣室</h3>
+            <p>プレー後のひとときを支える脱衣室にも、当倶楽部ならではのゆとりと配慮を。<br>快適で清潔な空間をご用意しております。</p>
           </div>
         </div>
         <span class="facility__flex--img">
           <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_06.jpg" class="fancybox" data-fancybox="facility">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_06.jpg" alt="更衣室" loading="lazy">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_06.jpg" alt="脱衣室" loading="lazy">
           </a>
         </span>
       </div>
@@ -292,27 +292,12 @@
       <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
-            <h3 class="facility__info--sub">ドライビングレンジ</h3>
-            <p>15打席もあるゆとりのある練習場。<br>広々としたフェアウェイに向かって思いきりスイングできる、天然芝の練習エリア。<br>自然林に囲まれた静かな環境で、集中してショットを磨けます。<br>奥行きあるレイアウトは実戦さながらの臨場感。<br class="c-brpc">プレー前の調整にも、じっくりと取り組む練習にも最適です。</p>
+            <p>当倶楽部の練習場は、230ヤードを超えるドライビングレンジを完備。（全14打席、左打席あり。）<br>さらに、実際のコースさながらのアプローチやバンカー練習場も設置しており、ラウンド前の調整や実践的なショット練習に最適です。</p>
           </div>
         </div>
         <span class="facility__flex--img">
           <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_11.jpg" class="fancybox" data-fancybox="facility">
             <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_11.jpg" alt="ドライビングレンジ" loading="lazy">
-          </a>
-        </span>
-      </div>
-
-      <div class="facility__flex fade-in">
-        <div class="facility__info">
-          <div>
-            <h3 class="facility__info--sub">バンカー</h3>
-            <p>練習場にはバンカーエリアも併設しており、ショットだけでなく多彩なシーンに対応した練習が可能です。</p>
-          </div>
-        </div>
-        <span class="facility__flex--img">
-          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_12.jpg" class="fancybox" data-fancybox="facility">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_12.jpg" alt="バンカー" loading="lazy">
           </a>
         </span>
       </div>

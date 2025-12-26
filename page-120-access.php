@@ -144,7 +144,7 @@ Template Name: アクセス
     <section id="link04">
       <h2 class="ahead">タクシーのご案内</h2>
       <p>JR成田駅&bull;京成成田駅より所要時間10分</p>
-      <p>概算料金&nbsp;約1,600円～1,700円</p>
+      <p>概算料金&nbsp;約2,000円〜</p>
     </section>
 
     <section id="link05">
