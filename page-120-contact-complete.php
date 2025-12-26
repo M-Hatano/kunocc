@@ -1,5 +1,5 @@
 <?php
-      /*
+/*
       Template Name: お問い合わせ-完了
       */
 ?>
@@ -215,26 +215,26 @@ mb_internal_encoding('UTF-8');
 if (!function_exists('kunocc_setup_smtp_for_this_request')) {
   function kunocc_setup_smtp_for_this_request($phpmailer)
   {
-      $phpmailer->isSMTP();
-      //$phpmailer->Host       = '';
-      $phpmailer->Host       = 'create-biz.sakura.ne.jp';  // 送信サーバー
-      $phpmailer->SMTPAuth   = true;
-      //$phpmailer->Username   = '';
-      $phpmailer->Username   = 'hp-order@create-golf.co.jp'; // 送信されるアドレス
-      //$phpmailer->Password   = '';
-      $phpmailer->Password   = 'q5Fqt/Q!SNjB';                // 送信されるアドレスのパスワード
-      $phpmailer->SMTPSecure = 'tls';                    // 通信暗号化方式（tls/587 または ssl/465）
-      $phpmailer->Port       = 587;                      // TLS→587 / SSL→465
-      $phpmailer->SMTPAutoTLS   = true;
-      $phpmailer->Timeout       = 15;
-      $phpmailer->SMTPKeepAlive = false;
-      $phpmailer->CharSet    = 'UTF-8';
-      $phpmailer->Encoding   = 'base64';
-      $phpmailer->isHTML(false); // プレーンテキスト
-      //$phpmailer->setFrom('', '久能カントリー倶楽部', false); 
-      $phpmailer->setFrom('hp-order@create-golf.co.jp', '久能カントリー倶楽部', false); // 送信者（From）メールアドレスと表示名
-      //$phpmailer->addReplyTo('', '久能カントリー倶楽部');
-      $phpmailer->addReplyTo('hp-order@create-golf.co.jp', '久能カントリー倶楽部'); // 返信先（Reply-To）メールアドレスと表示名
+    $phpmailer->isSMTP();
+    //$phpmailer->Host       = '';
+    $phpmailer->Host       = 'create-biz.sakura.ne.jp';  // 送信サーバー
+    $phpmailer->SMTPAuth   = true;
+    //$phpmailer->Username   = '';
+    $phpmailer->Username   = 'hp-order@create-golf.co.jp'; // 送信されるアドレス
+    //$phpmailer->Password   = '';
+    $phpmailer->Password   = 'q5Fqt/Q!SNjB';                // 送信されるアドレスのパスワード
+    $phpmailer->SMTPSecure = 'tls';                    // 通信暗号化方式（tls/587 または ssl/465）
+    $phpmailer->Port       = 587;                      // TLS→587 / SSL→465
+    $phpmailer->SMTPAutoTLS   = true;
+    $phpmailer->Timeout       = 15;
+    $phpmailer->SMTPKeepAlive = false;
+    $phpmailer->CharSet    = 'UTF-8';
+    $phpmailer->Encoding   = 'base64';
+    $phpmailer->isHTML(false); // プレーンテキスト
+    //$phpmailer->setFrom('', '久能カントリー倶楽部', false); 
+    $phpmailer->setFrom('hp-order@create-golf.co.jp', '久能カントリー倶楽部', false); // 送信者（From）メールアドレスと表示名
+    //$phpmailer->addReplyTo('', '久能カントリー倶楽部');
+    $phpmailer->addReplyTo('hp-order@create-golf.co.jp', '久能カントリー倶楽部'); // 返信先（Reply-To）メールアドレスと表示名
   }
   add_action('phpmailer_init', 'kunocc_setup_smtp_for_this_request');
 }
@@ -246,8 +246,8 @@ $ok2 = wp_mail($adm_mail, $title2, $text2);
 
 //エラーの際に送信結果をFTPにログ出力
 if (!$ok1 || !$ok2) {
-  error_log('[Kunocc Contact] send failed: user=' . ($user_mail ?: 'N/A') . 
-      ' ok1=' . ($ok1 ? '1' : '0') . ' ok2=' . ($ok2 ? '1' : '0'));
+  error_log('[Kunocc Contact] send failed: user=' . ($user_mail ?: 'N/A') .
+    ' ok1=' . ($ok1 ? '1' : '0') . ' ok2=' . ($ok2 ? '1' : '0'));
 }
 
 // フック解除（他テンプレへの影響防止）

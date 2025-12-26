@@ -14,186 +14,187 @@
     <!-- 共通メニュー -->
 
     <section class="c-member">
-    <span class="deco _01"><span></span></span>
-    <div class="c-column">
-        <div class="news-box">
-            <div class="news-box__left">
+        <span class="deco _01"><span></span></span>
+        <div class="c-column">
+            <div class="news-box">
+                <div class="news-box__left">
 
-                <?php if (have_posts()): while (have_posts()): the_post(); ?>
+                    <?php if (have_posts()): while (have_posts()): the_post(); ?>
 
-                <!-- タイトル・日付 -->
-                <h2 class="news-dt__ttl">
-                    <span><?php echo get_the_date('Y.m.d'); ?></span>
-                    <?php the_title(); ?>
-                </h2>
+                            <!-- タイトル・日付 -->
+                            <h2 class="news-dt__ttl">
+                                <span><?php echo get_the_date('Y.m.d'); ?></span>
+                                <?php the_title(); ?>
+                            </h2>
 
-                <!-- 本文（WYSIWYG本文） -->
-                <div class="m-single__content">
-                    <?php the_content(); ?>
+                            <!-- 本文（WYSIWYG本文） -->
+                            <div class="m-single__content">
+                                <?php the_content(); ?>
+                            </div>
+
+                            <!-- 上部テキスト -->
+                            <?php if (get_field('news_txt')): ?>
+                                <p class="c-txt"><?php echo wp_kses_post(get_field('news_txt')); ?></p>
+                            <?php endif; ?>
+
+                            <!-- 画像1〜3 -->
+                            <?php
+                            $imgs = [
+                                get_field('news_image'),
+                                get_field('news_image2'),
+                                get_field('news_image3')
+                            ];
+
+                            foreach ($imgs as $img):
+
+                                if ($img):
+
+                                    // ACF画像フィールドは配列のことがある → ID を取得
+                                    $attachment_id = is_array($img) ? $img['ID'] : $img;
+
+                                    // 保護URLに変換（会員チェックONのときのみ ID付き URL になる）
+                                    $protected_url = knc_protect_image_url($attachment_id);
+
+                                    // alt
+                                    $alt = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
+                            ?>
+                                    <div class="img-area">
+                                        <img
+                                            src="<?php echo esc_url($protected_url); ?>"
+                                            alt="<?php echo esc_attr($alt); ?>"
+                                            loading="lazy">
+                                    </div>
+
+                            <?php
+                                endif;
+                            endforeach;
+                            ?>
+
+                            <!-- PDF / ファイル ボタン -->
+                            <?php
+                            $files = [
+                                ['file' => get_field('news_file'),  'txt' => get_field('txt_btn')  ?: "詳しくはこちら"],
+                                ['file' => get_field('news_file2'), 'txt' => get_field('txt_btn2') ?: "詳しくはこちら"],
+                                ['file' => get_field('news_file3'), 'txt' => get_field('txt_btn3') ?: "詳しくはこちら"],
+                                ['file' => get_field('news_file4'), 'txt' => get_field('txt_btn4') ?: "詳しくはこちら"],
+                                ['file' => get_field('news_file5'), 'txt' => get_field('txt_btn5') ?: "詳しくはこちら"],
+                            ];
+
+                            // いずれか1つでもあればボタン表示
+                            $has_file = false;
+                            foreach ($files as $f) {
+                                if (!empty($f['file'])) $has_file = true;
+                            }
+                            ?>
+
+                            <?php if ($has_file): ?>
+                                <div class="btn-area">
+                                    <?php foreach ($files as $f): ?>
+                                        <?php if (!empty($f['file'])): ?>
+
+                                            <?php
+                                            // ここが重要 → 保護 URL に変換
+                                            $href = knc_get_protected_acf_file_url($f['file']);
+                                            ?>
+
+                                            <a href="<?php echo esc_url($href); ?>" target="_blank" class="c-link-pdf" rel="noopener noreferrer">
+                                                <?php echo esc_html($f['txt']); ?>
+                                            </a>
+
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <!-- 下部テキスト -->
+                            <?php if (get_field('news_txt2')): ?>
+                                <p class="c-txt"><?php echo wp_kses_post(get_field('news_txt2')); ?></p>
+                            <?php endif; ?>
+
+                    <?php endwhile;
+                    endif; ?>
+
                 </div>
 
-                <!-- 上部テキスト -->
-                <?php if (get_field('news_txt')): ?>
-                    <p class="c-txt"><?php echo wp_kses_post(get_field('news_txt')); ?></p>
-                <?php endif; ?>
-
-                <!-- 画像1〜3 -->
-                <?php
-                $imgs = [
-                    get_field('news_image'),
-                    get_field('news_image2'),
-                    get_field('news_image3')
-                ];
-
-                foreach ($imgs as $img):
-
-                    if ($img):
-
-                        // ACF画像フィールドは配列のことがある → ID を取得
-                        $attachment_id = is_array($img) ? $img['ID'] : $img;
-
-                        // 保護URLに変換（会員チェックONのときのみ ID付き URL になる）
-                        $protected_url = knc_protect_image_url($attachment_id);
-
-                        // alt
-                        $alt = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
-                ?>
-                        <div class="img-area">
-                            <img 
-                                src="<?php echo esc_url($protected_url); ?>" 
-                                alt="<?php echo esc_attr($alt); ?>" 
-                                loading="lazy"
-                            >
-                        </div>
-
-                <?php
-                    endif;
-                endforeach;
-                ?>
-
-                <!-- PDF / ファイル ボタン -->
-                <?php
-                $files = [
-                    ['file' => get_field('news_file'),  'txt' => get_field('txt_btn')  ?: "詳しくはこちら"],
-                    ['file' => get_field('news_file2'), 'txt' => get_field('txt_btn2') ?: "詳しくはこちら"],
-                    ['file' => get_field('news_file3'), 'txt' => get_field('txt_btn3') ?: "詳しくはこちら"],
-                    ['file' => get_field('news_file4'), 'txt' => get_field('txt_btn4') ?: "詳しくはこちら"],
-                    ['file' => get_field('news_file5'), 'txt' => get_field('txt_btn5') ?: "詳しくはこちら"],
-                ];
-
-                // いずれか1つでもあればボタン表示
-                $has_file = false;
-                foreach ($files as $f) {
-                    if (!empty($f['file'])) $has_file = true;
-                }
-                ?>
-
-                <?php if ($has_file): ?>
-                    <div class="btn-area">
-                        <?php foreach ($files as $f): ?>
-                            <?php if (!empty($f['file'])): ?>
-
-                                <?php
-                                // ここが重要 → 保護 URL に変換
-                                $href = knc_get_protected_acf_file_url($f['file']);
-                                ?>
-
-                                <a href="<?php echo esc_url($href); ?>" target="_blank" class="c-link-pdf" rel="noopener noreferrer">
-                                    <?php echo esc_html($f['txt']); ?>
-                                </a>
-
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-
-                <!-- 下部テキスト -->
-                <?php if (get_field('news_txt2')): ?>
-                    <p class="c-txt"><?php echo wp_kses_post(get_field('news_txt2')); ?></p>
-                <?php endif; ?>
-
-                <?php endwhile; endif; ?>
-
-            </div>
-
-            <!-- =======================
+                <!-- =======================
                 サイドバー（会員）
             ======================= -->
-            <div class="news-box__right">
-                <h3 class="c-head5">Archive</h3>
-                <div class="news-box__right--box">
+                <div class="news-box__right">
+                    <h3 class="c-head5">Archive</h3>
+                    <div class="news-box__right--box">
 
-                <?php
-// 現在記事のカテゴリ（member_category）取得
-$terms  = get_the_terms(get_the_ID(), 'member_category');
-$subcat = 'member';
+                        <?php
+                        // 現在記事のカテゴリ（member_category）取得
+                        $terms  = get_the_terms(get_the_ID(), 'member_category');
+                        $subcat = 'member';
 
-if ($terms && !is_wp_error($terms)) {
-    foreach ($terms as $term) {
-        if (in_array($term->slug, ['member', 'information', 'kusunoki'], true)) {
-            $subcat = $term->slug;
-            break;
-        }
-    }
-}
+                        if ($terms && !is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                if (in_array($term->slug, ['member', 'information', 'kusunoki'], true)) {
+                                    $subcat = $term->slug;
+                                    break;
+                                }
+                            }
+                        }
 
-// サブカテゴリごとの年別リンクのベースパス
-$base = '/member';
-if ($subcat === 'information') $base = '/member/information';
-if ($subcat === 'kusunoki')     $base = '/member/kusunoki';
+                        // サブカテゴリごとの年別リンクのベースパス
+                        $base = '/member';
+                        if ($subcat === 'information') $base = '/member/information';
+                        if ($subcat === 'kusunoki')     $base = '/member/kusunoki';
 
-// 共通 tax_query（必ず subcat で絞る）
-$tax_query_member = [[
-    'taxonomy' => 'member_category',
-    'field'    => 'slug',
-    'terms'    => [$subcat],
-]];
-?>
+                        // 共通 tax_query（必ず subcat で絞る）
+                        $tax_query_member = [[
+                            'taxonomy' => 'member_category',
+                            'field'    => 'slug',
+                            'terms'    => [$subcat],
+                        ]];
+                        ?>
 
-<!-- 新着5件 -->
-<div class="recent-posts-box">
-    <h3>新着記事</h3>
-    <ul>
-        <?php
-        $recent_q = new WP_Query([
-            'post_type'      => 'member_post',
-            'posts_per_page' => 5,
-            'orderby'        => 'date',
-            'order'          => 'DESC',
-            'post__not_in'   => [get_the_ID()], // 自分自身は除外（任意）
-            'tax_query'      => $tax_query_member,
-        ]);
+                        <!-- 新着5件 -->
+                        <div class="recent-posts-box">
+                            <h3>新着記事</h3>
+                            <ul>
+                                <?php
+                                $recent_q = new WP_Query([
+                                    'post_type'      => 'member_post',
+                                    'posts_per_page' => 5,
+                                    'orderby'        => 'date',
+                                    'order'          => 'DESC',
+                                    'post__not_in'   => [get_the_ID()], // 自分自身は除外（任意）
+                                    'tax_query'      => $tax_query_member,
+                                ]);
 
-        while ($recent_q->have_posts()) :
-            $recent_q->the_post();
+                                while ($recent_q->have_posts()) :
+                                    $recent_q->the_post();
 
-            // ACF 直リンク処理（一覧と同じルールに統一）
-            $news_file = get_field('news_file');
-            $direct    = get_field('direct_link');
-            $link_url  = get_field('link_url');
+                                    // ACF 直リンク処理（一覧と同じルールに統一）
+                                    $news_file = get_field('news_file');
+                                    $direct    = get_field('direct_link');
+                                    $link_url  = get_field('link_url');
 
-            if ($link_url) {
-                $href = my_member_convert_url($link_url);
-            } elseif ($news_file && $direct) {
-                $href = knc_get_protected_acf_file_url($news_file);
-            } else {
-                $href = get_permalink();
-            }
-        ?>
-            <li><a href="<?php echo esc_url($href); ?>"><?php the_title(); ?></a></li>
-        <?php endwhile; wp_reset_postdata(); ?>
-    </ul>
-</div>
+                                    if ($link_url) {
+                                        $href = my_member_convert_url($link_url);
+                                    } elseif ($news_file && $direct) {
+                                        $href = knc_get_protected_acf_file_url($news_file);
+                                    } else {
+                                        $href = get_permalink();
+                                    }
+                                ?>
+                                    <li><a href="<?php echo esc_url($href); ?>"><?php the_title(); ?></a></li>
+                                <?php endwhile;
+                                wp_reset_postdata(); ?>
+                            </ul>
+                        </div>
 
-<!-- 年度別 -->
-<div>
-    <h3>年度別</h3>
-    <ul class="news-box__right--list">
-        <?php
-        global $wpdb;
+                        <!-- 年度別 -->
+                        <div>
+                            <h3>年度別</h3>
+                            <ul class="news-box__right--list">
+                                <?php
+                                global $wpdb;
 
-        // subcat（member/information/kusunoki）ごとに「年 + 件数」をSQLで取得（高速＆正確）
-        $sql = $wpdb->prepare("
+                                // subcat（member/information/kusunoki）ごとに「年 + 件数」をSQLで取得（高速＆正確）
+                                $sql = $wpdb->prepare("
             SELECT YEAR(p.post_date) AS y, COUNT(*) AS cnt
             FROM {$wpdb->posts} AS p
             INNER JOIN {$wpdb->term_relationships} AS tr ON p.ID = tr.object_id
@@ -208,37 +209,38 @@ $tax_query_member = [[
             ORDER BY y DESC
         ", $subcat);
 
-        $years = $wpdb->get_results($sql);
+                                $years = $wpdb->get_results($sql);
 
-        foreach ($years as $row) :
-            // /member/{year}/  or /member/information/{year}/ etc
-            $year_url = home_url("{$base}/{$row->y}/");
-        ?>
-            <li>
-                <a href="<?php echo esc_url($year_url); ?>">
-                    <?php echo esc_html($row->y); ?>年（<?php echo esc_html($row->cnt); ?>）
-                </a>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-</div>
+                                foreach ($years as $row) :
+                                    // /member/{year}/  or /member/information/{year}/ etc
+                                    $year_url = home_url("{$base}/{$row->y}/");
+                                ?>
+                                    <li>
+                                        <a href="<?php echo esc_url($year_url); ?>">
+                                            <?php echo esc_html($row->y); ?>年（<?php echo esc_html($row->cnt); ?>）
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
 
+                    </div>
                 </div>
+
             </div>
 
+            <ul class="c-brd">
+                <li><a href="<?php echo esc_url(home_url('/')); ?>">TOP</a></li>
+                <li><a href="<?php echo esc_url(home_url('/member/')); ?>">会員サイト</a></li>
+                <li><?php the_title(); ?></li>
+            </ul>
+
         </div>
-
-        <ul class="c-brd">
-            <li><a href="<?php echo esc_url(home_url('/')); ?>">TOP</a></li>
-            <li><a href="<?php echo esc_url(home_url('/member/')); ?>">会員サイト</a></li>
-            <li><?php the_title(); ?></li>
-        </ul>
-
-    </div>
     </section>
 </main>
 
 <?php get_footer('120'); ?>
 <?php wp_footer(); ?>
 </body>
+
 </html>

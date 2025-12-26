@@ -4,8 +4,8 @@
       */
       ?>
 
-     <!--  header -->
-     <?php get_header('120'); ?>
+      <!--  header -->
+      <?php get_header('120'); ?>
       <!--  header -->
 
       <main class="c-main">
