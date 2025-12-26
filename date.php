@@ -30,46 +30,53 @@
                     /* -------------------------------------------------
                      * 基本設定
                      * -------------------------------------------------*/
-                    $paged          = max(1, get_query_var('paged'));
-                    $year           = intval(get_query_var('year'));
+                    $paged          = max(1, (int) get_query_var('paged'));
+                    $year           = (int) get_query_var('year');
                     $posts_per_page = 10;
 
                     /* -------------------------------------------------
-                     * 共通 tax_query（news のみ+会員カテゴリ除外）
+                     * 共通 tax_query（news のみ）
                      * -------------------------------------------------*/
                     $tax_query_news = [
-                        'relation' => 'AND',
                         [
                             'taxonomy' => 'category',
                             'field'    => 'slug',
                             'terms'    => ['news'],
-                            'operator' => 'IN',
-                        ],
-                        [
-                            'taxonomy' => 'category',
-                            'field'    => 'slug',
-                            'terms'    => ['member', 'kusunoki', 'information'],
-                            'operator' => 'NOT IN',
                         ],
                     ];
 
                     /* -------------------------------------------------
+                     * ページネーション専用クエリ（★ここで1回だけ作る）
+                     * Sticky を無視して “通常の件数” を正しく持たせる
+                     * -------------------------------------------------*/
+                    $paging_args = [
+                        'post_type'           => 'post',
+                        'posts_per_page'      => $posts_per_page, // 10固定
+                        'paged'               => $paged,
+                        'ignore_sticky_posts' => true,
+                        'tax_query'           => $tax_query_news,
+                    ];
+                    if ($year) {
+                        $paging_args['year'] = $year;
+                    }
+                    $paging_q = new WP_Query($paging_args);
+
+                    /* -------------------------------------------------
                      * ★ Sticky（1ページ目のみ最大3件）
                      * -------------------------------------------------*/
-                    $sticky_ids = [];
                     $shown_ids  = [];
+                    $sticky_ids = [];
 
                     if ($paged === 1) {
 
                         $all_sticky = get_option('sticky_posts');
 
-                        if ($all_sticky) {
-
+                        if (!empty($all_sticky)) {
                             $sticky_ids = get_posts([
                                 'post_type'      => 'post',
                                 'post__in'       => $all_sticky,
                                 'fields'         => 'ids',
-                                'posts_per_page' => 3,  // ← ★ 3件に制限
+                                'posts_per_page' => 3,   // ★最大3件
                                 'year'           => $year,
                                 'tax_query'      => $tax_query_news,
                             ]);
@@ -77,7 +84,7 @@
                             $sticky_ids = array_slice($sticky_ids, 0, 3);
                         }
 
-                        if ($sticky_ids) :
+                        if (!empty($sticky_ids)) {
 
                             $sticky_q = new WP_Query([
                                 'post_type' => 'post',
@@ -98,34 +105,40 @@
                                 } else {
                                     $href = get_permalink();
                                 }
-                    ?>
+                                ?>
                                 <li>
                                     <a href="<?php echo $href; ?>">
-                                        <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
+                                        <span class="news-box__time"><?php echo esc_html(get_the_date('Y.m.d')); ?></span>
                                         <?php the_title(); ?>
                                     </a>
                                 </li>
-                    <?php
+                                <?php
                             endwhile;
+
                             wp_reset_postdata();
-                        endif;
+                        }
                     }
 
                     /* -------------------------------------------------
                      * 通常記事（Sticky 除外）
+                     * 1ページ目は「10 - sticky表示件数」だけ出す
                      * -------------------------------------------------*/
                     $remain = ($paged === 1) ? $posts_per_page - count($shown_ids) : $posts_per_page;
                     $remain = max(0, $remain);
 
-                    $normal_q = new WP_Query([
+                    $normal_args = [
                         'post_type'           => 'post',
                         'posts_per_page'      => $remain,
                         'paged'               => $paged,
-                        'post__not_in'        => $shown_ids,
+                        'post__not_in'        => $shown_ids, // ★表示済みsticky除外
                         'ignore_sticky_posts' => true,
-                        'year'                => $year,
                         'tax_query'           => $tax_query_news,
-                    ]);
+                    ];
+                    if ($year) {
+                        $normal_args['year'] = $year;
+                    }
+
+                    $normal_q = new WP_Query($normal_args);
 
                     if ($normal_q->have_posts()) :
                         while ($normal_q->have_posts()) :
@@ -140,20 +153,18 @@
                             } else {
                                 $href = get_permalink();
                             }
-                    ?>
+                            ?>
                             <li>
                                 <a href="<?php echo $href; ?>">
-                                    <span class="news-box__time"><?php echo get_the_date('Y.m.d'); ?></span>
+                                    <span class="news-box__time"><?php echo esc_html(get_the_date('Y.m.d')); ?></span>
                                     <?php the_title(); ?>
                                 </a>
                             </li>
-                    <?php
+                            <?php
                         endwhile;
 
                     elseif (empty($shown_ids)) :
-
                         echo '<li>現在お知らせはありません。</li>';
-
                     endif;
 
                     wp_reset_postdata();
@@ -163,8 +174,9 @@
 
                 <!-- ページネーション -->
                 <ul class="c-pagenation">
-                    <?php custom_pagination($normal_q); ?>
+                    <?php custom_pagination($paging_q); ?>
                 </ul>
+                <?php wp_reset_postdata(); ?>
 
             </div><!-- /.news-box__left -->
 
@@ -205,7 +217,7 @@
                                 } else {
                                     $href = get_permalink();
                                 }
-                            ?>
+                                ?>
                                 <li>
                                     <a href="<?php echo $href; ?>"><?php the_title(); ?></a>
                                 </li>
@@ -239,7 +251,7 @@
                             ");
 
                             foreach ($years as $row) :
-                            ?>
+                                ?>
                                 <li>
                                     <a href="<?php echo esc_url(home_url("/news/{$row->y}/")); ?>">
                                         <?php echo esc_html($row->y); ?>年
@@ -255,8 +267,6 @@
             </div><!-- /.news-box__right -->
 
         </div><!-- /.news-box -->
-
-
 
         <!-- パンくず -->
         <ul class="c-brd">

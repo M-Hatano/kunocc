@@ -26,21 +26,13 @@
 
                     <?php
                     /* -------------------------------------------------
-                     * ① ニュース用カテゴリ制限（会員カテゴリ除外）
-                     * -------------------------------------------------*/
+                    * ① ニュース用カテゴリ制限（news のみ取得）
+                    * -------------------------------------------------*/
                     $tax_query = [
-                        'relation' => 'AND',
                         [
                             'taxonomy' => 'category',
                             'field'    => 'slug',
                             'terms'    => ['news'],
-                            'operator' => 'IN',
-                        ],
-                        [
-                            'taxonomy' => 'category',
-                            'field'    => 'slug',
-                            'terms'    => ['member', 'kusunoki', 'information'],
-                            'operator' => 'NOT IN',
                         ],
                     ];
 
@@ -126,6 +118,18 @@
                         'tax_query'           => $tax_query,
                     ]);
 
+                     /* -------------------------------------------------
+                    * ⑤ ページネーション専用クエリ（★追加）
+                    * -------------------------------------------------*/
+                    $paging_q = new WP_Query([
+                        'post_type'           => 'post',
+                        'posts_per_page'      => $posts_per_page, // ★ 常に10固定
+                        'paged'               => $paged,
+                        'ignore_sticky_posts' => true,
+                        'year'                => $year,
+                        'tax_query'           => $tax_query,
+                    ]);
+
                     if ($normal_q->have_posts()) :
 
                         while ($normal_q->have_posts()) :
@@ -163,7 +167,7 @@
 
                 <!-- ページネーション -->
                 <ul class="c-pagenation">
-                    <?php custom_pagination($normal_q); ?>
+                    <?php custom_pagination($paging_q); ?>
                 </ul>
 
             </div>
