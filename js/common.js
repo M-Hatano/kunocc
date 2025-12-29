@@ -173,8 +173,8 @@ function anchorScroll() {
 
       // 画面幅に応じてスクロール位置を調整
       var scrollTop = $(window).width() <= 768 
-                      ? target.offset().top - 60  // レスポンシブ時（768px以下）
-                      : target.offset().top - 100; // 通常時
+                      ? target.offset().top - 45  // レスポンシブ時（768px以下）
+                      : target.offset().top - 95; // 通常時
 
       // スムーズにスクロール
       $('body,html').animate({
@@ -193,8 +193,8 @@ function scrollToHash() {
 
       // 画面幅に応じてスクロール位置を調整
       var scrollTop = $(window).width() <= 768 
-                      ? target.offset().top - 60  // レスポンシブ時（768px以下）
-                      : target.offset().top - 100; // 通常時
+                      ? target.offset().top - 45  // レスポンシブ時（768px以下）
+                      : target.offset().top - 95; // 通常時
 
       // アニメーションでスクロール
       $('body,html').animate({

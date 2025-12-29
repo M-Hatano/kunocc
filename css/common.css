@@ -1697,7 +1697,9 @@ table {
 .c-main {
   background-image: url("../img/common/bg_ashi_03.png");
   background-repeat: repeat;
-  background-color: #F8F7F2;
+  /* background-color: #F8F7F2; */
+  background-color: #ffffff33;
+  background-blend-mode: lighten;
 }
 
 
@@ -3303,10 +3305,10 @@ table {
   }
 }
 
-.regi_send--box{
-    display: flex;
-    gap: 20px 40px;
-    justify-content: center;
+.regi_send--box {
+  display: flex;
+  gap: 20px 40px;
+  justify-content: center;
 }
 
 .mailbox {
@@ -3351,7 +3353,7 @@ table {
     margin-bottom: 25px;
   }
 
-  .regi_send--box{
+  .regi_send--box {
     flex-wrap: wrap;
   }
 
