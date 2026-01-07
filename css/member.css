@@ -527,6 +527,9 @@
     margin-left: 0;
 }
 
+#registration .mailbox {
+    margin-inline: unset;
+}
 
 /* @media screen and (max-width: 896px) {
     .regi_send {
