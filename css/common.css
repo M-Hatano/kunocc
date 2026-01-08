@@ -2571,6 +2571,10 @@ table {
   margin-top: 0;
 }
 
+._mtss {
+  margin-top: 30px;
+}
+
 ._mts {
   margin-top: 60px;
 }
@@ -2584,6 +2588,9 @@ table {
 }
 
 @media screen and (max-width: 896px) {
+  ._mtss {
+    margin-top: 15px;
+  }
   ._mts {
     margin-top: 30px;
   }
