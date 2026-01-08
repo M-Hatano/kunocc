@@ -66,7 +66,10 @@
 
             <p class="regi_send">ご入力後のファイルは以下アドレス、またはFAXにて送信をお願いいたします。<br>（手書きで持参いただくことも可能です。）</p>
 
-            <a href="mailto:info@kunocc.co.jp" class="mailbox">info@kunocc.co.jp</a>
+            <div class="regi_send--box">
+              <a href="mailto:info@kunocc.co.jp" class="mailbox"><span></span>info@kunocc.co.jp</a>
+              <a href="tel:0476-92-5063" class="mailbox _tell"><span></span>FAX 0476(92)5063</a>
+            </div>
           </div>
 
           <!-- パンくずリスト -->
