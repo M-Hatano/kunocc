@@ -1,6 +1,6 @@
     <?php
     /*
-        Template Name: 料金カレンダー
+        Template Name: 会員料金カレンダー
       */
     ?>
 

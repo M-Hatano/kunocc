@@ -1,6 +1,6 @@
     <?php
     /*
-      Template Name: 提携コース
+      Template Name: 会員提携コース
       */
     ?>
 

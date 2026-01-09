@@ -1404,9 +1404,9 @@ function knc_template_router_by_path($template)
      * MEMBER：一覧/ページング
      * ========================= */
     $member_map = [
-        'member'             => 'page-120-member.php',
-        'member/information' => 'page-120-information.php',
-        'member/kusunoki'    => 'page-120-kusunoki.php',
+        'member'             => 'page-120-m-member.php',
+        'member/information' => 'page-120-m-information.php',
+        'member/kusunoki'    => 'page-120-m-kusunoki.php',
     ];
 
     foreach ($member_map as $base => $file) {

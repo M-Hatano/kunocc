@@ -1,6 +1,6 @@
     <?php
     /*
-      Template Name: コンペ申し込み
+      Template Name: 会員コンペ申し込み
       */
     ?>
 
