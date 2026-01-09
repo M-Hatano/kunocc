@@ -1590,8 +1590,8 @@ table {
   position: absolute;
   width: 25px;
   height: 25px;
-  border-right: 3px solid #fff;
-  border-top: 3px solid #fff;
+  border-right: 3px solid #00509E;
+  border-top: 3px solid #00509E;
   top: 55%;
   transform: translateY(-50%) rotate(-45deg);
 }
@@ -1600,9 +1600,10 @@ table {
   .c-pagetop a::before {
     width: 15px;
     height: 15px;
-    border-right: 2px solid #fff;
-    border-top: 2px solid #fff;
+    border-right: 3px solid #00509E;
+    border-top: 3px solid #00509E;
     top: 55%;
+    border-radius: 3px;
   }
 }
 
