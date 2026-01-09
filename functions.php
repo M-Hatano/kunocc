@@ -1204,55 +1204,53 @@ function fhg_get_news_years()
     return array_map('intval', $years);
 }
 
-// 検索結果から特定カテゴリ・特定固定ページを除外
-function fhg_exclude_from_search($query)
-{
-    if (!is_admin() && $query->is_main_query() && $query->is_search()) {
+// ─────────────────────────────────────────────────
+// 久能CC：会員関連（/member 配下）を noindex にする
+// ─────────────────────────────────────────────────
+function knc_is_member_area_request(): bool {
 
-        // ① 除外したいカテゴリスラッグ → term_id に変換
-        $exclude_slugs    = ['news', 'mevent', 'mnews', 'mcompe', 'mmanage'];
-        $exclude_term_ids = [];
+    // サイト相対パスを取れるならそれを使う（設置階層ゆれに強い）
+    if (function_exists('knc_get_site_relative_path')) {
+        $uri = knc_get_site_relative_path(); // 例: 'member', 'member/2025/' など
+        $uri = ltrim($uri, '/');
 
-        foreach ($exclude_slugs as $slug) {
-            if ($term = get_category_by_slug($slug)) {
-                $exclude_term_ids[] = $term->term_id;
-            }
-        }
+        // member または member/ で始まる場合をすべて拾う
+        return (preg_match('#^member(/|$)#', $uri) === 1);
+    }
 
-        if (!empty($exclude_term_ids)) {
-            $query->set('category__not_in', $exclude_term_ids);
-        }
+    // フォールバック：REQUEST_URI を直接見る
+    $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+    $path = is_string($path) ? $path : '/';
 
-        // ② 除外したい固定ページのID（かわら版一覧ページなど）
-        $exclude_page_id = 6429;
+    return (preg_match('#/(member)(/|$)#', $path) === 1);
+}
 
-        $post__not_in   = (array) $query->get('post__not_in');
-        $post__not_in[] = $exclude_page_id;
+function knc_should_noindex(): bool {
+    // 会員エリアはすべて noindex
+    return knc_is_member_area_request();
+}
 
-        $query->set('post__not_in', $post__not_in);
+// meta robots（HTML出力用：header-120.php から直呼び）
+function knc_add_noindex_meta() {
+    if (is_admin() || wp_doing_ajax()) {
+        return;
+    }
+
+    if (knc_should_noindex()) {
+        echo "<meta name=\"robots\" content=\"noindex,follow\">\n";
     }
 }
-add_action('pre_get_posts', 'fhg_exclude_from_search');
 
-// ─────────────────────────────────────────────────
-// 特定カテゴリ・特定固定ページを noindex にする
-// ─────────────────────────────────────────────────
-function fhg_add_noindex_meta()
-{
-    if (is_singular('post')) {
-        $exclude = ['news', 'mevent', 'mnews', 'mcompe', 'mmanage'];
-        $cats    = wp_get_post_categories(get_the_ID(), ['fields' => 'slugs']);
-        if (array_intersect($cats, $exclude)) {
-            echo '<meta name="robots" content="noindex,follow">' . "\n";
-            return;
-        }
-    }
+// 念押し：HTTPヘッダでも noindex（HTML以外にも効かせたい場合）
+function knc_add_xrobots_header() {
+    if (is_admin() || wp_doing_ajax()) return;
 
-    if (is_page(6429)) {
-        echo '<meta name="robots" content="noindex,follow">' . "\n";
+    if (knc_should_noindex() && !headers_sent()) {
+        header('X-Robots-Tag: noindex, follow', true);
     }
 }
-add_action('wp_head', 'fhg_add_noindex_meta', 1);
+add_action('send_headers', 'knc_add_xrobots_header', 1);
+
 
 add_action(
     'init',
@@ -1345,6 +1343,15 @@ add_action(
     20
 );
 
+function knc_get_member_category_from_path(): string {
+    $path = knc_get_site_relative_path(); // 例: member/kusunoki/2025
+
+    if (preg_match('#^member/(information|kusunoki)(/|$)#', $path, $m)) {
+        return $m[1];
+    }
+    return '';
+}
+
 add_action('pre_get_posts', function ($q) {
     if (is_admin() || !$q->is_main_query()) {
         return;
@@ -1434,6 +1441,77 @@ function knc_template_router_by_path($template)
 
     return $template;
 }
+
+/**
+ * 年別ページ（news / member）のタイトルを URL から強制生成（年は出さない）
+ * ※タイトルの出力方法（header側）は変更しない
+ */
+function knc_forced_year_page_title(): string
+{
+    if (!function_exists('knc_get_site_relative_path')) {
+        return '';
+    }
+
+    $path = trim(knc_get_site_relative_path(), '/'); // 例: news/2024, member/kusunoki/2025/page/2
+    if ($path === '') return '';
+
+    // /news/2024/ or /news/2024/page/2
+    if (preg_match('#^news/([0-9]{4})(?:/page/([0-9]+))?$#', $path)) {
+        return 'ニュース | ';
+    }
+
+    // /member/2025/ or /member/2025/page/2
+    if (preg_match('#^member/([0-9]{4})(?:/page/([0-9]+))?$#', $path)) {
+        return '会員様お知らせ | ';
+    }
+
+    // /member/information/2025/ or /member/information/2025/page/2
+    // /member/kusunoki/2025/ or /member/kusunoki/2025/page/2
+    if (preg_match('#^member/(information|kusunoki)/([0-9]{4})(?:/page/([0-9]+))?$#', $path, $m)) {
+        $sub = $m[1]; // information|kusunoki
+        return ($sub === 'information') ? '営業案内 | ' : 'くすのき会 | ';
+    }
+
+    return '';
+}
+
+
+/**
+ * wp_get_document_title() 用（テーマがこちらを使っている場合）
+ * → 最終的な <title> 全体を返す
+ */
+add_filter('pre_get_document_title', function ($title) {
+    $forced = knc_forced_year_page_title();
+    if ($forced === '') return $title;
+
+    $site = get_bloginfo('name'); // 久能カントリー倶楽部
+    return "{$forced} | {$site}";
+}, 9999);
+
+/**
+ * wp_title() 用（古いテーマや独自headerで wp_title() を使ってる場合）
+ * → “左側のタイトル部分”だけ差し替える（サイト名付与は既存の出し方に任せる）
+ */
+add_filter('wp_title', function ($title, $sep, $seplocation) {
+    $forced = knc_forced_year_page_title();
+    if ($forced === '') return $title;
+
+    return $forced;
+}, 9999, 3);
+
+/**
+ * document_title_parts を使っている場合の保険
+ */
+add_filter('document_title_parts', function ($parts) {
+    $forced = knc_forced_year_page_title();
+    if ($forced === '') return $parts;
+
+    // title 部分だけ差し替え
+    $parts['title'] = $forced;
+    return $parts;
+}, 9999);
+
+
 
 /**
  * member_post：カテゴリー未選択で「公開」された場合のみ
