@@ -1342,6 +1342,15 @@ add_action(
     20
 );
 
+function knc_get_member_category_from_path(): string {
+    $path = knc_get_site_relative_path(); // 例: member/kusunoki/2025
+
+    if (preg_match('#^member/(information|kusunoki)(/|$)#', $path, $m)) {
+        return $m[1];
+    }
+    return '';
+}
+
 add_action('pre_get_posts', function ($q) {
     if (is_admin() || !$q->is_main_query()) {
         return;
@@ -1431,6 +1440,77 @@ function knc_template_router_by_path($template)
 
     return $template;
 }
+
+/**
+ * 年別ページ（news / member）のタイトルを URL から強制生成（年は出さない）
+ * ※タイトルの出力方法（header側）は変更しない
+ */
+function knc_forced_year_page_title(): string
+{
+    if (!function_exists('knc_get_site_relative_path')) {
+        return '';
+    }
+
+    $path = trim(knc_get_site_relative_path(), '/'); // 例: news/2024, member/kusunoki/2025/page/2
+    if ($path === '') return '';
+
+    // /news/2024/ or /news/2024/page/2
+    if (preg_match('#^news/([0-9]{4})(?:/page/([0-9]+))?$#', $path)) {
+        return 'ニュース | ';
+    }
+
+    // /member/2025/ or /member/2025/page/2
+    if (preg_match('#^member/([0-9]{4})(?:/page/([0-9]+))?$#', $path)) {
+        return '会員様お知らせ | ';
+    }
+
+    // /member/information/2025/ or /member/information/2025/page/2
+    // /member/kusunoki/2025/ or /member/kusunoki/2025/page/2
+    if (preg_match('#^member/(information|kusunoki)/([0-9]{4})(?:/page/([0-9]+))?$#', $path, $m)) {
+        $sub = $m[1]; // information|kusunoki
+        return ($sub === 'information') ? '営業案内 | ' : 'くすのき会 | ';
+    }
+
+    return '';
+}
+
+
+/**
+ * wp_get_document_title() 用（テーマがこちらを使っている場合）
+ * → 最終的な <title> 全体を返す
+ */
+add_filter('pre_get_document_title', function ($title) {
+    $forced = knc_forced_year_page_title();
+    if ($forced === '') return $title;
+
+    $site = get_bloginfo('name'); // 久能カントリー倶楽部
+    return "{$forced} | {$site}";
+}, 9999);
+
+/**
+ * wp_title() 用（古いテーマや独自headerで wp_title() を使ってる場合）
+ * → “左側のタイトル部分”だけ差し替える（サイト名付与は既存の出し方に任せる）
+ */
+add_filter('wp_title', function ($title, $sep, $seplocation) {
+    $forced = knc_forced_year_page_title();
+    if ($forced === '') return $title;
+
+    return $forced;
+}, 9999, 3);
+
+/**
+ * document_title_parts を使っている場合の保険
+ */
+add_filter('document_title_parts', function ($parts) {
+    $forced = knc_forced_year_page_title();
+    if ($forced === '') return $parts;
+
+    // title 部分だけ差し替え
+    $parts['title'] = $forced;
+    return $parts;
+}, 9999);
+
+
 
 /**
  * member_post：カテゴリー未選択で「公開」された場合のみ
