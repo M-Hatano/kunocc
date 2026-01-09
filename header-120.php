@@ -132,6 +132,7 @@
                   <li><a href="<?php echo esc_url(home_url('')); ?>/dresscode/">ドレスコード</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/sitepolicy/">サイトポリシー</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/privacypolicy/">プライバシーポリシー</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/charassment/">カスタマーハラスメントへの対応について</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/links/">リンク集</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/contact/">お問い合わせ</a></li>
                 </ul>

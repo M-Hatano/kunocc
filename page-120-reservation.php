@@ -99,7 +99,7 @@
                         <div class="rcol">
                             <p class="rpoit _chen">ご確認事項</p>
 
-                            <ul class="rlistbox fade-in">
+                            <ul class="rlistbox">
                                 <li class="rlistbox__item">
                                     <div class="rlistbox__item--gd">
                                         プレー料金のご確認

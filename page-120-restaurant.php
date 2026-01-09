@@ -48,7 +48,7 @@
         <section id="private" class="private">
             <div class="c-column">
                 <h2 class="c-head5">プライベートルーム<span>PrivateRoom</span></h2>
-                <div class="feature">
+                <div class="feature fade-in">
                     <figure>
                         <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_private_01.jpg" alt="プライベートルーム">
                     </figure>
@@ -566,7 +566,7 @@
                 <h2 class="c-head5">飲み物メニュー<span>Drink</span></h2>
                 <div class="dwrap">
                     <div class="c-column">
-                        <div class="dwrap__pic">
+                        <div class="dwrap__pic fade-in">
                             <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_drink_01.jpg" class="dwrap__pic--left" alt="ウィスキー">
                             <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/restaurant/img_drink_02.jpg" class="dwrap__pic--right" alt="焼酎">
                         </div>
