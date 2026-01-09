@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- Google Tag Manager -->
-  <!--
-  <script>
-  </script>
-  -->
-  <!-- End Google Tag Manager -->
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- +++ noindex 出力 +++ -->
-  <?php fhg_add_noindex_meta(); ?>
+  <?php knc_add_noindex_meta(); ?>
   <!-- +++ noindex 出力 +++ -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
