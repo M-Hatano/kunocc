@@ -24,46 +24,46 @@ Template Name: リンク集
         <h2 class="title-type-02">リンク集</h2>
         <ul class="link-lists">
           <?php if (have_rows('links_regular')): ?>
-              <?php while (have_rows('links_regular')): the_row(); 
-                  $name = trim(get_sub_field('link_name'));
-                  $url  = trim(get_sub_field('link_url'));
+            <?php while (have_rows('links_regular')): the_row();
+              $name = trim(get_sub_field('link_name'));
+              $url  = trim(get_sub_field('link_url'));
 
-                  // name が空なら何も出力しない
-                  if ($name === '') continue;
-              ?>
-                  <li class="link-external">
-                      <?php if ($url): ?>
-                          <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener noreferrer">
-                              <?php echo esc_html($name); ?>
-                          </a>
-                      <?php else: ?>
-                          <span><?php echo esc_html($name); ?></span>
-                      <?php endif; ?>
-                  </li>
-              <?php endwhile; ?>
+              // name が空なら何も出力しない
+              if ($name === '') continue;
+            ?>
+              <li class="link-external">
+                <?php if ($url): ?>
+                  <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener noreferrer">
+                    <?php echo esc_html($name); ?>
+                  </a>
+                <?php else: ?>
+                  <span><?php echo esc_html($name); ?></span>
+                <?php endif; ?>
+              </li>
+            <?php endwhile; ?>
           <?php endif; ?>
         </ul>
 
         <h3 class="partnership-golf">提携ゴルフ場</h3>
         <ul class="link-lists">
           <?php if (have_rows('links_partnership')): ?>
-              <?php while (have_rows('links_partnership')): the_row(); 
-                  $name = trim(get_sub_field('partner_name'));
-                  $url  = trim(get_sub_field('partner_url'));
+            <?php while (have_rows('links_partnership')): the_row();
+              $name = trim(get_sub_field('partner_name'));
+              $url  = trim(get_sub_field('partner_url'));
 
-                  // name が空なら出力しない
-                  if ($name === '') continue;
-              ?>
-                  <li class="link-external">
-                      <?php if ($url): ?>
-                          <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener noreferrer">
-                              <?php echo esc_html($name); ?>
-                          </a>
-                      <?php else: ?>
-                          <span><?php echo esc_html($name); ?></span>
-                      <?php endif; ?>
-                  </li>
-              <?php endwhile; ?>
+              // name が空なら出力しない
+              if ($name === '') continue;
+            ?>
+              <li class="link-external">
+                <?php if ($url): ?>
+                  <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener noreferrer">
+                    <?php echo esc_html($name); ?>
+                  </a>
+                <?php else: ?>
+                  <span><?php echo esc_html($name); ?></span>
+                <?php endif; ?>
+              </li>
+            <?php endwhile; ?>
           <?php endif; ?>
         </ul>
 

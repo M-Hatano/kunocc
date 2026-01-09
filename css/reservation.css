@@ -527,6 +527,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   margin-top: 20px;
+  color: #fff;
 }
 @media screen and (max-width: 896px) {
   .tabMenu {
@@ -540,41 +541,41 @@
   text-align: center;
   background: #F2F5F8;
   color: #fff;
-  padding: 30px 0;
+  padding: 30px 0 20px;
   border-left: #8F8F8F 2px solid;
   cursor: pointer;
   width: 433px;
+  background: #132133;
+  border-left: none;
 }
 .tabMenu li.active{
   background: #FFFDF2;
+  color: #132133;
+}
+.tabMenu li span{
+  font-size: 1.6rem;
+  display: block;
+  margin: 5px 0 0;
 }
 @media screen and (max-width: 896px) {
   .tabMenu li {
     width: 50%;
     font-size: 16px;
     padding: 15px 0;
+    line-height: 1.2;
+  }
+  .tabMenu li span{
+    font-size: 1.2rem;
+    margin: 0;
   }
 }
 
-.tabMenu li {
-  border-left: none;
-  font-weight: 700;
-  font-size: 24px;
-  text-align: center;
-  color: #324A5B;
-  background: #F2F5F8;
-}
 @media screen and (max-width: 896px) {
   .tabMenu li {
     font-size: 16px;
     padding: 15px 0;
   }
 }
-
-.tabMenu .ignore {
-  background: #F2F5F8;
-}
-
 .tabbox {
   width: 100%;
   margin: 0 auto;
@@ -586,7 +587,7 @@
   background: #FFFDF2 url("../img/reservation/bg_flow_01.png") bottom/100% 485px no-repeat;
   -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
           box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
-  padding: 216px 50px 270px;
+  padding: 150px 50px 270px;
   position: relative;
 }
 @media screen and (max-width: 896px) {

@@ -16,10 +16,10 @@ if (!in_array('news', $slugs)) {
 $news_file = get_field('news_file');
 
 if (get_field('link_url')) {
-    wp_redirect( esc_url(get_field('link_url')) );
+    wp_redirect(esc_url(get_field('link_url')));
     exit;
 } elseif ($news_file && get_field('direct_link')) {
-    wp_redirect( esc_url($news_file) );
+    wp_redirect(esc_url($news_file));
     exit;
 }
 ?>
@@ -47,106 +47,107 @@ if (get_field('link_url')) {
 
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-                    <!-- タイトル・公開日 -->
-                    <h2 class="news-dt__ttl">
-                        <span><?php echo get_the_date('Y.m.d'); ?></span>
-                        <?php the_title(); ?>
-                    </h2>
+                        <!-- タイトル・公開日 -->
+                        <h2 class="news-dt__ttl">
+                            <span><?php echo get_the_date('Y.m.d'); ?></span>
+                            <?php the_title(); ?>
+                        </h2>
 
-                    <!-- パスワード保護 -->
-                    <?php if (post_password_required()) : ?>
+                        <!-- パスワード保護 -->
+                        <?php if (post_password_required()) : ?>
 
-                        <?php echo get_the_password_form(); ?>
+                            <?php echo get_the_password_form(); ?>
 
-                    <?php else : ?>
+                        <?php else : ?>
 
-                        <!-- 本文 -->
-                        <?php if (trim(get_the_content()) !== '') : ?>
-                            <div>
-                                <?php the_content(); ?>
-                            </div>
-                        <?php endif; ?>
-
-                        <!-- カスタムフィールド テキスト（文章上） -->
-                        <?php if (get_field('news_txt')) : ?>
-                            <p class="c-txt">
-                                <?php echo wp_kses_post(get_field('news_txt')); ?>
-                            </p>
-                        <?php endif; ?>
-
-                        <!-- カスタムフィールド画像（1〜3枚） -->
-                        <?php
-                        $imgs = [
-                            get_field('news_image'),
-                            get_field('news_image2'),
-                            get_field('news_image3')
-                        ];
-                        ?>
-
-                        <?php foreach ($imgs as $img) : ?>
-                            <?php if ($img) : ?>
-                                <div class="img-area">
-                                    <?php echo wp_get_attachment_image($img, 'large', false, ['loading' => 'lazy']); ?>
+                            <!-- 本文 -->
+                            <?php if (trim(get_the_content()) !== '') : ?>
+                                <div>
+                                    <?php the_content(); ?>
                                 </div>
                             <?php endif; ?>
-                        <?php endforeach; ?>
 
-                        <!-- カスタムフィールドPDFリンク -->
-                        <?php
-                        $files = [
-                            [
-                                'url' => get_field('news_file'),
-                                'txt' => get_field('txt_btn') ?: "詳しくはこちらをご覧ください"
-                            ],
-                            [
-                                'url' => get_field('news_file2'),
-                                'txt' => get_field('txt_btn2') ?: "詳しくはこちらをご覧ください"
-                            ],
-                            [
-                                'url' => get_field('news_file3'),
-                                'txt' => get_field('txt_btn3') ?: "詳しくはこちらをご覧ください"
-                            ],
-                            [
-                                'url' => get_field('news_file4'),
-                                'txt' => get_field('txt_btn4') ?: "詳しくはこちらをご覧ください"
-                            ],
-                            [
-                                'url' => get_field('news_file5'),
-                                'txt' => get_field('txt_btn5') ?: "詳しくはこちらをご覧ください"
-                            ]
-                        ];
+                            <!-- カスタムフィールド テキスト（文章上） -->
+                            <?php if (get_field('news_txt')) : ?>
+                                <p class="c-txt">
+                                    <?php echo wp_kses_post(get_field('news_txt')); ?>
+                                </p>
+                            <?php endif; ?>
 
-                        $has_file = false;
-                        foreach ($files as $f) {
-                            if (!empty($f['url'])) {
-                                $has_file = true;
-                                break;
+                            <!-- カスタムフィールド画像（1〜3枚） -->
+                            <?php
+                            $imgs = [
+                                get_field('news_image'),
+                                get_field('news_image2'),
+                                get_field('news_image3')
+                            ];
+                            ?>
+
+                            <?php foreach ($imgs as $img) : ?>
+                                <?php if ($img) : ?>
+                                    <div class="img-area">
+                                        <?php echo wp_get_attachment_image($img, 'large', false, ['loading' => 'lazy']); ?>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+
+                            <!-- カスタムフィールドPDFリンク -->
+                            <?php
+                            $files = [
+                                [
+                                    'url' => get_field('news_file'),
+                                    'txt' => get_field('txt_btn') ?: "詳しくはこちらをご覧ください"
+                                ],
+                                [
+                                    'url' => get_field('news_file2'),
+                                    'txt' => get_field('txt_btn2') ?: "詳しくはこちらをご覧ください"
+                                ],
+                                [
+                                    'url' => get_field('news_file3'),
+                                    'txt' => get_field('txt_btn3') ?: "詳しくはこちらをご覧ください"
+                                ],
+                                [
+                                    'url' => get_field('news_file4'),
+                                    'txt' => get_field('txt_btn4') ?: "詳しくはこちらをご覧ください"
+                                ],
+                                [
+                                    'url' => get_field('news_file5'),
+                                    'txt' => get_field('txt_btn5') ?: "詳しくはこちらをご覧ください"
+                                ]
+                            ];
+
+                            $has_file = false;
+                            foreach ($files as $f) {
+                                if (!empty($f['url'])) {
+                                    $has_file = true;
+                                    break;
+                                }
                             }
-                        }
-                        ?>
+                            ?>
 
-                        <?php if ($has_file) : ?>
-                            <div class="btn-area">
-                                <?php foreach ($files as $f) : ?>
-                                    <?php if ($f['url']) : ?>
-                                        <a href="<?php echo esc_url($f['url']); ?>" target="_blank" class="c-link-pdf" rel="noopener noreferrer">
-                                            <?php echo esc_html($f['txt']); ?>
-                                        </a>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </div>
+                            <?php if ($has_file) : ?>
+                                <div class="btn-area">
+                                    <?php foreach ($files as $f) : ?>
+                                        <?php if ($f['url']) : ?>
+                                            <a href="<?php echo esc_url($f['url']); ?>" target="_blank" class="c-link-pdf" rel="noopener noreferrer">
+                                                <?php echo esc_html($f['txt']); ?>
+                                            </a>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <!-- カスタムフィールド テキスト（文章下） -->
+                            <?php if (get_field('news_txt2')) : ?>
+                                <p class="c-txt">
+                                    <?php echo wp_kses_post(get_field('news_txt2')); ?>
+                                </p>
+                            <?php endif; ?>
+
                         <?php endif; ?>
 
-                        <!-- カスタムフィールド テキスト（文章下） -->
-                        <?php if (get_field('news_txt2')) : ?>
-                            <p class="c-txt">
-                                <?php echo wp_kses_post(get_field('news_txt2')); ?>
-                            </p>
-                        <?php endif; ?>
-
-                    <?php endif; ?>
-
-                <?php endwhile; endif; ?>
+                <?php endwhile;
+                endif; ?>
 
             </div><!-- /.news-box__left -->
 
@@ -193,7 +194,8 @@ if (get_field('link_url')) {
                                 <li>
                                     <a href="<?php echo $href; ?>"><?php the_title(); ?></a>
                                 </li>
-                            <?php endwhile; wp_reset_postdata(); ?>
+                            <?php endwhile;
+                            wp_reset_postdata(); ?>
                         </ul>
 
                     </div><!-- /.recent-posts-box -->
@@ -253,4 +255,5 @@ if (get_field('link_url')) {
 <?php wp_footer(); ?>
 
 </body>
+
 </html>

@@ -21,20 +21,30 @@
         <h2 class="c-head6">ゴルフ練習場<span>Driving&nbsp;Range</span></h2>
 
         <div class="picare">
-          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_01.jpg" class="fancybox" data-fancybox="range">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_01.jpg" alt="練習場">
-          </a>
-          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_02.jpg" class="fancybox" data-fancybox="range">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_02.jpg" alt="練習場">
-          </a>
+          <div>
+            <p class="picare__hd">ドライビングレンジ</p>
+            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_01.jpg" class="fancybox" data-fancybox="range">
+              <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_01.jpg" alt="練習場">
+            </a>
+            <p>
+              14打席もあるゆとりのある練習場。<br>
+              広々としたフェアウェイに向かって思いきりスイングできる、天然芝の練習エリア。<br class="c-brpc">
+              自然林に囲まれた静かな環境で、集中してショットを磨けます。<br>
+              奥行きあるレイアウトは実戦さながらの臨場感。<br>
+              プレー前の調整にも、じっくりと取り組む練習にも最適です。
+            </p>
+          </div>
+          <div>
+            <p class="picare__hd">バンカー</p>
+            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_02.jpg" class="fancybox" data-fancybox="range">
+              <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_02.jpg" alt="練習場">
+            </a>
+            <p>
+              練習場にはバンカーエリアも併設しており、ショットだけでなく多彩なシーンに対応した練習が可能です。
+            </p>
+          </div>
         </div>
 
-        <p>
-          当倶楽部の練習場は、230ヤードを超えるドライビングレンジを完備。（全14打席、左打席あり。）<br>
-          <!-- 天候に左右されず快適にショット練習をお楽しみいただけます。<br> -->
-          さらに、実際のコースさながらのアプローチやバンカー練習場も設置しており、<br class="c-brpc">
-          ラウンド前の調整や実践的なショット練習に最適です。
-        </p>
 
         <table class="tb-01">
           <tbody>

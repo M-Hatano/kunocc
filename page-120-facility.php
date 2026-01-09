@@ -20,12 +20,12 @@
   <div class="c-column">
 
     <h2 class="c-head6">フロア図<span>Floor&nbsp;Map</span></h2>
-    <div class="fimg">
+    <div class="fimg fade-in">
       <div>
         <p class="fimg__flo">1F</p>
-          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_01.jpg" class="fancybox" data-fancybox="floor-map">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_01.jpg" alt="フロア図1F" loading="lazy">
-          </a>
+        <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_01.jpg" class="fancybox" data-fancybox="floor-map">
+          <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_01.jpg" alt="フロア図1F" loading="lazy">
+        </a>
       </div>
       <div>
         <p class="fimg__flo">2F</p>
@@ -51,13 +51,13 @@
         <div class="facility__info">
           <div>
             <p>重厚感と洗練が調和したエントランスは、選ばれたゲストを迎えるための迎賓空間。<br>
-            接待・ご会合といった大切な場においても、 自信をもってお招きいただけます。</p>
+              接待・ご会合といった大切な場においても、 自信をもってお招きいただけます。</p>
           </div>
         </div>
-          <span class="facility__flex--img">
-            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_01.jpg" class="fancybox" data-fancybox="facility">
-              <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_01.jpg" alt="エントランス" loading="lazy">
-            </a>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_01.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_01.jpg" alt="エントランス" loading="lazy">
+          </a>
         </span>
       </div>
     </section>
@@ -68,7 +68,7 @@
         <div class="facility__info">
           <div>
             <p>コースの余韻をそのままに、心ほどける時間をお過ごしいただけるレストラン。<br>
-            当倶楽部の自慢であるシェフが腕を振るう料理と、ゆったりとした空間をお楽しみください。</p>
+              当倶楽部の自慢であるシェフが腕を振るう料理と、ゆったりとした空間をお楽しみください。</p>
           </div>
         </div>
         <span class="facility__flex--img">
@@ -93,14 +93,14 @@
           <div>
             <h3 class="c-head3">洋室</h3>
             <p>ゆとりある広さを確保した洋室は、<br>大切なご商談やご会食の場としても安心してご利用いただけます。<br>
-            周囲を気にすることなく、落ち着いた時間をお過ごしいただける空間です。</p>
+              周囲を気にすることなく、落ち着いた時間をお過ごしいただける空間です。</p>
           </div>
         </div>
-          <span class="facility__flex--img">
-            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_03.jpg" class="fancybox" data-fancybox="facility">
-              <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_03.jpg" alt="洋室" loading="lazy">
-            </a>
-          </span>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_03.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_03.jpg" alt="洋室" loading="lazy">
+          </a>
+        </span>
       </div>
 
       <div class="facility__flex fade-in">
@@ -108,15 +108,15 @@
           <div>
             <h3 class="c-head3">和室</h3>
             <p>日本ならではの設えが息づく和室は、接待の場として多くのお客様にお選びいただいております。<br>
-            大切なご縁を深める場として、心に残る時間をご提供いたします。
-          </p>
+              大切なご縁を深める場として、心に残る時間をご提供いたします。
+            </p>
           </div>
         </div>
-          <span class="facility__flex--img">
-            <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_04.jpg" class="fancybox" data-fancybox="facility">
-              <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_04.jpg" alt="和室" loading="lazy">
-            </a>
-          </span>
+        <span class="facility__flex--img">
+          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_04.jpg" class="fancybox" data-fancybox="facility">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_04.jpg" alt="和室" loading="lazy">
+          </a>
+        </span>
       </div>
 
       <div class="proom fade-in">
@@ -188,7 +188,7 @@
           <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_03.jpg" class="fancybox" data-fancybox="floor-map">
             <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_floor_03.jpg" alt="個室平面図" loading="lazy">
           </a>
-      </div>
+        </div>
       </div>
       <p>より多くのお客様のご要望にお答えできるよう、個室の確定はご利用開始直前とさせていただきます。（料金&colon;1万円〜2万円）</p>
     </div>
@@ -217,13 +217,13 @@
       <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
-            <h3 class="facility__info--sub">更衣室</h3>
-            <p>プレー前後のひとときを支える更衣室にも、当倶楽部ならではのゆとりと配慮を。<br>快適で清潔な空間をご用意しております。</p>
+            <h3 class="facility__info--sub">脱衣室</h3>
+            <p>プレー後のひとときを支える脱衣室にも、当倶楽部ならではのゆとりと配慮を。<br>快適で清潔な空間をご用意しております。</p>
           </div>
         </div>
         <span class="facility__flex--img">
           <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_06.jpg" class="fancybox" data-fancybox="facility">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_06.jpg" alt="更衣室" loading="lazy">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_06.jpg" alt="脱衣室" loading="lazy">
           </a>
         </span>
       </div>
@@ -292,27 +292,12 @@
       <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
-            <h3 class="facility__info--sub">ドライビングレンジ</h3>
-            <p>15打席もあるゆとりのある練習場。<br>広々としたフェアウェイに向かって思いきりスイングできる、天然芝の練習エリア。<br>自然林に囲まれた静かな環境で、集中してショットを磨けます。<br>奥行きあるレイアウトは実戦さながらの臨場感。<br class="c-brpc">プレー前の調整にも、じっくりと取り組む練習にも最適です。</p>
+            <p>当倶楽部の練習場は、230ヤードを超えるドライビングレンジを完備。（全14打席、左打席あり。）<br>さらに、実際のコースさながらのアプローチやバンカー練習場も設置しており、ラウンド前の調整や実践的なショット練習に最適です。</p>
           </div>
         </div>
         <span class="facility__flex--img">
           <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_11.jpg" class="fancybox" data-fancybox="facility">
             <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_11.jpg" alt="ドライビングレンジ" loading="lazy">
-          </a>
-        </span>
-      </div>
-
-      <div class="facility__flex fade-in">
-        <div class="facility__info">
-          <div>
-            <h3 class="facility__info--sub">バンカー</h3>
-            <p>練習場にはバンカーエリアも併設しており、ショットだけでなく多彩なシーンに対応した練習が可能です。</p>
-          </div>
-        </div>
-        <span class="facility__flex--img">
-          <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_12.jpg" class="fancybox" data-fancybox="facility">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_12.jpg" alt="バンカー" loading="lazy">
           </a>
         </span>
       </div>

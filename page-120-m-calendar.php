@@ -69,7 +69,7 @@
 
                                     <!-- イベント 処理 -->
                                     <?php if ($link_type === 'url' && $link_url): ?>
-                                        <a href="<?php echo esc_url($link_url); ?>" class="event-name" target="_blank"  rel="noopener noreferrer">
+                                        <a href="<?php echo esc_url($link_url); ?>" class="event-name" target="_blank" rel="noopener noreferrer">
                                             <?php echo esc_html($event); ?>
                                         </a>
 
