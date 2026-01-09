@@ -52,6 +52,14 @@
 
   <!-- Google Tag Manager (noscript) -->
   <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZR2M45FQ91"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZR2M45FQ91');
+    </script>
   <!-- End Google Tag Manager (noscript) -->
 
   <?php wp_head(); ?>
