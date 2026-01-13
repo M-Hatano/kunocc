@@ -1,10 +1,10 @@
 <?php get_header('120'); ?>
 
-<main class="c-main">
 
   <!-- ====================
        ページヘッダー
   ==================== -->
+  <main class="c-main">
   <div class="c-page-header lazyload">
     <div class="c-column c-page-header__inner">
       <h1 class="c-page-header__title">
@@ -12,6 +12,8 @@
       </h1>
     </div>
   </div>
+
+
 
   <div class="c-column">
 

@@ -11,7 +11,7 @@ Template Name: カスタマーハラスメント
 <main class="c-main _csub">
   <div class="c-page-header lazyload">
     <div class="c-column c-page-header__inner">
-      <h1 class="c-page-header__title _sub">Customer&nbsp;Harassment
+      <h1 class="c-page-header__title _sub">Harassment&nbsp;Policy
         <span>カスタマーハラスメントへの対応について</span>
       </h1>
     </div>
@@ -56,7 +56,7 @@ Template Name: カスタマーハラスメント
   <div class="c-column">
     <ul class="c-brd">
       <li><a href="<?php echo esc_url(home_url('')); ?>/">TOP</a></li>
-      <li><a href="">プライバシーポリシー</a></li>
+      <li><a href="">カスタマーハラスメントへの対応について</a></li>
     </ul>
   </div>
 

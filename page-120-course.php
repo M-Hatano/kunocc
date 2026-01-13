@@ -272,7 +272,7 @@
                 中盤以降から狙い目が難しいホールが続くので最後まで気が抜けない。
               </p>
 
-              <div class="cslist fade-in">
+              <div class="cslist">
                 <?php while (have_rows('hi_out_holes')) : the_row(); ?>
                   <?php
                   $hole_no = get_sub_field('hi_hole_no');        // ホール番号（1〜9）

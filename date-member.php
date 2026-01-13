@@ -82,8 +82,7 @@ $list_q = new WP_Query([
 
 <?php get_header('120'); ?>
 
-<main class="c-member">
-  <span class="deco _01"><span></span></span>
+
 
   <!-- ====================
        ページヘッダー
@@ -98,6 +97,9 @@ $list_q = new WP_Query([
   </div>
 
   <?php include get_template_directory() . '/include-120-member-menu.php'; ?>
+
+  <section class="c-member">
+  <span class="deco _01"><span></span></span>
 
   <div class="c-column">
     <div class="news-box">
@@ -267,6 +269,7 @@ $list_q = new WP_Query([
       <li><?php echo esc_html($year); ?>年</li>
     </ul>
   </div>
+  </section>
 </main>
 
 <?php get_footer('120'); ?>

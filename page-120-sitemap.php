@@ -87,6 +87,10 @@
                 </section>
 
                 <section>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/charassment/">カスタマーハラスメントへの対応について</a></h3>
+                </section>
+
+                <section>
                   <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/links/">リンク集</a></h3>
                 </section>
 
