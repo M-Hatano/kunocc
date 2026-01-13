@@ -1699,9 +1699,16 @@ table {
 .c-main {
   background-image: url("../img/common/bg_ashi_03.png");
   background-repeat: repeat;
-  /* background-color: #F8F7F2; */
   background-color: #ffffff33;
   background-blend-mode: lighten;
+}
+
+/* # =================================================================
+#	規約系背景
+# ================================================================= */
+.c-main._csub{
+  background-image: url("../img/common/bg_ashi_01.png");
+  background-repeat: repeat;
 }
 
 
@@ -1716,6 +1723,8 @@ table {
   background-size: cover;
   background-repeat: no-repeat;
   margin-top: 96px;
+  background: url("../img/links/page-header.jpg") center / cover no-repeat;
+  /* 共通ヘッダー */
 }
 
 .c-page-header__inner {
@@ -1735,6 +1744,7 @@ table {
     height: 140px;
     margin-bottom: 60px;
     margin-top: 48px;
+    background: url("../img/links/page-header_sp.jpg") center / cover no-repeat;
   }
 
 }
@@ -2566,6 +2576,98 @@ table {
 }
 
 /* # =================================================================
+#	プライバシーポリシー・リンク集
+# ================================================================= */
+#privacypolicy table th{
+    font-weight: 500;
+    text-align: start;
+    padding-right: 5px;
+}
+
+/* リンク集 */
+#links .title-type-02 {
+  border-bottom: 1px solid #DCDCDC;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  margin-top: 60px;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 100%;
+}
+
+@media screen and (min-width: 0px) and (max-width: 896px) {
+  #links .title-type-02 {
+    font-size: 6vw;
+    margin-top: 0;
+  }
+}
+
+
+#links .link-lists {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  gap: 0 20px;
+}
+
+#links .link-lists li {
+  margin-bottom: 20px;
+  font-weight: 700;
+  width: calc(33.33333% - (40px / 3));
+}
+
+@media screen and (max-width: 896px) {
+  #links .link-lists{
+    flex-direction: column;
+  }
+  #links .link-lists li {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+#links .link-external a {
+  position: relative;
+}
+#links .link-external a::after {
+  content: url(../img/links/icn_link_01.svg);
+  position: absolute;
+  padding-left: 3px;
+}
+
+#links .partnership-golf {
+  margin-top: 80px;
+  margin-bottom: 40px;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+@media screen and (max-width: 896px) {
+  #links .partnership-golf {
+    margin-top: 40px;
+    margin-bottom: 7px;
+    font-size: 20px;
+    padding-bottom: 15px
+  }
+}
+
+#links .c-box {
+  padding: 60px 50px 268px;
+}
+
+@media screen and (max-width: 896px) {
+  #links .c-box {
+    padding: 30px 20px 12%;
+  }
+}
+
+/* # =================================================================
 #	余白
 # ================================================================= */
 ._mt0 {
@@ -2592,6 +2694,7 @@ table {
   ._mtss {
     margin-top: 15px;
   }
+
   ._mts {
     margin-top: 30px;
   }
