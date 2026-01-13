@@ -1,18 +1,3 @@
-.c-main {
-  background-image: url("../img/common/bg_ashi_01.png");
-  background-repeat: repeat;
-}
-
-.c-page-header {
-  background: url("../img/sitemap/page-header.jpg") center / cover no-repeat;
-}
-
-@media screen and (max-width: 768px) {
-  .c-page-header {
-    background: url("../img/sitemap/page-header_sp.jpg") center / cover no-repeat;
-  }
-}
-
 .page-links section {
   border-top: solid 1px #989E74;
 }
