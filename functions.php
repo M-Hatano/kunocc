@@ -108,6 +108,43 @@ function knc_member_is_logged_in(): bool
     return !empty($_SESSION['knc_member_login']) && $_SESSION['knc_member_login'] === true;
 }
 
+/* ---------------------------------------------------------
+ * /wp-admin 直叩き（未ログイン）→ トップへ返す
+ * ※ admin-ajax.php 等は壊さない
+ * --------------------------------------------------------- */
+add_action('init', function () {
+
+    // AJAX / REST / cron / CLI は除外（管理画面の一部機能が死なないように）
+    if ((defined('DOING_AJAX') && DOING_AJAX) ||
+        (defined('REST_REQUEST') && REST_REQUEST) ||
+        (defined('DOING_CRON') && DOING_CRON) ||
+        (defined('WP_CLI') && WP_CLI)
+    ) {
+        return;
+    }
+
+    // /cms/wp-admin → knc_get_site_relative_path() は "wp-admin" になる想定
+    $rel = function_exists('knc_get_site_relative_path')
+        ? knc_get_site_relative_path()
+        : trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '/', '/');
+
+    // admin-ajax は除外（ここを塞ぐと色々壊れます）
+    if ($rel === 'wp-admin/admin-ajax.php' || str_starts_with($rel, 'wp-admin/admin-ajax.php')) {
+        return;
+    }
+
+    // wp-admin 配下に来た（/wp-admin または /wp-admin/xxxx）
+    if ($rel === 'wp-admin' || str_starts_with($rel, 'wp-admin/')) {
+
+        // ★未ログインならトップへ（ここが要件）
+        if (!is_user_logged_in()) {
+            wp_safe_redirect(home_url('/'), 302);
+            exit;
+        }
+    }
+
+}, 0);
+
 // 管理ログインURL
 define('LOGIN_CHANGE_PAGE', 'knc-120.php');
 
