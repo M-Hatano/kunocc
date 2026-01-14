@@ -156,58 +156,98 @@ $(function () {
 //**************************************
 // smooth scroll
 //**************************************
-function anchorScroll() {
-  // ページ内リンクおよび同一ページの絶対パスに対してスクロールを制御
-  $('a[href*="#"]:not(a.js-modal):not(.js-modal__close)').on('click', function (e) {
-    // リンクのhref属性を取得
-    var href = $(this).attr('href');
-    var currentPath = window.location.pathname; // 現在のパス
-    var linkPath = $(this).attr('href').split('#')[0]; // リンクのパス（ハッシュ以外の部分）
-
-    // リンクが同じページ内のものか確認する
-    if (linkPath === "" || linkPath === currentPath) {
-      e.preventDefault(); // デフォルトの動作を無効にする
-      var speed = 600;
-      var targetId = href.split('#')[1]; // ハッシュ部分を取得
-      var target = $('#' + targetId); // IDを持つ要素を取得
-
-      // 画面幅に応じてスクロール位置を調整
-      var scrollTop = $(window).width() <= 768 
-                      ? target.offset().top - 45  // レスポンシブ時（768px以下）
-                      : target.offset().top - 95; // 通常時
-
-      // スムーズにスクロール
-      $('body,html').animate({
-        scrollTop: scrollTop
-      }, speed, 'swing');
-    }
-  });
-}
-
-function scrollToHash() {
-  // URLにハッシュが含まれている場合
-  if (window.location.hash) {
-    var target = $(window.location.hash);
-    if (target.length) {
-      var speed = 600;
-
-      // 画面幅に応じてスクロール位置を調整
-      var scrollTop = $(window).width() <= 768 
-                      ? target.offset().top - 45  // レスポンシブ時（768px以下）
-                      : target.offset().top - 95; // 通常時
-
-      // アニメーションでスクロール
-      $('body,html').animate({
-        scrollTop: scrollTop
-      }, speed, 'swing');
-    }
+function getHeaderHeight() {
+    return $('#inc-hd').outerHeight() || 0;
   }
-}
+  
+  // ease（なめらか）
+  function easeInOutQuad(t) {
+    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  }
+  
+  // ★ガクガクしない：アニメ中に目的地を毎フレーム再計算して追従
+  var __anchorRAF = null;
+  function smoothScrollTo($target, duration) {
+    if (!$target || !$target.length) return;
+    duration = duration || 600;
+  
+    // 既に走っているスクロールを止める
+    if (__anchorRAF) cancelAnimationFrame(__anchorRAF);
+    $('html, body').stop(true);
+  
+    var startY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var startTime = null;
+  
+    function step(now) {
+      if (!startTime) startTime = now;
+      var elapsed = now - startTime;
+      var t = Math.min(1, elapsed / duration);
+      var eased = easeInOutQuad(t);
+  
+      // 目的地は「今のレイアウト」で毎回算出（画像/フォント遅延に強い）
+      var endY = $target.offset().top - getHeaderHeight();
+      if (endY < 0) endY = 0;
+  
+      var y = startY + (endY - startY) * eased;
+      window.scrollTo(0, y);
+  
+      if (t < 1) {
+        __anchorRAF = requestAnimationFrame(step);
+      } else {
+        __anchorRAF = null;
+        // 最後にパッと補正しない（＝ガクガクしない）
+      }
+    }
+  
+    __anchorRAF = requestAnimationFrame(step);
+  }
+  
+  function anchorScroll() {
+    $('a[href*="#"]:not(a.js-modal):not(.js-modal__close)').on('click', function (e) {
+      var href = $(this).attr('href') || '';
+      var hashIndex = href.indexOf('#');
+      if (hashIndex === -1) return;
+  
+      var linkPath = href.slice(0, hashIndex);
+      var currentPath = window.location.pathname;
+  
+      // 同一ページのみ制御
+      if (linkPath === '' || linkPath === currentPath) {
+        var id = href.slice(hashIndex + 1);
+        if (!id) return;
+  
+        // 日本語ID/記号ID対策
+        var $target = $('#' + CSS.escape(id));
+        if (!$target.length) return;
+  
+        e.preventDefault();
+        history.pushState(null, '', '#' + id);
+        smoothScrollTo($target, 600);
+      }
+    });
+  }
+  
+  function scrollToHash() {
+    if (!window.location.hash) return;
+    var id = window.location.hash.replace('#', '');
+    if (!id) return;
+  
+    var $target = $('#' + CSS.escape(id));
+    if (!$target.length) return;
+  
+    // 直遷移は load 後（画像/フォント確定後）に1回だけ。二重実行によるガクつきを防ぐ。
+    smoothScrollTo($target, 0);     // まず即時で概ね合わせる（体感の遅れ防止）
+    smoothScrollTo($target, 600);   // そのまま滑らかに確定位置へ
+  }
+  
+  $(function () {
+    anchorScroll();
+    // DOMReadyでは実行しない（ガクつき原因になりやすい）
+    $(window).on('load', function () {
+      scrollToHash();
+    });
+  });
 
-$(function () {
-  anchorScroll();  // ページ内リンク用の処理
-  scrollToHash();  // 別ページから遷移してきた場合の処理
-});
 
 //**************************************
 // contact form

@@ -8,7 +8,7 @@
     <?php get_header('120'); ?>
     <!--  header -->
 
-    <main class="c-main">
+    <main class="c-main _csub">
       <div class="c-page-header lazyload">
         <div class="c-column c-page-header__inner">
           <h1 class="c-page-header__title _sub">Sitemap
@@ -84,6 +84,10 @@
 
                 <section>
                   <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/privacypolicy/">プライバシーポリシー</a></h3>
+                </section>
+
+                <section>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/charassment/">カスタマーハラスメントへの対応について</a></h3>
                 </section>
 
                 <section>
