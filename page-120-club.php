@@ -1,6 +1,6 @@
 <?php
 /*
-      Template Name: 倶楽部概要
+      Template Name: 倶楽部紹介
       */
 ?>
 
@@ -12,7 +12,7 @@
   <div class="c-page-header lazyload">
     <div class="c-column c-page-header__inner">
       <h1 class="c-page-header__title">Club
-        <span>倶楽部概要</span>
+        <span>倶楽部紹介</span>
       </h1>
     </div>
   </div>
@@ -220,7 +220,7 @@
 
     <ul class="c-brd">
       <li><a href="<?php echo esc_url(home_url('')); ?>/">TOP</a></li>
-      <li><a href="">倶楽部概要</a></li>
+      <li><a href="">倶楽部紹介</a></li>
     </ul>
   </div>
 

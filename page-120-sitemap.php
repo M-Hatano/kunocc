@@ -55,7 +55,7 @@
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部概要</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部紹介</a></h3>
                 </section>
 
               </div>

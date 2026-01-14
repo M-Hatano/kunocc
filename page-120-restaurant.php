@@ -32,6 +32,7 @@
                         多様な食のスタイルにも柔軟に対応いたします。
                     </span>
                 </p>
+                <p>【平　日】7:00〜<br>【土日祝】6:30〜</p>
 
                 <ul class="c-scroll sc_01">
                     <li><a href="#private">プライベートルーム</a></li>
@@ -68,7 +69,7 @@
         <section id="morning" class="morning">
             <div class="c-column">
                 <h2 class="c-head5">モーニングメニュー<span>Morning</span></h2>
-
+                <p class="res__notes">【平　日】7:00〜<br>【土日祝】6:30〜</p>
                 <ul class="list01">
 
                     <?php if (have_rows('morning_items')) : ?>
@@ -331,7 +332,7 @@
         <section id="cafe" class="cafe">
             <div class="c-column">
                 <h2 class="c-head5">茶屋メニュー<span>Cafe</span></h2>
-
+                <p class="res__notes">※土日祝のスループレー時のみ</p>
                 <!-- おつまみ -->
                 <div class="l-card">
                     <div class="l-card__inner">

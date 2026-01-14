@@ -1142,6 +1142,21 @@
 .deco._deb {
   display: none;
 }
+.res__rental {
+  padding-top: 20px;
+  text-align: left;
+  padding-bottom: 60px;
+  padding: 20px 0 60px;
+  font-size: 20px;
+}
+.res__rental--ttl{
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.res__rental th{
+  text-align: left;
+  font-weight: 500;
+}
 @media screen and (max-width: 896px) {
   .deco._deb {
     display: block;
@@ -1207,5 +1222,14 @@
   }
   .deco._deb._b18 span {
     background: url("../img/reservation/img_ballsp_18.png") left top/100% 100% no-repeat;
+  }
+  .res__rental{
+    font-size: 14px;
+  }
+  .res__rental--ttl{
+    font-size: 16px;
+  }
+  .res__rental .c-list li{
+    font-size: 14px;
   }
 }

@@ -111,14 +111,8 @@
                   <li><a href="<?php echo esc_url(home_url('')); ?>/course/">コース紹介</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/access/">アクセス&#12539;近隣ホテル情報</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/news/">ニュース</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部概要</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部紹介</a></li>
                 </ul>
-
-                <?php if (knc_member_is_logged_in()) : ?>
-                  <div class="c-nav__bnr">
-                    <a href="<?php echo esc_url(home_url('')); ?>/member-logout/" class="c-nav__bnr--mbr">ログアウト</a>
-                  </div>
-                <?php endif; ?>
               </div>
 
               <div class="c-nav__box">

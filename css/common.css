@@ -3326,20 +3326,32 @@ table {
   background: #fff;
   justify-content: center;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
   border-top: 0.5px solid #8F8F8F;
   border-bottom: solid 0.5px #8F8F8F;
-  padding: 19px 0;
 }
 
 .m-list li {
-  padding-left: 20px;
-  padding-right: 20px;
-  border-left: solid 2px #989E74;
+  position: relative;
+}
+.m-list li a{
+  padding: 19px 20px;
+  display: inline-block;
+}
+.m-list li::before{
+  display: block;
+  width: 1px;
+  content: '';
+  height: 25px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background:#989E74;
 }
 
+
 .m-list li:first-of-type {
-  padding-left: 0;
   border-left: unset;
 }
 
@@ -3364,14 +3376,17 @@ table {
     width: 50%;
     text-align: center;
   }
+  .m-list li a{
+    padding: 0;
+  }
 
   .m-list li:first-of-type {
     padding-left: 10px;
-    border-left: solid 2px #989E74;
+    border-left: solid 1px #989E74;
   }
 
   .m-list li:nth-of-type(2n) {
-    border-right: solid 2px #989E74;
+    border-right: solid 1px #989E74;
   }
 
 }

@@ -110,8 +110,8 @@
                                             プレー料金やゲスト料金については<br>
                                             「会員専用ページ」よりご確認いただけます。その他料金に関しましては以下のリンクよりご確認ください。
                                         </p>
-                                        <a href="<?php echo esc_url(home_url('')); ?>">レンタル料金について ／ </a>
-                                        <a href="<?php echo esc_url(home_url('')); ?>facility/#link03">個室の料金について ／ </a>
+                                        <a href="#rental">レンタル料金について ／ </a>
+                                        <a href="<?php echo esc_url(home_url('')); ?>/facility/#link03">個室の料金について ／ </a>
                                         <a href="<?php echo esc_url(home_url('')); ?>/d-range/">練習場の料金について ／ </a>
                                         <a href="<?php echo esc_url(home_url('')); ?>/restaurant/">食事の料金について ／ </a>
                                     </div>
@@ -152,7 +152,7 @@
                                         <p>
                                             メンバーの組み合わせのご連絡については<br>
                                             <a
-                                                href="">WEB入力用の組み合わせ送信フォーム</a>をご利用ください。キャディバッグ配送の有無、カートの詰め込み順もご指定いただけます。<br>
+                                                href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_kumi.asp" target="_blank" rel="noopener noreferrer">WEB入力用の組み合わせ送信フォーム</a>をご利用ください。キャディバッグ配送の有無、カートの詰め込み順もご指定いただけます。<br>
                                             また、<a href="#res_form">組み合わせ送信フォーム（エクセル・PDF）</a>もご利用ください。
                                         </p>
                                     </div>
@@ -187,7 +187,7 @@
                                     </div>
                                     <div class="rlistbox__item--wh">
                                         <p>
-                                            ドレスコードについては、以下リンクよりご確認いただけます。
+                                            ドレスコードについては、以下のリンクよりご確認いただけます。
                                         </p>
                                         <a href="<?php echo esc_url(home_url('')); ?>/dresscode/">ドレスコードについて ／ </a>
                                     </div>
@@ -235,6 +235,24 @@
                             レンタル用品についてはわずかしかご用意がございません。必要に応じてレンタルクラブ会社からお借りすることも可能ですので、プレーの一週間前までにご予約ください。ブランド等の指定も可能です。
                         </p>
                         <p class="dot">宅急便につきましては、クロネコヤマトの宅急便サービスをご利用いただけます。</p>
+                        <div class="res__rental" id="rental">
+                            <p class="res__rental--ttl">レンタルについて</p>
+                            <table>
+                                <tr>
+                                    <th>貸しシューズ</th>
+                                    <td>1,100円（23〜18cm）</td>
+                                </tr>
+                                <tr>
+                                    <th>貸しクラブ（フルセット）</th>
+                                    <td>5,500円</td>
+                                </tr>
+                            </table>
+                            <ul class="c-list">
+                                <li><span>※</span>男性2セット、女性1セットしかご用意がございません。先着順となります。</li>
+                                <li><span>※</span>必要に応じてレンタルクラブ会社からお借りすることも可能です（レンタル料金：7,700）</li>
+                                <li><span>※</span>プレーの1週間前までにご予約ください。ブランド等の指定も可能です。</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 

@@ -5,4 +5,7 @@
   <li><a href="<?php echo esc_url(home_url('')); ?>/member/partner/">提携コース</a></li>
   <li><a href="<?php echo esc_url(home_url('')); ?>/member/m-calendar/">ビジター様料金</a></li>
   <li><a href="<?php echo esc_url(home_url('')); ?>/member/registration/">コンペ申込</a></li>
+  <?php if (knc_member_is_logged_in()) : ?>
+  <li class="mem__logout"><a href="<?php echo esc_url(home_url('')); ?>/member-logout/">ログアウト</a></li>
+  <?php endif; ?>
 </ul>
