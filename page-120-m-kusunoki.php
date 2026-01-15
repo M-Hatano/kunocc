@@ -29,9 +29,9 @@
           <h2 class="c-head6">くすのき会お知らせ<span>Kusunoki News</span></h2>
 
           <ul class="news-box__list">
-            <?php
+          <?php
             $year  = (int) get_query_var('year');
-            $paged = max(1, (int) get_query_var('paged'));
+            $paged = max(1, (int) get_query_var('paged'), (int) get_query_var('page')); // ★pageも見る
             $per   = 10;
 
             $tax_query_kusunoki = [
@@ -43,32 +43,34 @@
             ];
 
             /* ---------------------------------
-             * Sticky IDs を “確実に” 取る（kusunoki + _member_sticky=1）
-             *  - 年別なら year で絞る
-             *  - 最大3件
-             * --------------------------------- */
-            $sticky_ids = get_posts([
+            * Sticky IDs（除外用）：毎ページ取得する（★重要）
+            * 表示は1ページ目だけ
+            * --------------------------------- */
+            $shown_ids  = [];
+            $sticky_ids = []; // ★保険
+
+            $sticky_args = [
               'post_type'      => 'member_post',
               'post_status'    => 'publish',
               'posts_per_page' => 3,
               'fields'         => 'ids',
               'orderby'        => 'date',
               'order'          => 'DESC',
-              'meta_query'     => [
-                [
-                  'key'     => '_member_sticky',
-                  'value'   => '1',
-                  'compare' => '=',
-                ],
-              ],
+              'meta_query'     => [[
+                'key'     => '_member_sticky',
+                'value'   => '1',
+                'compare' => '=',
+              ]],
               'tax_query'      => $tax_query_kusunoki,
-              'year'           => $year ?: '',
-            ]);
+            ];
+            if ($year) $sticky_args['year'] = $year;
+
+            $sticky_ids = get_posts($sticky_args);
 
             /* ---------------------------------
-             * ページネーション用（総ページ数計算用）
-             * ※ここは “通常一覧と同じ条件” でOK
-             * --------------------------------- */
+            * ページネーション用（総ページ数計算用）
+            * ※ここは “通常一覧と同じ条件” でOK（現状維持）
+            * --------------------------------- */
             $paging_args = [
               'post_type'           => 'member_post',
               'posts_per_page'      => $per,
@@ -78,27 +80,22 @@
               'ignore_sticky_posts' => true,
               'tax_query'           => $tax_query_kusunoki,
             ];
-
-            if ($year) {
-              $paging_args['year'] = $year;
-            }
+            if ($year) $paging_args['year'] = $year;
 
             $paging_q = new WP_Query($paging_args);
 
             /* ---------------------------------
-             * Sticky 表示（1ページ目のみ）
-             * --------------------------------- */
-            $shown_ids = []; // 表示したID（念のため）
-
+            * Sticky 表示（1ページ目のみ）
+            * --------------------------------- */
             if ($paged === 1 && !empty($sticky_ids)) {
 
               $sticky_q = new WP_Query([
-                'post_type'     => 'member_post',
-                'post_status'   => 'publish',
-                'post__in'      => $sticky_ids,
-                'orderby'       => 'post__in',
-                'tax_query'     => $tax_query_kusunoki,
-                'no_found_rows' => true,
+                'post_type'      => 'member_post',
+                'post_status'    => 'publish',
+                'post__in'       => $sticky_ids,
+                'orderby'        => 'post__in',
+                'tax_query'      => $tax_query_kusunoki,
+                'no_found_rows'  => true,
               ]);
 
               while ($sticky_q->have_posts()) :
@@ -130,27 +127,39 @@
             }
 
             /* ---------------------------------
-             * 通常記事
-             * - 1ページ目は「10 - sticky件数」
-             * - 2ページ目以降も sticky は必ず除外（重複防止）
-             * --------------------------------- */
-            $remain = ($paged === 1) ? $per - count($sticky_ids) : $per;
-            $remain = max(0, $remain);
+            * 通常記事（Sticky除外）
+            * - 1ページ目は「10 - sticky件数」
+            * - 2ページ目以降は offset を補正して “飛ばし/重複” を防ぐ
+            * --------------------------------- */
+
+            // ★計算用 sticky 件数（毎ページ同じ値で計算）
+            $sticky_count_for_calc = min($per, count($sticky_ids));
+            $first_normal          = max(0, $per - $sticky_count_for_calc);
+
+            // offset / limit
+            if ($paged === 1) {
+              $offset = 0;
+              $limit  = $first_normal;
+            } else {
+              $offset = $first_normal + (($paged - 2) * $per);
+              $limit  = $per;
+            }
+            $limit = max(0, (int) $limit);
+
+            // ★除外ID（1ページ目は表示したsticky優先）
+            $exclude_ids = !empty($shown_ids) ? $shown_ids : $sticky_ids;
 
             $normal_args = [
               'post_type'      => 'member_post',
               'post_status'    => 'publish',
-              'posts_per_page' => $remain,
-              'paged'          => $paged,
+              'posts_per_page' => $limit,
+              'offset'         => $offset,        // ★pagedではなくoffset
+              'post__not_in'   => $exclude_ids,    // ★2ページ目以降も sticky を除外
               'orderby'        => 'date',
               'order'          => 'DESC',
               'tax_query'      => $tax_query_kusunoki,
-              'post__not_in'   => $sticky_ids, // sticky を必ず除外（ページ2以降に出てくるのを防ぐ）
             ];
-
-            if ($year) {
-              $normal_args['year'] = $year;
-            }
+            if ($year) $normal_args['year'] = $year;
 
             $normal_q = new WP_Query($normal_args);
 
@@ -179,7 +188,7 @@
             <?php
               endwhile;
 
-            elseif ($paged === 1 && empty($sticky_ids)) :
+            elseif ($paged === 1 && empty($shown_ids)) :
               echo '<li>現在お知らせはありません。</li>';
             endif;
 

@@ -66,77 +66,19 @@
           $paging_q = new WP_Query($paging_args);
 
           /* --------------------------------
-           * Sticky（1ページ目のみ最大3件）
+           * 年別ページは「固定表示しない」方針のため
+           * Sticky 処理は行わない（通常の投稿日順で表示）
            * -------------------------------- */
-          $shown_ids  = [];
-          $sticky_ids = [];
-
-          if ($paged === 1) {
-
-            $all_sticky = get_option('sticky_posts');
-
-            if (! empty($all_sticky)) {
-              $sticky_ids = get_posts([
-                'post_type'      => 'post',
-                'post__in'       => $all_sticky,
-                'fields'         => 'ids',
-                'posts_per_page' => 3,
-                'year'           => $year,
-                'tax_query'      => $tax_query_news,
-              ]);
-
-              $sticky_ids = array_slice($sticky_ids, 0, 3);
-            }
-
-            if (! empty($sticky_ids)) {
-
-              $sticky_q = new WP_Query([
-                'post_type' => 'post',
-                'post__in'  => $sticky_ids,
-                'orderby'   => 'post__in',
-              ]);
-
-              while ($sticky_q->have_posts()) :
-                $sticky_q->the_post();
-                $shown_ids[] = get_the_ID();
-
-                $news_file = get_field('news_file');
-                if (get_field('link_url')) {
-                  $href = esc_url(get_field('link_url'));
-                } elseif ($news_file && get_field('direct_link')) {
-                  $href = esc_url($news_file);
-                } else {
-                  $href = get_permalink();
-                }
-          ?>
-                <li>
-                  <a href="<?php echo $href; ?>">
-                    <span class="news-box__time">
-                      <?php echo esc_html(get_the_date('Y.m.d')); ?>
-                    </span>
-                    <?php the_title(); ?>
-                  </a>
-                </li>
-          <?php
-              endwhile;
-              wp_reset_postdata();
-            }
-          }
+          $shown_ids = []; // 互換のため残す（空のまま）
 
           /* --------------------------------
-           * 通常記事（Sticky 除外）
+           * 通常記事（Stickyも通常順で混ぜる）
            * -------------------------------- */
-          $remain = ($paged === 1)
-            ? $posts_per_page - count($shown_ids)
-            : $posts_per_page;
-          $remain = max(0, $remain);
-
           $normal_args = [
             'post_type'           => 'post',
-            'posts_per_page'      => $remain,
+            'posts_per_page'      => $posts_per_page,
             'paged'               => $paged,
-            'post__not_in'        => $shown_ids,
-            'ignore_sticky_posts' => true,
+            'ignore_sticky_posts' => true, // ★固定を無効化して通常順
             'tax_query'           => $tax_query_news,
           ];
           if ($year) {
@@ -168,7 +110,7 @@
               </li>
           <?php
             endwhile;
-          elseif (empty($shown_ids)) :
+          else :
             echo '<li>現在お知らせはありません。</li>';
           endif;
 
