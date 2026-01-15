@@ -118,7 +118,7 @@
               <div class="c-nav__box">
                 <ul class="c-nav__list">
                   <li><a href="<?php echo esc_url(home_url('')); ?>/d-range/">ゴルフ練習場</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a></li>
+                  <!-- <li><a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a></li> -->
                   <li>
                     <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf" target="_blank" rel="noopener noreferrer">
                       会員募集について

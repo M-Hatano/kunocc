@@ -210,7 +210,7 @@ Template Name: トップページ
   <div class="btnarea">
     <div class="c-column">
       <ul>
-        <li><a href="<?php echo esc_url(home_url('/recruit/')); ?>">キャディスタッフ<br class="c-brsp">募集中</a></li>
+        <!-- <li><a href="<?php echo esc_url(home_url('/recruit/')); ?>">キャディスタッフ<br class="c-brsp">募集中</a></li> -->
         <li><a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/charity240619.pdf" target="_blank" rel="noopener noreferrer">チャリティ<br class="c-brsp">ゴルフフェスタ</a></li>
         <li><a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf" target="_blank" rel="noopener noreferrer">会員募集について</a></li>
         <li><a href="<?php echo esc_url(home_url('/dresscode/')); ?>">ドレスコード</a></li>

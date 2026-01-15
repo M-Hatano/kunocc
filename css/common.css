@@ -3553,3 +3553,16 @@ table {
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
+
+
+/*組み合わせ・承り非表示関連ここから*/
+.c-btbnr .c-footer__flex>div:nth-of-type(1){
+  display: none;
+}
+.c-btbnr .c-footer__flex>div:nth-of-type(2){
+  margin: 0 auto;
+}
+.c-btbnr ._line::after{
+  content: none;
+}
+/*組み合わせ・承り非表示関連ここまで*/
