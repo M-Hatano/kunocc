@@ -455,93 +455,90 @@
             <span class="deco _04"><span></span></span>
             <div class="c-column">
                 <h2 class="c-head5">パーティープラン<span>Party</span></h2>
-                <!-- 軽食セット -->
-                <h3>軽食セット</h3>
-                <ul class="list02">
-                    <li class="list02__item">
-                        <div class="list02__menu">
-                            <div class="list02__menu--ribbon">
-                                軽食セットA
-                            </div>
-                            <p class="list02__menu--text">ケーキセット<br>（コーヒー又は紅茶付き）</p>
-                            <p class="list02__menu--price">1,320円</p>
-                        </div>
-                    </li>
-                    <li class="list02__item">
-                        <div class="list02__menu">
-                            <div class="list02__menu--ribbon">
-                                軽食セットB
-                            </div>
-                            <p class="list02__menu--text">サラダ等<br>さつま揚げ等<br>デザート等</p>
-                            <p class="list02__menu--price">1,320円</p>
-                        </div>
-                    </li>
-                    <li class="list02__item">
-                        <div class="list02__menu">
-                            <div class="list02__menu--ribbon">
-                                軽食セットC
-                            </div>
-                            <p class="list02__menu--text">サラダ<br>揚げもの<br>サンドイッチ等<br>デザート等</p>
-                            <p class="list02__menu--price">1,650円</p>
-                        </div>
-                    </li>
-                </ul>
-                <!-- スタンダードセット -->
-                <h3>スタンダードセット</h3>
-                <ul class="list02 u-standard">
-                    <li class="list02__item">
-                        <div class="list02__menu">
-                            <div class="list02__menu--ribbon list02__menu--color">
-                                スタンダードA
-                            </div>
-                            <p class="list02__menu--text">サラダ<br>一品料理<br>鶏肉料理<br>麺<br>デザート</p>
-                            <p class="list02__menu--price">2,200円</p>
-                        </div>
-                    </li>
-                    <li class="list02__item">
-                        <div class="list02__menu">
-                            <div class="list02__menu--ribbon list02__menu--color">
-                                スタンダードB
-                            </div>
-                            <p class="list02__menu--text">一品料理<br>刺身<br>揚げ物<br>肉料理<br>デザート</p>
-                            <p class="list02__menu--price">2,750円</p>
-                        </div>
-                    </li>
-                </ul>
-                <!-- 会食セット -->
-                <h3>会食セット</h3>
+                <!-- スループレー後の会食のご案内 -->
+                <h3>スループレー後の会食のご案内</h3>
                 <ul class="list02">
                     <li class="list02__item">
                         <div class="list02__menu list02__menu--pt01">
                             <div class="list02__menu--ribbon">
-                                会食セットA
+                                8,800円コース
                             </div>
                             <p class="list02__menu--text">
-                                前菜盛合わせ<br>御造り鮮魚盛り合わせ<br>洋皿（例：ホタテ料理）<br>揚物（海老フライ）<br>和牛ステーキ等<br>食事（選べる食事スタイル）<br>水菓子
+                                前菜盛合わせ<br>御造り鮮魚盛り合わせ<br>洋皿（例：ホタテ料理）<br>揚物（例：海老フライ）<br>和牛ステーキ等<br>食事（選べる食事スタイル）<br>水菓子
                             </p>
-                            <p class="list02__menu--price">8,800円</p>
+                            <!-- <p class="list02__menu--price">8,800円</p> -->
                         </div>
                     </li>
                     <li class="list02__item">
                         <div class="list02__menu list02__menu--pt01">
                             <div class="list02__menu--ribbon">
-                                会食セットB
+                                7,700コース
                             </div>
                             <p class="list02__menu--text">
                                 季節の一品料理２点<br>御造り鮮魚盛り合わせ<br>焼魚（例：銀鱈の西京漬け）<br>揚物（例：ズワイ蟹のクリームコロッケ）<br>肉料理（例：ビーフシチュー）<br>食事&nbsp;稲庭饂飩<br>デザート叉は水菓子
                             </p>
-                            <p class="list02__menu--price">7,700円</p>
+                            <!-- <p class="list02__menu--price">7,700円</p> -->
                         </div>
                     </li>
                     <li class="list02__item">
                         <div class="list02__menu list02__menu--pt01">
                             <div class="list02__menu--ribbon">
-                                会食セットC
+                                6,600円コース
                             </div>
                             <p class="list02__menu--text">
                                 季節の一品料理1点<br>御造り鮮魚1点<br>焼魚（例：鰤の照り焼き）<br>揚物（例：名物新鮮アジフライ）<br>肉料理（例：ポークシチュー）<br>食事&nbsp;茶そば<br>デザート
                             </p>
-                            <p class="list02__menu--price">6,600円</p>
+                            <!-- <p class="list02__menu--price">6,600円</p> -->
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- スタンダードセット -->
+                <h3>昼休憩後のパーティープラン</h3>
+                <ul class="list02 u-standard">
+                    <li class="list02__item">
+                        <div class="list02__menu">
+                            <div class="list02__menu--ribbon list02__menu--color">
+                                2,750円コース
+                            </div>
+                            <p class="list02__menu--text">①一品料理<br>②刺身<br>③揚物<br>④肉料理<br>⑤デザート</p>
+                            <!-- <p class="list02__menu--price">2,200円</p> -->
+                        </div>
+                    </li>
+                    <li class="list02__item">
+                        <div class="list02__menu">
+                            <div class="list02__menu--ribbon list02__menu--color">
+                                2,220円コース
+                            </div>
+                            <p class="list02__menu--text">①サラダ<br>②一品料理<br>③鶏肉料理<br>④麺<br>⑤デザート</p>
+                            <!-- <p class="list02__menu--price">2,750円</p> -->
+                        </div>
+                    </li>
+                    <li class="list02__item">
+                        <div class="list02__menu">
+                            <div class="list02__menu--ribbon list02__menu--color">
+                                1,650円コース
+                            </div>
+                            <p class="list02__menu--text">①サラダ<br>②揚物<br>③サンドイッチ等<br>④デザート等</p>
+                            <!-- <p class="list02__menu--price">2,750円</p> -->
+                        </div>
+                    </li>
+                    <li class="list02__item">
+                        <div class="list02__menu">
+                            <div class="list02__menu--ribbon list02__menu--color">
+                                1,320円コース
+                            </div>
+                            <p class="list02__menu--text">①サラダ<br>②さつま揚げ等<br>③デザート等</p>
+                            <!-- <p class="list02__menu--price">2,750円</p> -->
+                        </div>
+                    </li>
+                    <li class="list02__item">
+                        <div class="list02__menu">
+                            <div class="list02__menu--ribbon list02__menu--color">
+                                1,320円ケーキセット
+                            </div>
+                            <p class="list02__menu--text">ケーキセット<br>（コーヒー又は紅茶付き）</p>
+                            <!-- <p class="list02__menu--price">2,750円</p> -->
                         </div>
                     </li>
                 </ul>
@@ -552,7 +549,7 @@
                     <li>お客様に合わせて内容変更できます。ご相談下さいませ。</li>
                     <li>
                         飲み放題（2h）は、2組以上で、2,750円で承ります。<br>（ビール、ウィスキー、ワイン、焼酎、日本酒、ソフトドリンク、ノンアルコール）<br>
-                        ※2026年4月1日（水）より、見放題（2h）プランは、料金が3,080円となります。
+                        ※2026年4月1日（水）より、飲み放題（2h）プランは、料金が3,080円となります。
                     </li>
                     <li>ソフトドリンク飲み放題770円は、2組以上で承ります。（烏龍茶、コーラ、ジンジャーエール、コーヒー）</li>
                     <li>3日前からキャンセル料が発生いたします。</li>
