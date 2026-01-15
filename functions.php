@@ -108,6 +108,43 @@ function knc_member_is_logged_in(): bool
     return !empty($_SESSION['knc_member_login']) && $_SESSION['knc_member_login'] === true;
 }
 
+/* ---------------------------------------------------------
+ * /wp-admin 直叩き（未ログイン）→ トップへ返す
+ * ※ admin-ajax.php 等は壊さない
+ * --------------------------------------------------------- */
+add_action('init', function () {
+
+    // AJAX / REST / cron / CLI は除外（管理画面の一部機能が死なないように）
+    if ((defined('DOING_AJAX') && DOING_AJAX) ||
+        (defined('REST_REQUEST') && REST_REQUEST) ||
+        (defined('DOING_CRON') && DOING_CRON) ||
+        (defined('WP_CLI') && WP_CLI)
+    ) {
+        return;
+    }
+
+    // /cms/wp-admin → knc_get_site_relative_path() は "wp-admin" になる想定
+    $rel = function_exists('knc_get_site_relative_path')
+        ? knc_get_site_relative_path()
+        : trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '/', '/');
+
+    // admin-ajax は除外（ここを塞ぐと色々壊れます）
+    if ($rel === 'wp-admin/admin-ajax.php' || str_starts_with($rel, 'wp-admin/admin-ajax.php')) {
+        return;
+    }
+
+    // wp-admin 配下に来た（/wp-admin または /wp-admin/xxxx）
+    if ($rel === 'wp-admin' || str_starts_with($rel, 'wp-admin/')) {
+
+        // ★未ログインならトップへ（ここが要件）
+        if (!is_user_logged_in()) {
+            wp_safe_redirect(home_url('/'), 302);
+            exit;
+        }
+    }
+
+}, 0);
+
 // 管理ログインURL
 define('LOGIN_CHANGE_PAGE', 'knc-120.php');
 
@@ -280,42 +317,85 @@ function get_dynamic_meta_description()
         'contact' => '久能カントリー倶楽部へのお問い合わせはこちらから。',
         'contact/confirm' => '久能カントリー倶楽部へのお問い合わせはこちらから。',
         'contact/complete' => '久能カントリー倶楽部へのお問い合わせはこちらから。',
-        'partnership' => '久能カントリー倶楽部 公式サイト 会員提携コースのご案内ページです。会員提携コースのご案内について掲載しております。',
-        'm-calendar' => '久能カントリー倶楽部 公式サイト 会員ビジター様料金カレンダーページです。会員ビジター様料金カレンダーについて掲載しております。',
-        'registration' => '久能カントリー倶楽部 公式サイト 会員コンペ申し込みページです。会員コンペ申し込みについて掲載しております。',
+        'member' => '久能カントリー倶楽部 公式サイト 会員様お知らせページです。会員様お知らせについて掲載しております。',
+        'member/information' => '久能カントリー倶楽部 公式サイト 営業案内ページです。営業案内について掲載しております。',
+        'member/kusunoki' => '久能カントリー倶楽部 公式サイト くすのき会ページです。くすのき会について掲載しております。',
+        'member/partnership' => '久能カントリー倶楽部 公式サイト 会員提携コースのご案内ページです。会員提携コースのご案内について掲載しております。',
+        'member/m-calendar' => '久能カントリー倶楽部 公式サイト 会員ビジター様料金カレンダーページです。会員ビジター様料金カレンダーについて掲載しております。',
+        'member/registration' => '久能カントリー倶楽部 公式サイト 会員コンペ申し込みページです。会員コンペ申し込みについて掲載しております。',
     ];
 
     $current_path = knc_get_site_relative_path();
+    $path         = trim($current_path, '/'); // ★これを必ず用意（未定義バグ潰し）
 
     /* ----------------------------------------------------
      * ▼ フロントページ
      * ---------------------------------------------------- */
-    if (is_front_page() || $current_path === '') {
+    if (is_front_page() || $path === '') {
         return '久能カントリー倶楽部のトップページです。';
     }
 
     /* ----------------------------------------------------
-     * ▼ single-member.php（会員ニュース 詳細ページ）
+    * ▼ 会員お知らせ：個別記事（single-member_post.php）
+    * /member/2025/12/slug/
+    * /member/information/2025/12/slug/
+    * /member/kusunoki/2025/12/slug/
+    * ---------------------------------------------------- */
+    // /member/2025/12/slug
+    if (preg_match('#^member/[0-9]{4}/[0-9]{2}/[^/]+$#', $path)) {
+        return '久能カントリー倶楽部 公式サイト 会員様お知らせ詳細ページです。各お知らせ記事を掲載しております。';
+    }
+
+    // /member/information/2025/12/slug
+    if (preg_match('#^member/information/[0-9]{4}/[0-9]{2}/[^/]+$#', $path)) {
+        return '久能カントリー倶楽部 公式サイト 営業案内詳細ページです。各お知らせ記事を掲載しております。';
+    }
+
+    // /member/kusunoki/2025/12/slug
+    if (preg_match('#^member/kusunoki/[0-9]{4}/[0-9]{2}/[^/]+$#', $path)) {
+        return '久能カントリー倶楽部 公式サイト くすのき会詳細ページです。各お知らせ記事を掲載しております。';
+}
+
+    /* ----------------------------------------------------
+     * ▼ 会員お知らせ：年別（date-member.php 想定URL）
+     * /member/2025/
+     * /member/information/2025/
+     * /member/kusunoki/2025/
+     * ※ page/2 も拾う
      * ---------------------------------------------------- */
-    // カテゴリ分類で会員ニュース詳細を判定する場合はこちら
-    if (is_single() && has_category(['member', 'kusunoki', 'information'])) {
-        return '久能カントリー倶楽部 公式サイト 会員お知らせ詳細ページです。各お知らせ記事を掲載しております.';
+    if (preg_match('#^member/([0-9]{4})(?:/page/[0-9]+)?$#', $path)) {
+        return '久能カントリー倶楽部 公式サイト 会員様お知らせ 年別ページです。各年ごとのお知らせを掲載しております。';
+    }
+
+    if (preg_match('#^member/information/([0-9]{4})(?:/page/[0-9]+)?$#', $path)) {
+        return '久能カントリー倶楽部 公式サイト 営業案内 年別ページです。各年ごとのお知らせを掲載しております。';
+    }
+
+    if (preg_match('#^member/kusunoki/([0-9]{4})(?:/page/[0-9]+)?$#', $path)) {
+        return '久能カントリー倶楽部 公式サイト くすのき会 年別ページです。各年ごとのお知らせを掲載しております。';
+    }
+
+    // /course/hole1/ 〜 /course/hole18/ 共通
+    if (preg_match('#^course/hole(0?[1-9]|1[0-8])$#', $path)) {
+        return '久能カントリー倶楽部 公式サイト コース案内ページです。コースの詳細について掲載しております。';
     }
 
     /* ----------------------------------------------------
-     * ▼ date.php（ニュース年別ページ）
+     * ▼ 会員ニュース 詳細ページ
      * ---------------------------------------------------- */
-    if (is_date() && strpos($current_path, 'news') === 0) {
+    if (is_single() && has_category(['member', 'kusunoki', 'information'])) {
+        return '久能カントリー倶楽部 公式サイト 会員お知らせ詳細ページです。各お知らせ記事を掲載しております。';
+    }
+
+    /* ----------------------------------------------------
+     * ▼ ニュース年別（/news/2024/）
+     * ---------------------------------------------------- */
+    if (preg_match('#^news/[0-9]{4}(/page/[0-9]+)?$#', $path)) {
         return '久能カントリー倶楽部 公式サイト ニュース年別ページです。各年ごとの記事を掲載しております。';
     }
 
-    // 会員ニュース年別ページ
-    if (is_post_type_archive('member_post') || (is_date() && strpos($current_path, 'member') === 0)) {
-        return '久能カントリー倶楽部 公式サイト 会員お知らせ年別ページです。各年ごとの記事を掲載しております。';
-    }
-
     /* ----------------------------------------------------
-     * ▼ 通常 single.php（ニュース詳細ページ）
+     * ▼ ニュース詳細
      * ---------------------------------------------------- */
     if (is_single()) {
         return '久能カントリー倶楽部 公式サイト ニュース詳細ページです。各ニュース記事を掲載しております。';
@@ -324,8 +404,9 @@ function get_dynamic_meta_description()
     /* ----------------------------------------------------
      * ▼ 固定ページ（URLスラッグで配列判定）
      * ---------------------------------------------------- */
-    return $meta_descriptions[$current_path] ?? '久能カントリー倶楽部 公式サイト';
+    return $meta_descriptions[$path] ?? '久能カントリー倶楽部 公式サイト';
 }
+
 
 /**
  * カテゴリーによって single テンプレートを切り替え

@@ -160,7 +160,6 @@
                                     'posts_per_page' => 5,
                                     'orderby'        => 'date',
                                     'order'          => 'DESC',
-                                    'post__not_in'   => [get_the_ID()], // 自分自身は除外（任意）
                                     'tax_query'      => $tax_query_member,
                                 ]);
 
