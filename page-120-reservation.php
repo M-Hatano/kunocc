@@ -374,7 +374,7 @@
                                     <h3><span class="cno">⑨</span>昼食タイム</h3>
                                     <p>後半開始までの約50分間、レストランまたはご予約のお部屋にて昼食をお楽しみください。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_09.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_09.jpg" alt="昼食タイム" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_09.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b09"><span></span></span>
                             </li>
@@ -383,7 +383,7 @@
                                     <h3><span class="cno">⑩</span>後半ラウンドへ</h3>
                                     <p>昼食後、後半のラウンドへ。<br>OUTスタートの場合は10～18番、INスタートの場合は1～9番ホールをプレーされます。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_10.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_10.jpg" alt="後半ラウンドへ" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_10.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b10"><span></span></span>
                             </li>
@@ -392,7 +392,7 @@
                                     <h3><span class="cno">⑪</span>プレー終了（ホールアウト）</h3>
                                     <p>後半のラウンドを終えられた後は、スコアの確認・クラブの点検を行い、プレー終了となります。<br>ご希望があればスコア集計表をマスター室よりお渡しします。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_11.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_11.jpg" alt="プレー終了" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_11.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b11"><span></span></span>
                             </li>
@@ -401,7 +401,7 @@
                                     <h3><span class="cno">⑫</span>ご入浴&middot;お着替え</h3>
                                     <p>プレーの疲れを癒すひととき。<br>大浴場で汗を流し、リフレッシュしてお着替えください。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_12.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_12.jpg" alt="入浴・着替え" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_12.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b12"><span></span></span>
                             </li>
@@ -410,7 +410,7 @@
                                     <h3><span class="cno">⑬</span>アフターゴルフ&middot;懇親会</h3>
                                     <p>プライベートルームやレストランホールにて、懇親のお時間をお過ごしください。本日のプレーを振り返りながら、和やかな語らいのひとときをお楽しみいただけます。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_13.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_13.jpg" alt="アフターゴルフ" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_13.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b13"><span></span></span>
                             </li>
@@ -420,7 +420,7 @@
                                     <p>最後にお土産をお渡しし、ゲストの皆様をお見送りします。<br>※お土産を事前にお送りいただく場合は、当日午前中必着にてお送りください。スタッフにて開封し、お渡しの準備をいたします。
                                     </p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_14.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_14.jpg" alt="お見送り・ご帰宅" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_14.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b014"><span></span></span>
                             </li>
@@ -436,7 +436,7 @@
                                     <h3><span class="cno">①</span>ご来場&middot;お出迎え</h3>
                                     <p>クラブハウスにて、主催者様がゲストの皆様をお迎えいたします。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_01.jpg" alt="ご来場・お出迎え" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_01.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b01"><span></span></span>
                             </li>
@@ -445,7 +445,7 @@
                                     <h3><span class="cno">②</span>チェックイン手続き</h3>
                                     <p>会員様は専用カウンター、ゲスト様はビジターカウンターにてチェックインをお願いいたします。ご記入内容にはお名前・ご住所・ご連絡先などが含まれます。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_02.jpg" alt="チェックイン手続き" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_02.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b02"><span></span></span>
                             </li>
@@ -454,7 +454,7 @@
                                     <h3><span class="cno">③</span>お着替え</h3>
                                     <p>ロッカールームにて、ゴルフウェアにお着替えいただきます。<br>ロッカーはランダムでのご案内となり、専用ロッカーのご用意はございませんのでご了承ください。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_03.jpg" alt="お着換え" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_03.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b03"><span></span></span>
                             </li>
@@ -463,7 +463,7 @@
                                     <h3><span class="cno">④</span>ご集合&middot;朝食のお時間</h3>
                                     <p>個室をご用意している場合はお部屋へ、ない場合はレストランホールにご集合いただき、モーニングコーヒーや軽食をお楽しみいただけます。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_04.jpg" alt="ご集合" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_04.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b04"><span></span></span>
                             </li>
@@ -472,7 +472,7 @@
                                     <h3><span class="cno">⑤</span>練習&middot;ウォーミングアップ</h3>
                                     <p>ゴルフスタート前にウォーミングアップ、<a href="<?php echo esc_url(home_url('')); ?>/d-range/">練習場やパッティンググリーン</a>にて練習をされます。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_05.jpg" alt="練習・ウォーミングアップ" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_05.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b05"><span></span></span>
                             </li>
@@ -481,7 +481,7 @@
                                     <h3><span class="cno">⑥</span>キャディご挨拶&middot;クラブ確認</h3>
                                     <p>担当キャディよりご挨拶の後、クラブの本数や内容を確認させていただきます。<br>キャディのご指名は承っておりませんので、予めご了承ください。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_06.jpg" alt="キャディご挨拶・クラブ確認" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_06.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b06"><span></span></span>
                             </li>
@@ -490,7 +490,7 @@
                                     <h3><span class="cno">⑦</span>ラウンドスタート（前半）</h3>
                                     <p>いよいよゴルフスタートです。OUTスタート、INスタートいずれかよりプレーを開始いただきます。全組キャディ・乗用カート付きでのご案内です。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_07.jpg" alt="スタート（前半）" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_07.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b07"><span></span></span>
                             </li>
@@ -499,7 +499,7 @@
                                     <h3><span class="cno">⑧</span>プレー終了（ホールアウト）</h3>
                                     <p>スコアの確認&bull;クラブの点検を行い、プレー終了となります。<br>ご希望があればスコア集計表をマスター室よりお渡しします</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_11.jpg" alt="プレー終了（ホールアウト）" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_15.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b15"><span></span></span>
                             </li>
@@ -508,7 +508,7 @@
                                     <h3><span class="cno">⑨</span>ご入浴&bull;お着替え</h3>
                                     <p>プレーの疲れを癒すひととき。<br>大浴場で汗を流し、リフレッシュしてお着替えください。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_12.jpg" alt="ご入浴・お着替え" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_16.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b16"><span></span></span>
                             </li>
@@ -517,7 +517,7 @@
                                     <h3><span class="cno">⑩</span>ランチ&bull;懇親会</h3>
                                     <p>プライベートルームやレストランホールにて、お食事のお時間をお過ごしください。本日のプレーを振り返りながら、和やかな語らいのひとときをお楽しみいただけます。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_13.jpg" alt="ランチ・懇親会" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_17.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b17"><span></span></span>
                             </li>
@@ -526,7 +526,7 @@
                                     <h3><span class="cno">⑪</span>お見送り&bull;ご帰宅</h3>
                                     <p>最後にお土産をお渡しし、ゲストの皆様をお見送りします。<br>&#8251;お土産を事前にお送りいただく場合は、当日午前中必着にてお送りください。スタッフにて開封し、お渡しの準備をいたします。</p>
                                 </div>
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_08.jpg" alt="ダミー" class="img">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_14.jpg" alt="お見送り・ご帰宅" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_18.png" alt="bo-ru" class="ball">
                                 <span class="deco _deb _b18"><span></span></span>
                             </li>
