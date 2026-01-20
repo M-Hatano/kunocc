@@ -472,7 +472,7 @@
                     <li class="list02__item">
                         <div class="list02__menu list02__menu--pt01">
                             <div class="list02__menu--ribbon">
-                                7,700コース
+                                7,700円コース
                             </div>
                             <p class="list02__menu--text">
                                 季節の一品料理２点<br>御造り鮮魚盛り合わせ<br>焼魚（例：銀鱈の西京漬け）<br>揚物（例：ズワイ蟹のクリームコロッケ）<br>肉料理（例：ビーフシチュー）<br>食事&nbsp;稲庭饂飩<br>デザート叉は水菓子

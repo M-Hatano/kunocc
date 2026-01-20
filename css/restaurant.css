@@ -268,6 +268,7 @@
 
 .list01__item--name span {
   font-size: 14px;
+  display: block;
 }
 
 .list01__item--price {
@@ -557,6 +558,7 @@
 
 .lu-list__item--name span {
   font-size: 14px;
+  display: block;
 }
 
 .lu-list__item--price {
@@ -739,7 +741,7 @@
 }
 
 .list02__menu--text {
-  text-align: center;
+  text-align: left;
 }
 
 .list02__menu--price {

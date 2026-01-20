@@ -35,12 +35,12 @@
             </p>
           </div>
           <div>
-            <p class="picare__hd">バンカー</p>
+            <p class="picare__hd">アプローチ・バンカー</p>
             <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_02.jpg" class="fancybox" data-fancybox="range">
               <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/range/img_range_02.jpg" alt="練習場">
             </a>
             <p>
-              練習場にはバンカーエリアも併設しており、ショットだけでなく多彩なシーンに対応した練習が可能です。
+              練習場にはアプローチ・バンカーエリアも併設しており、ショットだけでなく多彩なシーンに対応した練習が可能です。
             </p>
           </div>
         </div>
