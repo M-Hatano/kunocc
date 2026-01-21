@@ -23,7 +23,6 @@
   <meta property="og:image" content="<?php echo esc_url(get_template_directory_uri() . '/img/ogp.jpg'); ?>">
   <meta property="og:site_name" content="久能カントリー倶楽部">
   <meta property="og:type" content="website">
-
   <link rel="canonical" href="<?php echo esc_url(home_url()); ?>">
 
   <!-- FAVICON -->
