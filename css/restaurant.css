@@ -742,6 +742,8 @@
 
 .list02__menu--text {
   text-align: left;
+  display: flex;
+  justify-content: center;
 }
 
 .list02__menu--price {
