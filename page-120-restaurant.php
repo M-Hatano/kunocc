@@ -261,9 +261,6 @@
                                 <p>
                                     <span class="lu-list__item--name">
                                         <?php echo esc_html($name); ?>
-                                        <?php if ($name_sub) : ?>
-                                            <span><?php echo esc_html($name_sub); ?></span>
-                                        <?php endif; ?>
                                     </span>
 
                                     <?php if ($price) : ?>
@@ -275,6 +272,9 @@
 
                                 <?php if ($desc) : ?>
                                     <p><?php echo nl2br(esc_html($desc)); ?></p>
+                                <?php endif; ?>
+                                <?php if ($name_sub) : ?>
+                                    <span class="lu-list__item--sub"><?php echo esc_html($name_sub); ?></span>
                                 <?php endif; ?>
 
                             </li>

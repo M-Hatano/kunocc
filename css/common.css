@@ -3565,4 +3565,7 @@ table {
 .c-btbnr ._line::after{
   content: none;
 }
+.c-footer__flex>div:nth-of-type(2){
+  padding-left: 0;
+}
 /*組み合わせ・承り非表示関連ここまで*/

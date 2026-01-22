@@ -547,7 +547,7 @@
 }
 
 .lu-list__item p:nth-of-type(2) {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .lu-list__item--name {
@@ -556,7 +556,7 @@
   line-height: 24px;
 }
 
-.lu-list__item--name span {
+.lu-list__item--sub {
   font-size: 14px;
   display: block;
 }
@@ -587,17 +587,19 @@
   }
 
   .lu-list__item p:nth-of-type(2) {
-    margin-top: 20px;
+    margin-top: 8px;
     font-size: 14px;
     line-height: 18px;
   }
 
   .lu-list__item--name {
-    font-size: 14px;
-    line-height: 15.5px;
+    font-size: 16px;
+    line-height: 1.2;
     margin-bottom: 10px;
   }
-
+  .lu-list__item--sub{
+    font-size: 12px;
+  }
   .lu-list__item--name span {
     font-size: 12px;
     display: block;
