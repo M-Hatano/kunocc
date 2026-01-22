@@ -52,7 +52,7 @@
                         <p class="rtel">ご予約のスタートはお電話にて受付けております。以下の電話番号よりご連絡をお願いいたします。</p>
                         <a href="tel:0476-93-9000">0476-93-9000</a>
 
-                        <div class="rbox fade-in">
+                        <!-- <div class="rbox fade-in">
                             <div class="rbox__method apply">
                                 <p>ご予約方法A</p>
                             </div>
@@ -66,11 +66,11 @@
                                 <a href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_kumi.asp" target="_blank" rel="noopener noreferrer" class="c-btn"><span class="cno">②</span>組み合わせ送信フォーム</a>
                             </div>
                             <span class="deco _03"><span></span></span>
-                        </div>
+                        </div> -->
 
                         <div class="rbox fade-in" id="res_form">
                             <div class="rbox__method apply">
-                                <p>ご予約方法B</p>
+                                <p>ご予約方法<!--B--></p>
                             </div>
                             <p>WEB上でご入力をされないお客様は、以下にご予約連絡フォーム（エクセル形式・PDF形式）をそれぞれご用意しております。</p>
 
@@ -110,8 +110,8 @@
                                             プレー料金やゲスト料金については<br>
                                             「会員専用ページ」よりご確認いただけます。その他料金に関しましては以下のリンクよりご確認ください。
                                         </p>
-                                        <a href="<?php echo esc_url(home_url('')); ?>">レンタル料金について ／ </a>
-                                        <a href="<?php echo esc_url(home_url('')); ?>facility/#link03">個室の料金について ／ </a>
+                                        <a href="#rental">レンタル料金について ／ </a>
+                                        <a href="<?php echo esc_url(home_url('')); ?>/facility/#link03">個室の料金について ／ </a>
                                         <a href="<?php echo esc_url(home_url('')); ?>/d-range/">練習場の料金について ／ </a>
                                         <a href="<?php echo esc_url(home_url('')); ?>/restaurant/">食事の料金について ／ </a>
                                     </div>
@@ -149,11 +149,16 @@
                                         <span class="deco _05"><span></span></span>
                                     </div>
                                     <div class="rlistbox__item--wh">
-                                        <p>
+                                        <!-- <p>
                                             メンバーの組み合わせのご連絡については<br>
                                             <a
-                                                href="">WEB入力用の組み合わせ送信フォーム</a>をご利用ください。キャディバッグ配送の有無、カートの詰め込み順もご指定いただけます。<br>
+                                                href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_kumi.asp" target="_blank" rel="noopener noreferrer">WEB入力用の組み合わせ送信フォーム</a>をご利用ください。キャディバッグ配送の有無、カートの詰め込み順もご指定いただけます。<br>
                                             また、<a href="#res_form">組み合わせ送信フォーム（エクセル・PDF）</a>もご利用ください。
+                                        </p> -->
+                                        <!--組み合わせフォーム公開時は以下を上記を戻し、以下を削除-->
+                                        <p>
+                                            メンバーの組み合わせのご連絡については<br>
+                                            <a href="#res_form">組み合わせ送信フォーム（エクセル・PDF）</a>をご利用ください。キャディバッグ配送の有無、カートの詰め込み順もご指定いただけます。<br>
                                         </p>
                                     </div>
                                 </li>
@@ -163,9 +168,14 @@
                                         <span class="deco _05"><span></span></span>
                                     </div>
                                     <div class="rlistbox__item--wh">
-                                        <p>
+                                        <!-- <p>
                                             スコアの集計はございますか？<br>
                                             集計方法について（競技方法、ハンデ上限、打数制限、同順位決定）は、<a href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_uke.asp" target="_blank" rel="noopener noreferrer">ご予約連絡フォーム（WEB）</a>または<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>でご指定ください。
+                                        </p> -->
+                                        <!--組み合わせフォーム公開時は以下を上記を戻し、以下を削除-->
+                                        <p>
+                                            スコアの集計はございますか？<br>
+                                            集計方法について（競技方法、ハンデ上限、打数制限、同順位決定）は、<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>でご指定ください。
                                         </p>
                                     </div>
                                 </li>
@@ -175,8 +185,12 @@
                                         <span class="deco _05"><span></span></span>
                                     </div>
                                     <div class="rlistbox__item--wh">
-                                        <p>
+                                        <!-- <p>
                                             精算方法の指定はございますか？指定がございます場合、<a href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_uke.asp" rel="noopener noreferrer" target="_blank">ご予約連絡フォーム（WEB）</a>または<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>をご利用ください。
+                                        </p> -->
+                                        <!--組み合わせフォーム公開時は以下を上記を戻し、以下を削除-->
+                                        <p>
+                                            精算方法の指定はございますか？指定がございます場合、<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a>をご利用ください。
                                         </p>
                                     </div>
                                 </li>
@@ -187,7 +201,7 @@
                                     </div>
                                     <div class="rlistbox__item--wh">
                                         <p>
-                                            ドレスコードについては、以下リンクよりご確認いただけます。
+                                            ドレスコードについては、以下のリンクよりご確認いただけます。
                                         </p>
                                         <a href="<?php echo esc_url(home_url('')); ?>/dresscode/">ドレスコードについて ／ </a>
                                     </div>
@@ -212,10 +226,15 @@
                                         <span class="deco _05"><span></span></span>
                                     </div>
                                     <div class="rlistbox__item--wh">
-                                        <p>
+                                        <!-- <p>
                                             手土産等の事前送付はございますか？<br>
                                             ございます場合、<a href="https://wst1.asts.jp/golfnet/cc/0213cc/compe/index_uke.asp" rel="noopener noreferrer" target="_blank">ご予約連絡フォーム（WEB）</a><br>
                                             または<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a></a>をご利用ください。
+                                        </p> -->
+                                        <!--組み合わせフォーム公開時は以下を上記を戻し、以下を削除-->
+                                        <p>
+                                            手土産等の事前送付はございますか？<br>
+                                            ございます場合、<a href="#res_form">ご予約連絡フォーム（エクセル・PDF）</a></a>をご利用ください。
                                         </p>
                                     </div>
                                 </li>
@@ -235,6 +254,24 @@
                             レンタル用品についてはわずかしかご用意がございません。必要に応じてレンタルクラブ会社からお借りすることも可能ですので、プレーの一週間前までにご予約ください。ブランド等の指定も可能です。
                         </p>
                         <p class="dot">宅急便につきましては、クロネコヤマトの宅急便サービスをご利用いただけます。</p>
+                        <div class="res__rental" id="rental">
+                            <p class="res__rental--ttl">レンタルについて</p>
+                            <table>
+                                <tr>
+                                    <th>貸しシューズ</th>
+                                    <td>1,100円（23〜18cm）</td>
+                                </tr>
+                                <tr>
+                                    <th>貸しクラブ（フルセット）</th>
+                                    <td>5,500円</td>
+                                </tr>
+                            </table>
+                            <ul class="c-list">
+                                <li><span>※</span>男性2セット、女性1セットしかご用意がございません。先着順となります。</li>
+                                <li><span>※</span>必要に応じてレンタルクラブ会社からお借りすることも可能です（レンタル料金：7,700）</li>
+                                <li><span>※</span>プレーの1週間前までにご予約ください。ブランド等の指定も可能です。</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 

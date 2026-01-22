@@ -39,112 +39,122 @@
           /* -------------------------------------------------
            * ② 基本設定
            * -------------------------------------------------*/
-          $paged          = max(1, (int) get_query_var('paged'));
+          $paged          = max(1, (int) get_query_var('paged'), (int) get_query_var('page')); // ★pageも見る
           $year           = (int) get_query_var('year');
           $posts_per_page = 10;
 
           /* -------------------------------------------------
-           * ③ Sticky（1ページ目は最大3件まで）
+           * 共通：リンク生成（直リンク/ファイル/通常）
            * -------------------------------------------------*/
-          $sticky_ids = [];
+          $make_href = function (): string {
+            $news_file = get_field('news_file');
+            $link_url  = get_field('link_url');
+            $direct    = get_field('direct_link');
+
+            if ($link_url) return esc_url($link_url);
+            if ($news_file && $direct) return esc_url($news_file);
+            return get_permalink();
+          };
+
+          /* -------------------------------------------------
+           * ③ Sticky IDs（除外用）：毎ページ取得する（★重要）
+           *   - WPの sticky_posts から、newsカテゴリのものだけ最大3件
+           *   - 年別なら year で絞る
+           *   - 表示は1ページ目のみ
+           * -------------------------------------------------*/
           $shown_ids  = [];
+          $sticky_ids = [];
 
-          if ($paged === 1) {
-            $all_sticky = get_option('sticky_posts');
+          $all_sticky = (array) get_option('sticky_posts');
+          if (!empty($all_sticky)) {
 
-            if (!empty($all_sticky)) {
-              // Sticky の中から news カテゴリーのみ取得（最大3件）
-              $sticky_ids = get_posts([
-                'post_type'      => 'post',
-                'post__in'       => $all_sticky,
-                'fields'         => 'ids',
-                'posts_per_page' => 3,
-                'tax_query'      => $tax_query,
-                'year'           => $year,
-              ]);
+            $sticky_args = [
+              'post_type'      => 'post',
+              'post_status'    => 'publish',
+              'post__in'       => $all_sticky,
+              'fields'         => 'ids',
+              'posts_per_page' => 3,
+              'orderby'        => 'date',
+              'order'          => 'DESC',
+              'tax_query'      => $tax_query,
+            ];
+            if ($year) $sticky_args['year'] = $year;
 
-              // 念のため3件に固定
-              $sticky_ids = array_slice((array) $sticky_ids, 0, 3);
-            }
-
-            if (!empty($sticky_ids)) {
-              $sticky_q = new WP_Query([
-                'post_type' => 'post',
-                'post__in'  => $sticky_ids,
-                'orderby'   => 'post__in',
-              ]);
-
-              while ($sticky_q->have_posts()) {
-                $sticky_q->the_post();
-                $shown_ids[] = get_the_ID();
-
-                $news_file = get_field('news_file');
-                $link_url  = get_field('link_url');
-                $direct    = get_field('direct_link');
-
-                if ($link_url) {
-                  $href = esc_url($link_url);
-                } elseif ($news_file && $direct) {
-                  $href = esc_url($news_file);
-                } else {
-                  $href = get_permalink();
-                }
-                ?>
-                <li>
-                  <a href="<?php echo esc_url($href); ?>">
-                    <span class="news-box__time"><?php echo esc_html(get_the_date('Y.m.d')); ?></span>
-                    <?php the_title(); ?>
-                  </a>
-                </li>
-                <?php
-              }
-              wp_reset_postdata();
-            }
+            $sticky_ids = get_posts($sticky_args);
+            $sticky_ids = array_slice((array) $sticky_ids, 0, 3);
           }
 
           /* -------------------------------------------------
-           * ④ 通常記事（sticky を除外）
+           * ④ Sticky 表示（1ページ目のみ）
            * -------------------------------------------------*/
-          $remain = ($paged === 1) ? $posts_per_page - count($shown_ids) : $posts_per_page;
-          $remain = max(0, $remain);
+          if ($paged === 1 && !empty($sticky_ids)) {
 
-          $normal_q = new WP_Query([
-            'post_type'           => 'post',
-            'paged'               => $paged,
-            'posts_per_page'      => $remain,
-            'post__not_in'        => $shown_ids,
-            'ignore_sticky_posts' => true,
-            'tax_query'           => $tax_query,
-            'year'                => $year,
-          ]);
+            $sticky_q_args = [
+              'post_type'     => 'post',
+              'post_status'   => 'publish',
+              'post__in'      => $sticky_ids,
+              'orderby'       => 'post__in',
+              'tax_query'     => $tax_query,
+              'no_found_rows' => true,
+            ];
+            if ($year) $sticky_q_args['year'] = $year;
+
+            $sticky_q = new WP_Query($sticky_q_args);
+
+            while ($sticky_q->have_posts()) {
+              $sticky_q->the_post();
+              $shown_ids[] = get_the_ID();
+              $href = $make_href();
+              ?>
+              <li class="is-sticky">
+                <a href="<?php echo esc_url($href); ?>">
+                  <span class="news-box__time"><?php echo esc_html(get_the_date('Y.m.d')); ?></span>
+                  <?php the_title(); ?>
+                </a>
+              </li>
+              <?php
+            }
+            wp_reset_postdata();
+          }
 
           /* -------------------------------------------------
-           * ⑤ ページネーション専用クエリ（★追加）
+           * ⑤ 通常記事（Sticky除外）
+           *  - 1ページ目は「10 - sticky件数」
+           *  - 2ページ目以降は offset を補正して “飛ばし/重複” を防ぐ
            * -------------------------------------------------*/
-          $paging_q = new WP_Query([
+          $sticky_count_for_calc = min($posts_per_page, count($sticky_ids));  // 例：3
+          $first_normal          = max(0, $posts_per_page - $sticky_count_for_calc); // 例：7
+
+          if ($paged === 1) {
+            $offset = 0;
+            $limit  = $first_normal;
+          } else {
+            $offset = $first_normal + (($paged - 2) * $posts_per_page);
+            $limit  = $posts_per_page;
+          }
+          $limit = max(0, (int) $limit);
+
+          $exclude_ids = !empty($shown_ids) ? $shown_ids : $sticky_ids;
+
+          $normal_args = [
             'post_type'           => 'post',
-            'posts_per_page'      => $posts_per_page, // ★ 常に10固定
-            'paged'               => $paged,
-            'ignore_sticky_posts' => true,
+            'post_status'         => 'publish',
+            'posts_per_page'      => $limit,
+            'offset'              => $offset,          // ★pagedではなくoffset
+            'orderby'             => 'date',
+            'order'               => 'DESC',
             'tax_query'           => $tax_query,
-            'year'                => $year,
-          ]);
+            'post__not_in'        => $exclude_ids,     // ★sticky除外（2ページ目以降にも効く）
+            'ignore_sticky_posts' => true,
+          ];
+          if ($year) $normal_args['year'] = $year;
+
+          $normal_q = new WP_Query($normal_args);
 
           if ($normal_q->have_posts()) {
             while ($normal_q->have_posts()) {
               $normal_q->the_post();
-
-              $news_file = get_field('news_file');
-              $link_url  = get_field('link_url');
-              $direct    = get_field('direct_link');
-
-              if ($link_url) {
-                $href = esc_url($link_url);
-              } elseif ($news_file && $direct) {
-                $href = esc_url($news_file);
-              } else {
-                $href = get_permalink();
-              }
+              $href = $make_href();
               ?>
               <li>
                 <a href="<?php echo esc_url($href); ?>">
@@ -155,12 +165,30 @@
               <?php
             }
           } else {
-            if (empty($shown_ids)) {
+            if ($paged === 1 && empty($shown_ids)) {
               echo '<li>現在お知らせはありません。</li>';
             }
           }
 
           wp_reset_postdata();
+
+          /* -------------------------------------------------
+           * ⑥ ページネーション専用クエリ（総ページ数計算用）
+           *  - “全件（sticky含む）” を 10件固定で計算（現状維持）
+           * -------------------------------------------------*/
+          $paging_args = [
+            'post_type'           => 'post',
+            'post_status'         => 'publish',
+            'posts_per_page'      => $posts_per_page,
+            'paged'               => $paged,
+            'orderby'             => 'date',
+            'order'               => 'DESC',
+            'tax_query'           => $tax_query,
+            'ignore_sticky_posts' => true,
+          ];
+          if ($year) $paging_args['year'] = $year;
+
+          $paging_q = new WP_Query($paging_args);
           ?>
 
         </ul>
@@ -200,18 +228,7 @@
 
               while ($recent_q->have_posts()) {
                 $recent_q->the_post();
-
-                $news_file = get_field('news_file');
-                $link_url  = get_field('link_url');
-                $direct    = get_field('direct_link');
-
-                if ($link_url) {
-                  $href = esc_url($link_url);
-                } elseif ($news_file && $direct) {
-                  $href = esc_url($news_file);
-                } else {
-                  $href = get_permalink();
-                }
+                $href = $make_href();
                 ?>
                 <li>
                   <a href="<?php echo esc_url($href); ?>">

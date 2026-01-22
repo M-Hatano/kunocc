@@ -59,7 +59,7 @@ Template Name: アクセス
       <div class="abox">
         <p>
           東関東自動車道路&nbsp;富里ICより&nbsp;<br class="c-brsp">
-          約3.4Km（車で5分）
+          約3.4Km（車で10分）
         </p>
 
         <img
@@ -89,7 +89,7 @@ Template Name: アクセス
       <h2 class="ahead">電車をご利用の方</h2>
 
       <div class="abox for-pc">
-        <p>JR成田駅／京成成田駅より&nbsp;約4.0Km（車で10分）</p>
+        <p>JR成田駅／京成成田駅より&nbsp;約4.0Km（車で15分）</p>
 
         <img
           src="<?php echo esc_url(get_template_directory_uri()); ?>/img/access/img_access_03.jpg"

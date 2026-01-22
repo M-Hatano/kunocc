@@ -23,7 +23,6 @@
   <meta property="og:image" content="<?php echo esc_url(get_template_directory_uri() . '/img/ogp.jpg'); ?>">
   <meta property="og:site_name" content="久能カントリー倶楽部">
   <meta property="og:type" content="website">
-
   <link rel="canonical" href="<?php echo esc_url(home_url()); ?>">
 
   <!-- FAVICON -->
@@ -111,20 +110,14 @@
                   <li><a href="<?php echo esc_url(home_url('')); ?>/course/">コース紹介</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/access/">アクセス&#12539;近隣ホテル情報</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/news/">ニュース</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部概要</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部紹介</a></li>
                 </ul>
-
-                <?php if (knc_member_is_logged_in()) : ?>
-                  <div class="c-nav__bnr">
-                    <a href="<?php echo esc_url(home_url('')); ?>/member-logout/" class="c-nav__bnr--mbr">ログアウト</a>
-                  </div>
-                <?php endif; ?>
               </div>
 
               <div class="c-nav__box">
                 <ul class="c-nav__list">
                   <li><a href="<?php echo esc_url(home_url('')); ?>/d-range/">ゴルフ練習場</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a></li>
+                  <!-- <li><a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a></li> -->
                   <li>
                     <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf" target="_blank" rel="noopener noreferrer">
                       会員募集について

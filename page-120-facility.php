@@ -231,13 +231,13 @@
       <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
-            <h3 class="facility__info--sub">大浴場</h3>
+            <h3 class="facility__info--sub">男性浴場</h3>
             <p>ゴルフを満喫したあとは、広々とした屋内浴場で心と体を癒してください。<br class="c-brpc">大きな窓越しに広がる緑豊かな景色が、まるで森の中にいるような非日常のひとときを演出します。<br class="c-brpc">やわらかな光と静けさに包まれながら、贅沢なリラックスタイムをお楽しみいただけます。</p>
           </div>
         </div>
         <span class="facility__flex--img">
           <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_07.jpg" class="fancybox" data-fancybox="facility">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_07.jpg" alt="大浴場" loading="lazy">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/facility/img_facility_07.jpg" alt="男性浴場" loading="lazy">
           </a>
         </span>
       </div>
@@ -245,7 +245,7 @@
       <div class="facility__flex fade-in">
         <div class="facility__info">
           <div>
-            <h3 class="facility__info--sub">サウナ</h3>
+            <h3 class="facility__info--sub">サウナ<span>（男性のみ）</span></h3>
             <p>上質な天然木を贅沢に使用した、ゆったりとくつろげるサウナをご用意しております。<br class="c-brpc">木の香りとやわらかな温もりに包まれながら、心と身体をゆっくりと整えるひとときをお過ごしください。</p>
           </div>
         </div>

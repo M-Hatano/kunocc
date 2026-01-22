@@ -60,7 +60,14 @@
   font-size: 32px;
   line-height: 24px;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
+}
+.lead__text + p{
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 40px;
 }
 
 .lead__text span {
@@ -80,6 +87,9 @@
     margin-top: 15px;
     font-size: 14px;
     line-height: 21px;
+  }
+  .lead__text + p{
+    font-size: 14px;
   }
 }
 
@@ -258,6 +268,7 @@
 
 .list01__item--name span {
   font-size: 14px;
+  display: block;
 }
 
 .list01__item--price {
@@ -273,7 +284,7 @@
 @media screen and (max-width: 896px) {
   .list01 {
     gap: 12.5px;
-    margin: 55px 0 38px;
+    margin: 30px 0 38px;
   }
 
   .list01__item {
@@ -536,7 +547,7 @@
 }
 
 .lu-list__item p:nth-of-type(2) {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .lu-list__item--name {
@@ -545,8 +556,9 @@
   line-height: 24px;
 }
 
-.lu-list__item--name span {
+.lu-list__item--sub {
   font-size: 14px;
+  display: block;
 }
 
 .lu-list__item--price {
@@ -575,17 +587,19 @@
   }
 
   .lu-list__item p:nth-of-type(2) {
-    margin-top: 20px;
+    margin-top: 8px;
     font-size: 14px;
     line-height: 18px;
   }
 
   .lu-list__item--name {
-    font-size: 14px;
-    line-height: 15.5px;
+    font-size: 16px;
+    line-height: 1.2;
     margin-bottom: 10px;
   }
-
+  .lu-list__item--sub{
+    font-size: 12px;
+  }
   .lu-list__item--name span {
     font-size: 12px;
     display: block;
@@ -696,7 +710,7 @@
 
 .list02__menu {
   border: 2px solid #243749;
-  padding: 25px 20px 5px;
+  padding: 27px 21px 15px;
   height: 100%;
 }
 
@@ -729,7 +743,9 @@
 }
 
 .list02__menu--text {
-  text-align: center;
+  text-align: left;
+  display: flex;
+  justify-content: center;
 }
 
 .list02__menu--price {
@@ -789,6 +805,7 @@
 
 .u-standard {
   color: #fff;
+  flex-wrap: wrap;
 }
 
 .u-standard .list02__item {
@@ -955,8 +972,9 @@
 }
 
 .dwrap02__inner:nth-of-type(3) {
-  width: 100%;
   margin-top: 87px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 896px) {
@@ -1201,10 +1219,19 @@
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
+.res__notes{
+  text-align: center;
+  font-size: 18px;
+  margin: 0 0 60px;
+}
 
 @media screen and (max-width: 896px) {
   .d_deco span {
     width: 44px;
     height: 44px;
+  }
+  .res__notes{
+    font-size: 14px;
+    margin: 0 0 30px;
   }
 }

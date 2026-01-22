@@ -1,6 +1,6 @@
 <?php
 /*
-      Template Name: 倶楽部概要
+      Template Name: 倶楽部紹介
       */
 ?>
 
@@ -12,7 +12,7 @@
   <div class="c-page-header lazyload">
     <div class="c-column c-page-header__inner">
       <h1 class="c-page-header__title">Club
-        <span>倶楽部概要</span>
+        <span>倶楽部紹介</span>
       </h1>
     </div>
   </div>
@@ -122,7 +122,7 @@
             <td>名誉顧問</td>
           </tr>
           <tr>
-            <th rowspan="16">理事</th>
+            <th rowspan="17">理事</th>
             <td>青柳&nbsp;俊一</td>
             <td>株式会社千葉興業銀行</td>
             <td>取締役会長</td>
@@ -141,6 +141,11 @@
             <td>岡田&nbsp;民雄</td>
             <td>日本ルツボ株式会社</td>
             <td>元代表取締役会長</td>
+          </tr>
+          <tr>
+            <td>柿木&nbsp;厚司</td>
+            <td>JFEホールディングス株式会社</td>
+            <td>特別顧問</td>
           </tr>
           <tr>
             <td>金丸 恭文</td>
@@ -220,7 +225,7 @@
 
     <ul class="c-brd">
       <li><a href="<?php echo esc_url(home_url('')); ?>/">TOP</a></li>
-      <li><a href="">倶楽部概要</a></li>
+      <li><a href="">倶楽部紹介</a></li>
     </ul>
   </div>
 

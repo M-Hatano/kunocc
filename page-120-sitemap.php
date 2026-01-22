@@ -55,7 +55,7 @@
                 </section>
 
                 <section>
-                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部概要</a></h3>
+                  <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部紹介</a></h3>
                 </section>
 
               </div>
@@ -66,9 +66,9 @@
                   <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/d-range/">ゴルフ練習場</a></h3>
                 </section>
 
-                <section>
+                <!-- <section>
                   <h3 class="title-sitemap"><a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a></h3>
-                </section>
+                </section> -->
 
                 <section>
                   <h3 class="title-sitemap"><a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf">会員募集について</a></h3>

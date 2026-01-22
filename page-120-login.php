@@ -41,14 +41,13 @@ if (!empty($_GET['redirect_to'])) {
   <section class="c-member">
     <div class="c-column">
 
-      <h2 class="c-head6 m_head">会員ログイン<span>Member Login</span></h2>
-      <p>会員専用ページにアクセスするにはログインしてください。</p>
+      <p class="c-lead">会員専用ページにアクセスするにはログインしてください。</p>
 
       <?php if ($login_error): ?>
         <p style="color:red; font-weight:bold;text-align:center;margin:0 0 15px;"><?php echo esc_html($login_error); ?></p>
       <?php endif; ?>
 
-      <div class="c-form box-pat">
+      <div class="c-form box-pat _mtss">
 
         <form method="post">
 
