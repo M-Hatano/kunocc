@@ -72,9 +72,9 @@
           </a>
         </div>
 
-        <p class="c-header__member">
+        <!-- <p class="c-header__member">
           <a href="<?php echo esc_url(home_url('')); ?>/member/">会員専用</a>
-        </p>
+        </p> -->
 
         <div class="c-header__menu js-menu">
           <div>
@@ -115,11 +115,11 @@
                 <ul class="c-nav__list">
                   <li><a href="<?php echo esc_url(home_url('')); ?>/d-range/">ゴルフ練習場</a></li>
                   <!-- <li><a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a></li> -->
-                  <li>
+                  <!-- <li>
                     <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf" target="_blank" rel="noopener noreferrer">
                       会員募集について
                     </a>
-                  </li>
+                  </li> -->
                   <li><a href="<?php echo esc_url(home_url('')); ?>/dresscode/">ドレスコード</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/sitepolicy/">サイトポリシー</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/privacypolicy/">プライバシーポリシー</a></li>
@@ -137,7 +137,7 @@
                   >
                     久能CCの天気
                   </a>
-                  <a href="<?php echo esc_url(home_url('')); ?>/member/" class="c-nav__bnr--mbr">会員専用ページ</a>
+                  <!-- <a href="<?php echo esc_url(home_url('')); ?>/member/" class="c-nav__bnr--mbr">会員専用ページ</a> -->
                 </div>
               </div>
 
