@@ -49,6 +49,86 @@ function knc_get_site_relative_path(): string
 }
 
 /**
+ * 現在表示中ページの canonical URL を返す（クエリ除去・末尾/ありに統一）
+ * - $wp->request が取れるときはそれを優先
+ * - 取れない場合は REQUEST_URI の path を使う
+ */
+function knc_get_canonical_url(): string
+{
+    if (is_admin() || wp_doing_ajax()) {
+        return home_url('/');
+    }
+
+    global $wp;
+
+    $req = '';
+    if (isset($wp) && isset($wp->request)) {
+        $req = (string) $wp->request;
+    } else {
+        $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+        $req  = is_string($path) ? ltrim($path, '/') : '';
+    }
+
+    $url = home_url($req);
+    // 念のためクエリを落とす
+    $url = strtok($url, '?');
+
+    return trailingslashit($url);
+
+    }
+
+
+/**
+ * head内のメタ系（title/description/OGP/Twitter/canonical）をまとめて出力
+ * - header 側をスッキリさせる目的
+ * - 出力内容は og/twitter で統一
+ */
+function knc_output_meta_tags(): void
+{
+    $site_suffix      = ' 久能カントリー倶楽部 公式サイト';
+    $meta_description = function_exists('get_dynamic_meta_description')
+        ? (string) get_dynamic_meta_description()
+        : '';
+
+    $canonical_url = function_exists('knc_get_canonical_url')
+        ? knc_get_canonical_url()
+        : home_url('/');
+
+    $og_image = get_template_directory_uri() . '/img/ogp.jpg';
+
+    // 旧来の「wp_title + 固定サフィックス」を維持（出方を崩さない）
+    $prefix    = trim((string) wp_title('|', false, 'right'));
+    $doc_title = $prefix . $site_suffix;
+
+    ?>
+    <title><?php echo esc_html($doc_title); ?></title>
+
+    <meta name="description" content="<?php echo esc_attr($meta_description); ?>">
+    <link rel="canonical" href="<?php echo esc_url($canonical_url); ?>">
+
+    <!-- OGP -->
+    <meta property="og:title" content="<?php echo esc_attr($doc_title); ?>">
+    <meta property="og:description" content="<?php echo esc_attr($meta_description); ?>">
+    <meta property="og:url" content="<?php echo esc_url($canonical_url); ?>">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:image" content="<?php echo esc_url($og_image); ?>">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:site_name" content="久能カントリー倶楽部">
+    <meta property="og:type" content="website">
+
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo esc_attr($doc_title); ?>">
+    <meta name="twitter:description" content="<?php echo esc_attr($meta_description); ?>">
+    <meta name="twitter:image" content="<?php echo esc_url($og_image); ?>">
+    <?php
+}
+
+/**
  * REQUEST_URI から「サイト設置パス」を差し引いたパスを返す
  *
  * 例)
@@ -300,7 +380,6 @@ function get_dynamic_meta_description()
         // 'hospitality' => '久能カントリー倶楽部 公式サイト ご利用日当日の流れページです。ご利用日当日の流れについて掲載しております。',
         'facility' => 'ゆったりとしたレストラン、接待にご利用いただける個室、広々としたロッカールームや浴場・サウナ、練習場まで設備情報を写真付きで詳しくご紹介します。',
         'news' => '営業情報、イベント情報、営業スケジュール、施設からのお知らせなど最新ニュースをわかりやすく掲載しています。',
-        'member' => 'メンバー様はこちらよりログインをお願いいたします。',
         'information' => '会員様向けのお知らせを掲載しております。',
         'kusunoki' => '営業案内について掲載しております。',
         'access' => '最寄り駅やICからの交通手段、送迎情報、駐車場案内など、ご来場に役立つアクセス情報をわかりやすくご案内します。',
@@ -308,20 +387,19 @@ function get_dynamic_meta_description()
         'club' => 'クラブの特色や歴史、運営概要、会員層、倶楽部が大切にする価値観について記載しております。',
         'course' => '自然の高低差を生かした戦略的な18ホール、ティーグラウンドやフェアウェイ、名物ホールの特徴を写真付きで詳しく掲載しております。',
         'recruit' => '久能カントリー倶楽部の求人情報を掲載しております。',
-
         'sitepolicy' => '久能カントリー倶楽部のサイトポリシーについて掲載しております。',
         'privacypolicy' => '久能カントリー倶楽部のプライバシーポリシーについて掲載しております。',
-        'links' => '久能カントリー倶楽部 リンク集',
-        'sitemap' => 'サイトマップについて掲載しております.',
+        'links' => '久能カントリー倶楽部 公式サイトのリンク集を掲載しております。',
+        'sitemap' => '久能カントリー倶楽部 公式サイトのサイトマップについて掲載しております.',
         'contact' => '久能カントリー倶楽部へのお問い合わせはこちらから。',
         'contact/confirm' => '久能カントリー倶楽部へのお問い合わせはこちらから。',
         'contact/complete' => '久能カントリー倶楽部へのお問い合わせはこちらから。',
-        'member' => '久能カントリー倶楽部 公式サイト 会員様お知らせページです。会員様お知らせについて掲載しております。',
-        'member/information' => '久能カントリー倶楽部 公式サイト 営業案内ページです。営業案内について掲載しております。',
-        'member/kusunoki' => '久能カントリー倶楽部 公式サイト くすのき会ページです。くすのき会について掲載しております。',
-        'member/partnership' => '久能カントリー倶楽部 公式サイト 会員提携コースのご案内ページです。会員提携コースのご案内について掲載しております。',
-        'member/m-calendar' => '久能カントリー倶楽部 公式サイト 会員ビジター様料金カレンダーページです。会員ビジター様料金カレンダーについて掲載しております。',
-        'member/registration' => '久能カントリー倶楽部 公式サイト 会員コンペ申し込みページです。会員コンペ申し込みについて掲載しております。',
+        'member' => '久能カントリー倶楽部の会員様向けお知らせを掲載しております。',
+        'member/information' => '久能カントリー倶楽部の営業案内について掲載しております。',
+        'member/kusunoki' => '久能カントリー倶楽部 くすのき会向けのお知らせを掲載しております。',
+        'member/partnership' => '久能カントリー倶楽部の会員提携コースのご案内について掲載しております。',
+        'member/m-calendar' => '久能カントリー倶楽部のビジター様料金カレンダーを掲載しております。',
+        'member/registration' => '久能カントリー倶楽部の会員コンペ情報について掲載しております。',
     ];
 
     $current_path = knc_get_site_relative_path();
@@ -342,17 +420,17 @@ function get_dynamic_meta_description()
     * ---------------------------------------------------- */
     // /member/2025/12/slug
     if (preg_match('#^member/[0-9]{4}/[0-9]{2}/[^/]+$#', $path)) {
-        return '久能カントリー倶楽部 公式サイト 会員様お知らせ詳細ページです。各お知らせ記事を掲載しております。';
+        return '久能カントリー倶楽部 公式サイト | 会員様向けお知らせページです。';
     }
 
     // /member/information/2025/12/slug
     if (preg_match('#^member/information/[0-9]{4}/[0-9]{2}/[^/]+$#', $path)) {
-        return '久能カントリー倶楽部 公式サイト 営業案内詳細ページです。各お知らせ記事を掲載しております。';
+        return '久能カントリー倶楽部 公式サイト | 営業案内について掲載しております。';
     }
 
     // /member/kusunoki/2025/12/slug
     if (preg_match('#^member/kusunoki/[0-9]{4}/[0-9]{2}/[^/]+$#', $path)) {
-        return '久能カントリー倶楽部 公式サイト くすのき会詳細ページです。各お知らせ記事を掲載しております。';
+        return '久能カントリー倶楽部 公式サイト | くすのき会向けのお知らせを掲載しております。';
 }
 
     /* ----------------------------------------------------
@@ -363,41 +441,41 @@ function get_dynamic_meta_description()
      * ※ page/2 も拾う
      * ---------------------------------------------------- */
     if (preg_match('#^member/([0-9]{4})(?:/page/[0-9]+)?$#', $path)) {
-        return '久能カントリー倶楽部 公式サイト 会員様お知らせ 年別ページです。各年ごとのお知らせを掲載しております。';
+        return '会員様向けお知らせ 年別カテゴリ | 久能カントリー倶楽部 公式サイト';
     }
 
     if (preg_match('#^member/information/([0-9]{4})(?:/page/[0-9]+)?$#', $path)) {
-        return '久能カントリー倶楽部 公式サイト 営業案内 年別ページです。各年ごとのお知らせを掲載しております。';
+        return '営業案内 年別カテゴリ | 久能カントリー倶楽部 公式サイト';
     }
 
     if (preg_match('#^member/kusunoki/([0-9]{4})(?:/page/[0-9]+)?$#', $path)) {
-        return '久能カントリー倶楽部 公式サイト くすのき会 年別ページです。各年ごとのお知らせを掲載しております。';
+        return 'くすのき会向け教えらせ 年別カテゴリ | 久能カントリー倶楽部 公式サイト';
     }
 
     // /course/hole1/ 〜 /course/hole18/ 共通
     if (preg_match('#^course/hole(0?[1-9]|1[0-8])$#', $path)) {
-        return '久能カントリー倶楽部 公式サイト コース案内ページです。コースの詳細について掲載しております。';
+        return '久能カントリー倶楽部 公式サイト | コース案内ページです。コースの詳細について掲載しております。';
     }
 
     /* ----------------------------------------------------
      * ▼ 会員ニュース 詳細ページ
      * ---------------------------------------------------- */
     if (is_single() && has_category(['member', 'kusunoki', 'information'])) {
-        return '久能カントリー倶楽部 公式サイト 会員お知らせ詳細ページです。各お知らせ記事を掲載しております。';
+        return '久能カントリー倶楽部 公式サイト | 会員お知らせ詳細ページです。';
     }
 
     /* ----------------------------------------------------
      * ▼ ニュース年別（/news/2024/）
      * ---------------------------------------------------- */
     if (preg_match('#^news/[0-9]{4}(/page/[0-9]+)?$#', $path)) {
-        return '久能カントリー倶楽部 公式サイト ニュース年別ページです。各年ごとの記事を掲載しております。';
+        return 'ニュース年別カテゴリ | 久能カントリー倶楽部 公式サイト';
     }
 
     /* ----------------------------------------------------
      * ▼ ニュース詳細
      * ---------------------------------------------------- */
     if (is_single()) {
-        return '久能カントリー倶楽部 公式サイト ニュース詳細ページです。各ニュース記事を掲載しております。';
+        return '会員様向けお知らせ 詳細ページ | 久能カントリー倶楽部 公式サイト ';
     }
 
     /* ----------------------------------------------------
@@ -1145,10 +1223,10 @@ function add_lazy_attributes_to_images($content_or_value, $post_id = null, $fiel
 add_filter('the_content', 'add_lazy_attributes_to_images');
 add_filter('acf/format_value/type=wysiwyg', 'add_lazy_attributes_to_images', 10, 3);
 
-// 画像トリミングサイズ
-if (function_exists('add_theme_support')) {
-    add_image_size('defaultsize', '', '', true);
-}
+// // 画像トリミングサイズ
+// if (function_exists('add_theme_support')) {
+//     add_image_size('defaultsize', '', '', true);
+// }
 
 add_filter(
     'image_send_to_editor',
@@ -2358,7 +2436,8 @@ add_action('template_redirect', function () {
         // PDF/画像は inline、それ以外は attachment
         $is_inline = (strpos($mime, 'image/') === 0) || ($mime === 'application/pdf');
         $disp      = $is_inline ? 'inline' : 'attachment';
-        header('Content-Disposition: ' . $disp . '; filename="' . rawurlencode($filename) . '"');
+        $encoded = rawurlencode($filename);
+        header('Content-Disposition: ' . $disp . '; filename="' . $encoded . '"; filename*=UTF-8\'\'' . $encoded);
     }
 
     while (ob_get_level()) { ob_end_clean(); }

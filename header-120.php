@@ -3,38 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- +++ noindex 出力 +++ -->
   <?php knc_add_noindex_meta(); ?>
   <!-- +++ noindex 出力 +++ -->
+  <?php knc_output_meta_tags(); ?>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="format-detection" content="telephone=no">
-
-  <title><?php wp_title('|', true, 'right'); ?>久能カントリー倶楽部</title>
-
-  <!-- OGP -->
-  <?php $meta_description = get_dynamic_meta_description(); ?>
-  <meta name="description" content="<?php echo esc_attr($meta_description); ?>">
-  <meta property="og:title" content="久能カントリー倶楽部">
-  <meta property="og:description" content="<?php echo esc_attr($meta_description); ?>">
-  <meta property="og:url" content="<?php echo esc_url(home_url()); ?>">
-  <meta property="og:locale" content="ja_JP">
-  <meta property="og:image" content="<?php echo esc_url(get_template_directory_uri() . '/img/ogp.jpg'); ?>">
-  <meta property="og:site_name" content="久能カントリー倶楽部">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="<?php echo esc_url(home_url()); ?>">
-
-  <!-- FAVICON -->
+  <!-- ICON -->
   <link rel="apple-touch-icon" sizes="180x180" href="<?php echo esc_url(get_template_directory_uri()); ?>/img/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 
   <!-- CSS / Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playwrite+IN:wght@100..400&family=Quicksand:wght@300..700&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+IN:wght@100..400&family=Quicksand:wght@300..700&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- LazySizes -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js"></script>
