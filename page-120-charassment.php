@@ -8,7 +8,7 @@ Template Name: カスタマーハラスメント
 <?php get_header('120'); ?>
 <!--  header -->
 
-<main class="c-main _csub">
+<main class="c-main">
   <div class="c-page-header lazyload">
     <div class="c-column c-page-header__inner">
       <h1 class="c-page-header__title _sub">Harassment&nbsp;Policy

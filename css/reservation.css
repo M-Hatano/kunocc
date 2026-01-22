@@ -690,7 +690,6 @@
       -ms-flex-direction: row;
           flex-direction: row;
   margin-top: 75px;
-  justify-content: space-between;
 }
 .pflow__arrow_box:nth-of-type(2n+2) .ball {
   position: absolute;
