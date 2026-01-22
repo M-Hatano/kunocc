@@ -1664,7 +1664,7 @@ add_action('template_redirect', function () {
 add_action('template_redirect', function () {
 
     // WPログイン または 会員ログイン済みなら何もしない
-    if (is_user_logged_in() || knc_member_is_logged_in()) {
+    if (knc_member_is_logged_in()) {
         return;
     }
 
@@ -1853,25 +1853,60 @@ add_action('template_redirect', function () {
 });
 
 /*--------------------------------
- * 会員ログアウト → ログインページへ戻す
+ * 会員ログアウト → ログインページへ戻す（セッション完全破棄版）
  --------------------------------*/
-add_action('template_redirect', function () {
-
-    $path = '/' . knc_get_site_relative_path();
-
-    if ($path !== '/member-logout' && $path !== '/member-logout/') {
-        return;
-    }
-
-    unset($_SESSION['knc_member_login'], $_SESSION['knc_member_id']);
-
-    if (session_status() === PHP_SESSION_ACTIVE) {
-        session_regenerate_id(true);
-    }
-
-    wp_redirect(home_url('/member-login/'));
-    exit;
-});
+ function knc_member_logout_and_redirect(): void
+ {
+     // セッション未開始なら開始（破棄のため）
+     if (session_status() !== PHP_SESSION_ACTIVE) {
+         @session_start();
+     }
+ 
+     // セッション変数を全消し
+     $_SESSION = [];
+ 
+     // セッションCookieも削除（ブラウザを閉じなくても即無効化）
+     if (ini_get('session.use_cookies')) {
+         $params = session_get_cookie_params();
+ 
+         setcookie(
+             session_name(),
+             '',
+             time() - 42000,
+             $params['path'] ?? '/',
+             $params['domain'] ?? '',
+             !empty($params['secure']),
+             !empty($params['httponly'])
+         );
+     }
+ 
+     // セッション破棄
+     @session_destroy();
+ 
+     // 念押し：新しいセッションIDに切り替え（固定化対策にも）
+     if (session_status() !== PHP_SESSION_ACTIVE) {
+         @session_start();
+     }
+     @session_regenerate_id(true);
+ 
+     // ログイン画面へ
+     wp_safe_redirect(home_url('/member-login/'), 302);
+     exit;
+ }
+ 
+ add_action('template_redirect', function () {
+ 
+     // knc_get_site_relative_path() は "member-logout" を返す想定
+     $rel = function_exists('knc_get_site_relative_path')
+         ? trim(knc_get_site_relative_path(), '/')
+         : trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '', '/');
+ 
+     if ($rel !== 'member-logout') {
+         return;
+     }
+ 
+     knc_member_logout_and_redirect();
+ });
 
 /*--------------------------------
  * STEP2：会員向けカテゴリ（タクソノミー）
