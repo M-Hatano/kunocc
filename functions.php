@@ -1895,6 +1895,8 @@ add_action('template_redirect', function () {
  }
  
  add_action('template_redirect', function () {
+
+    
  
      // knc_get_site_relative_path() は "member-logout" を返す想定
      $rel = function_exists('knc_get_site_relative_path')
@@ -2288,3 +2290,79 @@ add_action('template_redirect', function () {
         status_header(200);
     }
 }, 0);
+
+
+add_action('template_redirect', function () {
+
+    // /member/member-file/ だけを「実ファイル返却」にする
+    $relative = function_exists('knc_get_site_relative_path')
+        ? trim(knc_get_site_relative_path(), '/')
+        : trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '', '/');
+
+    if ($relative !== 'member/member-file') {
+        return;
+    }
+
+    // id 必須
+    $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+    if ($id <= 0) {
+        status_header(404);
+        exit;
+    }
+
+    // 会員専用チェック（念のため）
+    $is_member_only = get_post_meta($id, '_member_only', true) === '1';
+
+    // 会員専用ならログイン必須（WPログイン or 独自セッション）
+    if ($is_member_only && !is_user_logged_in() && !knc_member_is_logged_in()) {
+        $login_url = home_url('/member-login/');
+        $protected = add_query_arg(['id' => $id], home_url('/member/member-file/'));
+        wp_safe_redirect($login_url . '?redirect_to=' . rawurlencode($protected), 302);
+        exit;
+    }
+
+    // ★画像/PDFの並列読み込みで詰まらないようにセッションロック解除
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        session_write_close();
+    }
+
+    if (get_post_type($id) !== 'attachment') {
+        status_header(404);
+        exit;
+    }
+
+    // 添付ファイル実体パス
+    $file = get_attached_file($id);
+    if (!$file || !file_exists($file) || !is_file($file)) {
+        status_header(404);
+        exit;
+    }
+
+    // MIME
+    $mime = get_post_mime_type($id);
+    if (!$mime) {
+        $finfo = function_exists('mime_content_type') ? @mime_content_type($file) : '';
+        $mime = $finfo ?: 'application/octet-stream';
+    }
+
+    // 返却
+    if (!headers_sent()) {
+        header('Content-Type: ' . $mime);
+        header('Content-Length: ' . filesize($file));
+        header('X-Content-Type-Options: nosniff');
+        header('Cache-Control: private, max-age=0, no-cache, no-store, must-revalidate');
+        header('Pragma: no-cache');
+
+        $filename = basename($file);
+
+        // PDF/画像は inline、それ以外は attachment
+        $is_inline = (strpos($mime, 'image/') === 0) || ($mime === 'application/pdf');
+        $disp      = $is_inline ? 'inline' : 'attachment';
+        header('Content-Disposition: ' . $disp . '; filename="' . rawurlencode($filename) . '"');
+    }
+
+    while (ob_get_level()) { ob_end_clean(); }
+    readfile($file);
+    exit;
+
+}, 1);

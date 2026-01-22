@@ -72,9 +72,9 @@
           </a>
         </div>
 
-        <!-- <p class="c-header__member">
+        <p class="c-header__member">
           <a href="<?php echo esc_url(home_url('')); ?>/member/">会員専用</a>
-        </p> -->
+        </p>
 
         <div class="c-header__menu js-menu">
           <div>
@@ -137,7 +137,7 @@
                   >
                     久能CCの天気
                   </a>
-                  <!-- <a href="<?php echo esc_url(home_url('')); ?>/member/" class="c-nav__bnr--mbr">会員専用ページ</a> -->
+                  <a href="<?php echo esc_url(home_url('')); ?>/member/" class="c-nav__bnr--mbr">会員専用ページ</a>
                 </div>
               </div>
 
