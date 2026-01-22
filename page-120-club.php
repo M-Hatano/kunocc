@@ -122,7 +122,7 @@
             <td>名誉顧問</td>
           </tr>
           <tr>
-            <th rowspan="16">理事</th>
+            <th rowspan="17">理事</th>
             <td>青柳&nbsp;俊一</td>
             <td>株式会社千葉興業銀行</td>
             <td>取締役会長</td>
