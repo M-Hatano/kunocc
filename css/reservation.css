@@ -24,7 +24,7 @@
   background: -webkit-linear-gradient(left, #90966F 0%, #B1B983 100%);
   background: linear-gradient(90deg, #90966F 0%, #B1B983 100%);
   padding: 10px;
-  margin-bottom: 140px;
+  margin-bottom: 80px;
   position: relative;
 }
 .r-lead__texbox {
@@ -79,7 +79,7 @@
 }
 
 #link01 {
-  padding: 225px 0 284px;
+  padding: 120px 0 284px;
 }
 @media screen and (max-width: 896px) {
   #link01 {
@@ -1234,4 +1234,12 @@
   .res__rental .c-list li{
     font-size: 14px;
   }
+}
+
+.c-list{
+  margin: 40px 0 0 0;
+}
+.c-list li{
+  font-size: 18px;
+  margin: 10px 0 0 0;
 }

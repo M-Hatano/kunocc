@@ -48,16 +48,13 @@
 
           <ul>
             <li>
-              <a href="<?php echo $excel ? esc_url($excel['url']) : 'https://kunocc.sakura.ne.jp/cms/wp-content/uploads/2026/01/yoyaku251006.xlsx'; ?>">
+              <a href="<?php echo $excel ? esc_url($excel['url']) : '#'; ?>" target="_blank" rel="noopener noreferrer">
                 ご予約連絡フォーム<br class="c-brsp">(エクセル)
               </a>
             </li>
             <li>
               <a
-                href="<?php echo $pdf ? esc_url($pdf['url']) : 'https://kunocc.sakura.ne.jp/cms/wp-content/uploads/2025/11/yoyaku251008.pdf'; ?>"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+                href="<?php echo $pdf ? esc_url($pdf['url']) : '#'; ?>" target="_blank" rel="noopener noreferrer">
                 ご予約連絡フォーム<br class="c-brsp">(PDF)
               </a>
             </li>
