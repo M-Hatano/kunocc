@@ -125,7 +125,7 @@
 }
 
 .news-box__left {
-    width: calc(100% - 430px);
+    width: calc(100% - 320px);
     background: #fff;
     border: solid 1px #989E74;
     border-radius: 10px;
@@ -322,7 +322,7 @@
 }
 
 .news-box__right {
-    width: 410px;
+    width: 300px;
     margin-left: 20px;
     background: #fff;
     height: fit-content;
@@ -332,10 +332,16 @@
     position: relative;
     z-index: 1;
 }
+.news-box__right .c-head5 {
+    font-size: 3.6rem;
+}
 
 @media screen and (max-width: 896px) {
     .news-box__right {
         padding: 30px 20px 50px;
+    }
+    .news-box__right .c-head5 {
+        font-size: 3rem;
     }
 }
 

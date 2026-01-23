@@ -1590,8 +1590,8 @@ table {
   position: absolute;
   width: 25px;
   height: 25px;
-  border-right: 3px solid #fff;
-  border-top: 3px solid #fff;
+  border-right: 3px solid #00509E;
+  border-top: 3px solid #00509E;
   top: 55%;
   transform: translateY(-50%) rotate(-45deg);
 }
@@ -1600,8 +1600,8 @@ table {
   .c-pagetop a::before {
     width: 15px;
     height: 15px;
-    border-right: 3px solid #fff;
-    border-top: 3px solid #fff;
+    border-right: 3px solid #00509E;
+    border-top: 3px solid #00509E;
     top: 55%;
     border-radius: 3px;
   }
@@ -1706,7 +1706,7 @@ table {
 /* # =================================================================
 #	規約系背景
 # ================================================================= */
-.c-main._csub {
+.c-main._csub{
   background-image: url("../img/common/bg_ashi_01.png");
   background-repeat: repeat;
 }
@@ -2578,10 +2578,10 @@ table {
 /* # =================================================================
 #	プライバシーポリシー・リンク集
 # ================================================================= */
-#privacypolicy table th {
-  font-weight: 500;
-  text-align: start;
-  padding-right: 5px;
+#privacypolicy table th{
+    font-weight: 500;
+    text-align: start;
+    padding-right: 5px;
 }
 
 /* リンク集 */
@@ -2623,10 +2623,9 @@ table {
 }
 
 @media screen and (max-width: 896px) {
-  #links .link-lists {
+  #links .link-lists{
     flex-direction: column;
   }
-
   #links .link-lists li {
     width: 100%;
     margin-bottom: 15px;
@@ -2636,7 +2635,6 @@ table {
 #links .link-external a {
   position: relative;
 }
-
 #links .link-external a::after {
   content: url(../img/links/icn_link_01.svg);
   position: absolute;
@@ -3379,10 +3377,6 @@ table {
     text-align: center;
   }
   .m-list li a{
-    padding: 0;
-  }
-
-  .m-list li a {
     padding: 0;
   }
 
