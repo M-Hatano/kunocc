@@ -505,7 +505,7 @@
 }
 
 .top__flex+.top__flex {
-  margin-top: 132px;
+  margin-top: 110px;
 }
 
 @media screen and (max-width: 896px) {
@@ -527,7 +527,7 @@
   } */
 
   .top__flex+.top__flex {
-    margin-top: 90px;
+    margin-top: 50px;
   }
 }
 
