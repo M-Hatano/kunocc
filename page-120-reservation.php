@@ -267,7 +267,6 @@
                             <ul class="c-list">
                                 <li><span>※</span>男性2セット、女性1セットしかご用意がございません。先着順となります。</li>
                                 <li><span>※</span>レンタル用品についてはわずかしかご用意がございません。<br>必要に応じてレンタルクラブ会社からお借りすることも可能ですので、プレーの一週間前までにご予約ください。<br>ブランド等の指定も可能です。（レンタル料金：7,700円）</li>
-                                <li><span>※</span>弊クラブ利用約款第3条のとおり、ご予約可能組数は、土曜日は会員1名につき1組、日祝日は、2組、平日は原則として5組までとさせて頂きます。</li>
                             </ul>
                         </div>
                     </div>
@@ -439,7 +438,7 @@
                                 </div>
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_14.jpg" alt="お見送り・ご帰宅" class="img">
                                 <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/reservation/img_ball_14.png" alt="bo-ru" class="ball">
-                                <span class="deco _deb _b014"><span></span></span>
+                                <span class="deco _deb _b14"><span></span></span>
                             </li>
                         </ul>
                         <p class="rnotice">&#8251;ハーフ終了後に45分間の食事休憩、プレー後の飲食等を60分とした場合のスケジュールになります。</p>
