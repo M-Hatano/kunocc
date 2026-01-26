@@ -201,7 +201,9 @@ function h($s)
       <div class="c-form__ckbtn">
         <input type="submit" class="formbtn" name="check" value="確認画面へ" disabled="disabled">
       </div>
-
+      <p class="_mts">※添付資料がある方は、<a href="mailto:info@kunocc.co.jp">info@kunocc.co.jp</a>に直接送付をお願い致します。</p>
+      </ul>
+      
     </form>
     <ul class="c-brd">
       <li><a href="<?php echo esc_url(home_url('')); ?>">TOP</a></li>

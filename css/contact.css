@@ -169,6 +169,9 @@
 .c-form .checkbox-area a {
   text-decoration: underline;
 }
+.c-form p._mts a {
+  text-decoration: underline;
+}
 
 .c-form__bx {
   background: #fff;
