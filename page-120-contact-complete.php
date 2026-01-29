@@ -222,7 +222,6 @@ if (!function_exists('kunocc_setup_smtp_for_this_request')) {
     $phpmailer->Username   = 'info@kunocc.co.jp';
     //$phpmailer->Username   = 'hp-order@create-golf.co.jp'; // 送信されるアドレス
     $phpmailer->Password   = '|(~*G6!3MTbQ';
-    //$phpmailer->Password   = 'q5Fqt/Q!SNjB';                // 送信されるアドレスのパスワード
     $phpmailer->SMTPSecure = 'tls';                    // 通信暗号化方式（tls/587 または ssl/465）
     $phpmailer->Port       = 587;                      // TLS→587 / SSL→465
     $phpmailer->SMTPAutoTLS   = true;
@@ -233,7 +232,9 @@ if (!function_exists('kunocc_setup_smtp_for_this_request')) {
     $phpmailer->isHTML(false); // プレーンテキスト
     $phpmailer->setFrom('info@kunocc.co.jp', '久能カントリー倶楽部', false); 
     //$phpmailer->setFrom('hp-order@create-golf.co.jp', '久能カントリー倶楽部', false); // 送信者（From）メールアドレスと表示名
-    $phpmailer->addReplyTo('info@kunocc.co.jp', '久能カントリー倶楽部');
+    // Return-Path（Sender）を固定（迷惑メール判定対策）
+    $phpmailer->Sender = 'info@kunocc.co.jp';
+    // Reply-To は wp_mail() 側で「メール毎」に設定する（管理者宛はユーザーに）
     //$phpmailer->addReplyTo('hp-order@create-golf.co.jp', '久能カントリー倶楽部'); // 返信先（Reply-To）メールアドレスと表示名
   }
   add_action('phpmailer_init', 'kunocc_setup_smtp_for_this_request');
@@ -241,8 +242,34 @@ if (!function_exists('kunocc_setup_smtp_for_this_request')) {
 
 // メール送信処理
 $user_mail = $_SESSION['formated_mail'] ?? '';
-$ok1 = !empty($user_mail) ? wp_mail($user_mail, $title1, $text1) : false;
-$ok2 = wp_mail($adm_mail, $title2, $text2);
+
+// 差出人（アドレスは自ドメイン固定のまま）
+$from_email = 'info@kunocc.co.jp';
+
+// 表示名（CRLF対策）
+$user_name = $_SESSION['formated_name_kanji'] ?? '';
+$user_name = preg_replace('/[\r\n]+/', ' ', $user_name);
+$user_name = trim($user_name) !== '' ? $user_name : 'お問い合わせ';
+
+// 共通ヘッダー（文字コード明示）
+$headers_common = [
+ 'Content-Type: text/plain; charset=UTF-8',
+];
+
+// ユーザー宛：返信先はクラブ
+$headers_user = array_merge($headers_common, [
+  'From: 久能カントリー倶楽部 <' . $from_email . '>',
+ 'Reply-To: info@kunocc.co.jp',
+]);
+
+// 管理者宛：返信先はユーザー（←ここが効く）
+$headers_admin = array_merge($headers_common, [
+  'From: ' . $user_name . ' <' . $from_email . '>',
+ 'Reply-To: ' . $user_mail,
+]);
+
+$ok1 = !empty($user_mail) ? wp_mail($user_mail, $title1, $text1, $headers_user) : false;
+$ok2 = wp_mail($adm_mail, $title2, $text2, $headers_admin);
 
 //エラーの際に送信結果をFTPにログ出力
 if (!$ok1 || !$ok2) {

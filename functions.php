@@ -182,6 +182,27 @@ add_action(
     1
 );
 
+// ==============================
+// フォーム送信：SMTP化（プラグインなし）
+// ==============================
+add_action('phpmailer_init', function ($phpmailer) {
+
+ // 管理画面のテスト送信等も含め、wp_mail 全体をSMTPにしたいので条件分岐は基本不要
+ $from_email = 'info@kunocc.co.jp';
+
+ $phpmailer->isSMTP();
+ $phpmailer->Host = 'mail.kunocc.co.jp';
+ $phpmailer->SMTPAuth = true;
+ $phpmailer->Port = 587;
+ $phpmailer->Username = $from_email;
+ $phpmailer->Password = defined('KNC_SMTP_PASS') ? KNC_SMTP_PASS : '';
+ $phpmailer->SMTPSecure = 'tls'; // STARTTLS
+ $phpmailer->CharSet = 'UTF-8';
+
+ // Return-Path（エンベロープFrom）をFromと一致させる：Outlook対策で重要
+ $phpmailer->Sender = $from_email;
+});
+
 // 会員ログイン判定
 function knc_member_is_logged_in(): bool
 {
@@ -409,7 +430,7 @@ function get_dynamic_meta_description()
      * ▼ フロントページ
      * ---------------------------------------------------- */
     if (is_front_page() || $path === '') {
-        return '久能カントリー倶楽部 公式サイト | 箱崎から約60分、成田空港からはわずか25分という優れたアクセス環境に位置する、美しい景観に恵まれたゴルフコースです。';
+        return '箱崎から約60分、成田空港からはわずか25分という優れたアクセス環境に位置する、美しい景観に恵まれたゴルフコースです。';
     }
 
     /* ----------------------------------------------------
