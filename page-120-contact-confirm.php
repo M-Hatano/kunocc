@@ -1,4 +1,4 @@
-  <?php
+<?php
   /*
       Template Name: お問い合わせ-確認
       */
@@ -158,7 +158,7 @@
   $formated_name_kana = preg_replace("/[^ァ-ンー\r]+/u", '', $_POST['name-kana']);
   $formated_tel_number = preg_replace("/[^0-9\r]+/u", '', $_POST['tel-number']);
   $formated_mail = preg_replace("/[^a-zA-Z0-9\-\@\.\_\r]+/u", '', $_POST['mail']);
-  $formated_comment = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９,.、。?？()（）\r]+/u", '', $_POST['comment']);
+  $formated_comment = trim(wp_unslash($_POST['comment']));
   $formated_agreement = preg_replace("/[^ぁ-んァ-ン一-龠\r]+/u", '', $_POST['agreement']);
 
   // 必須が空の場合
@@ -233,7 +233,7 @@
         <dl class="c-form__list">
           <dt>お問い合わせ内容</dt>
           <dd>
-            <?php echo $_SESSION['formated_comment'] ?>
+            <?php echo nl2br($_SESSION['formated_comment']); ?>
           </dd>
         </dl>
         <dl class="c-form__list">
