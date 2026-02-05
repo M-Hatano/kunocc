@@ -86,19 +86,20 @@
               <div class="c-nav__box">
                 <ul class="c-nav__list">
                   <li><a href="<?php echo esc_url(home_url('')); ?>/reservation/">ご予約方法について</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部紹介</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/facility/">施設案内</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/restaurant/">レストラン</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/facility/#link03">プライベートルーム</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/facility/">施設案内</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/course/">コース紹介</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/d-range/">ゴルフ練習場</a></li>
                   <li><a href="<?php echo esc_url(home_url('')); ?>/access/">アクセス&#12539;近隣ホテル情報</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/news/">ニュース</a></li>
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/club/">倶楽部紹介</a></li>
+
                 </ul>
               </div>
 
               <div class="c-nav__box">
                 <ul class="c-nav__list">
-                  <li><a href="<?php echo esc_url(home_url('')); ?>/d-range/">ゴルフ練習場</a></li>
+                  <li><a href="<?php echo esc_url(home_url('')); ?>/news/">ニュース</a></li>
                   <!-- <li><a href="<?php echo esc_url(home_url('')); ?>/recruit/">求人情報</a></li> -->
                   <!-- <li>
                     <a href="<?php echo esc_url(get_template_directory_uri()); ?>/img/top/member2024.pdf" target="_blank" rel="noopener noreferrer">
