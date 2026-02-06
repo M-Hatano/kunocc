@@ -508,7 +508,7 @@
                     <li class="list02__item">
                         <div class="list02__menu">
                             <div class="list02__menu--ribbon list02__menu--color">
-                                2,220円コース
+                                2,200円コース
                             </div>
                             <p class="list02__menu--text">①サラダ<br>②一品料理<br>③鶏肉料理<br>④麺<br>⑤デザート</p>
                             <!-- <p class="list02__menu--price">2,750円</p> -->
