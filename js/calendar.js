@@ -11,21 +11,42 @@ document.querySelectorAll('#calendar-events [data-date]').forEach(el => {
     eventsMap[el.dataset.date] = el.innerHTML;
 });
 
+// 「前へ」ボタン：今月より前には戻らせない
 document.getElementById('prev').addEventListener('click', () => {
-    viewMonth--;
-    if (viewMonth < 1) {
-        viewMonth = 12;
-        viewYear--;
+    let targetYear = viewYear;
+    let targetMonth = viewMonth - 1;
+    if (targetMonth < 1) {
+        targetMonth = 12;
+        targetYear--;
     }
+
+    const minDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    const targetDate = new Date(targetYear, targetMonth - 1, 1);
+
+    if (targetDate < minDate) return;
+
+    viewYear = targetYear;
+    viewMonth = targetMonth;
     updateCalendar();
 });
 
+// 「次へ」ボタン：今月を含めて5ヶ月分（今月 + 4ヶ月先）まで
 document.getElementById('next').addEventListener('click', () => {
-    viewMonth++;
-    if (viewMonth > 12) {
-        viewMonth = 1;
-        viewYear++;
+    let targetYear = viewYear;
+    let targetMonth = viewMonth + 1;
+    if (targetMonth > 12) {
+        targetMonth = 1;
+        targetYear++;
     }
+
+    // ★制限の計算：今月から数えて5ヶ月後の1日（合計4ヶ月分）
+    const maxDate = new Date(today.getFullYear(), today.getMonth() + 4, 1);
+    const targetDate = new Date(targetYear, targetMonth - 1, 1);
+
+    if (targetDate > maxDate) return;
+
+    viewYear = targetYear;
+    viewMonth = targetMonth;
     updateCalendar();
 });
 
