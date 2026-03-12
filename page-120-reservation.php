@@ -43,7 +43,7 @@
                 <div class="rhead">
                     <div class="c-column border _wh _sta">
                         <div class="rcol">
-                            <h3 class="rpoit">6か月前<span class="rpoit__text01">予約開始</span></h3>
+                            <h3 class="rpoit">6か月前<span class="rpoit__text01">予約開始</span><span class="detail">6か月前の同日、9時より受付しております。</span></h3>
                         </div>
                     </div>
                 </div>
@@ -304,6 +304,7 @@
             <!-- 当日の流れ -->
             <section id="link02" class="stream">
                 <h2 class="c-head6">ご利用日当日の流れ<span>Hospitality<br class="c-brsp">Schedule</span></h2>
+                <p>6か月前の同日、9時より受付しております。</p>
 
                 <!-- タブエリア -->
                 <ul class="tabMenu">

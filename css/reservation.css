@@ -125,6 +125,10 @@
   font-size: 30px;
   padding-left: 1em;
 }
+.rpoit__text01 + .detail {
+  font-size: 22px;
+  margin: 0 0 0 50px;
+}
 .rpoit__text02 {
   font-size: 24px;
   width: 89%;
@@ -137,6 +141,11 @@
   .rpoit {
     font-size: 16px;
     padding: 24px 0;
+    flex-wrap: wrap;
+  }
+  .rpoit__text01 + .detail {
+    font-size: 14px;
+    margin: 10px 0 0 0;
   }
   .rpoit__text01 {
     font-size: 16px;
@@ -497,6 +506,13 @@
 #link02 .c-head6 {
   color: #fff;
 }
+#link02 .c-head6 + p{
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  margin: 0 0 60px;
+  font-weight: bold;
+}
 #link02 .c-head6 span {
   color: #fff;
   opacity: 0.15;
@@ -504,6 +520,10 @@
 @media screen and (max-width: 896px) {
   #link02 {
     padding-top: 87px;
+  }
+  #link02 .c-head6 + p{
+    font-size: 14px;
+    margin: 0;
   }
 }
 
@@ -531,7 +551,7 @@
 }
 @media screen and (max-width: 896px) {
   .tabMenu {
-    margin-top: 45px;
+    margin-top: 30px;
   }
 }
 
@@ -603,7 +623,6 @@
 @media screen and (max-width: 896px) {
   .tabContent.ignore {
     background: #FFFDF2 url("../img/reservation/bg_flow_03.png") bottom/100% 340px no-repeat;
-    padding-top: 140px;
   }
 }
 
