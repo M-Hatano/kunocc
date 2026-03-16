@@ -43,6 +43,11 @@ if (!empty($_GET['redirect_to'])) {
 
       <p class="c-lead">会員専用ページにアクセスするには<br class="c-brsp">ログインしてください。</p>
 
+      <div class="attention">
+        <p class="attention__head">会員様専用サイトログインの際の<br class="c-brsp">アラート表示について</p>
+        <p>Google Chrome上で、「使用したパスワードがデータ侵害で検出されました」といった<br class="c-brpc">警告が表示される場合がございますが、<br class="c-brpc">当サイトからのパスワード漏洩や、セキュリティ上の問題を示すものではございませんので<br class="c-brpc">ご安心ください。<br>全ての会員様に共通ID・パスワードをご入力いただいている為、<br class="c-brpc">こうした警告が表示される場合がございます。</p>
+      </div>
+
       <?php if ($login_error): ?>
         <p style="color:red; font-weight:bold;text-align:center;margin:0 0 15px;"><?php echo esc_html($login_error); ?></p>
       <?php endif; ?>
@@ -65,7 +70,7 @@ if (!empty($_GET['redirect_to'])) {
 
             <li>
               <label for="user_pass">パスワード</label><br>
-              <input type="password" id="user_pass" name="pwd" required>
+              <input type="password" id="user_pass" name="pwd" required autocomplete="off">
             </li>
           </ul>
 
