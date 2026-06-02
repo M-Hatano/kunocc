@@ -499,7 +499,7 @@
                     <li class="list02__item">
                         <div class="list02__menu">
                             <div class="list02__menu--ribbon list02__menu--color">
-                                2,750円コース
+                                3,300円コース
                             </div>
                             <p class="list02__menu--text">①一品料理<br>②刺身<br>③揚物<br>④肉料理<br>⑤デザート</p>
                             <!-- <p class="list02__menu--price">2,200円</p> -->
@@ -508,7 +508,7 @@
                     <li class="list02__item">
                         <div class="list02__menu">
                             <div class="list02__menu--ribbon list02__menu--color">
-                                2,200円コース
+                                2,750円コース
                             </div>
                             <p class="list02__menu--text">①サラダ<br>②一品料理<br>③鶏肉料理<br>④麺<br>⑤デザート</p>
                             <!-- <p class="list02__menu--price">2,750円</p> -->
@@ -517,7 +517,7 @@
                     <li class="list02__item">
                         <div class="list02__menu">
                             <div class="list02__menu--ribbon list02__menu--color">
-                                1,650円コース
+                                2,200円コース
                             </div>
                             <p class="list02__menu--text">①サラダ<br>②揚物<br>③サンドイッチ等<br>④デザート等</p>
                             <!-- <p class="list02__menu--price">2,750円</p> -->
@@ -526,7 +526,7 @@
                     <li class="list02__item">
                         <div class="list02__menu">
                             <div class="list02__menu--ribbon list02__menu--color">
-                                1,320円コース
+                                1,650円コース
                             </div>
                             <p class="list02__menu--text">①サラダ<br>②さつま揚げ等<br>③デザート等</p>
                             <!-- <p class="list02__menu--price">2,750円</p> -->
@@ -548,10 +548,11 @@
                     <li>旬の食材を仕入れる為、メニュー確定は直近になります。</li>
                     <li>お客様に合わせて内容変更できます。ご相談下さいませ。</li>
                     <li>
-                        飲み放題（2h）は、2組以上で、2,750円で承ります。<br>（ビール、ウィスキー、ワイン、焼酎、日本酒、ソフトドリンク、ノンアルコール）<br>
-                        ※2026年4月1日（水）より、飲み放題（2h）プランは、料金が3,080円となります。
+                        飲み放題（2h）は、2組以上で、3,080円で承ります。<br>（ビール、ウィスキー、ワイン、焼酎、日本酒、ソフトドリンク、ノンアルコール）
                     </li>
-                    <li>ソフトドリンク飲み放題770円は、2組以上で承ります。（烏龍茶、コーラ、ジンジャーエール、コーヒー）</li>
+                    <li>ソフトドリンク飲み放題770円は、2組以上で承ります。（烏龍茶、コーラ、ジンジャーエール、コーヒー）<br>
+                        ※2026年5月1日（金）よりソフトドリンク飲み放題は、880円となります。
+                    </li>
                     <li>3日前からキャンセル料が発生いたします。</li>
                 </ul>
             </div>
