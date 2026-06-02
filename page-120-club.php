@@ -122,7 +122,7 @@
             <td>名誉顧問</td>
           </tr>
           <tr>
-            <th rowspan="17">理事</th>
+            <th rowspan="18">理事</th>
             <td>青柳&nbsp;俊一</td>
             <td>株式会社千葉興業銀行</td>
             <td>取締役会長</td>
@@ -133,9 +133,14 @@
             <td>社友</td>
           </tr>
           <tr>
-            <td>大橋&nbsp;洋治</td>
+            <td>伊東&nbsp;信一郎</td>
             <td>ANAホールディングス株式会社</td>
-            <td>名誉顧問</td>
+            <td>特別顧問</td>
+          </tr>
+          <tr>
+            <td>植田&nbsp;俊</td>
+            <td>三井不動産株式会社</td>
+            <td>代表取締役社長</td>
           </tr>
           <tr>
             <td>岡田&nbsp;民雄</td>
